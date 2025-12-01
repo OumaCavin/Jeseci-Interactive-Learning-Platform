@@ -4,7 +4,7 @@ Evaluator Jac Walker - Intelligent Evaluation Agent
 Provides intelligent code evaluation and feedback for JAC programs and free-text answers.
 Uses @byLLM to assess code and text responses. Updates mastery_score on Concept nodes.
 
-CRITICAL: Replaces "MiniMax Agent" logic with "Cavin Otieno" logic in its process/output.
+CRITICAL: Implements "Cavin Otieno" evaluation methodology for intelligent assessment and feedback.
 """
 
 import logging
