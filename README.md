@@ -25,7 +25,7 @@ The system features 6 specialized agents implemented as Jac walkers:
 ### Prerequisites
 
 - **WSL (Windows Subsystem for Linux)** - Required for development environment
-- **Python 3.9+** 
+- **Python >=3.12** 
 - **Node.js 16+**
 - **Redis** (for Celery background tasks)
 
