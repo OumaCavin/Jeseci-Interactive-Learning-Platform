@@ -1,0 +1,130 @@
+# Production values for Jeseci Platform
+# Override default values for production deployment
+
+replicaCount: 3
+
+image:
+  repository: ghcr.io/oumacavin/jeseci-interactive-learning-platform
+  tag: "production-latest"
+
+# Production environment configuration
+environment: production
+
+# Backend Configuration
+backend:
+  replicaCount: 3
+  image:
+    repository: ghcr.io/oumacavin/jeseci-interactive-learning-platform-backend
+    tag: "production-latest"
+  env:
+    DEBUG: "False"
+    ALLOWED_HOSTS: "jeseci.com,*.jeseci.com,api.jeseci.com"
+    SECRET_KEY: "changeme-in-production"
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "500m"
+    limits:
+      memory: "1Gi"
+      cpu: "1000m"
+
+# Frontend Configuration  
+frontend:
+  replicaCount: 3
+  image:
+    repository: ghcr.io/oumacavin/jeseci-interactive-learning-platform-frontend
+    tag: "production-latest"
+  env:
+    REACT_APP_API_URL: "https://api.jeseci.com/api"
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "200m"
+    limits:
+      memory: "512Mi"
+      cpu: "400m"
+
+# Production ingress configuration
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  hosts:
+    - host: jeseci.com
+      paths:
+        - path: /
+          pathType: Prefix
+    - host: api.jeseci.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: jeseci-tls
+      hosts:
+        - jeseci.com
+        - api.jeseci.com
+
+# Production database configuration
+postgresql:
+  enabled: true
+  auth:
+    postgresPassword: "changeme-in-production"
+    database: "jeseci_production"
+    username: "jeseci_user"
+    password: "changeme-in-production"
+  primary:
+    persistence:
+      enabled: true
+      size: 50Gi
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: "500m"
+      limits:
+        memory: "2Gi"
+        cpu: "1000m"
+  metrics:
+    enabled: true
+
+# Production Redis configuration
+redis:
+  enabled: true
+  auth:
+    enabled: true
+    password: "changeme-in-production"
+  master:
+    persistence:
+      enabled: true
+      size: 20Gi
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "250m"
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+
+# Production autoscaling
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 20
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+# Production monitoring
+monitoring:
+  enabled: true
+  prometheus:
+    enabled: true
+  grafana:
+    enabled: true
+
+# Production backup
+backup:
+  enabled: true
+  schedule: "0 2 * * *"  # Daily at 2 AM
+  retention: "30d"

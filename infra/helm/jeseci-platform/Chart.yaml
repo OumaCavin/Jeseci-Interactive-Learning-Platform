@@ -1,0 +1,21 @@
+apiVersion: v2
+name: jeseci-platform
+description: A Helm chart for Jeseci Interactive Learning Platform
+type: application
+version: 1.0.0
+appVersion: "1.0"
+
+keywords:
+  - jaseci
+  - jaclang
+  - learning
+  - multi-agent
+  - django
+  - react
+
+maintainers:
+  - name: OumaCavin
+    email: cavin.otieno012@gmail.com
+
+sources:
+  - https://github.com/OumaCavin/Jeseci-Interactive-Learning-Platform

@@ -1,0 +1,138 @@
+# Default values for Jeseci Platform
+# This is a YAML-formatted file.
+
+replicaCount: 2
+
+image:
+  repository: ghcr.io/oumacavin/jeseci-interactive-learning-platform
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: jeseci.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+  # - secretName: jeseci-tls
+  #   hosts:
+  #     - jeseci.local
+
+resources: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+# Environment-specific configuration
+environment: staging
+
+# Backend Configuration
+backend:
+  replicaCount: 2
+  image:
+    repository: ghcr.io/oumacavin/jeseci-interactive-learning-platform-backend
+    tag: "staging-latest"
+  service:
+    type: ClusterIP
+    port: 8000
+  env:
+    DEBUG: "False"
+    ALLOWED_HOSTS: "jeseci.local,*.jeseci.local"
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+
+# Frontend Configuration
+frontend:
+  replicaCount: 2
+  image:
+    repository: ghcr.io/oumacavin/jeseci-interactive-learning-platform-frontend
+    tag: "staging-latest"
+  service:
+    type: ClusterIP
+    port: 80
+  env:
+    REACT_APP_API_URL: "https://jeseci.local/api"
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "100m"
+    limits:
+      memory: "256Mi"
+      cpu: "200m"
+
+# Database Configuration
+postgresql:
+  enabled: true
+  auth:
+    postgresPassword: "stagingpostgrespassword"
+    database: "jeseci_staging"
+    username: "jeseci_user"
+    password: "stagingjesecipassword"
+  primary:
+    persistence:
+      enabled: true
+      size: 10Gi
+  metrics:
+    enabled: true
+
+# Redis Configuration
+redis:
+  enabled: true
+  auth:
+    enabled: false
+  master:
+    persistence:
+      enabled: true
+      size: 5Gi
+
+# Monitoring
+monitoring:
+  enabled: true
+  prometheus:
+    enabled: true
+  grafana:
+    enabled: true
+
+# Backup Configuration
+backup:
+  enabled: false
