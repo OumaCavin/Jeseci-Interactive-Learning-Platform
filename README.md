@@ -2,6 +2,19 @@
 
 A production-ready, enterprise-grade Multi-Agent System (MAS) for adaptive learning built with Jac Programming Language, Django, and React.
 
+## 🛠️ Tech Stack
+
+![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-4.2%2B-092E20?style=for-the-badge&logo=django&logoColor=white)
+![Jac Programming](https://img.shields.io/badge/Jac%20Lang-Multi--Agent%20System-FF6B35?style=for-the-badge&logo=language&logoColor=white)
+![React](https://img.shields.io/badge/React-18%2B-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5%2B-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-7%2B-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15%2B-336791?style=for-the-badge&logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-25%2B-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Celery](https://img.shields.io/badge/Celery-Background%20Tasks-4B8BBE?style=for-the-badge&logo=celery&logoColor=white)
+
 ## 🏗️ Architecture Overview
 
 This platform implements a 3-Tier architecture:
