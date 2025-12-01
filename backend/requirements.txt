@@ -1,41 +1,46 @@
-# Core Django and Web Framework
-Django>=4.2.0
-djangorestframework>=3.14.0
-django-cors-headers>=4.0.0
+# Jeseci Interactive Learning Platform - Development Requirements
+# Latest versions - freeze to exact versions after development testing
+
+# JacLang runtime
+jaclang
+
+# Django ecosystem
+django
+djangorestframework
+django-cors-headers
 
 # Jac Programming Language Integration
-jaclang>=0.2.0
-jaseci>=1.4.0
+jaseci
 
 # Database and Caching
-psycopg2-binary>=2.9.0
-redis>=4.5.0
-django-redis>=5.2.0
+psycopg2-binary
+redis
+django-redis
 
 # Celery for Background Tasks
-celery[redis]>=5.2.0
+celery[redis]
 
 # Environment and Configuration
-python-decouple>=3.8
-dj-database-url>=1.2.0
+python-decouple
+dj-database-url
 
 # Media and File Handling
-Pillow>=9.5.0
-django-storages>=1.13.0
+Pillow
+django-storages
 
 # Development and Testing
-django-debug-toolbar>=4.1.0
-django-extensions>=3.2.0
-pytest>=7.3.0
-pytest-django>=4.5.0
-factory-boy>=3.2.0
+django-debug-toolbar
+django-extensions
+pytest
+pytest-django
+pytest-cov
 
 # Documentation
-sphinx>=6.2.0
-sphinx-rtd-theme>=1.2.0
+sphinx
+sphinx-rtd-theme
 
 # Security
-django-security>=0.21.0
+django-security
 
 # API Documentation
-drf-spectacular>=0.26.0
+drf-spectacular
