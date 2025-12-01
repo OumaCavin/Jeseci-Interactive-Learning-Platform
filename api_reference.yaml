@@ -1,0 +1,1883 @@
+openapi: 3.0.0
+info:
+  title: Jeseci Interactive Learning Platform API
+  description: |
+    Enterprise-grade Multi-Agent System API for adaptive learning built with Jac Programming Language, Django, and React.
+    
+    ## Features
+    - **Multi-Agent System**: 6 specialized agents for comprehensive learning support
+    - **Adaptive Learning**: Personalized content and difficulty adjustment
+    - **Real-time Feedback**: Instant code evaluation and guidance
+    - **Progress Analytics**: Comprehensive learning analytics and insights
+    - **Gamification**: Achievement system and engagement features
+    
+    ## Architecture
+    - **Presentation Tier**: React frontend with interactive code editor
+    - **Application Tier**: Django REST Framework API
+    - **Data & Logic Tiers**: JacLang-based Multi-Agent System with Object-Spatial Graph
+    
+    ## Authentication
+    All endpoints (except health checks) require JWT authentication:
+    ```
+    Authorization: Bearer <jwt_token>
+    ```
+    
+    ## Rate Limiting
+    - **Authentication endpoints**: 5 requests per minute
+    - **Learning endpoints**: 60 requests per minute
+    - **Assessment endpoints**: 30 requests per minute
+    
+    ## Error Handling
+    All endpoints return consistent error responses:
+    ```json
+    {
+      "error": true,
+      "message": "Error description",
+      "code": "ERROR_CODE",
+      "details": {}
+    }
+    ```
+    
+    ## Contact
+    - **Author**: Cavin Otieno
+    - **Repository**: https://github.com/OumaCavin/Jeseci-Learning-Platform
+    - **Documentation**: Complete documentation available in project docs/
+  version: 1.0.0
+  contact:
+    name: Cavin Otieno
+    email: cavin.otieno012@gmail.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.jeseci.com
+    description: Production server
+  - url: https://staging-api.jeseci.com
+    description: Staging server
+  - url: http://localhost:8000
+    description: Development server
+
+security:
+  - BearerAuth: []
+
+paths:
+  # Health Check Endpoints
+  /api/health/:
+    get:
+      tags:
+        - System Health
+      summary: System health check
+      description: Basic health check endpoint to verify system status
+      operationId: healthCheck
+      responses:
+        '200':
+          description: System is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: healthy
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2025-12-02T04:26:27Z'
+                  version:
+                    type: string
+                    example: 1.0.0
+                  services:
+                    type: object
+                    properties:
+                      database:
+                        type: string
+                        example: connected
+                      redis:
+                        type: string
+                        example: connected
+                      jac_runtime:
+                        type: string
+                        example: active
+        '503':
+          description: System is unhealthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/health/detailed/:
+    get:
+      tags:
+        - System Health
+      summary: Detailed system health check
+      description: Comprehensive health check including all system components
+      operationId: detailedHealthCheck
+      responses:
+        '200':
+          description: Detailed system status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: healthy
+                  timestamp:
+                    type: string
+                    format: date-time
+                  uptime:
+                    type: number
+                    example: 86400
+                  components:
+                    type: object
+                    properties:
+                      django:
+                        $ref: '#/components/schemas/ComponentHealth'
+                      database:
+                        $ref: '#/components/schemas/ComponentHealth'
+                      redis:
+                        $ref: '#/components/schemas/ComponentHealth'
+                      jac_agents:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/AgentHealth'
+                  metrics:
+                    $ref: '#/components/schemas/SystemMetrics'
+
+  # Authentication Endpoints
+  /api/auth/login/:
+    post:
+      tags:
+        - Authentication
+      summary: User login
+      description: Authenticate user and receive JWT token
+      operationId: userLogin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: user@example.com
+                  description: User email address
+                password:
+                  type: string
+                  format: password
+                  example: securePassword123!
+                  description: User password
+                remember_me:
+                  type: boolean
+                  default: false
+                  example: false
+                  description: Extended session duration
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Login successful
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        $ref: '#/components/schemas/UserProfile'
+                      tokens:
+                        type: object
+                        properties:
+                          access:
+                            type: string
+                            description: JWT access token
+                          refresh:
+                            type: string
+                            description: JWT refresh token
+                      expires_at:
+                        type: string
+                        format: date-time
+        '400':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/auth/logout/:
+    post:
+      tags:
+        - Authentication
+      summary: User logout
+      description: Invalidate user session and refresh token
+      operationId: userLogout
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Logout successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Logout successful
+
+  /api/auth/refresh/:
+    post:
+      tags:
+        - Authentication
+      summary: Refresh access token
+      description: Obtain new access token using refresh token
+      operationId: refreshToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - refresh_token
+              properties:
+                refresh_token:
+                  type: string
+                  description: Valid refresh token
+      responses:
+        '200':
+          description: Token refreshed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      access_token:
+                        type: string
+                      expires_at:
+                        type: string
+                        format: date-time
+
+  # Learning Session Endpoints
+  /api/learning/init/:
+    post:
+      tags:
+        - Learning Sessions
+      summary: Initialize learning session
+      description: Create a new learning session for a user with OSP graph initialization
+      operationId: initializeLearningSession
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user_id
+              properties:
+                user_id:
+                  type: integer
+                  example: 123
+                  description: User identifier
+                learning_path:
+                  type: string
+                  enum: [programming, data_science, web_development, algorithms]
+                  example: programming
+                  description: Selected learning path
+                difficulty_level:
+                  type: string
+                  enum: [beginner, intermediate, advanced]
+                  example: beginner
+                  description: Initial difficulty level
+                preferences:
+                  type: object
+                  description: User learning preferences
+                  properties:
+                    learning_style:
+                      type: string
+                      enum: [visual, auditory, kinesthetic, reading]
+                    pace_preference:
+                      type: string
+                      enum: [slow, normal, fast]
+                    preferred_languages:
+                      type: array
+                      items:
+                        type: string
+                      example: [python, javascript]
+      responses:
+        '201':
+          description: Learning session created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  session_id:
+                    type: string
+                    format: uuid
+                    example: '550e8400-e29b-41d4-a716-446655440000'
+                  data:
+                    $ref: '#/components/schemas/LearningSession'
+        '400':
+          description: Invalid request data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Active session already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/learning/session/{session_id}/:
+    get:
+      tags:
+        - Learning Sessions
+      summary: Get learning session details
+      description: Retrieve detailed information about a specific learning session
+      operationId: getLearningSession
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Learning session identifier
+      responses:
+        '200':
+          description: Learning session details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/LearningSession'
+        '404':
+          description: Learning session not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/learning/session/{session_id}/end/:
+    post:
+      tags:
+        - Learning Sessions
+      summary: End learning session
+      description: Close an active learning session and finalize progress
+      operationId: endLearningSession
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Learning session identifier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                completion_status:
+                  type: string
+                  enum: [completed, paused, abandoned]
+                  example: completed
+                  description: Session completion status
+                final_notes:
+                  type: string
+                  example: 'Completed all planned exercises'
+                  description: User's final notes about the session
+      responses:
+        '200':
+          description: Learning session ended successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  final_summary:
+                    type: object
+                    properties:
+                      total_time:
+                        type: number
+                        example: 3600
+                        description: Total session time in seconds
+                      activities_completed:
+                        type: integer
+                        example: 5
+                      progress_update:
+                        type: object
+                        description: Final progress summary
+
+  # Content Endpoints
+  /api/content/lesson/{lesson_id}/:
+    get:
+      tags:
+        - Learning Content
+      summary: Get learning content
+      description: Retrieve personalized learning content based on user mastery and preferences
+      operationId: getLearningContent
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: lesson_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Lesson identifier
+        - name: user_id
+          in: query
+          schema:
+            type: integer
+          description: User identifier for personalization
+      responses:
+        '200':
+          description: Learning content retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/LearningContent'
+
+  /api/content/recommendations/:
+    get:
+      tags:
+        - Learning Content
+      summary: Get content recommendations
+      description: Get AI-powered content recommendations based on user progress and learning patterns
+      operationId: getContentRecommendations
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: User identifier
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 20
+            default: 5
+          description: Maximum number of recommendations
+        - name: content_type
+          in: query
+          schema:
+            type: string
+            enum: [lesson, quiz, exercise, video, reading]
+          description: Filter by content type
+      responses:
+        '200':
+          description: Content recommendations retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  recommendations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ContentRecommendation'
+                  reasoning:
+                    type: string
+                    example: 'Recommended based on your progress in Python basics and interest in algorithms'
+
+  # Quiz and Assessment Endpoints
+  /api/quiz/generate/:
+    post:
+      tags:
+        - Assessments
+      summary: Generate adaptive quiz
+      description: Generate a personalized quiz using AI based on user's current mastery level and learning objectives
+      operationId: generateAdaptiveQuiz
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user_id
+                - topic
+                - difficulty_level
+              properties:
+                user_id:
+                  type: integer
+                  example: 123
+                  description: User identifier
+                topic:
+                  type: string
+                  example: 'python-functions'
+                  description: Learning topic for the quiz
+                difficulty_level:
+                  type: string
+                  enum: [beginner, intermediate, advanced]
+                  example: intermediate
+                  description: Quiz difficulty level
+                quiz_type:
+                  type: string
+                  enum: [coding, multiple_choice, mixed, essay]
+                  default: mixed
+                  example: mixed
+                  description: Type of quiz to generate
+                question_count:
+                  type: integer
+                  minimum: 1
+                  maximum: 20
+                  default: 5
+                  example: 8
+                  description: Number of questions to generate
+                time_limit:
+                  type: integer
+                  minimum: 300
+                  maximum: 3600
+                  description: Quiz time limit in seconds
+      responses:
+        '201':
+          description: Quiz generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  quiz_id:
+                    type: string
+                    format: uuid
+                    example: '123e4567-e89b-12d3-a456-426614174000'
+                  data:
+                    $ref: '#/components/schemas/Quiz'
+
+  /api/quiz/{quiz_id}/submit/:
+    post:
+      tags:
+        - Assessments
+      summary: Submit quiz answers
+      description: Submit quiz answers for evaluation by the intelligent assessment system
+      operationId: submitQuizAnswers
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: quiz_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Quiz identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user_id
+                - answers
+              properties:
+                user_id:
+                  type: integer
+                  example: 123
+                  description: User identifier
+                answers:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/QuizAnswer'
+                completion_time:
+                  type: integer
+                  description: Time taken to complete quiz in seconds
+      responses:
+        '200':
+          description: Quiz submitted and evaluated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  evaluation:
+                    $ref: '#/components/schemas/QuizEvaluation'
+
+  /api/assessment/code/submit/:
+    post:
+      tags:
+        - Assessments
+      summary: Submit code for evaluation
+      description: Submit code for intelligent evaluation using Cavin Otieno's multi-dimensional assessment methodology
+      operationId: submitCodeForEvaluation
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user_id
+                - quiz_id
+                - code
+                - language
+              properties:
+                user_id:
+                  type: integer
+                  example: 123
+                  description: User identifier
+                quiz_id:
+                  type: string
+                  format: uuid
+                  description: Quiz or exercise identifier
+                code:
+                  type: string
+                  example: |
+                    def fibonacci(n):
+                        if n <= 1:
+                            return n
+                        return fibonacci(n-1) + fibonacci(n-2)
+                  description: Code submission
+                language:
+                  type: string
+                  enum: [python, javascript, java, c++, cpp, go, rust]
+                  example: python
+                  description: Programming language
+                additional_context:
+                  type: string
+                  example: 'This is my attempt at solving the Fibonacci sequence problem'
+                  description: Additional context provided by user
+      responses:
+        '200':
+          description: Code evaluated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  evaluation:
+                    $ref: '#/components/schemas/CodeEvaluation'
+
+  # Progress and Analytics Endpoints
+  /api/progress/user/{user_id}/:
+    get:
+      tags:
+        - Progress Tracking
+      summary: Get user progress
+      description: Retrieve comprehensive learning progress and analytics for a user
+      operationId: getUserProgress
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: User identifier
+        - name: time_period
+          in: query
+          schema:
+            type: string
+            enum: [week, month, quarter, year, all]
+            default: month
+          description: Time period for progress analysis
+        - name: include_activities
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Include detailed activity breakdown
+      responses:
+        '200':
+          description: User progress retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/UserProgress'
+
+  /api/analytics/dashboard/:
+    get:
+      tags:
+        - Analytics
+      summary: Get analytics dashboard data
+      description: Retrieve comprehensive analytics data for dashboard visualization
+      operationId: getAnalyticsDashboard
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: User identifier for personalized analytics
+        - name: dashboard_type
+          in: query
+          schema:
+            type: string
+            enum: [student, instructor, admin]
+            default: student
+          description: Type of dashboard data to retrieve
+      responses:
+        '200':
+          description: Analytics dashboard data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/AnalyticsDashboard'
+
+  /api/analytics/insights/:
+    get:
+      tags:
+        - Analytics
+      summary: Get learning insights
+      description: Retrieve AI-generated learning insights and recommendations
+      operationId: getLearningInsights
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: User identifier
+        - name: insight_type
+          in: query
+          schema:
+            type: string
+            enum: [learning_pattern, improvement_areas, strength_areas, next_steps]
+          description: Type of insights to retrieve
+      responses:
+        '200':
+          description: Learning insights retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  insights:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LearningInsight'
+
+  # Real-time Feedback Endpoints
+  /api/feedback/realtime/:
+    post:
+      tags:
+        - Real-time Feedback
+      summary: Get real-time feedback
+      description: Obtain real-time feedback during code input or learning activity
+      operationId: getRealTimeFeedback
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user_id
+                - input_type
+                - current_input
+                - context
+              properties:
+                user_id:
+                  type: integer
+                  example: 123
+                  description: User identifier
+                input_type:
+                  type: string
+                  enum: [code, text, question, answer]
+                  example: code
+                  description: Type of user input
+                current_input:
+                  type: string
+                  example: 'def fibonacci(n):'
+                  description: Current user input
+                context:
+                  type: string
+                  example: 'Solving Fibonacci sequence problem'
+                  description: Learning context
+                feedback_type:
+                  type: string
+                  enum: [hint, correction, encouragement, explanation]
+                  default: hint
+                  example: hint
+                  description: Type of feedback needed
+      responses:
+        '200':
+          description: Real-time feedback generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  feedback:
+                    $ref: '#/components/schemas/RealTimeFeedback'
+
+  # Achievement and Gamification Endpoints
+  /api/achievements/user/{user_id}/:
+    get:
+      tags:
+        - Achievements
+      summary: Get user achievements
+      description: Retrieve user's earned achievements and progress toward new ones
+      operationId: getUserAchievements
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: User identifier
+      responses:
+        '200':
+          description: User achievements retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      earned_achievements:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Achievement'
+                      progress_toward_next:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/AchievementProgress'
+
+  /api/gamification/leaderboard/:
+    get:
+      tags:
+        - Gamification
+      summary: Get leaderboard
+      description: Retrieve current leaderboard rankings and user positions
+      operationId: getLeaderboard
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: leaderboard_type
+          in: query
+          schema:
+            type: string
+            enum: [overall, weekly, monthly, skill_based]
+            default: overall
+          description: Type of leaderboard
+        - name: skill_area
+          in: query
+          schema:
+            type: string
+          description: Filter by specific skill area
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+          description: Number of entries to return
+      responses:
+        '200':
+          description: Leaderboard retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  leaderboard:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LeaderboardEntry'
+
+  # Agent Status and Management Endpoints
+  /api/agents/status/:
+    get:
+      tags:
+        - Multi-Agent System
+      summary: Get agent status
+      description: Check the status of all Multi-Agent System components
+      operationId: getAgentStatus
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Agent status retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  agents:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AgentStatus'
+                  system_health:
+                    type: string
+                    enum: [healthy, degraded, unhealthy]
+                    example: healthy
+
+  /api/agents/workflow/:
+    post:
+      tags:
+        - Multi-Agent System
+      summary: Trigger agent workflow
+      description: Manually trigger a specific Multi-Agent System workflow
+      operationId: triggerAgentWorkflow
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - workflow_type
+                - user_id
+              properties:
+                workflow_type:
+                  type: string
+                  enum: [initialize_session, generate_content, assess_submission, update_progress, provide_motivation]
+                  example: generate_content
+                  description: Type of workflow to trigger
+                user_id:
+                  type: integer
+                  example: 123
+                  description: User identifier
+                parameters:
+                  type: object
+                  description: Workflow-specific parameters
+      responses:
+        '200':
+          description: Workflow triggered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  workflow_id:
+                    type: string
+                    format: uuid
+                    description: Unique workflow execution identifier
+
+  # User Management Endpoints
+  /api/users/profile/:
+    get:
+      tags:
+        - User Management
+      summary: Get user profile
+      description: Retrieve current user's profile information
+      operationId: getUserProfile
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: User profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/UserProfile'
+
+  /api/users/profile/:
+    put:
+      tags:
+        - User Management
+      summary: Update user profile
+      description: Update current user's profile information
+      operationId: updateUserProfile
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: new_username
+                email:
+                  type: string
+                  format: email
+                  example: newemail@example.com
+                first_name:
+                  type: string
+                  example: John
+                last_name:
+                  type: string
+                  example: Doe
+                learning_preferences:
+                  type: object
+                  properties:
+                    preferred_language:
+                      type: string
+                      example: python
+                    difficulty_preference:
+                      type: string
+                      enum: [beginner, intermediate, advanced]
+                    learning_style:
+                      type: string
+                      enum: [visual, auditory, kinesthetic, reading]
+      responses:
+        '200':
+          description: User profile updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/UserProfile'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: 'Invalid request parameters'
+        code:
+          type: string
+          example: 'INVALID_PARAMETERS'
+        details:
+          type: object
+          description: Additional error details
+        timestamp:
+          type: string
+          format: date-time
+          example: '2025-12-02T04:26:27Z'
+
+    UserProfile:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+        username:
+          type: string
+          example: 'johndoe'
+        email:
+          type: string
+          format: email
+          example: 'john@example.com'
+        first_name:
+          type: string
+          example: John
+        last_name:
+          type: string
+          example: Doe
+        avatar_url:
+          type: string
+          format: uri
+          example: 'https://example.com/avatar.jpg'
+        learning_preferences:
+          type: object
+          properties:
+            preferred_language:
+              type: string
+              example: python
+            difficulty_preference:
+              type: string
+              enum: [beginner, intermediate, advanced]
+            learning_style:
+              type: string
+              enum: [visual, auditory, kinesthetic, reading]
+            pace_preference:
+              type: string
+              enum: [slow, normal, fast]
+        created_at:
+          type: string
+          format: date-time
+        last_login:
+          type: string
+          format: date-time
+
+    LearningSession:
+      type: object
+      properties:
+        session_id:
+          type: string
+          format: uuid
+          example: '550e8400-e29b-41d4-a716-446655440000'
+        user_id:
+          type: integer
+          example: 123
+        status:
+          type: string
+          enum: [active, paused, completed, abandoned]
+          example: active
+        learning_path:
+          type: string
+          example: programming
+        difficulty_level:
+          type: string
+          enum: [beginner, intermediate, advanced]
+        started_at:
+          type: string
+          format: date-time
+        last_activity:
+          type: string
+          format: date-time
+        total_time:
+          type: number
+          description: Total session time in seconds
+        activities_completed:
+          type: integer
+          example: 5
+
+    LearningContent:
+      type: object
+      properties:
+        content_id:
+          type: string
+          format: uuid
+          example: '123e4567-e89b-12d3-a456-426614174000'
+        title:
+          type: string
+          example: 'Introduction to Python Functions'
+        content_type:
+          type: string
+          enum: [lesson, exercise, quiz, video, reading]
+          example: lesson
+        difficulty_level:
+          type: string
+          enum: [beginner, intermediate, advanced]
+        content_data:
+          type: object
+          properties:
+            text_content:
+              type: string
+              description: Text-based content
+            code_examples:
+              type: array
+              items:
+                type: object
+                properties:
+                  language:
+                    type: string
+                    example: python
+                  code:
+                    type: string
+                  explanation:
+                    type: string
+            multimedia:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum: [image, video, audio]
+                  url:
+                    type: string
+                    format: uri
+                  description:
+                    type: string
+        prerequisites:
+          type: array
+          items:
+            type: string
+          example: ['python-basics', 'variables']
+        estimated_time:
+          type: integer
+          description: Estimated completion time in minutes
+        learning_objectives:
+          type: array
+          items:
+            type: string
+          example: ['Understand function syntax', 'Create simple functions']
+
+    Quiz:
+      type: object
+      properties:
+        quiz_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          example: 'Python Functions Assessment'
+        description:
+          type: string
+          example: 'Test your understanding of Python functions'
+        difficulty_level:
+          type: string
+          enum: [beginner, intermediate, advanced]
+        time_limit:
+          type: integer
+          description: Time limit in seconds
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuizQuestion'
+        instructions:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+
+    QuizQuestion:
+      type: object
+      properties:
+        question_id:
+          type: string
+          format: uuid
+        question_type:
+          type: string
+          enum: [multiple_choice, coding, true_false, short_answer, essay]
+        question_text:
+          type: string
+        options:
+          type: array
+          items:
+            type: string
+          description: Available options for multiple choice questions
+        correct_answer:
+          type: string
+          description: Correct answer or expected output
+        explanation:
+          type: string
+          description: Explanation of the correct answer
+        points:
+          type: integer
+          example: 10
+        difficulty:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          example: 0.7
+
+    QuizAnswer:
+      type: object
+      properties:
+        question_id:
+          type: string
+          format: uuid
+        answer:
+          type: string
+        code_submission:
+          type: string
+          description: Code submission for coding questions
+        time_spent:
+          type: integer
+          description: Time spent on this question in seconds
+
+    QuizEvaluation:
+      type: object
+      properties:
+        evaluation_id:
+          type: string
+          format: uuid
+        quiz_id:
+          type: string
+          format: uuid
+        user_id:
+          type: integer
+        total_score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 100.0
+          example: 85.5
+        percentage:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 100.0
+          example: 85.5
+        time_taken:
+          type: integer
+          description: Total time taken in seconds
+        question_evaluations:
+          type: array
+          items:
+            type: object
+            properties:
+              question_id:
+                type: string
+                format: uuid
+              score:
+                type: number
+                format: float
+              feedback:
+                type: string
+              is_correct:
+                type: boolean
+        overall_feedback:
+          type: string
+          example: 'Great work on understanding function fundamentals! Focus on edge cases for improvement.'
+        recommendations:
+          type: array
+          items:
+            type: string
+          example: ['Review function parameters', 'Practice recursion problems']
+        mastery_updates:
+          type: object
+          description: Updated mastery scores for relevant concepts
+
+    CodeEvaluation:
+      type: object
+      properties:
+        evaluation_id:
+          type: string
+          format: uuid
+        submission_id:
+          type: string
+          format: uuid
+        overall_score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 100.0
+          example: 87.5
+        technical_analysis:
+          type: object
+          properties:
+            syntax_correctness:
+              type: boolean
+            logic_correctness:
+              type: boolean
+            efficiency_rating:
+              type: number
+              format: float
+            best_practices_score:
+              type: number
+              format: float
+        code_quality:
+          type: object
+          properties:
+            readability_score:
+              type: number
+              format: float
+            structure_rating:
+              type: string
+              enum: [poor, fair, good, excellent]
+            documentation_score:
+              type: number
+              format: float
+        feedback:
+          type: object
+          properties:
+            strengths:
+              type: array
+              items:
+                type: string
+              example: ['Clear variable names', 'Good logic flow']
+            improvements:
+              type: array
+              items:
+                type: string
+              example: ['Add error handling', 'Optimize recursive calls']
+            encouragement:
+              type: string
+              example: 'Excellent progress! Your understanding of recursion is developing well.'
+        cavin_methodology:
+          type: object
+          properties:
+            technical_accuracy:
+              type: number
+              format: float
+            problem_solving:
+              type: number
+              format: float
+            code_quality:
+              type: number
+              format: float
+            communication:
+              type: number
+              format: float
+
+    UserProgress:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        skill_areas:
+          type: array
+          items:
+            type: object
+            properties:
+              skill_name:
+                type: string
+                example: 'Python Functions'
+              mastery_level:
+                type: number
+                format: float
+                minimum: 0.0
+                maximum: 1.0
+                example: 0.75
+              activities_completed:
+                type: integer
+                example: 15
+              time_spent:
+                type: number
+                description: Time spent learning this skill in minutes
+        overall_progress:
+          type: object
+          properties:
+            completion_percentage:
+              type: number
+              format: float
+              minimum: 0.0
+              maximum: 100.0
+            total_time_learned:
+              type: number
+              description: Total learning time in minutes
+            streak_days:
+              type: integer
+              example: 7
+            achievements_earned:
+              type: integer
+              example: 12
+        learning_trends:
+          type: object
+          properties:
+            weekly_activity:
+              type: array
+              items:
+                type: object
+                properties:
+                  date:
+                    type: string
+                    format: date
+                  minutes_learned:
+                    type: integer
+            skill_progression:
+              type: array
+              items:
+                type: object
+                properties:
+                  skill_name:
+                    type: string
+                  progression:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                          format: date
+                        mastery_level:
+                          type: number
+                          format: float
+
+    AnalyticsDashboard:
+      type: object
+      properties:
+        summary_stats:
+          type: object
+          properties:
+            total_sessions:
+              type: integer
+            total_time_learned:
+              type: integer
+              description: Total time in minutes
+            average_session_duration:
+              type: integer
+              description: Average session duration in minutes
+            completion_rate:
+              type: number
+              format: float
+              minimum: 0.0
+              maximum: 1.0
+        recent_activity:
+          type: array
+          items:
+            type: object
+            properties:
+              activity_type:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              description:
+                type: string
+              performance_score:
+                type: number
+                format: float
+        skill_mastery:
+          type: array
+          items:
+            type: object
+            properties:
+              skill_name:
+                type: string
+              current_level:
+                type: number
+                format: float
+              improvement_rate:
+                type: number
+                format: float
+                description: Rate of improvement per week
+        recommendations:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum: [content, practice, review]
+              title:
+                type: string
+              description:
+                type: string
+              priority:
+                type: string
+                enum: [low, medium, high]
+
+    RealTimeFeedback:
+      type: object
+      properties:
+        feedback_id:
+          type: string
+          format: uuid
+        user_id:
+          type: integer
+        feedback_type:
+          type: string
+          enum: [hint, correction, encouragement, explanation]
+        message:
+          type: string
+        suggestions:
+          type: array
+          items:
+            type: string
+        code_suggestions:
+          type: array
+          items:
+            type: object
+            properties:
+              line_number:
+                type: integer
+              suggestion:
+                type: string
+              type:
+                type: string
+                enum: [error, warning, hint, improvement]
+        next_steps:
+          type: array
+          items:
+            type: string
+        confidence_level:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+
+    LearningInsight:
+      type: object
+      properties:
+        insight_id:
+          type: string
+          format: uuid
+        user_id:
+          type: integer
+        insight_type:
+          type: string
+          enum: [learning_pattern, improvement_area, strength_area, next_steps]
+        title:
+          type: string
+        description:
+          type: string
+        confidence_score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+        actionable_items:
+          type: array
+          items:
+            type: string
+        related_skills:
+          type: array
+          items:
+            type: string
+
+    Achievement:
+      type: object
+      properties:
+        achievement_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          example: 'Python Function Master'
+        description:
+          type: string
+          example: 'Successfully completed 10 Python function exercises'
+        badge_url:
+          type: string
+          format: uri
+        earned_at:
+          type: string
+          format: date-time
+        rarity:
+          type: string
+          enum: [common, uncommon, rare, epic, legendary]
+          example: rare
+        points_awarded:
+          type: integer
+          example: 100
+
+    AchievementProgress:
+      type: object
+      properties:
+        achievement_id:
+          type: string
+          format: uuid
+        progress_percentage:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 100.0
+        current_value:
+          type: integer
+        target_value:
+          type: integer
+        estimated_time_to_complete:
+          type: integer
+          description: Estimated days to complete
+
+    LeaderboardEntry:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        username:
+          type: string
+        avatar_url:
+          type: string
+          format: uri
+        score:
+          type: integer
+        rank:
+          type: integer
+        badges_earned:
+          type: integer
+        streak_days:
+          type: integer
+
+    ContentRecommendation:
+      type: object
+      properties:
+        content_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        content_type:
+          type: string
+          enum: [lesson, quiz, exercise, video, reading]
+        difficulty_level:
+          type: string
+        estimated_time:
+          type: integer
+        reason:
+          type: string
+        match_score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+
+    ComponentHealth:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+        response_time:
+          type: number
+          description: Average response time in milliseconds
+        last_check:
+          type: string
+          format: date-time
+
+    AgentHealth:
+      type: object
+      properties:
+        agent_name:
+          type: string
+        status:
+          type: string
+          enum: [active, inactive, busy, error]
+        last_activity:
+          type: string
+          format: date-time
+        requests_processed:
+          type: integer
+        average_response_time:
+          type: number
+          description: Average response time in milliseconds
+
+    SystemMetrics:
+      type: object
+      properties:
+        active_users:
+          type: integer
+        total_sessions:
+          type: integer
+        requests_per_minute:
+          type: integer
+        average_response_time:
+          type: number
+        error_rate:
+          type: number
+          format: float
+        uptime:
+          type: number
+          description: System uptime in seconds
+
+tags:
+  - name: System Health
+    description: System health monitoring and status endpoints
+  - name: Authentication
+    description: User authentication and session management
+  - name: Learning Sessions
+    description: Learning session management and lifecycle
+  - name: Learning Content
+    description: Content management and recommendations
+  - name: Assessments
+    description: Quiz and code evaluation endpoints
+  - name: Progress Tracking
+    description: Learning progress and analytics
+  - name: Analytics
+    description: Dashboard and insight generation
+  - name: Real-time Feedback
+    description: Real-time feedback and guidance
+  - name: Achievements
+    description: Gamification and achievement tracking
+  - name: Gamification
+    description: Leaderboards and social features
+  - name: Multi-Agent System
+    description: Agent status and workflow management
+  - name: User Management
+    description: User profile and preferences management
