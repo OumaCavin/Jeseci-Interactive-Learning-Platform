@@ -33,7 +33,7 @@ The system features 6 specialized agents implemented as Jac walkers:
 
 ```bash
 # Clone the repository
-git clone https://github.com/OumaCavin/Jeseci-Learning-Platform.git
+git clone https://github.com/OumaCavin/Jeseci-Interactive-Learning-Platform.git
 cd Jeseci-Interactive-Learning-Platform
 
 # Setup environment variables
@@ -182,7 +182,7 @@ git config user.email "cavin.otieno012@gmail.com"
 git branch -M main
 
 # Add remote repository
-git remote add origin https://github.com/OumaCavin/Jeseci-Learning-Platform.git
+git remote add origin https://github.com/OumaCavin/Jeseci-Interactive-Learning-Platform.git
 ```
 
 ### Development Workflow
