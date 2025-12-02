@@ -38,6 +38,9 @@ const SearchResultsPage = React.lazy(() => import('./pages/search/SearchResultsP
 // Settings Page
 const Settings = React.lazy(() => import('./pages/Settings'));
 
+// Progress Page
+const Progress = React.lazy(() => import('./pages/Progress'));
+
 // Main App Component
 function App() {
   return (
@@ -124,6 +127,14 @@ function App() {
                         <PageTransition pageKey="profile">
                           <Suspense fallback={<PageLoadingFallback text="Loading profile..." />}>
                             <Profile />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+                      
+                      <Route path="/progress" element={
+                        <PageTransition pageKey="progress">
+                          <Suspense fallback={<PageLoadingFallback text="Loading progress..." />}>
+                            <Progress />
                           </Suspense>
                         </PageTransition>
                       } />
