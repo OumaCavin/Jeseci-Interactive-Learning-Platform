@@ -53,6 +53,9 @@ const Collaboration = React.lazy(() => import('./pages/Collaboration'));
 // Code Editor Page
 const CodeEditor = React.lazy(() => import('./pages/CodeEditorPage'));
 
+// Chat Page
+const Chat = React.lazy(() => import('./pages/Chat'));
+
 // Main App Component
 function App() {
   return (
@@ -179,6 +182,14 @@ function App() {
                         <PageTransition pageKey="code-editor">
                           <Suspense fallback={<PageLoadingFallback text="Loading code editor..." />}>
                             <CodeEditor />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+
+                      <Route path="/chat" element={
+                        <PageTransition pageKey="chat">
+                          <Suspense fallback={<PageLoadingFallback text="Loading chat..." />}>
+                            <Chat />
                           </Suspense>
                         </PageTransition>
                       } />
