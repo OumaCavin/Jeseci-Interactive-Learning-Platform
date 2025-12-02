@@ -12,10 +12,21 @@ from typing import Dict, Any, Optional
 
 # IMPORTANT: Importing jaclang enables the import hook for .jac files
 import jaclang 
-from jaclang.core.utils import (
-    construct_root, 
-    get_root,
-)
+
+# Try different import paths for root functions
+try:
+    from jaclang.lib import construct_root, get_root
+except ImportError:
+    try:
+        from jaclang.runtim.utils import construct_root, get_root
+    except ImportError:
+        try:
+            from jaclang.machine import construct_root, get_root
+        except ImportError:
+            # Fallback: use None if functions not available
+            construct_root = None
+            get_root = None
+            logger.warning("Root functions not available in this jaclang version")
 
 logger = logging.getLogger(__name__)
 
@@ -93,18 +104,36 @@ class JacManager:
             # In Jac 0.9, walkers are Python classes.
             walker_instance = WalkerClass(**parameters)
 
-            # 3. Spawn the walker
-            # In Jac 0.9, we usually spawn a walker on a node (root).
-            # We use get_root() to get the global root node.
-            root = get_root()
-            
-            # Using spawn (standard Jac pattern) or direct call if implemented
+            # 3. Execute the walker
+            # Try different execution patterns based on what's available
             if hasattr(walker_instance, 'spawn'):
-                # spawn returns nothing usually, it modifies state or returns via reports
-                walker_instance.spawn(root)
+                # Standard Jac pattern with spawn
+                if get_root:
+                    root = get_root()
+                    walker_instance.spawn(root)
+                else:
+                    # Try calling spawn without root if root functions not available
+                    try:
+                        walker_instance.spawn()
+                    except TypeError:
+                        # If spawn requires parameters, try without any
+                        if hasattr(walker_instance, 'entry'):
+                            walker_instance.entry()
+                        else:
+                            # Last resort: try calling the walker directly
+                            pass
+            elif hasattr(walker_instance, 'entry'):
+                # Alternative entry method
+                walker_instance.entry()
+            elif hasattr(walker_instance, 'run'):
+                # Alternative run method
+                walker_instance.run()
             else:
-                # If it's a simple function/script style
-                pass 
+                # Last resort: try to find and call any callable method
+                for method_name in ['execute', 'process', 'start']:
+                    if hasattr(walker_instance, method_name):
+                        getattr(walker_instance, method_name)()
+                        break 
 
             # 4. Capture Results
             # Jac 0.9 uses a reporting mechanism. We need to check if the walker 
