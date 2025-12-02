@@ -22,6 +22,7 @@ const LearningPath = React.lazy(() => import('./pages/LearningPath'));
 const LearningPaths = React.lazy(() => import('./pages/learning/LearningPaths'));
 const LearningPathDetail = React.lazy(() => import('./pages/learning/LearningPathDetail'));
 const ModuleContent = React.lazy(() => import('./pages/learning/ModuleContent'));
+const Assessments = React.lazy(() => import('./pages/assessments/Assessments'));
 const LessonView = React.lazy(() => import('./pages/LessonView'));
 const QuizView = React.lazy(() => import('./pages/QuizView'));
 const SkillMap = React.lazy(() => import('./pages/SkillMap'));
@@ -140,6 +141,14 @@ function App() {
                         <PageTransition pageKey="module-content">
                           <Suspense fallback={<PageLoadingFallback text="Loading module content..." />}>
                             <ModuleContent />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+                      
+                      <Route path="/assessments" element={
+                        <PageTransition pageKey="assessments">
+                          <Suspense fallback={<PageLoadingFallback text="Loading assessments..." />}>
+                            <Assessments />
                           </Suspense>
                         </PageTransition>
                       } />
