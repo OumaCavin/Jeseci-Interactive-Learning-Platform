@@ -415,6 +415,39 @@ class AssessmentService {
     }
   }
 
+  // Start quiz attempt
+  async startQuizAttempt(quizId: string): Promise<any> {
+    try {
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      const quiz = this.mockQuizzes.find(q => q.id === quizId);
+      if (!quiz) {
+        throw new Error('Quiz not found');
+      }
+
+      const attemptId = `attempt_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      
+      // Create a new attempt record
+      const newAttempt = {
+        id: attemptId,
+        attempt_id: attemptId, // API field name
+        quiz_id: quizId,
+        quiz: quizId, // API field name
+        user_id: 'user_1', // Mock user
+        started_at: new Date().toISOString(),
+        status: 'in_progress',
+        time_limit_minutes: quiz.time_limit || 30,
+        max_score: quiz.totalPoints,
+        created_at: new Date().toISOString()
+      };
+
+      return newAttempt;
+    } catch (error) {
+      console.error('Failed to start quiz attempt:', error);
+      throw new Error('Failed to start quiz attempt');
+    }
+  }
+
   // Delete quiz
   async deleteQuiz(quizId: string): Promise<void> {
     try {
