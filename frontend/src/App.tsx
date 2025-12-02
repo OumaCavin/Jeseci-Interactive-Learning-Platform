@@ -44,6 +44,9 @@ const Progress = React.lazy(() => import('./pages/Progress'));
 // Achievements Page
 const Achievements = React.lazy(() => import('./pages/Achievements'));
 
+// KnowledgeGraph Page
+const KnowledgeGraph = React.lazy(() => import('./pages/KnowledgeGraph'));
+
 // Main App Component
 function App() {
   return (
@@ -146,6 +149,14 @@ function App() {
                         <PageTransition pageKey="achievements">
                           <Suspense fallback={<PageLoadingFallback text="Loading achievements..." />}>
                             <Achievements />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+
+                      <Route path="/knowledge-graph" element={
+                        <PageTransition pageKey="knowledge-graph">
+                          <Suspense fallback={<PageLoadingFallback text="Loading knowledge graph..." />}>
+                            <KnowledgeGraph />
                           </Suspense>
                         </PageTransition>
                       } />
