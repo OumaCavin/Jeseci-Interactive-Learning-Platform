@@ -50,6 +50,9 @@ const KnowledgeGraph = React.lazy(() => import('./pages/KnowledgeGraph'));
 // Collaboration Page
 const Collaboration = React.lazy(() => import('./pages/Collaboration'));
 
+// Code Editor Page
+const CodeEditor = React.lazy(() => import('./pages/CodeEditorPage'));
+
 // Main App Component
 function App() {
   return (
@@ -168,6 +171,14 @@ function App() {
                         <PageTransition pageKey="collaboration">
                           <Suspense fallback={<PageLoadingFallback text="Loading collaboration..." />}>
                             <Collaboration />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+
+                      <Route path="/code-editor" element={
+                        <PageTransition pageKey="code-editor">
+                          <Suspense fallback={<PageLoadingFallback text="Loading code editor..." />}>
+                            <CodeEditor />
                           </Suspense>
                         </PageTransition>
                       } />
