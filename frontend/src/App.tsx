@@ -31,6 +31,7 @@ const Profile = React.lazy(() => import('./pages/Profile'));
 const Login = React.lazy(() => import('./pages/Login'));
 const LoginPage = React.lazy(() => import('./pages/auth/LoginPage'));
 const RegisterPage = React.lazy(() => import('./pages/auth/RegisterPage'));
+const PasswordReset = React.lazy(() => import('./pages/auth/PasswordReset'));
 
 // Demo Pages
 const AuthLayoutDemo = React.lazy(() => import('./pages/AuthLayoutDemo'));
@@ -92,6 +93,18 @@ function App() {
                     <PageTransition pageKey="signup">
                       <Suspense fallback={<PageLoadingFallback text="Loading registration..." />}>
                         <RegisterPage />
+                      </Suspense>
+                    </PageTransition>
+                  </AuthLayout>
+                </PublicRoute>
+              } />
+
+              <Route path="/forgot-password" element={
+                <PublicRoute>
+                  <AuthLayout>
+                    <PageTransition pageKey="password-reset">
+                      <Suspense fallback={<PageLoadingFallback text="Loading password reset..." />}>
+                        <PasswordReset />
                       </Suspense>
                     </PageTransition>
                   </AuthLayout>
