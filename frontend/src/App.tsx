@@ -18,6 +18,7 @@ import LoadingSpinner from './components/ui/LoadingSpinner';
 import AuthLayoutDemo from './pages/AuthLayoutDemo';
 import UIComponentsDemo from './pages/UIComponentsDemo';
 import MainLayoutDemo from './pages/MainLayoutDemo';
+import SearchDemo from './pages/SearchDemo';
 
 // Styles
 import './App.css';
@@ -48,6 +49,7 @@ function App() {
               <Route path="/auth-demo" element={<AuthLayoutDemo />} />
               <Route path="/ui-demo" element={<UIComponentsDemo />} />
               <Route path="/mainlayout-demo" element={<MainLayoutDemo />} />
+              <Route path="/search-demo" element={<SearchDemo />} />
             </Routes>
           </MainLayout>
         ) : (
