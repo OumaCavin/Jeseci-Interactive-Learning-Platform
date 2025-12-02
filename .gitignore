@@ -230,7 +230,7 @@
 
 # Gatsby files
 **/.cache/
-# Note: frontend/public should NOT be ignored for React apps
+**/public
 
 # Vue.js
 **/dist/
