@@ -41,6 +41,9 @@ const Settings = React.lazy(() => import('./pages/Settings'));
 // Progress Page
 const Progress = React.lazy(() => import('./pages/Progress'));
 
+// Achievements Page
+const Achievements = React.lazy(() => import('./pages/Achievements'));
+
 // Main App Component
 function App() {
   return (
@@ -135,6 +138,14 @@ function App() {
                         <PageTransition pageKey="progress">
                           <Suspense fallback={<PageLoadingFallback text="Loading progress..." />}>
                             <Progress />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+
+                      <Route path="/achievements" element={
+                        <PageTransition pageKey="achievements">
+                          <Suspense fallback={<PageLoadingFallback text="Loading achievements..." />}>
+                            <Achievements />
                           </Suspense>
                         </PageTransition>
                       } />
