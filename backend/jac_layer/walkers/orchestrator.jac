@@ -30,7 +30,7 @@ def init_user_graph(user_id: int) -> Dict[str, Any]:
             'node_type': 'User',
             'properties': {
                 'user_id': user_id,
-                'learning_session_started': '2025-12-02T03:08:23Z',
+                'learning_session_started': '2025-12-02T16:10:23Z',
                 'current_level': 'beginner',
                 'total_mastery': 0.0
             }
@@ -54,7 +54,7 @@ def init_user_graph(user_id: int) -> Dict[str, Any]:
                     'name': concept['name'],
                     'category': concept['category'],
                     'mastery_score': concept['initial_mastery'],
-                    'last_updated': '2025-12-02T03:08:23Z'
+                    'last_updated': '2025-12-02T16:10:23Z'
                 }
             }
             concept_nodes.append(concept_node)
@@ -100,7 +100,7 @@ def init_user_graph(user_id: int) -> Dict[str, Any]:
             'mastery_edges': [],  # Will be populated as user progresses
             'completion_status': 'initialized',
             'graph_version': '1.0',
-            'created_at': '2025-12-02T03:08:23Z'
+            'created_at': '2025-12-02T16:10:23Z'
         }
         
         logger.info(f"Successfully initialized OSP graph for user {user_id}")
@@ -109,7 +109,7 @@ def init_user_graph(user_id: int) -> Dict[str, Any]:
             'status': 'success',
             'message': f'OSP graph initialized for user {user_id}',
             'graph_data': osp_graph,
-            'initialization_time': '2025-12-02T03:08:23Z'
+            'initialization_time': '2025-12-02T16:10:23Z'
         }
         
     except Exception as e:
@@ -150,7 +150,7 @@ def start_lesson_sequence(user_id: int, lesson_id: str) -> Dict[str, Any]:
             'content': lesson_content,
             'prerequisites_met': prerequisites_met,
             'progress_tracked': progress_update,
-            'start_time': '2025-12-02T03:08:23Z',
+            'start_time': '2025-12-02T16:10:23Z',
             'estimated_completion': _calculate_estimated_completion(lesson_content)
         }
         
@@ -195,7 +195,7 @@ def process_answer_evaluation(user_id: int, quiz_id: str, answer: str) -> Dict[s
             'evaluation': evaluation_result,
             'mastery_update': mastery_update,
             'motivation': motivation_feedback,
-            'evaluation_time': '2025-12-02T03:08:23Z',
+            'evaluation_time': '2025-12-02T16:10:23Z',
             'next_recommended_action': _suggest_next_action(user_id, evaluation_result)
         }
         
@@ -269,7 +269,7 @@ def _update_lesson_progress(user_id: int, lesson_id: str, status: str) -> Dict[s
     return {
         'status': status,
         'progress_percentage': 0.0,
-        'start_time': '2025-12-02T03:08:23Z'
+        'start_time': '2025-12-02T16:10:23Z'
     }
 
 def _check_prerequisites(user_id: int, prerequisites: List[str]) -> bool:
@@ -344,4 +344,4 @@ def _execute_skill_reinforcement_workflow(user_id: int) -> Dict[str, Any]:
 def _calculate_estimated_completion(lesson_content: Dict[str, Any]) -> str:
     """Calculate estimated completion time"""
     duration = lesson_content.get('estimated_duration', 30)
-    return f"2025-12-02T0{3 + duration//60}:08:23Z"
+    return f"2025-12-02T16:{10 + duration//60}:23Z"

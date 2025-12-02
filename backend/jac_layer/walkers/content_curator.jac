@@ -43,7 +43,7 @@ def get_lesson_content(lesson_id: str, user_id: int) -> Dict[str, Any]:
             'lesson_id': lesson_id,
             'user_id': user_id,
             'content': enhanced_content,
-            'retrieval_time': '2025-12-02T03:08:23Z',
+            'retrieval_time': '2025-12-02T16:10:23Z',
             'personalization_applied': True
         }
         
@@ -84,7 +84,7 @@ def curate_concept_relationships(concept_id: str) -> Dict[str, Any]:
             'relationship_analysis': relationship_analysis,
             'prerequisite_updates': prerequisite_updates,
             'learning_path_optimizations': learning_path_optimizations,
-            'curation_time': '2025-12-02T03:08:23Z'
+            'curation_time': '2025-12-02T16:10:23Z'
         }
         
         logger.info(f"Successfully curated concept relationships for {concept_id}")
@@ -134,7 +134,7 @@ def manage_content_quality(lesson_id: str, quality_metrics: Dict[str, float]) ->
             'quality_metrics': quality_metrics,
             'database_update': quality_update,
             'improvement_suggestions': improvement_suggestions,
-            'management_time': '2025-12-02T03:08:23Z'
+            'management_time': '2025-12-02T16:10:23Z'
         }
         
         logger.info(f"Successfully managed content quality for lesson {lesson_id}")
@@ -182,7 +182,7 @@ def organize_learning_path(user_id: int, target_concepts: List[str]) -> Dict[str
             'learning_sequence': learning_sequence,
             'completion_estimates': completion_estimates,
             'prerequisites_check': prerequisites_check,
-            'organization_time': '2025-12-02T03:08:23Z'
+            'organization_time': '2025-12-02T16:10:23Z'
         }
         
         logger.info(f"Successfully organized learning path for user {user_id}")
@@ -232,7 +232,7 @@ def update_content_metadata(lesson_id: str, metadata_updates: Dict[str, Any]) ->
             'metadata_updates': metadata_updates,
             'update_result': update_result,
             'search_index_update': search_index_update,
-            'update_time': '2025-12-02T03:08:23Z'
+            'update_time': '2025-12-02T16:10:23Z'
         }
         
         logger.info(f"Successfully updated content metadata for lesson {lesson_id}")

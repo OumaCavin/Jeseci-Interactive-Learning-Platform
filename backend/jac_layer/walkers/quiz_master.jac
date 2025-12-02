@@ -54,7 +54,7 @@ def generate_adaptive_quiz(user_id: int, concept_id: str, difficulty_level: str)
                     'personalization_applied': True
                 }
             },
-            'generation_time': '2025-12-02T03:08:23Z'
+            'generation_time': '2025-12-02T16:10:23Z'
         }
         
         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
@@ -108,7 +108,7 @@ def create_mixed_assessment(user_id: int, topic_areas: List[str]) -> Dict[str, A
                 'estimated_duration': _calculate_assessment_duration(balanced_questions),
                 'area_performance_analysis': area_performance
             },
-            'creation_time': '2025-12-02T03:08:23Z'
+            'creation_time': '2025-12-02T16:10:23Z'
         }
         
         logger.info(f"Successfully created mixed assessment for user {user_id}")
@@ -193,7 +193,7 @@ def generate_progressive_questions(user_id: int, concept_id: str, question_count
                 'starting_level': starting_level,
                 'adaptive_feedback': _generate_progressive_feedback(progressive_questions)
             },
-            'generation_time': '2025-12-02T03:08:23Z'
+            'generation_time': '2025-12-02T16:10:23Z'
         }
         
         logger.info(f"Successfully generated progressive question sequence for user {user_id}")
@@ -246,7 +246,7 @@ def analyze_quiz_performance(user_id: int, quiz_id: str, responses: List[Dict[st
                 'mastery_updates': mastery_updates,
                 'next_steps': _suggest_next_steps(performance_breakdown)
             },
-            'analysis_time': '2025-12-02T03:08:23Z'
+            'analysis_time': '2025-12-02T16:10:23Z'
         }
         
         logger.info(f"Successfully analyzed quiz performance for user {user_id}")
