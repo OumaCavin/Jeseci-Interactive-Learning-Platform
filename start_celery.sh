@@ -4,7 +4,7 @@
 echo "Starting Celery worker for Jeseci Learning Platform..."
 
 # Change to backend directory
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/backend"
 
 # Activate virtual environment if exists
 if [ -d "../venv" ]; then
