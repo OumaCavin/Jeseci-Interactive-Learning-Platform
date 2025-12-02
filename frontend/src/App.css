@@ -122,6 +122,65 @@
   /* Dark mode styles would go here */
 }
 
+/* Auth Layout Styles */
+.auth-layout-container {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.auth-layout-left {
+  flex: 1;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.auth-layout-right {
+  flex: 1;
+  background-color: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Mobile responsive */
+@media (max-width: 1024px) {
+  .auth-layout-container {
+    flex-direction: column;
+  }
+  
+  .auth-layout-left {
+    display: none;
+  }
+  
+  .auth-layout-right {
+    min-height: 100vh;
+    padding: 1rem;
+  }
+}
+
+/* Text color utilities */
+.text-primary-100 {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.text-primary-600 {
+  color: #2563eb;
+}
+
+.text-secondary-600 {
+  color: #7c3aed;
+}
+
+.bg-secondary-500\/20 {
+  background-color: rgba(139, 92, 246, 0.2);
+}
+
 /* Print styles */
 @media print {
   .no-print {
