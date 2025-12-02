@@ -37,6 +37,39 @@ export interface UpdateLearningPathData extends Partial<CreateLearningPathData> 
   is_featured?: boolean;
 }
 
+export interface Module {
+  id: number;
+  learning_path: string;
+  title: string;
+  description: string;
+  content: string;
+  order_index: number;
+  estimated_duration: number; // minutes
+  module_type: 'lesson' | 'exercise' | 'assessment';
+  prerequisites: number[];
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ModuleProgress {
+  id: number;
+  status: 'not_started' | 'in_progress' | 'completed';
+  time_spent: number;
+  attempts: number;
+  score?: number;
+  last_accessed: string;
+  completed_at?: string;
+}
+
+export interface LearningPathProgress {
+  overall_progress: number;
+  completed_modules: number;
+  total_modules: number;
+  time_spent: number;
+  average_score: number;
+  last_accessed: string;
+}
+
 class LearningService {
   // Get all learning paths with optional filters
   async getLearningPaths(filters?: {
@@ -199,6 +232,198 @@ class LearningService {
       console.error('Failed to fetch path analytics:', error);
       throw error;
     }
+  }
+
+  // Get modules for a learning path
+  async getModules(pathId: string): Promise<Module[]> {
+    try {
+      const response = await api.get(`/learning-paths/${pathId}/modules`);
+      return response.data;
+    } catch (error) {
+      console.error('Failed to fetch modules:', error);
+      // Return mock data for development/demo
+      return this.getMockModules(pathId);
+    }
+  }
+
+  // Get user progress for a learning path
+  async getPathProgress(pathId: string): Promise<ModuleProgress[]> {
+    try {
+      const response = await api.get(`/learning-paths/${pathId}/progress`);
+      return response.data;
+    } catch (error) {
+      console.error('Failed to fetch path progress:', error);
+      // Return mock data for development/demo
+      return this.getMockProgress();
+    }
+  }
+
+  // Get overall learning path progress
+  async getLearningPathProgress(pathId: string): Promise<LearningPathProgress> {
+    try {
+      const response = await api.get(`/learning-paths/${pathId}/overview-progress`);
+      return response.data;
+    } catch (error) {
+      console.error('Failed to fetch learning path progress:', error);
+      throw error;
+    }
+  }
+
+  // Start/resume a module
+  async startModule(pathId: string, moduleId: string): Promise<void> {
+    try {
+      await api.post(`/learning-paths/${pathId}/modules/${moduleId}/start`);
+    } catch (error) {
+      console.error('Failed to start module:', error);
+      throw error;
+    }
+  }
+
+  // Get module content
+  async getModuleContent(pathId: string, moduleId: string): Promise<Module> {
+    try {
+      const response = await api.get(`/learning-paths/${pathId}/modules/${moduleId}`);
+      return response.data;
+    } catch (error) {
+      console.error('Failed to fetch module content:', error);
+      throw error;
+    }
+  }
+
+  // Get related learning paths
+  async getRelatedPaths(pathId: string): Promise<LearningPath[]> {
+    try {
+      const response = await api.get(`/learning-paths/${pathId}/related`);
+      return response.data;
+    } catch (error) {
+      console.error('Failed to fetch related paths:', error);
+      return [];
+    }
+  }
+
+  // Mock data for development/demo purposes
+  private getMockModules(pathId: string): Module[] {
+    const baseModules = [
+      {
+        id: 1,
+        learning_path: pathId,
+        title: 'Introduction to JAC Programming',
+        description: 'Learn the basics of JAC programming language, syntax, and fundamental concepts.',
+        content: 'JAC (JavaScript Augmented for Classes) is a modern programming language...',
+        order_index: 1,
+        estimated_duration: 30,
+        module_type: 'lesson' as const,
+        prerequisites: [],
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      },
+      {
+        id: 2,
+        learning_path: pathId,
+        title: 'Variables and Data Types',
+        description: 'Master variable declaration, data types, and type conversions in JAC.',
+        content: 'Variables are containers for storing data values. In JAC, we have several data types...',
+        order_index: 2,
+        estimated_duration: 45,
+        module_type: 'lesson' as const,
+        prerequisites: [1],
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      },
+      {
+        id: 3,
+        learning_path: pathId,
+        title: 'Control Structures',
+        description: 'Learn about conditional statements, loops, and flow control in JAC.',
+        content: 'Control structures help you control the flow of your program...',
+        order_index: 3,
+        estimated_duration: 60,
+        module_type: 'lesson' as const,
+        prerequisites: [2],
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      },
+      {
+        id: 4,
+        learning_path: pathId,
+        title: 'Functions and Scope',
+        description: 'Create reusable code blocks with functions and understand scope rules.',
+        content: 'Functions are fundamental building blocks in JAC programming...',
+        order_index: 4,
+        estimated_duration: 50,
+        module_type: 'exercise' as const,
+        prerequisites: [3],
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      },
+      {
+        id: 5,
+        learning_path: pathId,
+        title: 'Arrays and Collections',
+        description: 'Work with collections of data using arrays and other collection types.',
+        content: 'Arrays help you store multiple values in a single variable...',
+        order_index: 5,
+        estimated_duration: 40,
+        module_type: 'lesson' as const,
+        prerequisites: [4],
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      },
+      {
+        id: 6,
+        learning_path: pathId,
+        title: 'Object-Oriented Programming',
+        description: 'Learn OOP concepts including classes, objects, inheritance, and polymorphism.',
+        content: 'Object-oriented programming helps you organize code into reusable objects...',
+        order_index: 6,
+        estimated_duration: 90,
+        module_type: 'lesson' as const,
+        prerequisites: [5],
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      },
+      {
+        id: 7,
+        learning_path: pathId,
+        title: 'Error Handling and Debugging',
+        description: 'Master error handling, debugging techniques, and best practices.',
+        content: 'Learning to handle errors gracefully is crucial for robust applications...',
+        order_index: 7,
+        estimated_duration: 75,
+        module_type: 'assessment' as const,
+        prerequisites: [6],
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      },
+      {
+        id: 8,
+        learning_path: pathId,
+        title: 'Final Project: Build a Complete Application',
+        description: 'Apply everything you learned to build a comprehensive JAC application.',
+        content: 'In this final project, you will create a complete application...',
+        order_index: 8,
+        estimated_duration: 120,
+        module_type: 'exercise' as const,
+        prerequisites: [7],
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      },
+    ];
+
+    return baseModules;
+  }
+
+  private getMockProgress(): ModuleProgress[] {
+    return [
+      { id: 1, status: 'completed', time_spent: 35, attempts: 1, score: 95, last_accessed: '2025-11-20', completed_at: '2025-11-20' },
+      { id: 2, status: 'completed', time_spent: 42, attempts: 1, score: 88, last_accessed: '2025-11-20', completed_at: '2025-11-20' },
+      { id: 3, status: 'in_progress', time_spent: 15, attempts: 1, last_accessed: '2025-11-21' },
+      { id: 4, status: 'not_started', time_spent: 0, attempts: 0, last_accessed: '' },
+      { id: 5, status: 'not_started', time_spent: 0, attempts: 0, last_accessed: '' },
+      { id: 6, status: 'not_started', time_spent: 0, attempts: 0, last_accessed: '' },
+      { id: 7, status: 'not_started', time_spent: 0, attempts: 0, last_accessed: '' },
+      { id: 8, status: 'not_started', time_spent: 0, attempts: 0, last_accessed: '' },
+    ];
   }
 
   // Mock data for development/demo purposes

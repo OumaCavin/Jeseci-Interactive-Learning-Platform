@@ -20,6 +20,7 @@ import './index.css';
 const Dashboard = React.lazy(() => import('./pages/Dashboard'));
 const LearningPath = React.lazy(() => import('./pages/LearningPath'));
 const LearningPaths = React.lazy(() => import('./pages/learning/LearningPaths'));
+const LearningPathDetail = React.lazy(() => import('./pages/learning/LearningPathDetail'));
 const LessonView = React.lazy(() => import('./pages/LessonView'));
 const QuizView = React.lazy(() => import('./pages/QuizView'));
 const SkillMap = React.lazy(() => import('./pages/SkillMap'));
@@ -122,6 +123,14 @@ function App() {
                         <PageTransition pageKey="learning-paths">
                           <Suspense fallback={<PageLoadingFallback text="Loading learning paths..." />}>
                             <LearningPaths />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+                      
+                      <Route path="/learning-paths/:pathId" element={
+                        <PageTransition pageKey="learning-path-detail">
+                          <Suspense fallback={<PageLoadingFallback text="Loading learning path details..." />}>
+                            <LearningPathDetail />
                           </Suspense>
                         </PageTransition>
                       } />

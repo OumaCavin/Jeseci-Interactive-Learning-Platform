@@ -223,7 +223,7 @@ const LearningPathCard: React.FC<LearningPathCardProps> = ({
             </div>
 
             {/* Action Button */}
-            <Link to={`/learning/${path.id}`} className="inline-block">
+            <Link to={`/learning-paths/${path.id}`} className="inline-block">
               <button className="flex items-center space-x-2 bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors group/btn">
                 <span>Start Learning</span>
                 <ChevronRightIcon className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -388,7 +388,7 @@ const LearningPathCard: React.FC<LearningPathCardProps> = ({
         )}
 
         {/* Action Button */}
-        <Link to={`/learning/${path.id}`}>
+        <Link to={`/learning-paths/${path.id}`}>
           <button className="w-full flex items-center justify-center space-x-2 bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors group/btn">
             <span>Start Learning</span>
             <ChevronRightIcon className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
