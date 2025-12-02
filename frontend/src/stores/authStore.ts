@@ -2,6 +2,16 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import api from '../services/api';
 
+export interface Badge {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  rarity: 'common' | 'rare' | 'epic' | 'legendary';
+  earned_date: string;
+  category: string;
+}
+
 export interface User {
   id: number;
   username: string;
@@ -16,7 +26,21 @@ export interface User {
     is_staff?: boolean;
     first_name?: string;
     last_name?: string;
+    bio?: string;
+    date_joined?: string;
   };
+  // Gamification fields
+  level: number;
+  experience_level: number;
+  total_points: number;
+  current_streak: number;
+  longest_streak: number;
+  achievements_count: number;
+  badges: Badge[];
+  completed_modules: number;
+  total_study_time: number; // in minutes
+  weekly_goal: number;
+  weekly_progress: number;
 }
 
 interface AuthState {
