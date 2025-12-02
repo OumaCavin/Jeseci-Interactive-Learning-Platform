@@ -5,38 +5,39 @@
 jaclang[all]==0.9.3
 
 # Django ecosystem 
-Django==5.2.8  
-djangorestframework==3.16.1
-django-cors-headers==4.9.0
+Django==5.2.8
+djangorestframework
+django-cors-headers
 
 # Database and Caching
 psycopg2-binary==2.9.11
-redis==6.0.0
+redis==7.1.0
 django-redis==6.0.0
 
 # Celery for Background Tasks
-celery[redis]==5.6.0
+celery[redis]
 
 # Environment and Configuration
 python-decouple==3.8
-dj-database-url==3.0.1
+dj-database-url
 
 # Media and File Handling
 Pillow==12.0.0
-django-storages==1.14.6
+django-storages
 
 # Development and Testing
-django-debug-toolbar==6.1.0
-django-extensions==4.1
+django-debug-toolbar
+django-extensions
 pytest==9.0.1
 pytest-django==4.11.1
 pytest-cov==7.0.0
 
 # Documentation
-sphinx==8.1.3
-sphinx-rtd-theme==3.0.1
+sphinx
+sphinx-rtd-theme==3.0.2
 
-# Security - Django 5.x has built-in security features
+# Security
+django-security
 
 # API Documentation
 drf-spectacular==0.29.0
