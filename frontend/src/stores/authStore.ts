@@ -8,6 +8,7 @@ export interface User {
   email: string;
   first_name?: string;
   last_name?: string;
+  role?: string; // 'student', 'admin', 'instructor', etc.
   profile: {
     learning_style?: string;
     preferred_difficulty?: string;

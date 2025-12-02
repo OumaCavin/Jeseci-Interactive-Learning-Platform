@@ -1,92 +1,201 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import { useAuthStore } from './stores/authStore';
+
+// Providers
+import { QueryClientProvider } from './components/providers/QueryClientProvider';
 
 // Components
 import { MainLayout } from './components/layout/MainLayout';
 import { AuthLayout } from './components/layout/AuthLayout';
-import Dashboard from './pages/Dashboard';
-import LearningPath from './pages/LearningPath';
-import LessonView from './pages/LessonView';
-import QuizView from './pages/QuizView';
-import SkillMap from './pages/SkillMap';
-import Profile from './pages/Profile';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
-import LoadingSpinner from './components/ui/LoadingSpinner';
-import AuthLayoutDemo from './pages/AuthLayoutDemo';
-import UIComponentsDemo from './pages/UIComponentsDemo';
-import MainLayoutDemo from './pages/MainLayoutDemo';
-import SearchDemo from './pages/SearchDemo';
+import { ErrorBoundary } from './components/ui/ErrorBoundary';
+import { ProtectedRoute, PublicRoute } from './components/auth/ProtectedRoute';
+import { PageTransition, PageLoadingFallback } from './components/ui/PageTransition';
 
 // Styles
 import './App.css';
 import './index.css';
 
+// Lazy-loaded Pages for code splitting
+const Dashboard = React.lazy(() => import('./pages/Dashboard'));
+const LearningPath = React.lazy(() => import('./pages/LearningPath'));
+const LessonView = React.lazy(() => import('./pages/LessonView'));
+const QuizView = React.lazy(() => import('./pages/QuizView'));
+const SkillMap = React.lazy(() => import('./pages/SkillMap'));
+const Profile = React.lazy(() => import('./pages/Profile'));
+const Login = React.lazy(() => import('./pages/Login'));
+const SignUp = React.lazy(() => import('./pages/SignUp'));
+
+// Demo Pages
+const AuthLayoutDemo = React.lazy(() => import('./pages/AuthLayoutDemo'));
+const UIComponentsDemo = React.lazy(() => import('./pages/UIComponentsDemo'));
+const MainLayoutDemo = React.lazy(() => import('./pages/MainLayoutDemo'));
+const SearchDemo = React.lazy(() => import('./pages/SearchDemo'));
+
+// Main App Component
 function App() {
-  const { isAuthenticated, isLoading } = useAuthStore();
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-50">
-        {isAuthenticated ? (
-          <MainLayout>
+    <ErrorBoundary>
+      <QueryClientProvider>
+        <Router>
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
             <Routes>
-              <Route path="/" element={<Navigate to="/dashboard" replace />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/learning-path" element={<LearningPath />} />
-              <Route path="/lesson/:lessonId" element={<LessonView />} />
-              <Route path="/quiz/:quizId" element={<QuizView />} />
-              <Route path="/skill-map" element={<SkillMap />} />
-              <Route path="/profile" element={<Profile />} />
+              {/* Public Routes (Login, Signup) */}
+              <Route path="/login" element={
+                <PublicRoute>
+                  <AuthLayout>
+                    <PageTransition pageKey="login">
+                      <Suspense fallback={<PageLoadingFallback text="Loading login..." />}>
+                        <Login />
+                      </Suspense>
+                    </PageTransition>
+                  </AuthLayout>
+                </PublicRoute>
+              } />
               
-              {/* Demo routes - remove in production */}
-              <Route path="/auth-demo" element={<AuthLayoutDemo />} />
-              <Route path="/ui-demo" element={<UIComponentsDemo />} />
-              <Route path="/mainlayout-demo" element={<MainLayoutDemo />} />
-              <Route path="/search-demo" element={<SearchDemo />} />
+              <Route path="/signup" element={
+                <PublicRoute>
+                  <AuthLayout>
+                    <PageTransition pageKey="signup">
+                      <Suspense fallback={<PageLoadingFallback text="Loading signup..." />}>
+                        <SignUp />
+                      </Suspense>
+                    </PageTransition>
+                  </AuthLayout>
+                </PublicRoute>
+              } />
+
+              {/* Protected Routes (Main Application) */}
+              <Route path="/*" element={
+                <ProtectedRoute>
+                  <MainLayout>
+                    <Routes>
+                      {/* Root redirect to dashboard */}
+                      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+                      
+                      {/* Core Application Routes */}
+                      <Route path="/dashboard" element={
+                        <PageTransition pageKey="dashboard">
+                          <Suspense fallback={<PageLoadingFallback text="Loading dashboard..." />}>
+                            <Dashboard />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+                      
+                      <Route path="/learning-path" element={
+                        <PageTransition pageKey="learning-path">
+                          <Suspense fallback={<PageLoadingFallback text="Loading learning path..." />}>
+                            <LearningPath />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+                      
+                      <Route path="/lesson/:lessonId" element={
+                        <PageTransition pageKey="lesson-view">
+                          <Suspense fallback={<PageLoadingFallback text="Loading lesson..." />}>
+                            <LessonView />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+                      
+                      <Route path="/quiz/:quizId" element={
+                        <PageTransition pageKey="quiz-view">
+                          <Suspense fallback={<PageLoadingFallback text="Loading quiz..." />}>
+                            <QuizView />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+                      
+                      <Route path="/skill-map" element={
+                        <PageTransition pageKey="skill-map">
+                          <Suspense fallback={<PageLoadingFallback text="Loading skill map..." />}>
+                            <SkillMap />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+                      
+                      <Route path="/profile" element={
+                        <PageTransition pageKey="profile">
+                          <Suspense fallback={<PageLoadingFallback text="Loading profile..." />}>
+                            <Profile />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+
+                      {/* Demo Routes - Remove in production */}
+                      <Route path="/auth-demo" element={
+                        <PageTransition pageKey="auth-demo">
+                          <Suspense fallback={<PageLoadingFallback text="Loading demo..." />}>
+                            <AuthLayoutDemo />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+                      
+                      <Route path="/ui-demo" element={
+                        <PageTransition pageKey="ui-demo">
+                          <Suspense fallback={<PageLoadingFallback text="Loading demo..." />}>
+                            <UIComponentsDemo />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+                      
+                      <Route path="/mainlayout-demo" element={
+                        <PageTransition pageKey="mainlayout-demo">
+                          <Suspense fallback={<PageLoadingFallback text="Loading demo..." />}>
+                            <MainLayoutDemo />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+                      
+                      <Route path="/search-demo" element={
+                        <PageTransition pageKey="search-demo">
+                          <Suspense fallback={<PageLoadingFallback text="Loading search..." />}>
+                            <SearchDemo />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+
+                      {/* Catch-all route - redirect to dashboard */}
+                      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                    </Routes>
+                  </MainLayout>
+                </ProtectedRoute>
+              } />
             </Routes>
-          </MainLayout>
-        ) : (
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="*" element={<Navigate to="/login" replace />} />
-          </Routes>
-        )}
-        
-        {/* Global toast notifications */}
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 4000,
-            style: {
-              background: '#363636',
-              color: '#fff',
-            },
-            success: {
-              duration: 3000,
-              iconTheme: {
-                primary: '#4ade80',
-                secondary: '#fff',
-              },
-            },
-            error: {
-              duration: 5000,
-              iconTheme: {
-                primary: '#ef4444',
-                secondary: '#fff',
-              },
-            },
-          }}
-        />
-      </div>
-    </Router>
+
+            {/* Global Toast Notifications */}
+            <Toaster
+              position="top-right"
+              toastOptions={{
+                duration: 4000,
+                style: {
+                  background: '#363636',
+                  color: '#fff',
+                  borderRadius: '8px',
+                },
+                success: {
+                  duration: 3000,
+                  iconTheme: {
+                    primary: '#10b981',
+                    secondary: '#fff',
+                  },
+                },
+                error: {
+                  duration: 5000,
+                  iconTheme: {
+                    primary: '#ef4444',
+                    secondary: '#fff',
+                  },
+                },
+                loading: {
+                  duration: Infinity,
+                },
+              }}
+            />
+          </div>
+        </Router>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }
 

@@ -17,6 +17,8 @@ const SearchDemo: React.FC = () => {
     console.log('Result clicked:', result);
   };
 
+  const handleResult = handleResultClick;
+
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-4xl mx-auto">
@@ -174,7 +176,7 @@ const SearchDemo: React.FC = () => {
             <ul className="space-y-2 text-gray-600">
               <li>• <code>&lt;Search /&gt;</code> - Basic usage</li>
               <li>• <code>&lt;Search placeholder="Custom placeholder..." /&gt;</code> - Custom placeholder</li>
-              <li>• <code>&lt;Search onResultClick={handler} /&gt;</code> - With click handler</li>
+              <li>• <code>&lt;Search onResultClick=&#123;handleResult&#125; /&gt;</code> - With click handler</li>
               <li>• <code>&lt;Search fullWidth={true} /&gt;</code> - Full width variant</li>
             </ul>
           </Card>
