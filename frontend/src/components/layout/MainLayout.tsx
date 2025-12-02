@@ -15,6 +15,7 @@ import {
   XMarkIcon,
   BellIcon,
   MagnifyingGlassIcon,
+  UserGroupIcon,
 } from '@heroicons/react/24/outline';
 import { useAuthStore } from '../../stores/authStore';
 import { Button } from '../ui';
@@ -42,6 +43,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
     { name: 'Search', href: '/search', icon: MagnifyingGlassIcon },
     { name: 'Learning Paths', href: '/learning-path', icon: BookOpenIcon },
+    { name: 'Collaboration', href: '/collaboration', icon: UserGroupIcon },
     { name: 'Code Editor', href: '/code-editor', icon: CodeBracketIcon },
     { name: 'Knowledge Graph', href: '/knowledge-graph', icon: AcademicCapIcon },
     { name: 'Assessments', href: '/assessments', icon: ChartBarIcon },

@@ -47,6 +47,9 @@ const Achievements = React.lazy(() => import('./pages/Achievements'));
 // KnowledgeGraph Page
 const KnowledgeGraph = React.lazy(() => import('./pages/KnowledgeGraph'));
 
+// Collaboration Page
+const Collaboration = React.lazy(() => import('./pages/Collaboration'));
+
 // Main App Component
 function App() {
   return (
@@ -157,6 +160,14 @@ function App() {
                         <PageTransition pageKey="knowledge-graph">
                           <Suspense fallback={<PageLoadingFallback text="Loading knowledge graph..." />}>
                             <KnowledgeGraph />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+
+                      <Route path="/collaboration/*" element={
+                        <PageTransition pageKey="collaboration">
+                          <Suspense fallback={<PageLoadingFallback text="Loading collaboration..." />}>
+                            <Collaboration />
                           </Suspense>
                         </PageTransition>
                       } />
