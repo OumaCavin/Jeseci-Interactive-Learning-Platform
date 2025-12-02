@@ -13,22 +13,14 @@ from typing import Dict, Any, Optional
 # IMPORTANT: Importing jaclang enables the import hook for .jac files
 import jaclang 
 
-# Try different import paths for root functions
-try:
-    from jaclang.lib import construct_root, get_root
-except ImportError:
-    try:
-        from jaclang.runtim.utils import construct_root, get_root
-    except ImportError:
-        try:
-            from jaclang.machine import construct_root, get_root
-        except ImportError:
-            # Fallback: use None if functions not available
-            construct_root = None
-            get_root = None
-            logger.warning("Root functions not available in this jaclang version")
-
 logger = logging.getLogger(__name__)
+
+# Note: construct_root and get_root functions not available in jaclang 0.9.3
+# This version uses a different approach for walker execution
+construct_root = None
+get_root = None
+
+logger.info("JacManager initialized - using jaclang 0.9.x approach without root functions")
 
 class JacManager:
     """
