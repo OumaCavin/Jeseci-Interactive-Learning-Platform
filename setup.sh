@@ -51,12 +51,50 @@ command -v npm >/dev/null 2>&1 || { print_error "npm is required but not install
 
 print_success "Prerequisites check passed"
 
+# Install system dependencies if not present
+print_status "Installing system dependencies..."
+
+# Check and install Python 3.12 if needed
+if ! command -v python3.12 >/dev/null 2>&1; then
+    print_warning "Python 3.12 not found. Installing..."
+    sudo apt-get update
+    sudo apt-get install -y python3.12 python3.12-venv python3.12-dev python3-pip
+    sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 1
+fi
+
+# Check and install other system dependencies
+if ! command -v redis-server >/dev/null 2>&1; then
+    print_warning "Redis not found. Installing..."
+    sudo apt-get install -y redis-server
+    sudo systemctl enable redis-server
+    sudo systemctl start redis-server
+fi
+
+if ! command -v postgresql >/dev/null 2>&1; then
+    print_warning "PostgreSQL not found. Installing..."
+    sudo apt-get install -y postgresql postgresql-contrib
+    sudo systemctl enable postgresql
+    sudo systemctl start postgresql
+fi
+
+if ! command -v gcc >/dev/null 2>&1; then
+    print_warning "Build tools not found. Installing..."
+    sudo apt-get install -y build-essential
+fi
+
+if ! command -v npm >/dev/null 2>&1; then
+    print_warning "npm not found. Installing..."
+    sudo apt-get install -y npm
+fi
+
+print_success "System dependencies installation completed"
+
 # Python version check
 python_version=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
 print_status "Python version: $python_version"
 
-if [[ $(echo "$python_version >= 3.9" | bc -l) -eq 0 ]]; then
-    print_error "Python 3.9 or higher is required. Current version: $python_version"
+if [[ $(echo "$python_version >= 3.12" | bc -l) -eq 0 ]]; then
+    print_error "Python 3.12 or higher is required. Current version: $python_version"
     exit 1
 fi
 

@@ -42,7 +42,35 @@ The system features 6 specialized agents implemented as Jac walkers:
 - **Node.js 16+**
 - **Redis** (for Celery background tasks)
 
-### 1. Environment Setup
+### 🚀 Automated Setup (Recommended)
+
+For a complete one-command setup with automatic dependency installation:
+
+```bash
+# Clone the repository
+git clone https://github.com/OumaCavin/Jeseci-Interactive-Learning-Platform.git
+cd Jeseci-Interactive-Learning-Platform
+
+# Run the automated setup script
+bash setup.sh
+```
+
+The setup script will automatically:
+- ✅ Install system dependencies (Python 3.12+, Node.js, Redis, PostgreSQL, build tools)
+- ✅ Setup Python virtual environment and install dependencies
+- ✅ Configure Django with migrations and superuser creation
+- ✅ Install frontend dependencies and configure environment
+- ✅ Setup Redis and PostgreSQL services
+- ✅ Initialize the complete platform
+
+**Note:** The script will prompt for API keys (OpenAI and Gemini) during setup. You can also set them as environment variables:
+```bash
+export OPENAI_API_KEY="your-openai-api-key-here"
+export GEMINI_API_KEY="your-gemini-api-key-here"
+bash setup.sh
+```
+
+### Manual Setup
 
 ```bash
 # Clone the repository
@@ -54,7 +82,7 @@ cp .env.example .env
 # Edit .env with your configuration
 ```
 
-### 2. Backend Setup (Django + JacLang)
+### 1. Backend Setup (Django + JacLang)
 
 ```bash
 # Navigate to backend directory
@@ -78,7 +106,7 @@ python manage.py createsuperuser  # Optional: Create admin user
 mkdir -p logs static media
 ```
 
-### 3. Frontend Setup (React)
+### 2. Frontend Setup (React)
 
 ```bash
 # Navigate to frontend directory
@@ -91,7 +119,7 @@ npm install
 echo "REACT_APP_API_URL=http://localhost:8000" > .env
 ```
 
-### 4. Start Services
+### 3. Start Services
 
 **Terminal 1 - Django Backend:**
 ```bash
@@ -113,7 +141,7 @@ cd frontend
 npm start
 ```
 
-### 5. Access the Application
+### 4. Access the Application
 
 - **Frontend**: http://localhost:3000
 - **Backend API**: http://localhost:8000/api/
