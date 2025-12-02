@@ -20,11 +20,7 @@ from .serializers import (
     UserProfileSerializer, LessonSerializer, QuizSerializer,
     ConceptSerializer, LearningProgressSerializer
 )
-from ..jac_layer.jac_manager import JacManager
-from ..jac_layer.agents import (
-    SystemOrchestrator, ContentCurator, QuizMaster, Evaluator,
-    ProgressTracker, Motivator
-)
+from jac_layer.jac_manager import JacManager
 
 logger = logging.getLogger(__name__)
 
