@@ -30,7 +30,7 @@ const SkillMap = React.lazy(() => import('./pages/SkillMap'));
 const Profile = React.lazy(() => import('./pages/Profile'));
 const Login = React.lazy(() => import('./pages/Login'));
 const LoginPage = React.lazy(() => import('./pages/auth/LoginPage'));
-const SignUp = React.lazy(() => import('./pages/SignUp'));
+const RegisterPage = React.lazy(() => import('./pages/auth/RegisterPage'));
 
 // Demo Pages
 const AuthLayoutDemo = React.lazy(() => import('./pages/AuthLayoutDemo'));
@@ -90,8 +90,8 @@ function App() {
                 <PublicRoute>
                   <AuthLayout>
                     <PageTransition pageKey="signup">
-                      <Suspense fallback={<PageLoadingFallback text="Loading signup..." />}>
-                        <SignUp />
+                      <Suspense fallback={<PageLoadingFallback text="Loading registration..." />}>
+                        <RegisterPage />
                       </Suspense>
                     </PageTransition>
                   </AuthLayout>
