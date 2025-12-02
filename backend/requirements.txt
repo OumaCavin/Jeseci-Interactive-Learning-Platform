@@ -5,9 +5,9 @@
 jaclang[all]
 
 # Django ecosystem
-Django==5.2.8
-djangorestframework==3.16.1
-django-cors-headers==4.9.0
+Django
+djangorestframework
+django-cors-headers
 
 # Jac Programming Language Integration
 jaseci
