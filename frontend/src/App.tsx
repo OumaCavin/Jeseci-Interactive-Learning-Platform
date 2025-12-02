@@ -32,6 +32,9 @@ const UIComponentsDemo = React.lazy(() => import('./pages/UIComponentsDemo'));
 const MainLayoutDemo = React.lazy(() => import('./pages/MainLayoutDemo'));
 const SearchDemo = React.lazy(() => import('./pages/SearchDemo'));
 
+// Search Pages
+const SearchResultsPage = React.lazy(() => import('./pages/search/SearchResultsPage'));
+
 // Main App Component
 function App() {
   return (
@@ -151,6 +154,14 @@ function App() {
                         <PageTransition pageKey="search-demo">
                           <Suspense fallback={<PageLoadingFallback text="Loading search..." />}>
                             <SearchDemo />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+                      
+                      <Route path="/search" element={
+                        <PageTransition pageKey="search-results">
+                          <Suspense fallback={<PageLoadingFallback text="Loading search results..." />}>
+                            <SearchResultsPage />
                           </Suspense>
                         </PageTransition>
                       } />

@@ -14,6 +14,7 @@ import {
   ArrowTrendingUpIcon as TrendingUpIcon,
   FireIcon
 } from '@heroicons/react/24/outline';
+import { useSearchStore } from '../../stores/searchStore';
 import { useLearningStore } from '../../stores/learningStore';
 
 // Search Component Props
@@ -23,6 +24,7 @@ interface SearchProps {
   onResultClick?: (result: any) => void;
   showResults?: boolean;
   fullWidth?: boolean;
+  navigateToResults?: boolean; // If true, navigate to SearchResultsPage on enter
 }
 
 // Mock search data and types
@@ -78,9 +80,11 @@ export const Search: React.FC<SearchProps> = ({
   placeholder = 'Search learning paths, modules...',
   onResultClick,
   showResults = true,
-  fullWidth = false
+  fullWidth = false,
+  navigateToResults = false
 }) => {
   const navigate = useNavigate();
+  const { setQuery, performSearch, searchHistory, addToHistory } = useSearchStore();
   
   // Component state
   const [localQuery, setLocalQuery] = useState('');
@@ -90,7 +94,7 @@ export const Search: React.FC<SearchProps> = ({
     query: '',
     results: [],
     suggestions: [],
-    history: JSON.parse(localStorage.getItem('searchHistory') || '[]'),
+    history: searchHistory,
     popularSearches: ['JavaScript Basics', 'Python Fundamentals', 'React Components'],
     trendingSearches: ['Machine Learning', 'Data Science', 'Web Development'],
     isLoading: false,
@@ -230,16 +234,22 @@ export const Search: React.FC<SearchProps> = ({
   const handleSearch = useCallback((query: string) => {
     if (!query.trim()) return;
     
-    // Add to search history
-    const history = JSON.parse(localStorage.getItem('searchHistory') || '[]');
-    const newHistory = [query, ...history.filter((h: string) => h !== query)].slice(0, 5);
-    localStorage.setItem('searchHistory', JSON.stringify(newHistory));
+    // Add to search history in the store
+    addToHistory(query);
+    
+    // Update local state
     setSearchState(prev => ({ 
       ...prev, 
-      history: newHistory 
+      query: query
     }));
     
-    // Perform search
+    // Navigate to SearchResultsPage if navigateToResults is true
+    if (navigateToResults) {
+      navigate(`/search?q=${encodeURIComponent(query)}`);
+      return;
+    }
+    
+    // Perform local search if not navigating to results page
     const results = performMockSearch(query);
     setSearchState(prev => ({ 
       ...prev, 
@@ -251,16 +261,11 @@ export const Search: React.FC<SearchProps> = ({
     setShowDropdown(false);
     setSelectedIndex(-1);
     
-    // Navigate to search results page if not already there
-    if (!onResultClick) {
-      navigate(`/search?q=${encodeURIComponent(query)}`);
-    }
-    
     // Call optional callback
     if (onResultClick) {
       onResultClick({ query, type: 'search' });
     }
-  }, [performMockSearch, navigate, onResultClick]);
+  }, [performMockSearch, navigate, onResultClick, navigateToResults, addToHistory]);
   
   // Handle dropdown item click
   const handleItemClick = useCallback((type: string, value: string) => {

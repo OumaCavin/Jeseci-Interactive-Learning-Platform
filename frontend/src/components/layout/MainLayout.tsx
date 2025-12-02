@@ -40,6 +40,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   // Build navigation based on user permissions
   const baseNavigation = [
     { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
+    { name: 'Search', href: '/search', icon: MagnifyingGlassIcon },
     { name: 'Learning Paths', href: '/learning-path', icon: BookOpenIcon },
     { name: 'Code Editor', href: '/code-editor', icon: CodeBracketIcon },
     { name: 'Knowledge Graph', href: '/knowledge-graph', icon: AcademicCapIcon },
