@@ -216,7 +216,7 @@ const LearningPathDetail: React.FC = () => {
 
   const handleStartLearning = (moduleId: number) => {
     if (!pathId) return;
-    navigate(`/learning/${pathId}/module/${moduleId}`);
+    navigate(`/learning-paths/${pathId}/modules/${moduleId}`);
   };
 
   const handleEnroll = async () => {
