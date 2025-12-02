@@ -29,6 +29,7 @@ const QuizView = React.lazy(() => import('./pages/QuizView'));
 const SkillMap = React.lazy(() => import('./pages/SkillMap'));
 const Profile = React.lazy(() => import('./pages/Profile'));
 const Login = React.lazy(() => import('./pages/Login'));
+const LoginPage = React.lazy(() => import('./pages/auth/LoginPage'));
 const SignUp = React.lazy(() => import('./pages/SignUp'));
 
 // Demo Pages
@@ -78,7 +79,7 @@ function App() {
                   <AuthLayout>
                     <PageTransition pageKey="login">
                       <Suspense fallback={<PageLoadingFallback text="Loading login..." />}>
-                        <Login />
+                        <LoginPage />
                       </Suspense>
                     </PageTransition>
                   </AuthLayout>
