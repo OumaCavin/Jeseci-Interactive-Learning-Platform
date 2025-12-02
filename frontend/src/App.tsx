@@ -56,6 +56,9 @@ const CodeEditor = React.lazy(() => import('./pages/CodeEditorPage'));
 // Chat Page
 const Chat = React.lazy(() => import('./pages/Chat'));
 
+// Admin Dashboard Page
+const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard'));
+
 // Main App Component
 function App() {
   return (
@@ -198,6 +201,14 @@ function App() {
                         <PageTransition pageKey="settings">
                           <Suspense fallback={<PageLoadingFallback text="Loading settings..." />}>
                             <Settings />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+
+                      <Route path="/admin" element={
+                        <PageTransition pageKey="admin">
+                          <Suspense fallback={<PageLoadingFallback text="Loading admin dashboard..." />}>
+                            <AdminDashboard />
                           </Suspense>
                         </PageTransition>
                       } />
