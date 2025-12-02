@@ -9,8 +9,7 @@ Django
 djangorestframework
 django-cors-headers
 
-# Jac Programming Language Integration
-jaseci
+# Note: jaseci removed - using modern jaclang[all] instead
 
 # Database and Caching
 psycopg2-binary

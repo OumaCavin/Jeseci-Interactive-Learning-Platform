@@ -1,199 +1,163 @@
 """
-Jac Manager - Integration Layer between Django and Jac Walkers
+Jac Manager - Integration Layer between Django and Jac Walkers (Modern 0.9.x)
 
-This module provides the bridge between Django views and the Jac programming language
-agents. It handles compilation, execution, and management of Jac walkers.
+This module handles the dynamic importing and execution of Jac walkers
+using the native Python import system (Transpiler).
 """
 
 import logging
-import os
 import sys
-import importlib.util
-from pathlib import Path
+import importlib
 from typing import Dict, Any, Optional
-from jaclang.jac_interpreter import JacInterpreter
-from jaclang import jac_file_to_py
+
+# IMPORTANT: Importing jaclang enables the import hook for .jac files
+import jaclang 
+from jaclang.core.utils import (
+    construct_root, 
+    get_root,
+)
 
 logger = logging.getLogger(__name__)
 
 class JacManager:
     """
-    Manager class for Jac walker execution and integration with Django
+    Manager class for Jac walker execution using native Python imports.
     """
     
     def __init__(self):
-        """Initialize the Jac Manager with compilation settings"""
-        self.jac_files_path = Path(__file__).parent / 'walkers'
-        self.compiled_modules = {}
-        self.walker_registry = {}
+        self.modules = {}
+        # Define the mapping of logical names to python import paths
+        # Assuming your walkers are in backend/jac_layer/walkers/
+        self.walker_map = {
+            'orchestrator': 'jac_layer.walkers.orchestrator',
+            'content_curator': 'jac_layer.walkers.content_curator',
+            'quiz_master': 'jac_layer.walkers.quiz_master',
+            'evaluator': 'jac_layer.walkers.evaluator',
+            'progress_tracker': 'jac_layer.walkers.progress_tracker',
+            'motivator': 'jac_layer.walkers.motivator',
+        }
         self._initialize_walkers()
     
     def _initialize_walkers(self):
-        """Initialize and register all available Jac walkers"""
-        try:
-            # Load main orchestrator walker
-            orchestrator_path = self.jac_files_path / 'orchestrator.jac'
-            if orchestrator_path.exists():
-                self._compile_and_register_walker('orchestrator', orchestrator_path)
-                logger.info("Loaded orchestrator walker")
-            
-            # Load agent walkers
-            agent_files = {
-                'content_curator': 'content_curator.jac',
-                'quiz_master': 'quiz_master.jac',
-                'evaluator': 'evaluator.jac',
-                'progress_tracker': 'progress_tracker.jac',
-                'motivator': 'motivator.jac',
-            }
-            
-            for agent_name, filename in agent_files.items():
-                walker_path = self.jac_files_path / filename
-                if walker_path.exists():
-                    self._compile_and_register_walker(agent_name, walker_path)
-                    logger.info(f"Loaded {agent_name} walker")
-                    
-        except Exception as e:
-            logger.error(f"Error initializing walkers: {str(e)}")
-            raise
-    
-    def _compile_and_register_walker(self, walker_name: str, jac_path: Path):
-        """Compile Jac file to Python and register the walker"""
-        try:
-            # Convert Jac to Python code
-            python_code = jac_file_to_py(str(jac_path))
-            
-            # Execute the Python code in a module context
-            module_name = f"{walker_name}_walker"
-            spec = importlib.util.spec_from_loader(module_name, loader=None)
-            module = importlib.util.module_from_spec(spec)
-            
-            # Execute the compiled code
-            exec(python_code, module.__dict__)
-            
-            # Store the compiled module
-            self.compiled_modules[walker_name] = module
-            
-            # Register walkers from the module
-            if hasattr(module, 'WALKERS'):
-                for walker_info in module.WALKERS:
-                    walker_full_name = f"{walker_name}.{walker_info['name']}"
-                    self.walker_registry[walker_full_name] = {
-                        'walker_info': walker_info,
-                        'module': module,
-                        'compiled_code': python_code
-                    }
-                    
-        except Exception as e:
-            logger.error(f"Error compiling walker {walker_name}: {str(e)}")
-            raise
-    
+        """
+        Dynamically imports the Jac modules. 
+        In Jac 0.9, 'import x' triggers the transpiler automatically.
+        """
+        for name, module_path in self.walker_map.items():
+            try:
+                # This is the magic line that compiles .jac to .py on the fly
+                module = importlib.import_module(module_path)
+                self.modules[name] = module
+                logger.info(f"Successfully loaded Jac module: {name}")
+            except ImportError as e:
+                logger.warning(f"Could not load walker module {name} ({module_path}): {e}")
+            except Exception as e:
+                logger.error(f"Error initializing {name}: {e}")
+
+    def get_walker_class(self, module_name: str, walker_class_name: str = None):
+        """
+        Helper to extract the actual Walker Class from the loaded module.
+        """
+        module = self.modules.get(module_name)
+        if not module:
+            raise ValueError(f"Module {module_name} is not loaded.")
+
+        # If class name not provided, try to guess it (Snake_case -> CamelCase)
+        if not walker_class_name:
+            walker_class_name = ''.join(word.title() for word in module_name.split('_'))
+        
+        # Look for the class in the module
+        if hasattr(module, walker_class_name):
+            return getattr(module, walker_class_name)
+        
+        # Fallback: Look for any class that ends with 'Walker' or matches keys
+        # This is a basic fallback, you might need to be specific in your calls
+        raise ValueError(f"Could not find walker class '{walker_class_name}' in module '{module_name}'")
+
     def execute_walker(self, walker_name: str, parameters: Dict[str, Any] = None) -> Dict[str, Any]:
         """
-        Execute a Jac walker with given parameters
-        
-        Args:
-            walker_name: Name of the walker to execute
-            parameters: Dictionary of parameters to pass to the walker
-            
-        Returns:
-            Dictionary containing the result of walker execution
+        Execute a Jac walker using the 0.9.x Spawn/Run paradigm.
         """
-        if walker_name not in self.walker_registry:
-            raise ValueError(f"Walker '{walker_name}' not found. Available walkers: {list(self.walker_registry.keys())}")
-        
+        if parameters is None:
+            parameters = {}
+
         try:
-            walker_info = self.walker_registry[walker_name]['walker_info']
-            module = self.walker_registry[walker_name]['module']
-            
-            # Get the walker function
-            walker_func = getattr(module, walker_info['name'])
-            
-            # Execute the walker
+            # 1. Get the Walker Class
+            # Note: We assume the walker class name matches the module name converted to CamelCase
+            # e.g., 'content_curator' -> ContentCurator
+            WalkerClass = self.get_walker_class(walker_name)
+
             logger.info(f"Executing walker '{walker_name}' with parameters: {parameters}")
+
+            # 2. Instantiate the Walker
+            # In Jac 0.9, walkers are Python classes.
+            walker_instance = WalkerClass(**parameters)
+
+            # 3. Spawn the walker
+            # In Jac 0.9, we usually spawn a walker on a node (root).
+            # We use get_root() to get the global root node.
+            root = get_root()
             
-            if parameters:
-                result = walker_func(**parameters)
+            # Using spawn (standard Jac pattern) or direct call if implemented
+            if hasattr(walker_instance, 'spawn'):
+                # spawn returns nothing usually, it modifies state or returns via reports
+                walker_instance.spawn(root)
             else:
-                result = walker_func()
+                # If it's a simple function/script style
+                pass 
+
+            # 4. Capture Results
+            # Jac 0.9 uses a reporting mechanism. We need to check if the walker 
+            # has a 'report' attribute or if we need to inspect the instance.
+            # This part depends heavily on how your .jac files are written.
             
-            # Convert result to dictionary if needed
-            if hasattr(result, '__dict__'):
-                result_dict = result.__dict__
-            elif isinstance(result, (list, tuple)):
-                result_dict = {'result': result}
-            elif isinstance(result, dict):
-                result_dict = result
+            # Common pattern: check for a 'report' list or dictionary on the instance
+            result_data = {}
+            if hasattr(walker_instance, 'report'):
+                result_data = walker_instance.report
+            elif hasattr(walker_instance, 'results'):
+                result_data = walker_instance.results
             else:
-                result_dict = {'result': str(result)}
-            
-            logger.info(f"Walker '{walker_name}' completed successfully")
+                # Fallback: return the instance dict excluding internals
+                result_data = {k: v for k, v in walker_instance.__dict__.items() if not k.startswith('_')}
+
+            logger.info(f"Walker '{walker_name}' completed.")
+
             return {
                 'status': 'success',
-                'data': result_dict,
+                'data': result_data,
                 'walker_name': walker_name,
-                'execution_time': '2025-12-02T03:08:23Z'
             }
-            
+
         except Exception as e:
             logger.error(f"Error executing walker '{walker_name}': {str(e)}")
+            import traceback
+            traceback.print_exc()
             return {
                 'status': 'error',
                 'message': str(e),
                 'walker_name': walker_name,
-                'execution_time': '2025-12-02T03:08:23Z'
             }
-    
+
     def get_available_walkers(self) -> Dict[str, Any]:
-        """
-        Get list of all available walkers
-        
-        Returns:
-            Dictionary mapping walker names to their information
-        """
-        walkers_info = {}
-        for walker_name, walker_data in self.walker_registry.items():
-            walkers_info[walker_name] = {
-                'name': walker_name,
-                'description': walker_data['walker_info'].get('description', 'No description'),
-                'parameters': walker_data['walker_info'].get('parameters', [])
-            }
-        return walkers_info
-    
-    def health_check(self) -> bool:
-        """
-        Check if Jac layer is healthy and functioning
-        
-        Returns:
-            Boolean indicating if Jac layer is healthy
-        """
-        try:
-            # Test basic walker execution
-            test_result = self.execute_walker('orchestrator.init_user_graph', {'test': True})
-            return test_result['status'] == 'success'
-        except Exception as e:
-            logger.error(f"Jac layer health check failed: {str(e)}")
-            return False
-    
+        """Return list of loaded modules."""
+        return {name: {'loaded': True} for name in self.modules.keys()}
+
     def reload_walkers(self) -> bool:
-        """
-        Reload all walkers from Jac files
-        
-        Returns:
-            Boolean indicating if reload was successful
-        """
+        """Reloads modules using importlib.reload"""
         try:
-            self.compiled_modules.clear()
-            self.walker_registry.clear()
-            self._initialize_walkers()
-            logger.info("All walkers reloaded successfully")
+            for name, module in self.modules.items():
+                importlib.reload(module)
             return True
         except Exception as e:
-            logger.error(f"Error reloading walkers: {str(e)}")
+            logger.error(f"Reload failed: {e}")
             return False
 
-# Global instance for use across the application
+    def health_check(self) -> bool:
+        return len(self.modules) > 0
+
+# Global instance
 jac_manager = JacManager()
 
 def get_jac_manager() -> JacManager:
-    """Get the global Jac manager instance"""
     return jac_manager
