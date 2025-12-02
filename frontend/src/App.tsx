@@ -2,11 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useAuthStore } from './stores/authStore';
-import { useLearningStore } from './stores/learningStore';
 
 // Components
-import Header from './components/layout/Header';
-import Sidebar from './components/layout/Sidebar';
+import { MainLayout } from './components/layout/MainLayout';
+import { AuthLayout } from './components/layout/AuthLayout';
 import Dashboard from './pages/Dashboard';
 import LearningPath from './pages/LearningPath';
 import LessonView from './pages/LessonView';
@@ -14,7 +13,11 @@ import QuizView from './pages/QuizView';
 import SkillMap from './pages/SkillMap';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 import LoadingSpinner from './components/ui/LoadingSpinner';
+import AuthLayoutDemo from './pages/AuthLayoutDemo';
+import UIComponentsDemo from './pages/UIComponentsDemo';
+import MainLayoutDemo from './pages/MainLayoutDemo';
 
 // Styles
 import './App.css';
@@ -22,7 +25,6 @@ import './index.css';
 
 function App() {
   const { isAuthenticated, isLoading } = useAuthStore();
-  const { sidebarOpen } = useLearningStore();
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -31,41 +33,27 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gray-50">
-        {isAuthenticated && (
-          <div className="flex h-screen overflow-hidden">
-            {/* Sidebar */}
-            <Sidebar />
-            
-            {/* Main content */}
-            <div className={`flex flex-1 flex-col overflow-hidden transition-all duration-300 ${
-              sidebarOpen ? 'ml-0 lg:ml-64' : 'ml-0 lg:ml-16'
-            }`}>
-              {/* Header */}
-              <Header />
+        {isAuthenticated ? (
+          <MainLayout>
+            <Routes>
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/learning-path" element={<LearningPath />} />
+              <Route path="/lesson/:lessonId" element={<LessonView />} />
+              <Route path="/quiz/:quizId" element={<QuizView />} />
+              <Route path="/skill-map" element={<SkillMap />} />
+              <Route path="/profile" element={<Profile />} />
               
-              {/* Main content area */}
-              <main className="flex-1 overflow-y-auto focus:outline-none">
-                <div className="py-6">
-                  <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <Routes>
-                      <Route path="/" element={<Navigate to="/dashboard" replace />} />
-                      <Route path="/dashboard" element={<Dashboard />} />
-                      <Route path="/learning-path" element={<LearningPath />} />
-                      <Route path="/lesson/:lessonId" element={<LessonView />} />
-                      <Route path="/quiz/:quizId" element={<QuizView />} />
-                      <Route path="/skill-map" element={<SkillMap />} />
-                      <Route path="/profile" element={<Profile />} />
-                    </Routes>
-                  </div>
-                </div>
-              </main>
-            </div>
-          </div>
-        )}
-        
-        {!isAuthenticated && (
+              {/* Demo routes - remove in production */}
+              <Route path="/auth-demo" element={<AuthLayoutDemo />} />
+              <Route path="/ui-demo" element={<UIComponentsDemo />} />
+              <Route path="/mainlayout-demo" element={<MainLayoutDemo />} />
+            </Routes>
+          </MainLayout>
+        ) : (
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="*" element={<Navigate to="/login" replace />} />
           </Routes>
         )}

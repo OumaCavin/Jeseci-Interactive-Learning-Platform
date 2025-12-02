@@ -6,10 +6,15 @@ export interface User {
   id: number;
   username: string;
   email: string;
+  first_name?: string;
+  last_name?: string;
   profile: {
-    learning_style: string;
-    preferred_difficulty: string;
+    learning_style?: string;
+    preferred_difficulty?: string;
     avatar_url?: string;
+    is_staff?: boolean;
+    first_name?: string;
+    last_name?: string;
   };
 }
 
