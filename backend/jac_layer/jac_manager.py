@@ -57,97 +57,82 @@ class JacManager:
             except Exception as e:
                 logger.error(f"Error initializing {name}: {e}")
 
-    def get_walker_class(self, module_name: str, walker_class_name: str = None):
+    def get_walker_module(self, module_name: str):
         """
-        Helper to extract the actual Walker Class from the loaded module.
+        Helper to extract the walker module for function-based execution.
         """
         module = self.modules.get(module_name)
         if not module:
             raise ValueError(f"Module {module_name} is not loaded.")
+        return module
 
-        # If class name not provided, try to guess it (Snake_case -> CamelCase)
-        if not walker_class_name:
-            walker_class_name = ''.join(word.title() for word in module_name.split('_'))
+    def get_available_functions(self, walker_name: str) -> list:
+        """
+        Get list of available functions in a walker module.
+        """
+        if walker_name not in self.modules:
+            return []
         
-        # Look for the class in the module
-        if hasattr(module, walker_class_name):
-            return getattr(module, walker_class_name)
-        
-        # Fallback: Look for any class that ends with 'Walker' or matches keys
-        # This is a basic fallback, you might need to be specific in your calls
-        raise ValueError(f"Could not find walker class '{walker_class_name}' in module '{module_name}'")
+        module = self.modules[walker_name]
+        functions = [attr for attr in dir(module) 
+                    if callable(getattr(module, attr)) and not attr.startswith('_')]
+        return functions
 
     def execute_walker(self, walker_name: str, parameters: Dict[str, Any] = None) -> Dict[str, Any]:
         """
-        Execute a Jac walker using the 0.9.x Spawn/Run paradigm.
+        Execute a Jac walker using the 0.9.x function-based approach.
+        The updated .jac files contain Python functions that can be called directly.
         """
         if parameters is None:
             parameters = {}
 
         try:
-            # 1. Get the Walker Class
-            # Note: We assume the walker class name matches the module name converted to CamelCase
-            # e.g., 'content_curator' -> ContentCurator
-            WalkerClass = self.get_walker_class(walker_name)
+            # 1. Get the module containing walker functions
+            if walker_name not in self.modules:
+                raise ValueError(f"Walker module '{walker_name}' is not loaded.")
 
+            module = self.modules[walker_name]
             logger.info(f"Executing walker '{walker_name}' with parameters: {parameters}")
 
-            # 2. Instantiate the Walker
-            # In Jac 0.9, walkers are Python classes.
-            walker_instance = WalkerClass(**parameters)
-
-            # 3. Execute the walker
-            # Try different execution patterns based on what's available
-            if hasattr(walker_instance, 'spawn'):
-                # Standard Jac pattern with spawn
-                if get_root:
-                    root = get_root()
-                    walker_instance.spawn(root)
-                else:
-                    # Try calling spawn without root if root functions not available
-                    try:
-                        walker_instance.spawn()
-                    except TypeError:
-                        # If spawn requires parameters, try without any
-                        if hasattr(walker_instance, 'entry'):
-                            walker_instance.entry()
-                        else:
-                            # Last resort: try calling the walker directly
-                            pass
-            elif hasattr(walker_instance, 'entry'):
-                # Alternative entry method
-                walker_instance.entry()
-            elif hasattr(walker_instance, 'run'):
-                # Alternative run method
-                walker_instance.run()
-            else:
-                # Last resort: try to find and call any callable method
-                for method_name in ['execute', 'process', 'start']:
-                    if hasattr(walker_instance, method_name):
-                        getattr(walker_instance, method_name)()
-                        break 
-
-            # 4. Capture Results
-            # Jac 0.9 uses a reporting mechanism. We need to check if the walker 
-            # has a 'report' attribute or if we need to inspect the instance.
-            # This part depends heavily on how your .jac files are written.
+            # 2. Get the function name to call (based on walker_name)
+            # Map walker names to function names
+            function_mapping = {
+                'orchestrator': 'init_user_graph',
+                'content_curator': 'get_lesson_content',
+                'quiz_master': 'generate_adaptive_quiz',
+                'evaluator': 'evaluate_code_response',
+                'progress_tracker': 'track_lesson_progress',
+                'motivator': 'generate_motivational_message'
+            }
             
-            # Common pattern: check for a 'report' list or dictionary on the instance
-            result_data = {}
-            if hasattr(walker_instance, 'report'):
-                result_data = walker_instance.report
-            elif hasattr(walker_instance, 'results'):
-                result_data = walker_instance.results
-            else:
-                # Fallback: return the instance dict excluding internals
-                result_data = {k: v for k, v in walker_instance.__dict__.items() if not k.startswith('_')}
+            function_name = function_mapping.get(walker_name, f"{walker_name}_execute")
+            
+            # 3. Check if the function exists in the module
+            if not hasattr(module, function_name):
+                # If specific function doesn't exist, try to find any callable function
+                available_functions = [attr for attr in dir(module) 
+                                     if callable(getattr(module, attr)) and not attr.startswith('_')]
+                
+                if not available_functions:
+                    raise ValueError(f"No callable functions found in module '{walker_name}'")
+                
+                # Use the first available function
+                function_name = available_functions[0]
+                logger.info(f"Using fallback function '{function_name}' for walker '{walker_name}'")
+            
+            # 4. Get and call the function
+            walker_function = getattr(module, function_name)
+            
+            # 5. Execute the function with parameters
+            result_data = walker_function(**parameters)
 
-            logger.info(f"Walker '{walker_name}' completed.")
+            logger.info(f"Walker '{walker_name}' completed successfully.")
 
             return {
                 'status': 'success',
                 'data': result_data,
                 'walker_name': walker_name,
+                'function_called': function_name,
             }
 
         except Exception as e:
