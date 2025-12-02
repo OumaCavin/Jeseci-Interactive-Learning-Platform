@@ -19,6 +19,7 @@ import './index.css';
 // Lazy-loaded Pages for code splitting
 const Dashboard = React.lazy(() => import('./pages/Dashboard'));
 const LearningPath = React.lazy(() => import('./pages/LearningPath'));
+const LearningPaths = React.lazy(() => import('./pages/learning/LearningPaths'));
 const LessonView = React.lazy(() => import('./pages/LessonView'));
 const QuizView = React.lazy(() => import('./pages/QuizView'));
 const SkillMap = React.lazy(() => import('./pages/SkillMap'));
@@ -113,6 +114,14 @@ function App() {
                         <PageTransition pageKey="learning-path">
                           <Suspense fallback={<PageLoadingFallback text="Loading learning path..." />}>
                             <LearningPath />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+                      
+                      <Route path="/learning-paths" element={
+                        <PageTransition pageKey="learning-paths">
+                          <Suspense fallback={<PageLoadingFallback text="Loading learning paths..." />}>
+                            <LearningPaths />
                           </Suspense>
                         </PageTransition>
                       } />
