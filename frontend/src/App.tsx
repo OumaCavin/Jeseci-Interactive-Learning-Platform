@@ -35,6 +35,9 @@ const SearchDemo = React.lazy(() => import('./pages/SearchDemo'));
 // Search Pages
 const SearchResultsPage = React.lazy(() => import('./pages/search/SearchResultsPage'));
 
+// Settings Page
+const Settings = React.lazy(() => import('./pages/Settings'));
+
 // Main App Component
 function App() {
   return (
@@ -121,6 +124,14 @@ function App() {
                         <PageTransition pageKey="profile">
                           <Suspense fallback={<PageLoadingFallback text="Loading profile..." />}>
                             <Profile />
+                          </Suspense>
+                        </PageTransition>
+                      } />
+
+                      <Route path="/settings" element={
+                        <PageTransition pageKey="settings">
+                          <Suspense fallback={<PageLoadingFallback text="Loading settings..." />}>
+                            <Settings />
                           </Suspense>
                         </PageTransition>
                       } />
