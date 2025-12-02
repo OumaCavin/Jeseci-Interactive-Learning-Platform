@@ -1,0 +1,103 @@
+Compiled with problems:
+×
+ERROR in ./src/App.tsx 12:0-48
+Module not found: Error: Can't resolve './components/layout/Header' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src'
+ERROR in ./src/App.tsx 13:0-50
+Module not found: Error: Can't resolve './components/layout/Sidebar' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src'
+ERROR in ./src/App.tsx 15:0-48
+Module not found: Error: Can't resolve './pages/LearningPath' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src'
+ERROR in ./src/App.tsx 16:0-44
+Module not found: Error: Can't resolve './pages/LessonView' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src'
+ERROR in ./src/App.tsx 17:0-40
+Module not found: Error: Can't resolve './pages/QuizView' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src'
+ERROR in ./src/App.tsx 18:0-40
+Module not found: Error: Can't resolve './pages/SkillMap' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src'
+ERROR in ./src/App.tsx 19:0-38
+Module not found: Error: Can't resolve './pages/Profile' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src'
+ERROR in ./src/App.tsx 20:0-34
+Module not found: Error: Can't resolve './pages/Login' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src'
+ERROR in ./src/App.tsx 21:0-60
+Module not found: Error: Can't resolve './components/ui/LoadingSpinner' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src'
+ERROR in ./src/App.tsx 24:0-19
+Module not found: Error: Can't resolve './App.css' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src'
+ERROR in src/App.tsx:8:20
+TS2307: Cannot find module './components/layout/Header' or its corresponding type declarations.
+     6 |
+     7 | // Components
+  >  8 | import Header from './components/layout/Header';
+       |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     9 | import Sidebar from './components/layout/Sidebar';
+    10 | import Dashboard from './pages/Dashboard';
+    11 | import LearningPath from './pages/LearningPath';
+ERROR in src/App.tsx:9:21
+TS2307: Cannot find module './components/layout/Sidebar' or its corresponding type declarations.
+     7 | // Components
+     8 | import Header from './components/layout/Header';
+  >  9 | import Sidebar from './components/layout/Sidebar';
+       |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    10 | import Dashboard from './pages/Dashboard';
+    11 | import LearningPath from './pages/LearningPath';
+    12 | import LessonView from './pages/LessonView';
+ERROR in src/App.tsx:11:26
+TS2307: Cannot find module './pages/LearningPath' or its corresponding type declarations.
+     9 | import Sidebar from './components/layout/Sidebar';
+    10 | import Dashboard from './pages/Dashboard';
+  > 11 | import LearningPath from './pages/LearningPath';
+       |                          ^^^^^^^^^^^^^^^^^^^^^^
+    12 | import LessonView from './pages/LessonView';
+    13 | import QuizView from './pages/QuizView';
+    14 | import SkillMap from './pages/SkillMap';
+ERROR in src/App.tsx:12:24
+TS2307: Cannot find module './pages/LessonView' or its corresponding type declarations.
+    10 | import Dashboard from './pages/Dashboard';
+    11 | import LearningPath from './pages/LearningPath';
+  > 12 | import LessonView from './pages/LessonView';
+       |                        ^^^^^^^^^^^^^^^^^^^^
+    13 | import QuizView from './pages/QuizView';
+    14 | import SkillMap from './pages/SkillMap';
+    15 | import Profile from './pages/Profile';
+ERROR in src/App.tsx:13:22
+TS2307: Cannot find module './pages/QuizView' or its corresponding type declarations.
+    11 | import LearningPath from './pages/LearningPath';
+    12 | import LessonView from './pages/LessonView';
+  > 13 | import QuizView from './pages/QuizView';
+       |                      ^^^^^^^^^^^^^^^^^^
+    14 | import SkillMap from './pages/SkillMap';
+    15 | import Profile from './pages/Profile';
+    16 | import Login from './pages/Login';
+ERROR in src/App.tsx:14:22
+TS2307: Cannot find module './pages/SkillMap' or its corresponding type declarations.
+    12 | import LessonView from './pages/LessonView';
+    13 | import QuizView from './pages/QuizView';
+  > 14 | import SkillMap from './pages/SkillMap';
+       |                      ^^^^^^^^^^^^^^^^^^
+    15 | import Profile from './pages/Profile';
+    16 | import Login from './pages/Login';
+    17 | import LoadingSpinner from './components/ui/LoadingSpinner';
+ERROR in src/App.tsx:15:21
+TS2307: Cannot find module './pages/Profile' or its corresponding type declarations.
+    13 | import QuizView from './pages/QuizView';
+    14 | import SkillMap from './pages/SkillMap';
+  > 15 | import Profile from './pages/Profile';
+       |                     ^^^^^^^^^^^^^^^^^
+    16 | import Login from './pages/Login';
+    17 | import LoadingSpinner from './components/ui/LoadingSpinner';
+    18 |
+ERROR in src/App.tsx:16:19
+TS2307: Cannot find module './pages/Login' or its corresponding type declarations.
+    14 | import SkillMap from './pages/SkillMap';
+    15 | import Profile from './pages/Profile';
+  > 16 | import Login from './pages/Login';
+       |                   ^^^^^^^^^^^^^^^
+    17 | import LoadingSpinner from './components/ui/LoadingSpinner';
+    18 |
+    19 | // Styles
+ERROR in src/App.tsx:17:28
+TS2307: Cannot find module './components/ui/LoadingSpinner' or its corresponding type declarations.
+    15 | import Profile from './pages/Profile';
+    16 | import Login from './pages/Login';
+  > 17 | import LoadingSpinner from './components/ui/LoadingSpinner';
+       |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    18 |
+    19 | // Styles
+    20 | import './App.css';
