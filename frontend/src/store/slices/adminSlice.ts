@@ -1,7 +1,7 @@
 /**
  * JAC Learning Platform - Enterprise Administrative Management System
  * Author: MiniMax Agent
- * Version: 2.0.0
+ * Version: 3.0.0
  * 
  * Comprehensive Enterprise Administrative Management Platform featuring:
  * - AI-Powered Administrative Intelligence Engine
@@ -10,10 +10,14 @@
  * - Advanced Security & Compliance Suite
  * - Automated Administrative Operations Framework
  * - Enterprise Integration & Orchestration System
+ * 
+ * Architecture: Zustand-based for optimal performance and scalability
  */
 
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../store';
+import { create } from 'zustand';
+import { subscribeWithSelector } from 'zustand/middleware';
+import { devtools } from 'zustand/middleware';
+import { persist } from 'zustand/middleware';
 import { openaiService } from '../../services/openaiService';
 import { geminiService } from '../../services/geminiService';
 
@@ -886,734 +890,857 @@ const initialState: AdminState = {
 };
 
 // =============================================================================
-// ASYNC THUNKS
+// ASYNC FUNCTIONS FOR ZUSTAND
 // =============================================================================
 
 // AI-Powered User Management
-export const createUser = createAsyncThunk(
-  'admin/createUser',
-  async (userData: Partial<User>, { rejectWithValue }) => {
-    try {
-      const aiInsights = await openaiService.generateInsight(
-        `Analyze user creation request: ${JSON.stringify(userData)}`,
-        'user_provisioning'
-      );
-      
-      const optimizedData = await geminiService.optimizeData(userData, 'user_creation');
-      
-      // Simulate API call with AI optimization
-      const response = await fetch('/api/admin/users', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...optimizedData, aiInsights })
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to create user');
-      }
-      
-      return await response.json();
-    } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Unknown error');
+const createUser = async (userData: Partial<User>): Promise<User> => {
+  try {
+    const aiInsights = await openaiService.generateInsight(
+      `Analyze user creation request: ${JSON.stringify(userData)}`,
+      'user_provisioning'
+    );
+    
+    const optimizedData = await geminiService.optimizeData(userData, 'user_creation');
+    
+    // Simulate API call with AI optimization
+    const response = await fetch('/api/admin/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...optimizedData, aiInsights })
+    });
+    
+    if (!response.ok) {
+      throw new Error('Failed to create user');
     }
+    
+    return await response.json();
+  } catch (error) {
+    throw new Error(error instanceof Error ? error.message : 'Unknown error');
   }
-);
+};
 
-export const updateUserAIProfile = createAsyncThunk(
-  'admin/updateUserAIProfile',
-  async ({ userId, behaviorData }: { userId: string; behaviorData: any }, { rejectWithValue }) => {
-    try {
-      const aiProfile = await openaiService.analyzeUserBehavior(behaviorData);
-      
-      const response = await fetch(`/api/admin/users/${userId}/ai-profile`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ aiProfile })
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to update AI profile');
-      }
-      
-      return await response.json();
-    } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Unknown error');
+const updateUserAIProfile = async ({ userId, behaviorData }: { userId: string; behaviorData: any }) => {
+  try {
+    const aiProfile = await openaiService.analyzeUserBehavior(behaviorData);
+    
+    const response = await fetch(`/api/admin/users/${userId}/ai-profile`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ aiProfile })
+    });
+    
+    if (!response.ok) {
+      throw new Error('Failed to update AI profile');
     }
+    
+    return await response.json();
+  } catch (error) {
+    throw new Error(error instanceof Error ? error.message : 'Unknown error');
   }
-);
+};
 
 // Real-time Analytics
-export const fetchAdministrativeAnalytics = createAsyncThunk(
-  'admin/fetchAnalytics',
-  async (_, { rejectWithValue }) => {
-    try {
-      const analytics = await openaiService.generateInsight(
-        'Generate comprehensive administrative analytics',
-        'analytics'
-      );
-      
-      const response = await fetch('/api/admin/analytics', {
-        headers: { 'Authorization': 'Bearer token' }
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch analytics');
-      }
-      
-      const data = await response.json();
-      return { ...data, aiInsights: analytics };
-    } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Unknown error');
+const fetchAdministrativeAnalytics = async () => {
+  try {
+    const analytics = await openaiService.generateInsight(
+      'Generate comprehensive administrative analytics',
+      'analytics'
+    );
+    
+    const response = await fetch('/api/admin/analytics', {
+      headers: { 'Authorization': 'Bearer token' }
+    });
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch analytics');
     }
+    
+    const data = await response.json();
+    return { ...data, aiInsights: analytics };
+  } catch (error) {
+    throw new Error(error instanceof Error ? error.message : 'Unknown error');
   }
-);
+};
 
 // Security Intelligence
-export const performSecurityAudit = createAsyncThunk(
-  'admin/securityAudit',
-  async (_, { rejectWithValue }) => {
-    try {
-      const aiAnalysis = await openaiService.generateInsight(
-        'Perform comprehensive security audit',
-        'security'
-      );
-      
-      const threatIntelligence = await geminiService.analyzeThreats();
-      
-      const response = await fetch('/api/admin/security/audit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ aiAnalysis, threatIntelligence })
-      });
-      
-      if (!response.ok) {
-        throw new Error('Security audit failed');
-      }
-      
-      return await response.json();
-    } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Unknown error');
+const performSecurityAudit = async () => {
+  try {
+    const aiAnalysis = await openaiService.generateInsight(
+      'Perform comprehensive security audit',
+      'security'
+    );
+    
+    const threatIntelligence = await geminiService.analyzeThreats();
+    
+    const response = await fetch('/api/admin/security/audit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ aiAnalysis, threatIntelligence })
+    });
+    
+    if (!response.ok) {
+      throw new Error('Security audit failed');
     }
+    
+    return await response.json();
+  } catch (error) {
+    throw new Error(error instanceof Error ? error.message : 'Unknown error');
   }
-);
+};
 
 // Compliance Automation
-export const checkComplianceStatus = createAsyncThunk(
-  'admin/checkCompliance',
-  async (_, { rejectWithValue }) => {
-    try {
-      const complianceAnalysis = await openaiService.generateInsight(
-        'Analyze compliance status across all frameworks',
-        'compliance'
-      );
-      
-      const response = await fetch('/api/admin/compliance/check', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ aiAnalysis: complianceAnalysis })
-      });
-      
-      if (!response.ok) {
-        throw new Error('Compliance check failed');
-      }
-      
-      return await response.json();
-    } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Unknown error');
+const checkComplianceStatus = async () => {
+  try {
+    const complianceAnalysis = await openaiService.generateInsight(
+      'Analyze compliance status across all frameworks',
+      'compliance'
+    );
+    
+    const response = await fetch('/api/admin/compliance/check', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ aiAnalysis: complianceAnalysis })
+    });
+    
+    if (!response.ok) {
+      throw new Error('Compliance check failed');
     }
+    
+    return await response.json();
+  } catch (error) {
+    throw new Error(error instanceof Error ? error.message : 'Unknown error');
   }
-);
+};
 
 // AI-Optimized Role Management
-export const optimizeRolePermissions = createAsyncThunk(
-  'admin/optimizeRolePermissions',
-  async ({ roleId, userBehavior }: { roleId: string; userBehavior: any }, { rejectWithValue }) => {
-    try {
-      const optimization = await openaiService.generateInsight(
-        `Optimize role permissions based on user behavior: ${JSON.stringify(userBehavior)}`,
-        'role_optimization'
-      );
-      
-      const optimizedPermissions = await geminiService.optimizeRolePermissions(userBehavior);
-      
-      const response = await fetch(`/api/admin/roles/${roleId}/optimize`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          optimizedPermissions, 
-          aiOptimization: optimization,
-          confidence: 0.95 
-        })
-      });
-      
-      if (!response.ok) {
-        throw new Error('Role optimization failed');
-      }
-      
-      return await response.json();
-    } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Unknown error');
+const optimizeRolePermissions = async ({ roleId, userBehavior }: { roleId: string; userBehavior: any }) => {
+  try {
+    const optimization = await openaiService.generateInsight(
+      `Optimize role permissions based on user behavior: ${JSON.stringify(userBehavior)}`,
+      'role_optimization'
+    );
+    
+    const optimizedPermissions = await geminiService.optimizeRolePermissions(userBehavior);
+    
+    const response = await fetch(`/api/admin/roles/${roleId}/optimize`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        optimizedPermissions, 
+        aiOptimization: optimization,
+        confidence: 0.95 
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error('Role optimization failed');
     }
+    
+    return await response.json();
+  } catch (error) {
+    throw new Error(error instanceof Error ? error.message : 'Unknown error');
   }
-);
+};
 
 // Automated Administrative Tasks
-export const executeAdministrativeTask = createAsyncThunk(
-  'admin/executeTask',
-  async (taskConfig: Partial<AdministrativeTask>, { rejectWithValue }) => {
-    try {
-      const aiOptimization = await openaiService.generateInsight(
-        `Optimize task execution: ${JSON.stringify(taskConfig)}`,
-        'task_optimization'
-      );
-      
-      const response = await fetch('/api/admin/tasks/execute', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          ...taskConfig, 
-          aiOptimized: true,
-          automationLevel: 0.9 
-        })
-      });
-      
-      if (!response.ok) {
-        throw new Error('Task execution failed');
-      }
-      
-      return await response.json();
-    } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Unknown error');
+const executeAdministrativeTask = async (taskConfig: Partial<AdministrativeTask>) => {
+  try {
+    const aiOptimization = await openaiService.generateInsight(
+      `Optimize task execution: ${JSON.stringify(taskConfig)}`,
+      'task_optimization'
+    );
+    
+    const response = await fetch('/api/admin/tasks/execute', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        ...taskConfig, 
+        aiOptimized: true,
+        automationLevel: 0.9 
+      })
+    });
+    
+    if (!response.ok) {
+      throw new Error('Task execution failed');
     }
+    
+    return await response.json();
+  } catch (error) {
+    throw new Error(error instanceof Error ? error.message : 'Unknown error');
   }
-);
+};
 
 // Predictive Analytics
-export const generatePredictiveAnalytics = createAsyncThunk(
-  'admin/generatePredictiveAnalytics',
-  async (_, { rejectWithValue }) => {
-    try {
-      const predictions = await openaiService.generateInsight(
-        'Generate predictive analytics for administrative operations',
-        'predictive_analytics'
-      );
-      
-      const forecasts = await geminiService.generateForecasts();
-      
-      const response = await fetch('/api/admin/analytics/predictive', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ predictions, forecasts })
-      });
-      
-      if (!response.ok) {
-        throw new Error('Predictive analytics generation failed');
-      }
-      
-      return await response.json();
-    } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Unknown error');
+const generatePredictiveAnalytics = async () => {
+  try {
+    const predictions = await openaiService.generateInsight(
+      'Generate predictive analytics for administrative operations',
+      'predictive_analytics'
+    );
+    
+    const forecasts = await geminiService.generateForecasts();
+    
+    const response = await fetch('/api/admin/analytics/predictive', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ predictions, forecasts })
+    });
+    
+    if (!response.ok) {
+      throw new Error('Predictive analytics generation failed');
     }
+    
+    return await response.json();
+  } catch (error) {
+    throw new Error(error instanceof Error ? error.message : 'Unknown error');
   }
+};
+
+// =============================================================================
+// ZUSTAND ADMIN STORE
+// =============================================================================
+
+interface AdminStore extends AdminState {
+  // Core User Management
+  setUsers: (users: User[]) => void;
+  updateUser: (id: string, updates: Partial<User>) => void;
+  addUser: (user: User) => void;
+  removeUser: (id: string) => void;
+  
+  // AI Intelligence Updates
+  updateAIInsights: (insights: AIInsights) => void;
+  updateBehavioralAnalysis: (analysis: Record<string, any>) => void;
+  
+  // Real-time Updates
+  addRealTimeUpdate: (update: RealTimeUpdate) => void;
+  updateRealTimeMetrics: (metrics: Record<string, any>) => void;
+  
+  // Security & Compliance
+  updateSecurityMetrics: (metrics: Partial<SecurityMetrics>) => void;
+  updateComplianceStatus: (status: Partial<ComplianceMetrics>) => void;
+  addAuditEntry: (entry: AuditEntry) => void;
+  
+  // Automation
+  addAutomatedTask: (task: AdministrativeTask) => void;
+  updateTaskStatus: (id: string, status: AdministrativeTask['status']) => void;
+  addWorkflowAutomation: (workflow: WorkflowAutomation) => void;
+  updateWorkflowStatus: (id: string, status: WorkflowAutomation['status']) => void;
+  addAIOptimization: (optimization: AIOptimization) => void;
+  updateAIOptimizationStatus: (id: string, status: AIOptimization['status']) => void;
+  
+  // Integration Management
+  addIntegration: (integration: IntegrationConfig) => void;
+  updateIntegrationStatus: (id: string, status: IntegrationConfig['status']) => void;
+  
+  // Role & Permission Management
+  setRoles: (roles: Role[]) => void;
+  addRole: (role: Role) => void;
+  updateRole: (id: string, updates: Partial<Role>) => void;
+  setPermissions: (permissions: Permission[]) => void;
+  
+  // Dashboard Management
+  addDashboard: (dashboard: Dashboard) => void;
+  updateDashboard: (id: string, updates: Partial<Dashboard>) => void;
+  
+  // Feature Flags
+  addFeatureFlag: (flag: FeatureFlag) => void;
+  updateFeatureFlag: (id: string, enabled: boolean) => void;
+  
+  // Performance Monitoring
+  updatePerformanceMetrics: (metrics: Partial<PerformanceMetrics>) => void;
+  addOptimizationSuggestion: (suggestion: OptimizationSuggestion) => void;
+  updateOptimizationSuggestion: (id: string, status: OptimizationSuggestion['status']) => void;
+  
+  // System Configuration
+  updateSystemConfig: (config: Partial<SystemConfiguration>) => void;
+  updatePerformanceConfig: (config: Partial<PerformanceConfiguration>) => void;
+  
+  // Filters & Search
+  setFilters: (filters: Partial<AdminFilters>) => void;
+  setSearchQuery: (query: string) => void;
+  setSortOptions: (options: Partial<SortOptions>) => void;
+  
+  // Connection Management
+  setConnectionStatus: (status: AdminState['connectionStatus']) => void;
+  setWebSocketStatus: (status: AdminState['websocketStatus']) => void;
+  setLastSync: (timestamp: string) => void;
+  
+  // AI Configuration
+  updateAIConfig: (config: Partial<AIConfiguration>) => void;
+  addMLModel: (model: MLModelStatus) => void;
+  updateMLModelStatus: (id: string, status: MLModelStatus['status']) => void;
+  
+  // Threat Intelligence
+  updateThreatIntelligence: (intelligence: Partial<ThreatIntelligence>) => void;
+  addSecurityThreat: (threat: SecurityThreat) => void;
+  
+  // Orchestration
+  updateOrchestrationStatus: (status: Partial<OrchestrationStatus>) => void;
+  
+  // API Gateway
+  updateAPIGateway: (config: Partial<APIGatewayConfig>) => void;
+  addAPIEndpoint: (endpoint: APIEndpoint) => void;
+  
+  // Error Handling
+  setError: (error: string | null) => void;
+  setLoading: (loading: boolean) => void;
+  
+  // Reset State
+  resetAdminState: () => void;
+  
+  // Async Operations
+  createUserAsync: (userData: Partial<User>) => Promise<User>;
+  updateUserAIProfileAsync: (userId: string, behaviorData: any) => Promise<any>;
+  fetchAnalyticsAsync: () => Promise<any>;
+  performSecurityAuditAsync: () => Promise<any>;
+  checkComplianceStatusAsync: () => Promise<any>;
+  optimizeRolePermissionsAsync: (roleId: string, userBehavior: any) => Promise<any>;
+  executeAdministrativeTaskAsync: (taskConfig: Partial<AdministrativeTask>) => Promise<any>;
+  generatePredictiveAnalyticsAsync: () => Promise<any>;
+}
+
+export const useAdminStore = create<AdminStore>()(
+  subscribeWithSelector(
+    devtools(
+      persist(
+        (set, get) => ({
+          // Initial State
+          ...initialState,
+          
+          // Core User Management
+          setUsers: (users) => set({ users }),
+          
+          updateUser: (id, updates) => set((state) => ({
+            users: state.users.map(user => 
+              user.id === id ? { ...user, ...updates } : user
+            )
+          })),
+          
+          addUser: (user) => set((state) => ({
+            users: [...state.users, user]
+          })),
+          
+          removeUser: (id) => set((state) => ({
+            users: state.users.filter(user => user.id !== id)
+          })),
+          
+          // AI Intelligence Updates
+          updateAIInsights: (insights) => set({ aiInsights: insights }),
+          
+          updateBehavioralAnalysis: (analysis) => set((state) => ({
+            behavioralAnalysis: { ...state.behavioralAnalysis, ...analysis }
+          })),
+          
+          // Real-time Updates
+          addRealTimeUpdate: (update) => set((state) => ({
+            realTimeUpdates: [update, ...state.realTimeUpdates.slice(0, 99)]
+          })),
+          
+          updateRealTimeMetrics: (metrics) => set((state) => ({
+            realTimeMetrics: { ...state.realTimeMetrics, ...metrics }
+          })),
+          
+          // Security & Compliance
+          updateSecurityMetrics: (metrics) => set((state) => ({
+            securityMetrics: { ...state.securityMetrics, ...metrics }
+          })),
+          
+          updateComplianceStatus: (status) => set((state) => ({
+            complianceStatus: { ...state.complianceStatus, ...status }
+          })),
+          
+          addAuditEntry: (entry) => set((state) => ({
+            auditTrail: [entry, ...state.auditTrail.slice(0, 999)]
+          })),
+          
+          // Automation
+          addAutomatedTask: (task) => set((state) => ({
+            automatedTasks: [...state.automatedTasks, task]
+          })),
+          
+          updateTaskStatus: (id, status) => set((state) => ({
+            automatedTasks: state.automatedTasks.map(task =>
+              task.id === id 
+                ? { ...task, status, completedAt: status === 'completed' ? new Date().toISOString() : task.completedAt }
+                : task
+            )
+          })),
+          
+          addWorkflowAutomation: (workflow) => set((state) => ({
+            workflowAutomations: [...state.workflowAutomations, workflow]
+          })),
+          
+          updateWorkflowStatus: (id, status) => set((state) => ({
+            workflowAutomations: state.workflowAutomations.map(workflow =>
+              workflow.id === id ? { ...workflow, status } : workflow
+            )
+          })),
+          
+          addAIOptimization: (optimization) => set((state) => ({
+            aiOptimizations: [...state.aiOptimizations, optimization]
+          })),
+          
+          updateAIOptimizationStatus: (id, status) => set((state) => ({
+            aiOptimizations: state.aiOptimizations.map(opt =>
+              opt.id === id 
+                ? { ...opt, status, lastUpdated: new Date().toISOString() }
+                : opt
+            )
+          })),
+          
+          // Integration Management
+          addIntegration: (integration) => set((state) => ({
+            integrations: [...state.integrations, integration]
+          })),
+          
+          updateIntegrationStatus: (id, status) => set((state) => ({
+            integrations: state.integrations.map(integration =>
+              integration.id === id ? { ...integration, status } : integration
+            )
+          })),
+          
+          // Role & Permission Management
+          setRoles: (roles) => set({ roles }),
+          
+          addRole: (role) => set((state) => ({
+            roles: [...state.roles, role]
+          })),
+          
+          updateRole: (id, updates) => set((state) => ({
+            roles: state.roles.map(role =>
+              role.id === id ? { ...role, ...updates } : role
+            )
+          })),
+          
+          setPermissions: (permissions) => set({ permissions }),
+          
+          // Dashboard Management
+          addDashboard: (dashboard) => set((state) => ({
+            dashboards: [...state.dashboards, dashboard]
+          })),
+          
+          updateDashboard: (id, updates) => set((state) => ({
+            dashboards: state.dashboards.map(dashboard =>
+              dashboard.id === id ? { ...dashboard, ...updates } : dashboard
+            )
+          })),
+          
+          // Feature Flags
+          addFeatureFlag: (flag) => set((state) => ({
+            featureFlags: [...state.featureFlags, flag]
+          })),
+          
+          updateFeatureFlag: (id, enabled) => set((state) => ({
+            featureFlags: state.featureFlags.map(flag =>
+              flag.id === id ? { ...flag, enabled } : flag
+            )
+          })),
+          
+          // Performance Monitoring
+          updatePerformanceMetrics: (metrics) => set((state) => ({
+            performanceMetrics: { ...state.performanceMetrics, ...metrics }
+          })),
+          
+          addOptimizationSuggestion: (suggestion) => set((state) => ({
+            optimizationSuggestions: [...state.optimizationSuggestions, suggestion]
+          })),
+          
+          updateOptimizationSuggestion: (id, status) => set((state) => ({
+            optimizationSuggestions: state.optimizationSuggestions.map(suggestion =>
+              suggestion.id === id ? { ...suggestion, status } : suggestion
+            )
+          })),
+          
+          // System Configuration
+          updateSystemConfig: (config) => set((state) => ({
+            systemConfig: { ...state.systemConfig, ...config }
+          })),
+          
+          updatePerformanceConfig: (config) => set((state) => ({
+            performanceConfig: { ...state.performanceConfig, ...config }
+          })),
+          
+          // Filters & Search
+          setFilters: (filters) => set((state) => ({
+            filters: { ...state.filters, ...filters }
+          })),
+          
+          setSearchQuery: (query) => set({ searchQuery: query }),
+          
+          setSortOptions: (options) => set((state) => ({
+            sortOptions: { ...state.sortOptions, ...options }
+          })),
+          
+          // Connection Management
+          setConnectionStatus: (status) => set({ connectionStatus: status }),
+          
+          setWebSocketStatus: (status) => set({ websocketStatus: status }),
+          
+          setLastSync: (timestamp) => set({ lastSync: timestamp }),
+          
+          // AI Configuration
+          updateAIConfig: (config) => set((state) => ({
+            aiConfig: { ...state.aiConfig, ...config }
+          })),
+          
+          addMLModel: (model) => set((state) => ({
+            mlModels: [...state.mlModels, model]
+          })),
+          
+          updateMLModelStatus: (id, status) => set((state) => ({
+            mlModels: state.mlModels.map(model =>
+              model.id === id ? { ...model, status } : model
+            )
+          })),
+          
+          // Threat Intelligence
+          updateThreatIntelligence: (intelligence) => set((state) => ({
+            threatIntelligence: { ...state.threatIntelligence, ...intelligence }
+          })),
+          
+          addSecurityThreat: (threat) => set((state) => ({
+            threatIntelligence: {
+              ...state.threatIntelligence,
+              threats: [...state.threatIntelligence.threats, threat]
+            }
+          })),
+          
+          // Orchestration
+          updateOrchestrationStatus: (status) => set((state) => ({
+            orchestrationStatus: { ...state.orchestrationStatus, ...status }
+          })),
+          
+          // API Gateway
+          updateAPIGateway: (config) => set((state) => ({
+            apiGateway: { ...state.apiGateway, ...config }
+          })),
+          
+          addAPIEndpoint: (endpoint) => set((state) => ({
+            apiGateway: {
+              ...state.apiGateway,
+              endpoints: [...state.apiGateway.endpoints, endpoint]
+            }
+          })),
+          
+          // Error Handling
+          setError: (error) => set({ error }),
+          
+          setLoading: (loading) => set({ loading }),
+          
+          // Reset State
+          resetAdminState: () => set(initialState),
+          
+          // Async Operations
+          createUserAsync: async (userData) => {
+            try {
+              set({ loading: true, error: null });
+              const user = await createUser(userData);
+              get().addUser(user);
+              set({ loading: false, lastSync: new Date().toISOString() });
+              return user;
+            } catch (error) {
+              const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+              set({ loading: false, error: errorMessage });
+              throw error;
+            }
+          },
+          
+          updateUserAIProfileAsync: async (userId, behaviorData) => {
+            try {
+              const result = await updateUserAIProfile({ userId, behaviorData });
+              get().updateUser(userId, { aiProfile: result.aiProfile });
+              return result;
+            } catch (error) {
+              const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+              set({ error: errorMessage });
+              throw error;
+            }
+          },
+          
+          fetchAnalyticsAsync: async () => {
+            try {
+              set({ loading: true });
+              const analytics = await fetchAdministrativeAnalytics();
+              set({ loading: false, analytics, lastSync: new Date().toISOString() });
+              return analytics;
+            } catch (error) {
+              const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+              set({ loading: false, error: errorMessage });
+              throw error;
+            }
+          },
+          
+          performSecurityAuditAsync: async () => {
+            try {
+              set({ loading: true });
+              const auditResults = await performSecurityAudit();
+              set({ 
+                loading: false, 
+                securityMetrics: auditResults.securityMetrics,
+                threatIntelligence: auditResults.threatIntelligence
+              });
+              // Add audit entries
+              auditResults.auditEntries.forEach((entry: AuditEntry) => {
+                get().addAuditEntry(entry);
+              });
+              return auditResults;
+            } catch (error) {
+              const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+              set({ loading: false, error: errorMessage });
+              throw error;
+            }
+          },
+          
+          checkComplianceStatusAsync: async () => {
+            try {
+              const complianceStatus = await checkComplianceStatus();
+              get().updateComplianceStatus(complianceStatus);
+              return complianceStatus;
+            } catch (error) {
+              const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+              set({ error: errorMessage });
+              throw error;
+            }
+          },
+          
+          optimizeRolePermissionsAsync: async (roleId, userBehavior) => {
+            try {
+              const optimization = await optimizeRolePermissions({ roleId, userBehavior });
+              get().updateRole(roleId, { 
+                permissions: optimization.optimizedPermissions,
+                lastOptimized: new Date().toISOString()
+              });
+              return optimization;
+            } catch (error) {
+              const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+              set({ error: errorMessage });
+              throw error;
+            }
+          },
+          
+          executeAdministrativeTaskAsync: async (taskConfig) => {
+            try {
+              const task = await executeAdministrativeTask(taskConfig);
+              get().addAutomatedTask(task);
+              return task;
+            } catch (error) {
+              const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+              set({ error: errorMessage });
+              throw error;
+            }
+          },
+          
+          generatePredictiveAnalyticsAsync: async () => {
+            try {
+              const predictiveAnalytics = await generatePredictiveAnalytics();
+              set({ predictiveAnalytics });
+              return predictiveAnalytics;
+            } catch (error) {
+              const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+              set({ error: errorMessage });
+              throw error;
+            }
+          }
+        }),
+        {
+          name: 'admin-store',
+          partialize: (state) => ({
+            users: state.users,
+            roles: state.roles,
+            permissions: state.permissions,
+            dashboards: state.dashboards,
+            featureFlags: state.featureFlags,
+            systemConfig: state.systemConfig,
+            aiConfig: state.aiConfig,
+            realTimeUpdates: state.realTimeUpdates.slice(0, 20),
+            auditTrail: state.auditTrail.slice(0, 100)
+          }),
+        }
+      ),
+      {
+        name: 'admin-store',
+      }
+    )
+  )
 );
 
 // =============================================================================
-// SLICE DEFINITION
+// SELECTORS (Zustand Adapted)
 // =============================================================================
 
-const adminSlice = createSlice({
-  name: 'admin',
-  initialState,
-  reducers: {
-    // Core User Management
-    setUsers: (state, action: PayloadAction<User[]>) => {
-      state.users = action.payload;
-    },
-    
-    updateUser: (state, action: PayloadAction<{ id: string; updates: Partial<User> }>) => {
-      const { id, updates } = action.payload;
-      const userIndex = state.users.findIndex(user => user.id === id);
-      if (userIndex !== -1) {
-        state.users[userIndex] = { ...state.users[userIndex], ...updates };
-      }
-    },
-    
-    // AI Intelligence Updates
-    updateAIInsights: (state, action: PayloadAction<AIInsights>) => {
-      state.aiInsights = action.payload;
-    },
-    
-    updateBehavioralAnalysis: (state, action: PayloadAction<Record<string, any>>) => {
-      state.behavioralAnalysis = { ...state.behavioralAnalysis, ...action.payload };
-    },
-    
-    // Real-time Updates
-    addRealTimeUpdate: (state, action: PayloadAction<RealTimeUpdate>) => {
-      state.realTimeUpdates.unshift(action.payload);
-      // Keep only last 100 updates
-      state.realTimeUpdates = state.realTimeUpdates.slice(0, 100);
-    },
-    
-    updateRealTimeMetrics: (state, action: PayloadAction<Record<string, any>>) => {
-      state.realTimeMetrics = { ...state.realTimeMetrics, ...action.payload };
-    },
-    
-    // Security & Compliance
-    updateSecurityMetrics: (state, action: PayloadAction<Partial<SecurityMetrics>>) => {
-      state.securityMetrics = { ...state.securityMetrics, ...action.payload };
-    },
-    
-    updateComplianceStatus: (state, action: PayloadAction<Partial<ComplianceMetrics>>) => {
-      state.complianceStatus = { ...state.complianceStatus, ...action.payload };
-    },
-    
-    addAuditEntry: (state, action: PayloadAction<AuditEntry>) => {
-      state.auditTrail.unshift(action.payload);
-      // Keep only last 1000 audit entries
-      state.auditTrail = state.auditTrail.slice(0, 1000);
-    },
-    
-    // Automation
-    addAutomatedTask: (state, action: PayloadAction<AdministrativeTask>) => {
-      state.automatedTasks.push(action.payload);
-    },
-    
-    updateTaskStatus: (state, action: PayloadAction<{ id: string; status: AdministrativeTask['status'] }>) => {
-      const { id, status } = action.payload;
-      const taskIndex = state.automatedTasks.findIndex(task => task.id === id);
-      if (taskIndex !== -1) {
-        state.automatedTasks[taskIndex].status = status;
-        if (status === 'completed') {
-          state.automatedTasks[taskIndex].completedAt = new Date().toISOString();
-        }
-      }
-    },
-    
-    // Workflow Automation
-    addWorkflowAutomation: (state, action: PayloadAction<WorkflowAutomation>) => {
-      state.workflowAutomations.push(action.payload);
-    },
-    
-    updateWorkflowStatus: (state, action: PayloadAction<{ id: string; status: WorkflowAutomation['status'] }>) => {
-      const { id, status } = action.payload;
-      const workflowIndex = state.workflowAutomations.findIndex(workflow => workflow.id === id);
-      if (workflowIndex !== -1) {
-        state.workflowAutomations[workflowIndex].status = status;
-      }
-    },
-    
-    // AI Optimizations
-    addAIOptimization: (state, action: PayloadAction<AIOptimization>) => {
-      state.aiOptimizations.push(action.payload);
-    },
-    
-    updateAIOptimizationStatus: (state, action: PayloadAction<{ id: string; status: AIOptimization['status'] }>) => {
-      const { id, status } = action.payload;
-      const optimizationIndex = state.aiOptimizations.findIndex(opt => opt.id === id);
-      if (optimizationIndex !== -1) {
-        state.aiOptimizations[optimizationIndex].status = status;
-        state.aiOptimizations[optimizationIndex].lastUpdated = new Date().toISOString();
-      }
-    },
-    
-    // Integration Management
-    addIntegration: (state, action: PayloadAction<IntegrationConfig>) => {
-      state.integrations.push(action.payload);
-    },
-    
-    updateIntegrationStatus: (state, action: PayloadAction<{ id: string; status: IntegrationConfig['status'] }>) => {
-      const { id, status } = action.payload;
-      const integrationIndex = state.integrations.findIndex(integration => integration.id === id);
-      if (integrationIndex !== -1) {
-        state.integrations[integrationIndex].status = status;
-      }
-    },
-    
-    // Role & Permission Management
-    setRoles: (state, action: PayloadAction<Role[]>) => {
-      state.roles = action.payload;
-    },
-    
-    addRole: (state, action: PayloadAction<Role>) => {
-      state.roles.push(action.payload);
-    },
-    
-    updateRole: (state, action: PayloadAction<{ id: string; updates: Partial<Role> }>) => {
-      const { id, updates } = action.payload;
-      const roleIndex = state.roles.findIndex(role => role.id === id);
-      if (roleIndex !== -1) {
-        state.roles[roleIndex] = { ...state.roles[roleIndex], ...updates };
-      }
-    },
-    
-    setPermissions: (state, action: PayloadAction<Permission[]>) => {
-      state.permissions = action.payload;
-    },
-    
-    // Dashboard Management
-    addDashboard: (state, action: PayloadAction<Dashboard>) => {
-      state.dashboards.push(action.payload);
-    },
-    
-    updateDashboard: (state, action: PayloadAction<{ id: string; updates: Partial<Dashboard> }>) => {
-      const { id, updates } = action.payload;
-      const dashboardIndex = state.dashboards.findIndex(dashboard => dashboard.id === id);
-      if (dashboardIndex !== -1) {
-        state.dashboards[dashboardIndex] = { ...state.dashboards[dashboardIndex], ...updates };
-      }
-    },
-    
-    // Feature Flags
-    addFeatureFlag: (state, action: PayloadAction<FeatureFlag>) => {
-      state.featureFlags.push(action.payload);
-    },
-    
-    updateFeatureFlag: (state, action: PayloadAction<{ id: string; enabled: boolean }>) => {
-      const { id, enabled } = action.payload;
-      const flagIndex = state.featureFlags.findIndex(flag => flag.id === id);
-      if (flagIndex !== -1) {
-        state.featureFlags[flagIndex].enabled = enabled;
-      }
-    },
-    
-    // Performance Monitoring
-    updatePerformanceMetrics: (state, action: PayloadAction<Partial<PerformanceMetrics>>) => {
-      state.performanceMetrics = { ...state.performanceMetrics, ...action.payload };
-    },
-    
-    addOptimizationSuggestion: (state, action: PayloadAction<OptimizationSuggestion>) => {
-      state.optimizationSuggestions.push(action.payload);
-    },
-    
-    updateOptimizationSuggestion: (state, action: PayloadAction<{ id: string; status: OptimizationSuggestion['status'] }>) => {
-      const { id, status } = action.payload;
-      const suggestionIndex = state.optimizationSuggestions.findIndex(suggestion => suggestion.id === id);
-      if (suggestionIndex !== -1) {
-        state.optimizationSuggestions[suggestionIndex].status = status;
-      }
-    },
-    
-    // System Configuration
-    updateSystemConfig: (state, action: PayloadAction<Partial<SystemConfiguration>>) => {
-      state.systemConfig = { ...state.systemConfig, ...action.payload };
-    },
-    
-    updatePerformanceConfig: (state, action: PayloadAction<Partial<PerformanceConfiguration>>) => {
-      state.performanceConfig = { ...state.performanceConfig, ...action.payload };
-    },
-    
-    // Filters & Search
-    setFilters: (state, action: PayloadAction<Partial<AdminFilters>>) => {
-      state.filters = { ...state.filters, ...action.payload };
-    },
-    
-    setSearchQuery: (state, action: PayloadAction<string>) => {
-      state.searchQuery = action.payload;
-    },
-    
-    setSortOptions: (state, action: PayloadAction<Partial<SortOptions>>) => {
-      state.sortOptions = { ...state.sortOptions, ...action.payload };
-    },
-    
-    // Connection Management
-    setConnectionStatus: (state, action: PayloadAction<AdminState['connectionStatus']>) => {
-      state.connectionStatus = action.payload;
-    },
-    
-    setWebSocketStatus: (state, action: PayloadAction<AdminState['websocketStatus']>) => {
-      state.websocketStatus = action.payload;
-    },
-    
-    // Last Sync
-    setLastSync: (state, action: PayloadAction<string>) => {
-      state.lastSync = action.payload;
-    },
-    
-    // AI Configuration
-    updateAIConfig: (state, action: PayloadAction<Partial<AIConfiguration>>) => {
-      state.aiConfig = { ...state.aiConfig, ...action.payload };
-    },
-    
-    addMLModel: (state, action: PayloadAction<MLModelStatus>) => {
-      state.mlModels.push(action.payload);
-    },
-    
-    updateMLModelStatus: (state, action: PayloadAction<{ id: string; status: MLModelStatus['status'] }>) => {
-      const { id, status } = action.payload;
-      const modelIndex = state.mlModels.findIndex(model => model.id === id);
-      if (modelIndex !== -1) {
-        state.mlModels[modelIndex].status = status;
-      }
-    },
-    
-    // Threat Intelligence
-    updateThreatIntelligence: (state, action: PayloadAction<Partial<ThreatIntelligence>>) => {
-      state.threatIntelligence = { ...state.threatIntelligence, ...action.payload };
-    },
-    
-    addSecurityThreat: (state, action: PayloadAction<SecurityThreat>) => {
-      state.threatIntelligence.threats.push(action.payload);
-    },
-    
-    // Orchestration
-    updateOrchestrationStatus: (state, action: PayloadAction<Partial<OrchestrationStatus>>) => {
-      state.orchestrationStatus = { ...state.orchestrationStatus, ...action.payload };
-    },
-    
-    // API Gateway
-    updateAPIGateway: (state, action: PayloadAction<Partial<APIGatewayConfig>>) => {
-      state.apiGateway = { ...state.apiGateway, ...action.payload };
-    },
-    
-    addAPIEndpoint: (state, action: PayloadAction<APIEndpoint>) => {
-      state.apiGateway.endpoints.push(action.payload);
-    },
-    
-    // Error Handling
-    setError: (state, action: PayloadAction<string | null>) => {
-      state.error = action.payload;
-    },
-    
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.loading = action.payload;
-    },
-    
-    // Reset State
-    resetAdminState: (state) => {
-      Object.assign(state, initialState);
-    }
-  },
-  
-  extraReducers: (builder) => {
-    // Create User
-    builder
-      .addCase(createUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(createUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.users.push(action.payload);
-        state.lastSync = new Date().toISOString();
-      })
-      .addCase(createUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload as string;
-      });
-    
-    // Update User AI Profile
-    builder
-      .addCase(updateUserAIProfile.fulfilled, (state, action) => {
-        const userIndex = state.users.findIndex(user => user.id === action.payload.id);
-        if (userIndex !== -1) {
-          state.users[userIndex].aiProfile = action.payload.aiProfile;
-        }
-      });
-    
-    // Fetch Analytics
-    builder
-      .addCase(fetchAdministrativeAnalytics.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(fetchAdministrativeAnalytics.fulfilled, (state, action) => {
-        state.loading = false;
-        state.analytics = action.payload;
-        state.lastSync = new Date().toISOString();
-      })
-      .addCase(fetchAdministrativeAnalytics.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload as string;
-      });
-    
-    // Security Audit
-    builder
-      .addCase(performSecurityAudit.fulfilled, (state, action) => {
-        state.securityMetrics = action.payload.securityMetrics;
-        state.threatIntelligence = action.payload.threatIntelligence;
-        state.auditTrail.push(...action.payload.auditEntries);
-      });
-    
-    // Compliance Check
-    builder
-      .addCase(checkComplianceStatus.fulfilled, (state, action) => {
-        state.complianceStatus = action.payload;
-      });
-    
-    // Optimize Role Permissions
-    builder
-      .addCase(optimizeRolePermissions.fulfilled, (state, action) => {
-        const { roleId, optimizedPermissions } = action.payload;
-        const roleIndex = state.roles.findIndex(role => role.id === roleId);
-        if (roleIndex !== -1) {
-          state.roles[roleIndex].permissions = optimizedPermissions;
-          state.roles[roleIndex].lastOptimized = new Date().toISOString();
-        }
-      });
-    
-    // Execute Administrative Task
-    builder
-      .addCase(executeAdministrativeTask.fulfilled, (state, action) => {
-        state.automatedTasks.push(action.payload);
-      });
-    
-    // Generate Predictive Analytics
-    builder
-      .addCase(generatePredictiveAnalytics.fulfilled, (state, action) => {
-        state.predictiveAnalytics = action.payload;
-      });
-  }
-});
+// Store hook
+export const useAdmin = () => useAdminStore();
 
-// =============================================================================
-// EXPORTS
-// =============================================================================
+// Basic selectors
+export const selectAdminState = () => useAdminStore(state => state);
 
-export const {
-  // Core User Management
-  setUsers,
-  updateUser,
-  
-  // AI Intelligence Updates
-  updateAIInsights,
-  updateBehavioralAnalysis,
-  
-  // Real-time Updates
-  addRealTimeUpdate,
-  updateRealTimeMetrics,
-  
-  // Security & Compliance
-  updateSecurityMetrics,
-  updateComplianceStatus,
-  addAuditEntry,
-  
-  // Automation
-  addAutomatedTask,
-  updateTaskStatus,
-  addWorkflowAutomation,
-  updateWorkflowStatus,
-  addAIOptimization,
-  updateAIOptimizationStatus,
-  
-  // Integration Management
-  addIntegration,
-  updateIntegrationStatus,
-  
-  // Role & Permission Management
-  setRoles,
-  addRole,
-  updateRole,
-  setPermissions,
-  
-  // Dashboard Management
-  addDashboard,
-  updateDashboard,
-  
-  // Feature Flags
-  addFeatureFlag,
-  updateFeatureFlag,
-  
-  // Performance Monitoring
-  updatePerformanceMetrics,
-  addOptimizationSuggestion,
-  updateOptimizationSuggestion,
-  
-  // System Configuration
-  updateSystemConfig,
-  updatePerformanceConfig,
-  
-  // Filters & Search
-  setFilters,
-  setSearchQuery,
-  setSortOptions,
-  
-  // Connection Management
-  setConnectionStatus,
-  setWebSocketStatus,
-  setLastSync,
-  
-  // AI Configuration
-  updateAIConfig,
-  addMLModel,
-  updateMLModelStatus,
-  
-  // Threat Intelligence
-  updateThreatIntelligence,
-  addSecurityThreat,
-  
-  // Orchestration
-  updateOrchestrationStatus,
-  
-  // API Gateway
-  updateAPIGateway,
-  addAPIEndpoint,
-  
-  // Error Handling
-  setError,
-  setLoading,
-  resetAdminState
-} = adminSlice.actions;
+export const selectUsers = () => useAdminStore(state => state.users);
 
-// =============================================================================
-// SELECTORS
-// =============================================================================
+export const selectActiveUsers = () => useAdminStore(state => 
+  state.users.filter(user => user.status === 'active')
+);
 
-export const selectAdminState = (state: RootState) => state.admin;
+export const selectRoles = () => useAdminStore(state => state.roles);
 
-export const selectUsers = (state: RootState) => state.admin.users;
+export const selectPermissions = () => useAdminStore(state => state.permissions);
 
-export const selectActiveUsers = (state: RootState) => 
-  state.admin.users.filter(user => user.status === 'active');
+export const selectAIInsights = () => useAdminStore(state => state.aiInsights);
 
-export const selectRoles = (state: RootState) => state.admin.roles;
+export const selectAnalytics = () => useAdminStore(state => state.analytics);
 
-export const selectPermissions = (state: RootState) => state.admin.permissions;
+export const selectSecurityMetrics = () => useAdminStore(state => state.securityMetrics);
 
-export const selectAIInsights = (state: RootState) => state.admin.aiInsights;
+export const selectComplianceStatus = () => useAdminStore(state => state.complianceStatus);
 
-export const selectAnalytics = (state: RootState) => state.admin.analytics;
+export const selectAutomatedTasks = () => useAdminStore(state => state.automatedTasks);
 
-export const selectSecurityMetrics = (state: RootState) => state.admin.securityMetrics;
+export const selectWorkflowAutomations = () => useAdminStore(state => state.workflowAutomations);
 
-export const selectComplianceStatus = (state: RootState) => state.admin.complianceStatus;
+export const selectIntegrations = () => useAdminStore(state => state.integrations);
 
-export const selectAutomatedTasks = (state: RootState) => state.admin.automatedTasks;
+export const selectDashboards = () => useAdminStore(state => state.dashboards);
 
-export const selectWorkflowAutomations = (state: RootState) => state.admin.workflowAutomations;
+export const selectThreatIntelligence = () => useAdminStore(state => state.threatIntelligence);
 
-export const selectIntegrations = (state: RootState) => state.admin.integrations;
+export const selectRealTimeUpdates = () => useAdminStore(state => state.realTimeUpdates);
 
-export const selectDashboards = (state: RootState) => state.admin.dashboards;
+export const selectPerformanceMetrics = () => useAdminStore(state => state.performanceMetrics);
 
-export const selectThreatIntelligence = (state: RootState) => state.admin.threatIntelligence;
+export const selectOptimizationSuggestions = () => useAdminStore(state => state.optimizationSuggestions);
 
-export const selectRealTimeUpdates = (state: RootState) => state.admin.realTimeUpdates;
+// Parametrized selectors
+export const selectUserById = (id: string) => useAdminStore(state => 
+  state.users.find(user => user.id === id)
+);
 
-export const selectPerformanceMetrics = (state: RootState) => state.admin.performanceMetrics;
+export const selectRoleById = (id: string) => useAdminStore(state => 
+  state.roles.find(role => role.id === id)
+);
 
-export const selectOptimizationSuggestions = (state: RootState) => state.admin.optimizationSuggestions;
+export const selectHighRiskUsers = () => useAdminStore(state => 
+  state.users.filter(user => (user.riskScore || 0) > 0.7)
+);
 
-export const selectUserById = (id: string) => (state: RootState) => 
-  state.admin.users.find(user => user.id === id);
-
-export const selectRoleById = (id: string) => (state: RootState) => 
-  state.admin.roles.find(role => role.id === id);
-
-export const selectHighRiskUsers = (state: RootState) => 
-  state.admin.users.filter(user => (user.riskScore || 0) > 0.7);
-
-export const selectNonCompliantUsers = (state: RootState) => 
-  state.admin.users.filter(user => 
+export const selectNonCompliantUsers = () => useAdminStore(state => 
+  state.users.filter(user => 
     user.complianceStatus && 
     Object.values(user.complianceStatus).some(status => status === 'non_compliant')
-  );
+  )
+);
 
-export const selectAITransformedUsers = (state: RootState) => 
-  state.admin.users.filter(user => user.aiProfile?.aiGenerated);
+export const selectAITransformedUsers = () => useAdminStore(state => 
+  state.users.filter(user => user.aiProfile?.aiGenerated)
+);
 
-export const selectLoading = (state: RootState) => state.admin.loading;
+export const selectLoading = () => useAdminStore(state => state.loading);
 
-export const selectError = (state: RootState) => state.admin.error;
+export const selectError = () => useAdminStore(state => state.error);
 
-export const selectConnectionStatus = (state: RootState) => state.admin.connectionStatus;
+export const selectConnectionStatus = () => useAdminStore(state => state.connectionStatus);
 
-export default adminSlice.reducer;
+// Computed selectors
+export const selectAdminStats = () => useAdminStore(state => ({
+  totalUsers: state.users.length,
+  activeUsers: state.users.filter(u => u.status === 'active').length,
+  totalRoles: state.roles.length,
+  totalPermissions: state.permissions.length,
+  automatedTasksCount: state.automatedTasks.length,
+  activeWorkflows: state.workflowAutomations.filter(w => w.status === 'active').length,
+  totalIntegrations: state.integrations.length,
+  dashboardCount: state.dashboards.length
+}));
+
+export const selectSecurityOverview = () => useAdminStore(state => ({
+  threatLevel: state.securityMetrics.threatLevel,
+  failedLogins: state.securityMetrics.failedLoginAttempts,
+  suspiciousActivities: state.securityMetrics.suspiciousActivities,
+  complianceViolations: state.securityMetrics.complianceViolations,
+  aiThreatDetections: state.securityMetrics.aiThreatDetections
+}));
+
+export const selectSystemHealth = () => useAdminStore(state => ({
+  connectionStatus: state.connectionStatus,
+  websocketStatus: state.websocketStatus,
+  lastSync: state.lastSync,
+  loading: state.loading,
+  error: state.error
+}));
+
+export const selectAIInsightsSummary = () => useAdminStore(state => ({
+  aiInsights: state.aiInsights,
+  mlModelsCount: state.mlModels.length,
+  activeAIModels: state.mlModels.filter(m => m.status === 'active').length,
+  aiConfigEnabled: state.aiConfig.enabled
+}));
+
+// Advanced selectors with caching
+export const selectFilteredUsers = () => useAdminStore(state => {
+  const { filters, searchQuery, sortOptions } = state;
+  
+  let filteredUsers = state.users;
+  
+  // Apply filters
+  if (filters.roles.length > 0) {
+    filteredUsers = filteredUsers.filter(user => filters.roles.includes(user.role));
+  }
+  
+  if (filters.departments.length > 0) {
+    filteredUsers = filteredUsers.filter(user => filters.departments.includes(user.department));
+  }
+  
+  if (filters.statuses.length > 0) {
+    filteredUsers = filteredUsers.filter(user => filters.statuses.includes(user.status));
+  }
+  
+  if (filters.compliance.length > 0) {
+    filteredUsers = filteredUsers.filter(user => 
+      user.complianceStatus && 
+      filters.compliance.some(compliance => 
+        user.complianceStatus?.[compliance as keyof typeof user.complianceStatus] === 'non_compliant'
+      )
+    );
+  }
+  
+  // Apply search
+  if (searchQuery.trim()) {
+    const query = searchQuery.toLowerCase();
+    filteredUsers = filteredUsers.filter(user =>
+      user.firstName.toLowerCase().includes(query) ||
+      user.lastName.toLowerCase().includes(query) ||
+      user.email.toLowerCase().includes(query) ||
+      user.department.toLowerCase().includes(query)
+    );
+  }
+  
+  // Apply sorting
+  filteredUsers.sort((a, b) => {
+    const aValue = (a as any)[sortOptions.field];
+    const bValue = (b as any)[sortOptions.field];
+    
+    if (aValue < bValue) return sortOptions.direction === 'asc' ? -1 : 1;
+    if (aValue > bValue) return sortOptions.direction === 'asc' ? 1 : -1;
+    return 0;
+  });
+  
+  return filteredUsers;
+});
+
+// Performance-optimized selectors
+export const selectUserMetrics = () => useAdminStore(
+  state => ({
+    total: state.users.length,
+    active: state.users.filter(u => u.status === 'active').length,
+    inactive: state.users.filter(u => u.status === 'inactive').length,
+    suspended: state.users.filter(u => u.status === 'suspended').length,
+    pending: state.users.filter(u => u.status === 'pending').length,
+    highRisk: state.users.filter(u => (u.riskScore || 0) > 0.7).length,
+    aiTransformed: state.users.filter(u => u.aiProfile?.aiGenerated).length
+  }),
+  {
+    equalityFn: (a, b) => JSON.stringify(a) === JSON.stringify(b)
+  }
+);
+
+// Export the store hook for direct access
+export const adminStore = useAdminStore;

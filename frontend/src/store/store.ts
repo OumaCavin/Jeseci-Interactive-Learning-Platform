@@ -20,6 +20,7 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 import { openaiService } from '../services/openaiService';
 import { geminiService } from '../services/geminiService';
 import { websocketService } from '../services/websocketService';
+import { useAdminStore } from './slices/adminSlice';
 
 // =============================================================================
 // INTERFACES & TYPES
@@ -45,8 +46,7 @@ export interface AppState {
   conversations: Conversation[];
   aiInsights: AIInsight[];
   
-  // Administrative State
-  admin: AdminState;
+  // Users State
   users: User[];
   roles: Role[];
   
@@ -418,27 +418,7 @@ export interface AIInsight {
   expiresAt?: string;
 }
 
-export interface AdminState {
-  // Core Admin State
-  users: User[];
-  roles: Role[];
-  permissions: Permission[];
-  
-  // Administrative Operations
-  operations: AdministrativeOperation[];
-  audits: AuditEntry[];
-  reports: Report[];
-  
-  // System Health
-  systemMetrics: SystemMetrics;
-  alerts: Alert[];
-  maintenance: MaintenanceStatus;
-  
-  // AI Administrative Intelligence
-  aiInsights: AIInsight[];
-  predictiveAnalytics: AdminPredictiveAnalytics;
-  automations: AutomationRule[];
-}
+// AdminState is now imported from adminSlice.ts as a separate Zustand store
 
 export interface Role {
   id: string;
@@ -465,38 +445,10 @@ export interface PermissionCondition {
   aiEvaluated: boolean;
 }
 
-export interface AdministrativeOperation {
-  id: string;
-  type: 'user_management' | 'system_config' | 'data_migration' | 'security_audit';
-  status: 'pending' | 'in_progress' | 'completed' | 'failed';
-  initiatedBy: string;
-  initiatedAt: string;
-  completedAt?: string;
-  aiManaged: boolean;
-  metadata: Record<string, any>;
-}
-
-export interface AuditEntry {
-  id: string;
-  userId: string;
-  action: string;
-  resource: string;
-  timestamp: string;
-  ipAddress: string;
-  result: 'success' | 'failure';
-  details: Record<string, any>;
-  aiAnalyzed: boolean;
-}
-
-export interface Report {
-  id: string;
-  title: string;
-  type: 'usage' | 'performance' | 'security' | 'compliance';
-  status: 'generating' | 'completed' | 'failed';
-  data: Record<string, any>;
-  generatedAt: string;
-  aiGenerated: boolean;
-}
+// Admin interfaces moved to adminSlice.ts:
+// - AdministrativeOperation -> AdministrativeTask
+// - AuditEntry -> AuditEntry (updated)
+// - Report -> now part of dashboards/reporting system
 
 export interface SystemMetrics {
   cpu: number;
@@ -542,50 +494,14 @@ export interface MaintenanceStatus {
   aiManaged: boolean;
 }
 
-export interface AdminPredictiveAnalytics {
-  userGrowth: number;
-  resourceUtilization: number;
-  securityThreats: number;
-  systemLoad: number;
-  aiConfidence: number;
-  generatedAt: string;
-}
+// AdminPredictiveAnalytics moved to adminSlice.ts
 
-export interface AutomationRule {
-  id: string;
-  name: string;
-  trigger: AutomationTrigger;
-  conditions: AutomationCondition[];
-  actions: AutomationAction[];
-  status: 'active' | 'inactive' | 'testing';
-  aiOptimized: boolean;
-  performance: AutomationPerformance;
-}
-
-export interface AutomationTrigger {
-  type: 'schedule' | 'event' | 'threshold' | 'ai_detected';
-  configuration: Record<string, any>;
-}
-
-export interface AutomationCondition {
-  field: string;
-  operator: string;
-  value: any;
-  aiValidated: boolean;
-}
-
-export interface AutomationAction {
-  type: string;
-  configuration: Record<string, any>;
-  aiEnhanced: boolean;
-}
-
-export interface AutomationPerformance {
-  successRate: number;
-  executionCount: number;
-  lastExecution?: string;
-  aiOptimized: boolean;
-}
+// Automation interfaces moved to adminSlice.ts:
+// - AutomationRule -> WorkflowAutomation
+// - AutomationTrigger -> AutomationTrigger (updated)
+// - AutomationCondition -> AutomationCondition (updated)
+// - AutomationAction -> AutomationAction (updated)
+// - AutomationPerformance -> AutomationPerformance (updated)
 
 export interface Collaborator {
   id: string;
@@ -1282,51 +1198,6 @@ export const useAppStore = create<AppState>()(
           activeAgent: null,
           conversations: [],
           aiInsights: [],
-          
-          // Admin State
-          admin: {
-            users: [],
-            roles: [],
-            permissions: [],
-            operations: [],
-            audits: [],
-            reports: [],
-            systemMetrics: {
-              cpu: 0,
-              memory: 0,
-              disk: 0,
-              network: {
-                inbound: 0,
-                outbound: 0,
-                latency: 0,
-                packetLoss: 0
-              },
-              aiPerformance: {
-                responseTime: 0,
-                accuracy: 0,
-                throughput: 0,
-                errorRate: 0,
-                aiOptimized: false
-              },
-              lastUpdated: ''
-            },
-            alerts: [],
-            maintenance: {
-              mode: 'normal',
-              message: '',
-              aiManaged: false
-            },
-            aiInsights: [],
-            predictiveAnalytics: {
-              userGrowth: 0,
-              resourceUtilization: 0,
-              securityThreats: 0,
-              systemLoad: 0,
-              aiConfidence: 0,
-              generatedAt: ''
-            },
-            automations: []
-          },
           users: [],
           roles: [],
           
@@ -1739,22 +1610,7 @@ export const useAppStore = create<AppState>()(
             state.roles = roles;
           }),
           
-          setPermissions: (permissions: Permission[]) => set((state) => {
-            state.admin.permissions = permissions;
-          }),
-          
-          addAdministrativeOperation: (operation: AdministrativeOperation) => set((state) => {
-            state.admin.operations.push(operation);
-          }),
-          
-          addAuditEntry: (entry: AuditEntry) => set((state) => {
-            state.admin.audits.push(entry);
-            state.auditTrail.push(entry);
-          }),
-          
-          addReport: (report: Report) => set((state) => {
-            state.admin.reports.push(report);
-          }),
+// Admin methods moved to separate admin store
           
           updateSystemMetrics: (metrics: Partial<SystemMetrics>) => set((state) => {
             Object.assign(state.admin.systemMetrics, metrics);
@@ -1772,13 +1628,7 @@ export const useAppStore = create<AppState>()(
             state.admin.aiInsights.push(insight);
           }),
           
-          updatePredictiveAnalytics: (analytics: Partial<AdminPredictiveAnalytics>) => set((state) => {
-            Object.assign(state.admin.predictiveAnalytics, analytics);
-          }),
-          
-          addAutomationRule: (rule: AutomationRule) => set((state) => {
-            state.admin.automations.push(rule);
-          }),
+// Admin predictive analytics and automation methods moved to separate admin store
           
           // Collaboration Actions
           addCollaborator: (collaborator: Collaborator) => set((state) => {
@@ -2334,14 +2184,14 @@ export const useActiveAgent = () => useAppStore((state) => state.activeAgent);
 export const useConversations = () => useAppStore((state) => state.conversations);
 export const useAIInsights = () => useAppStore((state) => state.aiInsights);
 
-// Admin Selectors
-export const useAdminState = () => useAppStore((state) => state.admin);
-export const useAdminUsers = () => useAppStore((state) => state.admin.users);
-export const useAdminRoles = () => useAppStore((state) => state.admin.roles);
-export const useAdminPermissions = () => useAppStore((state) => state.admin.permissions);
-export const useAdminOperations = () => useAppStore((state) => state.admin.operations);
-export const useSystemMetrics = () => useAppStore((state) => state.admin.systemMetrics);
-export const useAdminAlerts = () => useAppStore((state) => state.admin.alerts);
+// Admin Selectors (using separate admin store)
+export const useAdminState = () => useAdminStore();
+export const useAdminUsers = () => useAdminStore(state => state.users);
+export const useAdminRoles = () => useAdminStore(state => state.roles);
+export const useAdminPermissions = () => useAdminStore(state => state.permissions);
+export const useAdminAutomatedTasks = () => useAdminStore(state => state.automatedTasks);
+export const useSecurityMetrics = () => useAdminStore(state => state.securityMetrics);
+export const useAdminRealTimeAlerts = () => useAdminStore(state => state.realTimeUpdates);
 
 // Collaboration Selectors
 export const useCollaborators = () => useAppStore((state) => state.collaborators);
