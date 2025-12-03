@@ -102,8 +102,8 @@ export interface LoadingPreferences {
 // AI Service Integration
 class LoadingAIService {
   private static instance: LoadingAIService;
-  private openaiApiKey: string = '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';
-  private geminiApiKey: string = 'AIzaSyA2bBKF7GCYi_OmUCcaZ3dOXFwfzQzeDug';
+  private openaiApiKey: string = import.meta.env.VITE_OPENAI_API_KEY || '';
+  private geminiApiKey: string = import.meta.env.VITE_GEMINI_API_KEY || '';
 
   static getInstance(): LoadingAIService {
     if (!LoadingAIService.instance) {
