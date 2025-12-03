@@ -1469,6 +1469,28 @@ export const apiClient = new EnterpriseAPIClient();
 // Legacy compatibility exports
 export default apiClient;
 
+// Add HTTP methods for backward compatibility
+(apiClient as any).get = (url: string, config?: any) => 
+  apiClient.request({ method: 'GET', url, ...config });
+
+(apiClient as any).post = (url: string, data?: any, config?: any) => 
+  apiClient.request({ method: 'POST', url, data, ...config });
+
+(apiClient as any).put = (url: string, data?: any, config?: any) => 
+  apiClient.request({ method: 'PUT', url, data, ...config });
+
+(apiClient as any).patch = (url: string, data?: any, config?: any) => 
+  apiClient.request({ method: 'PATCH', url, data, ...config });
+
+(apiClient as any).delete = (url: string, config?: any) => 
+  apiClient.request({ method: 'DELETE', url, ...config });
+
+(apiClient as any).defaults = {
+  headers: {
+    common: {}
+  }
+};
+
 // Export individual services for backward compatibility
 export { 
   EnterpriseAPIClient, 

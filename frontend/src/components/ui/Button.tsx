@@ -67,7 +67,7 @@ export interface ButtonAnalytics {
   conversionRate: number;
   userSatisfaction: number;
   errorCount: number;
-  a/bTesting?: {
+  abTesting?: {
     variant: string;
     performance: number;
     confidence: number;

@@ -585,7 +585,7 @@ declare module 'recharts' {
   // ADVANCED ANALYTICS INTEGRATION
   // =============================================================================
 
-  export interface A/BTestingChart extends ChartProps {
+  export interface ABTestingChart extends ChartProps {
     experiment: {
       id: string;
       name: string;

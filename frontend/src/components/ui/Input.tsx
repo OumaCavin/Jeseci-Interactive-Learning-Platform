@@ -98,7 +98,7 @@ export interface InputAnalytics {
   backspaceCount: number;
   userSatisfaction: number;
   validationErrors: Record<string, number>;
-  a/bTesting?: {
+  abTesting?: {
     variant: string;
     performance: number;
     confidence: number;

@@ -71,7 +71,7 @@ export interface CardAnalytics {
   userSatisfaction: number;
   conversionRate: number;
   errorCount: number;
-  a/bTesting?: {
+  abTesting?: {
     variant: string;
     performance: number;
     confidence: number;

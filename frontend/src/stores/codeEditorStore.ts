@@ -1,7 +1,7 @@
 // Code Editor Store - State management for code editing and execution
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import api from '../../services/api';
+import { apiClient as api } from '../../services/api';
 
 export interface CodeExecutionRequest {
   code: string;

@@ -435,7 +435,7 @@ export interface ModerationAction {
   appealable: boolean;
 }
 
-export enum ModerationActionType {
+export enum ModerationActionEnum {
   WARNING = 'warning',
   REMOVE_CONTENT = 'remove_content',
   TEMP_BAN = 'temp_ban',

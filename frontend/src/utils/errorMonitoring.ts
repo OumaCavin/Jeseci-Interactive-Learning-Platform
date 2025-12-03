@@ -8,6 +8,8 @@
  * @version 2.0.0 Enterprise
  */
 
+import React, { Component, ReactNode, ErrorInfo } from 'react';
+
 // Core interfaces and types
 interface ErrorInfo {
   componentStack: string;

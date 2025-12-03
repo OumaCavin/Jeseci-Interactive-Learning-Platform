@@ -112,9 +112,9 @@ class PerformanceMonitor {
       { name: 'ttfb', value: entry.responseStart - entry.requestStart, unit: 'ms' },
       { name: 'response_download', value: entry.responseEnd - entry.responseStart, unit: 'ms' },
       { name: 'dom_processing', value: entry.domContentLoadedEventEnd - entry.responseEnd, unit: 'ms' },
-      { name: 'dom_content_loaded', value: entry.domContentLoadedEventEnd - entry.navigationStart, unit: 'ms' },
-      { name: 'load_complete', value: entry.loadEventEnd - entry.navigationStart, unit: 'ms' },
-      { name: 'first_paint', value: entry.loadEventStart - entry.navigationStart, unit: 'ms' },
+      { name: 'dom_content_loaded', value: entry.domContentLoadedEventEnd - entry.startTime, unit: 'ms' },
+      { name: 'load_complete', value: entry.loadEventEnd - entry.startTime, unit: 'ms' },
+      { name: 'first_paint', value: entry.loadEventStart - entry.startTime, unit: 'ms' },
     ];
 
     metrics.forEach(metric => {

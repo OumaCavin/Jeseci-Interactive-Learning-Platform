@@ -606,7 +606,7 @@ export const useCollaborationStore = create<CollaborationState>()(
               id: '2',
               senderId: 'user2',
               senderName: 'Bob Smith',
-              content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+              content: 'Absolutely! I have been working on the custom hooks we discussed.',
               timestamp: new Date(Date.now() - 1800000),
               type: 'text'
             }

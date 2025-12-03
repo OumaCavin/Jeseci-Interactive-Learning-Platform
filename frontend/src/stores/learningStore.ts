@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
-import api from '../services/api';
+import { apiClient as api } from '../services/api';
 
 export interface Lesson {
   id: string;
