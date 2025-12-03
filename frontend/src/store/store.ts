@@ -24,6 +24,7 @@ import { useAdminStore } from './slices/adminSlice';
 import { useAgentStore } from './slices/agentSlice';
 import { useAssessmentStore } from './slices/assessmentSlice';
 import { useAuthStore } from './slices/authSlice';
+import { useLearningStore } from './slices/learningSlice';
 
 // =============================================================================
 // INTERFACES & TYPES
@@ -50,6 +51,9 @@ export interface AppState {
   
   // Note: Authentication & Security functionality moved to separate enterprise auth store
   // Import useAuthStore from './slices/authSlice' for comprehensive authentication management
+  
+  // Note: Learning Intelligence functionality moved to separate enterprise learning store
+  // Import useLearningStore from './slices/learningSlice' for comprehensive learning management
   conversations: Conversation[];
   aiInsights: AIInsight[];
   
@@ -1520,6 +1524,8 @@ export const useAppStore = create<AppState>()(
           }),
           
           // Learning State Management
+          // Note: Use useLearningStore() from './slices/learningSlice' for comprehensive learning management
+          // This basic learning functionality is kept for compatibility but enterprise learning provides full AI-powered features
           setLearningPaths: (paths: LearningPath[]) => set((state) => {
             state.learningPaths = paths;
           }),
@@ -2149,6 +2155,23 @@ export const useProgress = () => useAppStore((state) => state.progress);
 // export const useIsAuthenticated = () => useAuthStore(state => state.isAuthenticated);
 // export const useSecurityState = () => useAuthStore(state => ({ securityEvents: state.securityEvents, riskAssessment: state.riskAssessment }));
 // export const useMFAState = () => useAuthStore(state => ({ mfaRequired: state.mfaRequired, mfaMethods: state.mfaMethods })); 
+
+// Learning Intelligence functionality now available through enterprise learning store
+// Import these from './slices/learningSlice':
+// export const useLearningPaths = () => useLearningStore(state => state.learningPaths);
+// export const useUserLearningPaths = () => useLearningStore(state => state.userLearningPaths);
+// export const useUserModuleProgress = () => useLearningStore(state => state.userModuleProgress);
+// export const useAIPersonalization = () => useLearningStore(state => state.aiPersonalization);
+// export const useLearningAnalytics = () => useLearningStore(state => state.learningAnalytics);
+// export const useSocialLearning = () => useLearningStore(state => ({ peers: state.peers, studyGroups: state.studyGroups, mentors: state.mentors }));
+// export const useGamification = () => useLearningStore(state => state.gamification);
+// export const useLearningInsights = () => useLearningStore(state => state.learningInsights);
+
+// Agent functionality now available through enterprise agent store
+// Import these from './slices/agentSlice':
+// export const useAgents = () => useAgentStore(state => state.agents);
+// export const useActiveAgents = () => useAgentStore(state => state.active_agents);
+// export const useAgentById = (agentId: string) => useAgentStore(state => 
 //   state.agents.find(agent => agent.id === agentId)
 // );
 export const useConversations = () => useAppStore((state) => state.conversations);
