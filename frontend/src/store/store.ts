@@ -1,0 +1,2461 @@
+/**
+ * JAC Learning Platform - Enterprise State Management System
+ * Author: MiniMax Agent
+ * Version: 2.0.0
+ * 
+ * Comprehensive Enterprise State Management Platform featuring:
+ * - AI-Powered State Intelligence Engine
+ * - Enterprise Persistence & Synchronization System
+ * - Real-Time State Management Platform
+ * - Advanced Analytics & Monitoring Suite
+ * - Performance Optimization & Auto-Scaling Framework
+ * - Enterprise Security & Compliance Module
+ */
+
+import { create } from 'zustand';
+import { subscribeWithSelector } from 'zustand/middleware';
+import { devtools } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import { openaiService } from '../services/openaiService';
+import { geminiService } from '../services/geminiService';
+import { websocketService } from '../services/websocketService';
+
+// =============================================================================
+// INTERFACES & TYPES
+// =============================================================================
+
+export interface AppState {
+  // Core Application State
+  user: User | null;
+  session: Session | null;
+  preferences: UserPreferences;
+  theme: ThemeState;
+  locale: LocaleState;
+  
+  // Learning & Assessment State
+  learningPaths: LearningPath[];
+  currentCourse: Course | null;
+  assessments: Assessment[];
+  progress: LearningProgress;
+  
+  // Agent & AI State
+  agents: AIAgent[];
+  activeAgent: AIAgent | null;
+  conversations: Conversation[];
+  aiInsights: AIInsight[];
+  
+  // Administrative State
+  admin: AdminState;
+  users: User[];
+  roles: Role[];
+  
+  // Collaboration State
+  collaborators: Collaborator[];
+  sharedSessions: SharedSession[];
+  realTimeActivity: RealTimeActivity[];
+  
+  // Search & Discovery
+  searchResults: SearchResult[];
+  searchHistory: SearchHistoryItem[];
+  recommendations: Recommendation[];
+  
+  // Gamification State
+  achievements: Achievement[];
+  leaderboards: Leaderboard[];
+  streaks: UserStreak[];
+  rewards: Reward[];
+  
+  // Settings & Configuration
+  appSettings: AppSettings;
+  securitySettings: SecuritySettings;
+  notificationSettings: NotificationSettings;
+  
+  // Performance & Analytics
+  performanceMetrics: PerformanceMetrics;
+  userAnalytics: UserAnalytics;
+  systemAnalytics: SystemAnalytics;
+  
+  // Real-time Synchronization
+  syncStatus: SyncStatus;
+  conflicts: StateConflict[];
+  lastSyncTimestamp: string;
+  
+  // UI State
+  modals: ModalState;
+  notifications: Notification[];
+  loading: LoadingState;
+  errors: ErrorState;
+  
+  // AI Optimization
+  aiOptimizations: AIOptimization[];
+  mlModels: MLModelStatus[];
+  predictiveAnalytics: PredictiveAnalytics;
+  
+  // Security & Compliance
+  securityAudit: SecurityAudit;
+  complianceStatus: ComplianceStatus;
+  auditTrail: AuditEntry[];
+  
+  // Enterprise Features
+  enterpriseFeatures: EnterpriseFeatures;
+  integrations: IntegrationConfig[];
+  workflows: WorkflowDefinition[];
+  
+  // Performance Configuration
+  performanceConfig: PerformanceConfiguration;
+  caching: CachingState;
+  optimization: OptimizationState;
+}
+
+export interface User {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  avatar?: string;
+  role: string;
+  department?: string;
+  preferences: Record<string, any>;
+  createdAt: string;
+  updatedAt: string;
+  lastLoginAt?: string;
+  aiProfile?: AIUserProfile;
+}
+
+export interface Session {
+  id: string;
+  userId: string;
+  token: string;
+  refreshToken: string;
+  expiresAt: string;
+  createdAt: string;
+  metadata: SessionMetadata;
+}
+
+export interface SessionMetadata {
+  ipAddress: string;
+  userAgent: string;
+  location?: string;
+  device: DeviceInfo;
+  aiAnalyzed: boolean;
+}
+
+export interface DeviceInfo {
+  type: 'mobile' | 'tablet' | 'desktop';
+  os: string;
+  browser: string;
+  version: string;
+}
+
+export interface UserPreferences {
+  theme: 'light' | 'dark' | 'system';
+  language: string;
+  timezone: string;
+  currency: string;
+  notifications: NotificationPreferences;
+  learning: LearningPreferences;
+  ai: AIPreferences;
+  privacy: PrivacyPreferences;
+}
+
+export interface NotificationPreferences {
+  email: boolean;
+  push: boolean;
+  inApp: boolean;
+  sound: boolean;
+  types: NotificationType[];
+}
+
+export interface NotificationType {
+  type: string;
+  enabled: boolean;
+  aiManaged: boolean;
+}
+
+export interface LearningPreferences {
+  pace: 'slow' | 'normal' | 'fast';
+  style: 'visual' | 'auditory' | 'kinesthetic' | 'mixed';
+  reminders: boolean;
+  difficulty: 'adaptive' | 'easy' | 'medium' | 'hard';
+  aiOptimized: boolean;
+}
+
+export interface AIPreferences {
+  enabled: boolean;
+  level: 'basic' | 'standard' | 'advanced' | 'maximum';
+  models: string[];
+  learningEnabled: boolean;
+  privacyLevel: 'standard' | 'enhanced' | 'maximum';
+}
+
+export interface PrivacyPreferences {
+  dataSharing: boolean;
+  analytics: boolean;
+  personalization: boolean;
+  aiTraining: boolean;
+  level: 'basic' | 'enhanced' | 'maximum';
+}
+
+export interface ThemeState {
+  mode: 'light' | 'dark' | 'system';
+  primary: string;
+  secondary: string;
+  accent: string;
+  aiGenerated: boolean;
+  lastGenerated: string;
+}
+
+export interface LocaleState {
+  language: string;
+  region: string;
+  timezone: string;
+  currency: string;
+  dateFormat: string;
+  numberFormat: string;
+}
+
+export interface LearningPath {
+  id: string;
+  title: string;
+  description: string;
+  courses: Course[];
+  progress: number;
+  estimatedDuration: string;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  aiPersonalized: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Course {
+  id: string;
+  title: string;
+  description: string;
+  instructor: string;
+  duration: string;
+  modules: CourseModule[];
+  progress: number;
+  rating: number;
+  students: number;
+  aiOptimized: boolean;
+  lastAccessed: string;
+}
+
+export interface CourseModule {
+  id: string;
+  title: string;
+  type: 'video' | 'text' | 'interactive' | 'assessment' | 'project';
+  content: any;
+  duration: string;
+  completed: boolean;
+  aiEnhanced: boolean;
+}
+
+export interface Assessment {
+  id: string;
+  title: string;
+  type: 'quiz' | 'exam' | 'project' | 'peer_review';
+  questions: Question[];
+  score?: number;
+  passed: boolean;
+  attemptCount: number;
+  maxAttempts: number;
+  timeLimit?: number;
+  aiGenerated: boolean;
+  createdAt: string;
+}
+
+export interface Question {
+  id: string;
+  type: 'multiple_choice' | 'true_false' | 'essay' | 'code' | 'matching';
+  question: string;
+  options?: string[];
+  correctAnswer: any;
+  explanation?: string;
+  difficulty: number;
+  aiGenerated: boolean;
+  metadata: QuestionMetadata;
+}
+
+export interface QuestionMetadata {
+  bloomLevel: 'remember' | 'understand' | 'apply' | 'analyze' | 'evaluate' | 'create';
+  learningObjective: string;
+  prerequisiteSkills: string[];
+  estimatedTime: number;
+  aiValidated: boolean;
+}
+
+export interface LearningProgress {
+  userId: string;
+  courses: CourseProgress[];
+  assessments: AssessmentProgress[];
+  skills: SkillProgress[];
+  timeSpent: number;
+  streakDays: number;
+  aiInsights: string[];
+  lastUpdated: string;
+}
+
+export interface CourseProgress {
+  courseId: string;
+  completedModules: string[];
+  currentModule: string;
+  progress: number;
+  timeSpent: number;
+  aiOptimized: boolean;
+  lastAccessed: string;
+}
+
+export interface AssessmentProgress {
+  assessmentId: string;
+  attempts: AssessmentAttempt[];
+  bestScore: number;
+  averageScore: number;
+  passed: boolean;
+  aiAnalysis: string;
+}
+
+export interface AssessmentAttempt {
+  id: string;
+  score: number;
+  answers: Record<string, any>;
+  timeSpent: number;
+  feedback: string;
+  aiGenerated: boolean;
+  timestamp: string;
+}
+
+export interface SkillProgress {
+  skillId: string;
+  level: number;
+  xp: number;
+  requiredXp: number;
+  masteryLevel: 'novice' | 'beginner' | 'intermediate' | 'advanced' | 'expert';
+  aiValidated: boolean;
+  lastUpdated: string;
+}
+
+export interface AIAgent {
+  id: string;
+  name: string;
+  type: 'tutor' | 'assistant' | 'assessor' | 'mentor' | 'collaborator';
+  capabilities: string[];
+  personality: AgentPersonality;
+  status: 'active' | 'idle' | 'busy' | 'offline';
+  performance: AgentPerformance;
+  aiModel: string;
+  lastActive: string;
+  specializedIn: string[];
+}
+
+export interface AgentPersonality {
+  traits: string[];
+  communicationStyle: string;
+  tone: 'formal' | 'casual' | 'encouraging' | 'professional';
+  aiGenerated: boolean;
+}
+
+export interface AgentPerformance {
+  responseTime: number;
+  accuracy: number;
+  userSatisfaction: number;
+  interactions: number;
+  aiScore: number;
+  lastEvaluated: string;
+}
+
+export interface Conversation {
+  id: string;
+  agentId: string;
+  userId: string;
+  messages: Message[];
+  context: ConversationContext;
+  status: 'active' | 'archived' | 'deleted';
+  aiOptimized: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Message {
+  id: string;
+  senderId: string;
+  senderType: 'user' | 'agent' | 'system';
+  content: string;
+  type: 'text' | 'image' | 'file' | 'code' | 'audio';
+  metadata: MessageMetadata;
+  aiProcessed: boolean;
+  timestamp: string;
+}
+
+export interface MessageMetadata {
+  model?: string;
+  confidence?: number;
+  processingTime?: number;
+  tokens?: number;
+  aiGenerated: boolean;
+}
+
+export interface ConversationContext {
+  topic: string;
+  previousMessages: string[];
+  userState: Record<string, any>;
+  aiAnalysis: string;
+  emotionalTone: string;
+  engagementLevel: number;
+}
+
+export interface AIInsight {
+  id: string;
+  type: 'learning' | 'behavior' | 'performance' | 'recommendation';
+  title: string;
+  description: string;
+  confidence: number;
+  actionable: boolean;
+  aiGenerated: boolean;
+  metadata: Record<string, any>;
+  createdAt: string;
+  expiresAt?: string;
+}
+
+export interface AdminState {
+  // Core Admin State
+  users: User[];
+  roles: Role[];
+  permissions: Permission[];
+  
+  // Administrative Operations
+  operations: AdministrativeOperation[];
+  audits: AuditEntry[];
+  reports: Report[];
+  
+  // System Health
+  systemMetrics: SystemMetrics;
+  alerts: Alert[];
+  maintenance: MaintenanceStatus;
+  
+  // AI Administrative Intelligence
+  aiInsights: AIInsight[];
+  predictiveAnalytics: AdminPredictiveAnalytics;
+  automations: AutomationRule[];
+}
+
+export interface Role {
+  id: string;
+  name: string;
+  description: string;
+  permissions: Permission[];
+  level: number;
+  aiGenerated: boolean;
+  createdAt: string;
+}
+
+export interface Permission {
+  id: string;
+  resource: string;
+  action: string;
+  conditions?: PermissionCondition[];
+  aiValidated: boolean;
+}
+
+export interface PermissionCondition {
+  field: string;
+  operator: string;
+  value: any;
+  aiEvaluated: boolean;
+}
+
+export interface AdministrativeOperation {
+  id: string;
+  type: 'user_management' | 'system_config' | 'data_migration' | 'security_audit';
+  status: 'pending' | 'in_progress' | 'completed' | 'failed';
+  initiatedBy: string;
+  initiatedAt: string;
+  completedAt?: string;
+  aiManaged: boolean;
+  metadata: Record<string, any>;
+}
+
+export interface AuditEntry {
+  id: string;
+  userId: string;
+  action: string;
+  resource: string;
+  timestamp: string;
+  ipAddress: string;
+  result: 'success' | 'failure';
+  details: Record<string, any>;
+  aiAnalyzed: boolean;
+}
+
+export interface Report {
+  id: string;
+  title: string;
+  type: 'usage' | 'performance' | 'security' | 'compliance';
+  status: 'generating' | 'completed' | 'failed';
+  data: Record<string, any>;
+  generatedAt: string;
+  aiGenerated: boolean;
+}
+
+export interface SystemMetrics {
+  cpu: number;
+  memory: number;
+  disk: number;
+  network: NetworkMetrics;
+  aiPerformance: AIPerformanceMetrics;
+  lastUpdated: string;
+}
+
+export interface NetworkMetrics {
+  inbound: number;
+  outbound: number;
+  latency: number;
+  packetLoss: number;
+}
+
+export interface AIPerformanceMetrics {
+  responseTime: number;
+  accuracy: number;
+  throughput: number;
+  errorRate: number;
+  aiOptimized: boolean;
+}
+
+export interface Alert {
+  id: string;
+  type: 'system' | 'security' | 'performance' | 'user';
+  severity: 'low' | 'medium' | 'high' | 'critical';
+  title: string;
+  message: string;
+  acknowledged: boolean;
+  resolved: boolean;
+  aiGenerated: boolean;
+  timestamp: string;
+}
+
+export interface MaintenanceStatus {
+  mode: 'normal' | 'maintenance' | 'emergency';
+  scheduledStart?: string;
+  scheduledEnd?: string;
+  message: string;
+  aiManaged: boolean;
+}
+
+export interface AdminPredictiveAnalytics {
+  userGrowth: number;
+  resourceUtilization: number;
+  securityThreats: number;
+  systemLoad: number;
+  aiConfidence: number;
+  generatedAt: string;
+}
+
+export interface AutomationRule {
+  id: string;
+  name: string;
+  trigger: AutomationTrigger;
+  conditions: AutomationCondition[];
+  actions: AutomationAction[];
+  status: 'active' | 'inactive' | 'testing';
+  aiOptimized: boolean;
+  performance: AutomationPerformance;
+}
+
+export interface AutomationTrigger {
+  type: 'schedule' | 'event' | 'threshold' | 'ai_detected';
+  configuration: Record<string, any>;
+}
+
+export interface AutomationCondition {
+  field: string;
+  operator: string;
+  value: any;
+  aiValidated: boolean;
+}
+
+export interface AutomationAction {
+  type: string;
+  configuration: Record<string, any>;
+  aiEnhanced: boolean;
+}
+
+export interface AutomationPerformance {
+  successRate: number;
+  executionCount: number;
+  lastExecution?: string;
+  aiOptimized: boolean;
+}
+
+export interface Collaborator {
+  id: string;
+  userId: string;
+  name: string;
+  email: string;
+  role: 'owner' | 'editor' | 'viewer' | 'commenter';
+  status: 'online' | 'away' | 'offline' | 'busy';
+  permissions: CollaboratorPermission[];
+  aiProfile?: AIUserProfile;
+  lastActive: string;
+}
+
+export interface CollaboratorPermission {
+  resource: string;
+  actions: string[];
+  restrictions?: PermissionRestriction[];
+}
+
+export interface PermissionRestriction {
+  field: string;
+  condition: string;
+  value: any;
+}
+
+export interface SharedSession {
+  id: string;
+  name: string;
+  description: string;
+  ownerId: string;
+  collaborators: Collaborator[];
+  permissions: SessionPermission[];
+  status: 'active' | 'paused' | 'ended';
+  aiManaged: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SessionPermission {
+  resource: string;
+  accessLevel: 'read' | 'write' | 'admin';
+  restrictions?: PermissionRestriction[];
+}
+
+export interface RealTimeActivity {
+  id: string;
+  userId: string;
+  type: 'cursor_move' | 'typing' | 'file_edit' | 'chat_message' | 'screen_share';
+  data: Record<string, any>;
+  timestamp: string;
+  aiProcessed: boolean;
+}
+
+export interface SearchResult {
+  id: string;
+  type: 'course' | 'user' | 'content' | 'discussion' | 'resource';
+  title: string;
+  description: string;
+  score: number;
+  aiRanked: boolean;
+  metadata: Record<string, any>;
+  highlighted: boolean;
+  lastUpdated: string;
+}
+
+export interface SearchHistoryItem {
+  query: string;
+  timestamp: string;
+  results: number;
+  aiOptimized: boolean;
+  clicked?: boolean;
+}
+
+export interface Recommendation {
+  id: string;
+  type: 'course' | 'study_group' | 'skill' | 'resource' | 'mentor';
+  title: string;
+  description: string;
+  confidence: number;
+  reasoning: string;
+  aiGenerated: boolean;
+  metadata: Record<string, any>;
+  createdAt: string;
+}
+
+export interface Achievement {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  category: string;
+  rarity: 'common' | 'rare' | 'epic' | 'legendary';
+  criteria: AchievementCriteria;
+  progress: number;
+  unlocked: boolean;
+  unlockedAt?: string;
+  aiValidated: boolean;
+}
+
+export interface AchievementCriteria {
+  type: 'courses_completed' | 'assessments_passed' | 'time_spent' | 'streak_days' | 'collaborations';
+  target: number;
+  timeframe?: string;
+  aiValidated: boolean;
+}
+
+export interface Leaderboard {
+  id: string;
+  name: string;
+  type: 'global' | 'department' | 'course' | 'skill';
+  period: 'daily' | 'weekly' | 'monthly' | 'all_time';
+  entries: LeaderboardEntry[];
+  aiManaged: boolean;
+  lastUpdated: string;
+}
+
+export interface LeaderboardEntry {
+  userId: string;
+  rank: number;
+  score: number;
+  change: number;
+  aiAnalyzed: boolean;
+}
+
+export interface UserStreak {
+  id: string;
+  type: 'learning' | 'assessment' | 'collaboration' | 'contribution';
+  current: number;
+  longest: number;
+  lastUpdate: string;
+  aiMotivated: boolean;
+}
+
+export interface Reward {
+  id: string;
+  type: 'badge' | 'certificate' | 'points' | 'unlock' | 'discount';
+  name: string;
+  description: string;
+  value: number;
+  rarity: 'common' | 'rare' | 'epic' | 'legendary';
+  aiGenerated: boolean;
+  earnedAt?: string;
+  expiresAt?: string;
+}
+
+export interface AppSettings {
+  version: string;
+  environment: 'development' | 'staging' | 'production';
+  features: FeatureFlag[];
+  aiConfig: AIConfiguration;
+  performanceConfig: PerformanceConfiguration;
+  securityConfig: SecurityConfiguration;
+  maintenanceMode: boolean;
+}
+
+export interface FeatureFlag {
+  id: string;
+  name: string;
+  enabled: boolean;
+  rollout: RolloutConfig;
+  aiManaged: boolean;
+}
+
+export interface RolloutConfig {
+  percentage: number;
+  userGroups: string[];
+  conditions: RolloutCondition[];
+  aiOptimized: boolean;
+}
+
+export interface RolloutCondition {
+  field: string;
+  operator: string;
+  value: any;
+}
+
+export interface SecuritySettings {
+  sessionTimeout: number;
+  requireMFA: boolean;
+  passwordPolicy: PasswordPolicy;
+  ipWhitelist: string[];
+  aiThreatDetection: boolean;
+  encryptionLevel: 'standard' | 'enhanced' | 'maximum';
+}
+
+export interface PasswordPolicy {
+  minLength: number;
+  requireUppercase: boolean;
+  requireLowercase: boolean;
+  requireNumbers: boolean;
+  requireSymbols: boolean;
+  historyCount: number;
+  aiValidated: boolean;
+}
+
+export interface NotificationSettings {
+  email: EmailNotificationSettings;
+  push: PushNotificationSettings;
+  inApp: InAppNotificationSettings;
+  aiRouting: boolean;
+}
+
+export interface EmailNotificationSettings {
+  enabled: boolean;
+  frequency: 'immediate' | 'daily' | 'weekly' | 'monthly';
+  types: string[];
+  aiOptimized: boolean;
+}
+
+export interface PushNotificationSettings {
+  enabled: boolean;
+  quietHours: QuietHours;
+  types: string[];
+  aiManaged: boolean;
+}
+
+export interface QuietHours {
+  enabled: boolean;
+  start: string;
+  end: string;
+  timezone: string;
+}
+
+export interface InAppNotificationSettings {
+  enabled: boolean;
+  position: 'top' | 'bottom' | 'center';
+  duration: number;
+  animations: boolean;
+  aiEnhanced: boolean;
+}
+
+export interface PerformanceMetrics {
+  responseTime: MetricData;
+  throughput: MetricData;
+  errorRate: MetricData;
+  availability: MetricData;
+  userSatisfaction: MetricData;
+  aiOptimized: boolean;
+  lastUpdated: string;
+}
+
+export interface MetricData {
+  current: number;
+  average: number;
+  trend: number;
+  target: number;
+  aiScore: number;
+}
+
+export interface UserAnalytics {
+  sessionDuration: number;
+  pageViews: number;
+  interactions: number;
+  engagement: number;
+  conversion: number;
+  aiAnalyzed: boolean;
+  insights: string[];
+  lastUpdated: string;
+}
+
+export interface SystemAnalytics {
+  load: number;
+  requests: number;
+  errors: number;
+  uptime: number;
+  scaling: ScalingMetrics;
+  aiOptimized: boolean;
+  lastUpdated: string;
+}
+
+export interface ScalingMetrics {
+  currentInstances: number;
+  targetInstances: number;
+  utilization: number;
+  aiManaged: boolean;
+}
+
+export interface SyncStatus {
+  status: 'synced' | 'syncing' | 'conflicted' | 'error';
+  progress: number;
+  lastSync: string;
+  nextSync: string;
+  conflicts: number;
+  aiManaged: boolean;
+}
+
+export interface StateConflict {
+  id: string;
+  type: 'merge' | 'replace' | 'manual';
+  description: string;
+  severity: 'low' | 'medium' | 'high';
+  resolved: boolean;
+  aiSuggested: boolean;
+  timestamp: string;
+}
+
+export interface ModalState {
+  isOpen: Record<string, boolean>;
+  data: Record<string, any>;
+  zIndex: number;
+}
+
+export interface Notification {
+  id: string;
+  type: 'info' | 'success' | 'warning' | 'error';
+  title: string;
+  message: string;
+  action?: NotificationAction;
+  autoClose: boolean;
+  aiGenerated: boolean;
+  timestamp: string;
+}
+
+export interface NotificationAction {
+  label: string;
+  callback: string;
+  aiOptimized: boolean;
+}
+
+export interface LoadingState {
+  global: boolean;
+  modules: Record<string, boolean>;
+  operations: Record<string, boolean>;
+}
+
+export interface ErrorState {
+  global: string | null;
+  module: Record<string, string | null>;
+  operation: Record<string, string | null>;
+  timestamp: string | null;
+}
+
+export interface AIOptimization {
+  id: string;
+  type: 'performance' | 'user_experience' | 'security' | 'learning';
+  description: string;
+  impact: 'low' | 'medium' | 'high';
+  status: 'pending' | 'implemented' | 'rejected' | 'rollback';
+  aiConfidence: number;
+  implementedAt?: string;
+  rollbackAt?: string;
+}
+
+export interface MLModelStatus {
+  id: string;
+  name: string;
+  version: string;
+  status: 'training' | 'validating' | 'deployed' | 'retired';
+  accuracy: number;
+  latency: number;
+  lastTrained: string;
+  aiOptimized: boolean;
+}
+
+export interface PredictiveAnalytics {
+  userEngagement: number;
+  churnRisk: number;
+  learningOutcome: number;
+  systemLoad: number;
+  aiConfidence: number;
+  generatedAt: string;
+  recommendations: string[];
+}
+
+export interface SecurityAudit {
+  id: string;
+  status: 'pending' | 'in_progress' | 'completed' | 'failed';
+  findings: SecurityFinding[];
+  score: number;
+  aiGenerated: boolean;
+  completedAt?: string;
+}
+
+export interface SecurityFinding {
+  id: string;
+  severity: 'low' | 'medium' | 'high' | 'critical';
+  category: string;
+  description: string;
+  recommendation: string;
+  aiGenerated: boolean;
+  status: 'open' | 'in_progress' | 'resolved' | 'accepted';
+}
+
+export interface ComplianceStatus {
+  gdpr: ComplianceResult;
+  soc2: ComplianceResult;
+  hipaa: ComplianceResult;
+  overallScore: number;
+  aiValidated: boolean;
+  lastAssessed: string;
+}
+
+export interface ComplianceResult {
+  status: 'compliant' | 'non_compliant' | 'partial' | 'unknown';
+  score: number;
+  findings: ComplianceFinding[];
+  aiGenerated: boolean;
+}
+
+export interface ComplianceFinding {
+  id: string;
+  requirement: string;
+  status: 'met' | 'partial' | 'not_met';
+  description: string;
+  aiValidated: boolean;
+}
+
+export interface AuditEntry {
+  id: string;
+  userId: string;
+  action: string;
+  resource: string;
+  timestamp: string;
+  ipAddress: string;
+  userAgent: string;
+  result: 'success' | 'failure';
+  details: Record<string, any>;
+  aiAnalyzed: boolean;
+}
+
+export interface EnterpriseFeatures {
+  enabled: boolean;
+  sso: SSOConfig;
+  reporting: ReportingConfig;
+  integration: IntegrationConfig;
+  analytics: EnterpriseAnalytics;
+}
+
+export interface SSOConfig {
+  enabled: boolean;
+  provider: 'okta' | 'azure' | 'google' | 'custom';
+  configuration: Record<string, any>;
+  aiManaged: boolean;
+}
+
+export interface ReportingConfig {
+  enabled: boolean;
+  schedules: ReportSchedule[];
+  formats: string[];
+  aiGenerated: boolean;
+}
+
+export interface ReportSchedule {
+  id: string;
+  name: string;
+  frequency: 'daily' | 'weekly' | 'monthly' | 'quarterly';
+  type: string;
+  recipients: string[];
+  aiOptimized: boolean;
+}
+
+export interface IntegrationConfig {
+  enabled: boolean;
+  providers: IntegrationProvider[];
+  aiManaged: boolean;
+  lastSync: string;
+}
+
+export interface IntegrationProvider {
+  id: string;
+  name: string;
+  type: 'lms' | 'crm' | 'hris' | 'analytics' | 'custom';
+  status: 'active' | 'inactive' | 'error';
+  configuration: Record<string, any>;
+  aiOptimized: boolean;
+}
+
+export interface EnterpriseAnalytics {
+  enabled: boolean;
+  dashboards: EnterpriseDashboard[];
+  dataRetention: number;
+  aiAnalyzed: boolean;
+  lastUpdated: string;
+}
+
+export interface EnterpriseDashboard {
+  id: string;
+  name: string;
+  widgets: EnterpriseWidget[];
+  layout: EnterpriseLayout;
+  aiGenerated: boolean;
+  lastUpdated: string;
+}
+
+export interface EnterpriseWidget {
+  id: string;
+  type: string;
+  configuration: Record<string, any>;
+  aiOptimized: boolean;
+}
+
+export interface EnterpriseLayout {
+  columns: number;
+  rows: number;
+  widgets: WidgetPosition[];
+}
+
+export interface WidgetPosition {
+  widgetId: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+export interface WorkflowDefinition {
+  id: string;
+  name: string;
+  description: string;
+  triggers: WorkflowTrigger[];
+  conditions: WorkflowCondition[];
+  actions: WorkflowAction[];
+  status: 'active' | 'inactive' | 'testing';
+  aiOptimized: boolean;
+  lastModified: string;
+}
+
+export interface WorkflowTrigger {
+  type: 'event' | 'schedule' | 'webhook' | 'manual';
+  configuration: Record<string, any>;
+}
+
+export interface WorkflowCondition {
+  field: string;
+  operator: string;
+  value: any;
+  aiValidated: boolean;
+}
+
+export interface WorkflowAction {
+  type: string;
+  configuration: Record<string, any>;
+  aiEnhanced: boolean;
+}
+
+export interface PerformanceConfiguration {
+  caching: CachingConfiguration;
+  compression: CompressionConfiguration;
+  optimization: OptimizationConfiguration;
+  aiManaged: boolean;
+}
+
+export interface CachingConfiguration {
+  strategy: 'memory' | 'redis' | 'cdn' | 'ai_optimized';
+  ttl: number;
+  maxSize: number;
+  aiOptimized: boolean;
+}
+
+export interface CompressionConfiguration {
+  enabled: boolean;
+  algorithm: 'gzip' | 'brotli' | 'lz4' | 'ai_optimized';
+  level: number;
+  aiManaged: boolean;
+}
+
+export interface OptimizationConfiguration {
+  enabled: boolean;
+  techniques: string[];
+  target: PerformanceTarget[];
+  aiManaged: boolean;
+}
+
+export interface PerformanceTarget {
+  metric: string;
+  target: number;
+  tolerance: number;
+  aiOptimized: boolean;
+}
+
+export interface CachingState {
+  hitRate: number;
+  missRate: number;
+  size: number;
+  entries: number;
+  aiOptimized: boolean;
+  lastUpdated: string;
+}
+
+export interface OptimizationState {
+  active: boolean;
+  techniques: string[];
+  impact: number;
+  aiManaged: boolean;
+  lastRun: string;
+}
+
+export interface AIUserProfile {
+  behaviorPattern: string;
+  learningStyle: string;
+  preferences: Record<string, any>;
+  aiGenerated: boolean;
+  lastUpdated: string;
+}
+
+export interface AIConfiguration {
+  enabled: boolean;
+  models: AIModelConfig[];
+  learningEnabled: boolean;
+  privacyLevel: 'standard' | 'enhanced' | 'maximum';
+  optimizationLevel: 'basic' | 'standard' | 'advanced' | 'maximum';
+}
+
+export interface AIModelConfig {
+  id: string;
+  name: string;
+  version: string;
+  provider: string;
+  status: 'active' | 'training' | 'testing' | 'inactive';
+  accuracy?: number;
+  lastUpdated: string;
+}
+
+// =============================================================================
+// ZUSTAND STORE
+// =============================================================================
+
+export const useAppStore = create<AppState>()(
+  devtools(
+    persist(
+      subscribeWithSelector(
+        immer((set, get) => ({
+          // Initial State
+          user: null,
+          session: null,
+          preferences: {
+            theme: 'system',
+            language: 'en',
+            timezone: 'UTC',
+            currency: 'USD',
+            notifications: {
+              email: true,
+              push: true,
+              inApp: true,
+              sound: true,
+              types: []
+            },
+            learning: {
+              pace: 'normal',
+              style: 'mixed',
+              reminders: true,
+              difficulty: 'adaptive',
+              aiOptimized: true
+            },
+            ai: {
+              enabled: true,
+              level: 'standard',
+              models: ['gpt-4', 'gemini-pro'],
+              learningEnabled: true,
+              privacyLevel: 'enhanced'
+            },
+            privacy: {
+              dataSharing: false,
+              analytics: true,
+              personalization: true,
+              aiTraining: true,
+              level: 'enhanced'
+            }
+          },
+          theme: {
+            mode: 'system',
+            primary: '#3b82f6',
+            secondary: '#6b7280',
+            accent: '#10b981',
+            aiGenerated: false,
+            lastGenerated: ''
+          },
+          locale: {
+            language: 'en',
+            region: 'US',
+            timezone: 'UTC',
+            currency: 'USD',
+            dateFormat: 'MM/DD/YYYY',
+            numberFormat: 'en-US'
+          },
+          
+          // Learning State
+          learningPaths: [],
+          currentCourse: null,
+          assessments: [],
+          progress: {
+            userId: '',
+            courses: [],
+            assessments: [],
+            skills: [],
+            timeSpent: 0,
+            streakDays: 0,
+            aiInsights: [],
+            lastUpdated: ''
+          },
+          
+          // AI & Agent State
+          agents: [],
+          activeAgent: null,
+          conversations: [],
+          aiInsights: [],
+          
+          // Admin State
+          admin: {
+            users: [],
+            roles: [],
+            permissions: [],
+            operations: [],
+            audits: [],
+            reports: [],
+            systemMetrics: {
+              cpu: 0,
+              memory: 0,
+              disk: 0,
+              network: {
+                inbound: 0,
+                outbound: 0,
+                latency: 0,
+                packetLoss: 0
+              },
+              aiPerformance: {
+                responseTime: 0,
+                accuracy: 0,
+                throughput: 0,
+                errorRate: 0,
+                aiOptimized: false
+              },
+              lastUpdated: ''
+            },
+            alerts: [],
+            maintenance: {
+              mode: 'normal',
+              message: '',
+              aiManaged: false
+            },
+            aiInsights: [],
+            predictiveAnalytics: {
+              userGrowth: 0,
+              resourceUtilization: 0,
+              securityThreats: 0,
+              systemLoad: 0,
+              aiConfidence: 0,
+              generatedAt: ''
+            },
+            automations: []
+          },
+          users: [],
+          roles: [],
+          
+          // Collaboration State
+          collaborators: [],
+          sharedSessions: [],
+          realTimeActivity: [],
+          
+          // Search State
+          searchResults: [],
+          searchHistory: [],
+          recommendations: [],
+          
+          // Gamification State
+          achievements: [],
+          leaderboards: [],
+          streaks: [],
+          rewards: [],
+          
+          // Settings
+          appSettings: {
+            version: '2.0.0',
+            environment: 'production',
+            features: [],
+            aiConfig: {
+              enabled: true,
+              models: [],
+              learningEnabled: true,
+              privacyLevel: 'enhanced',
+              optimizationLevel: 'maximum'
+            },
+            performanceConfig: {
+              caching: {
+                strategy: 'ai_optimized',
+                ttl: 3600,
+                maxSize: 1000,
+                aiOptimized: true
+              },
+              compression: {
+                enabled: true,
+                algorithm: 'ai_optimized',
+                level: 6,
+                aiManaged: true
+              },
+              optimization: {
+                enabled: true,
+                techniques: ['code_splitting', 'lazy_loading', 'preloading'],
+                target: [
+                  { metric: 'lcp', target: 2500, tolerance: 500, aiOptimized: true },
+                  { metric: 'fid', target: 100, tolerance: 50, aiOptimized: true },
+                  { metric: 'cls', target: 0.1, tolerance: 0.05, aiOptimized: true }
+                ],
+                aiManaged: true
+              },
+              aiManaged: true
+            },
+            securityConfig: {
+              sessionTimeout: 3600,
+              requireMFA: false,
+              passwordPolicy: {
+                minLength: 8,
+                requireUppercase: true,
+                requireLowercase: true,
+                requireNumbers: true,
+                requireSymbols: false,
+                historyCount: 5,
+                aiValidated: true
+              },
+              ipWhitelist: [],
+              aiThreatDetection: true,
+              encryptionLevel: 'enhanced'
+            },
+            maintenanceMode: false
+          },
+          securitySettings: {
+            sessionTimeout: 3600,
+            requireMFA: false,
+            passwordPolicy: {
+              minLength: 8,
+              requireUppercase: true,
+              requireLowercase: true,
+              requireNumbers: true,
+              requireSymbols: false,
+              historyCount: 5,
+              aiValidated: true
+            },
+            ipWhitelist: [],
+            aiThreatDetection: true,
+            encryptionLevel: 'enhanced'
+          },
+          notificationSettings: {
+            email: {
+              enabled: true,
+              frequency: 'daily',
+              types: ['assignment_due', 'grade_posted', 'announcement'],
+              aiOptimized: true
+            },
+            push: {
+              enabled: true,
+              quietHours: {
+                enabled: true,
+                start: '22:00',
+                end: '08:00',
+                timezone: 'UTC'
+              },
+              types: ['message', 'mention', 'assignment_due'],
+              aiManaged: true
+            },
+            inApp: {
+              enabled: true,
+              position: 'top',
+              duration: 5000,
+              animations: true,
+              aiEnhanced: true
+            },
+            aiRouting: true
+          },
+          
+          // Performance & Analytics
+          performanceMetrics: {
+            responseTime: {
+              current: 0,
+              average: 0,
+              trend: 0,
+              target: 1000,
+              aiScore: 0
+            },
+            throughput: {
+              current: 0,
+              average: 0,
+              trend: 0,
+              target: 1000,
+              aiScore: 0
+            },
+            errorRate: {
+              current: 0,
+              average: 0,
+              trend: 0,
+              target: 0.01,
+              aiScore: 0
+            },
+            availability: {
+              current: 100,
+              average: 100,
+              trend: 0,
+              target: 99.9,
+              aiScore: 0
+            },
+            userSatisfaction: {
+              current: 0,
+              average: 0,
+              trend: 0,
+              target: 4.5,
+              aiScore: 0
+            },
+            aiOptimized: true,
+            lastUpdated: ''
+          },
+          userAnalytics: {
+            sessionDuration: 0,
+            pageViews: 0,
+            interactions: 0,
+            engagement: 0,
+            conversion: 0,
+            aiAnalyzed: true,
+            insights: [],
+            lastUpdated: ''
+          },
+          systemAnalytics: {
+            load: 0,
+            requests: 0,
+            errors: 0,
+            uptime: 0,
+            scaling: {
+              currentInstances: 1,
+              targetInstances: 1,
+              utilization: 0,
+              aiManaged: true
+            },
+            aiOptimized: true,
+            lastUpdated: ''
+          },
+          
+          // Sync State
+          syncStatus: {
+            status: 'synced',
+            progress: 0,
+            lastSync: '',
+            nextSync: '',
+            conflicts: 0,
+            aiManaged: true
+          },
+          conflicts: [],
+          lastSyncTimestamp: '',
+          
+          // UI State
+          modals: {
+            isOpen: {},
+            data: {},
+            zIndex: 1000
+          },
+          notifications: [],
+          loading: {
+            global: false,
+            modules: {},
+            operations: {}
+          },
+          errors: {
+            global: null,
+            module: {},
+            operation: {},
+            timestamp: null
+          },
+          
+          // AI State
+          aiOptimizations: [],
+          mlModels: [],
+          predictiveAnalytics: {
+            userEngagement: 0,
+            churnRisk: 0,
+            learningOutcome: 0,
+            systemLoad: 0,
+            aiConfidence: 0,
+            generatedAt: '',
+            recommendations: []
+          },
+          
+          // Security & Compliance
+          securityAudit: {
+            id: '',
+            status: 'pending',
+            findings: [],
+            score: 0,
+            aiGenerated: false
+          },
+          complianceStatus: {
+            gdpr: {
+              status: 'unknown',
+              score: 0,
+              findings: [],
+              aiGenerated: false
+            },
+            soc2: {
+              status: 'unknown',
+              score: 0,
+              findings: [],
+              aiGenerated: false
+            },
+            hipaa: {
+              status: 'unknown',
+              score: 0,
+              findings: [],
+              aiGenerated: false
+            },
+            overallScore: 0,
+            aiValidated: true,
+            lastAssessed: ''
+          },
+          auditTrail: [],
+          
+          // Enterprise Features
+          enterpriseFeatures: {
+            enabled: false,
+            sso: {
+              enabled: false,
+              provider: 'okta',
+              configuration: {},
+              aiManaged: false
+            },
+            reporting: {
+              enabled: false,
+              schedules: [],
+              formats: ['pdf', 'csv'],
+              aiGenerated: false
+            },
+            integration: {
+              enabled: false,
+              providers: [],
+              aiManaged: false,
+              lastSync: ''
+            },
+            analytics: {
+              enabled: false,
+              dashboards: [],
+              dataRetention: 365,
+              aiAnalyzed: true,
+              lastUpdated: ''
+            }
+          },
+          integrations: [],
+          workflows: [],
+          
+          // Performance Configuration
+          performanceConfig: {
+            caching: {
+              strategy: 'ai_optimized',
+              ttl: 3600,
+              maxSize: 1000,
+              aiOptimized: true
+            },
+            compression: {
+              enabled: true,
+              algorithm: 'ai_optimized',
+              level: 6,
+              aiManaged: true
+            },
+            optimization: {
+              enabled: true,
+              techniques: ['code_splitting', 'lazy_loading', 'preloading'],
+              target: [
+                { metric: 'lcp', target: 2500, tolerance: 500, aiOptimized: true },
+                { metric: 'fid', target: 100, tolerance: 50, aiOptimized: true },
+                { metric: 'cls', target: 0.1, tolerance: 0.05, aiOptimized: true }
+              ],
+              aiManaged: true
+            },
+            aiManaged: true
+          },
+          caching: {
+            hitRate: 0,
+            missRate: 0,
+            size: 0,
+            entries: 0,
+            aiOptimized: true,
+            lastUpdated: ''
+          },
+          optimization: {
+            active: false,
+            techniques: [],
+            impact: 0,
+            aiManaged: true,
+            lastRun: ''
+          },
+          
+          // =============================================================================
+          // CORE ACTIONS
+          // =============================================================================
+          
+          // User & Session Management
+          setUser: (user: User | null) => set((state) => {
+            state.user = user;
+          }),
+          
+          setSession: (session: Session | null) => set((state) => {
+            state.session = session;
+          }),
+          
+          updatePreferences: (preferences: Partial<UserPreferences>) => set((state) => {
+            Object.assign(state.preferences, preferences);
+          }),
+          
+          // Theme & Locale
+          setTheme: (theme: Partial<ThemeState>) => set((state) => {
+            Object.assign(state.theme, theme);
+          }),
+          
+          setLocale: (locale: Partial<LocaleState>) => set((state) => {
+            Object.assign(state.locale, locale);
+          }),
+          
+          // Learning State Management
+          setLearningPaths: (paths: LearningPath[]) => set((state) => {
+            state.learningPaths = paths;
+          }),
+          
+          setCurrentCourse: (course: Course | null) => set((state) => {
+            state.currentCourse = course;
+          }),
+          
+          setAssessments: (assessments: Assessment[]) => set((state) => {
+            state.assessments = assessments;
+          }),
+          
+          updateProgress: (progress: Partial<LearningProgress>) => set((state) => {
+            Object.assign(state.progress, progress);
+          }),
+          
+          // AI & Agent Management
+          setAgents: (agents: AIAgent[]) => set((state) => {
+            state.agents = agents;
+          }),
+          
+          setActiveAgent: (agent: AIAgent | null) => set((state) => {
+            state.activeAgent = agent;
+          }),
+          
+          addConversation: (conversation: Conversation) => set((state) => {
+            state.conversations.push(conversation);
+          }),
+          
+          addMessage: (conversationId: string, message: Message) => set((state) => {
+            const conversation = state.conversations.find(c => c.id === conversationId);
+            if (conversation) {
+              conversation.messages.push(message);
+            }
+          }),
+          
+          addAIInsight: (insight: AIInsight) => set((state) => {
+            state.aiInsights.push(insight);
+          }),
+          
+          // Admin Actions
+          setUsers: (users: User[]) => set((state) => {
+            state.admin.users = users;
+            state.users = users;
+          }),
+          
+          setRoles: (roles: Role[]) => set((state) => {
+            state.admin.roles = roles;
+            state.roles = roles;
+          }),
+          
+          setPermissions: (permissions: Permission[]) => set((state) => {
+            state.admin.permissions = permissions;
+          }),
+          
+          addAdministrativeOperation: (operation: AdministrativeOperation) => set((state) => {
+            state.admin.operations.push(operation);
+          }),
+          
+          addAuditEntry: (entry: AuditEntry) => set((state) => {
+            state.admin.audits.push(entry);
+            state.auditTrail.push(entry);
+          }),
+          
+          addReport: (report: Report) => set((state) => {
+            state.admin.reports.push(report);
+          }),
+          
+          updateSystemMetrics: (metrics: Partial<SystemMetrics>) => set((state) => {
+            Object.assign(state.admin.systemMetrics, metrics);
+          }),
+          
+          addAlert: (alert: Alert) => set((state) => {
+            state.admin.alerts.push(alert);
+          }),
+          
+          updateMaintenanceStatus: (status: Partial<MaintenanceStatus>) => set((state) => {
+            Object.assign(state.admin.maintenance, status);
+          }),
+          
+          addAIInsightAdmin: (insight: AIInsight) => set((state) => {
+            state.admin.aiInsights.push(insight);
+          }),
+          
+          updatePredictiveAnalytics: (analytics: Partial<AdminPredictiveAnalytics>) => set((state) => {
+            Object.assign(state.admin.predictiveAnalytics, analytics);
+          }),
+          
+          addAutomationRule: (rule: AutomationRule) => set((state) => {
+            state.admin.automations.push(rule);
+          }),
+          
+          // Collaboration Actions
+          addCollaborator: (collaborator: Collaborator) => set((state) => {
+            state.collaborators.push(collaborator);
+          }),
+          
+          updateCollaborator: (id: string, updates: Partial<Collaborator>) => set((state) => {
+            const collaborator = state.collaborators.find(c => c.id === id);
+            if (collaborator) {
+              Object.assign(collaborator, updates);
+            }
+          }),
+          
+          createSharedSession: (session: SharedSession) => set((state) => {
+            state.sharedSessions.push(session);
+          }),
+          
+          addRealTimeActivity: (activity: RealTimeActivity) => set((state) => {
+            state.realTimeActivity.push(activity);
+            // Keep only last 100 activities
+            state.realTimeActivity = state.realTimeActivity.slice(-100);
+          }),
+          
+          // Search Actions
+          setSearchResults: (results: SearchResult[]) => set((state) => {
+            state.searchResults = results;
+          }),
+          
+          addSearchHistory: (item: SearchHistoryItem) => set((state) => {
+            state.searchHistory.unshift(item);
+            // Keep only last 50 items
+            state.searchHistory = state.searchHistory.slice(0, 50);
+          }),
+          
+          setRecommendations: (recommendations: Recommendation[]) => set((state) => {
+            state.recommendations = recommendations;
+          }),
+          
+          // Gamification Actions
+          addAchievement: (achievement: Achievement) => set((state) => {
+            state.achievements.push(achievement);
+          }),
+          
+          updateLeaderboard: (leaderboard: Leaderboard) => set((state) => {
+            const existing = state.leaderboards.find(l => l.id === leaderboard.id);
+            if (existing) {
+              Object.assign(existing, leaderboard);
+            } else {
+              state.leaderboards.push(leaderboard);
+            }
+          }),
+          
+          updateStreak: (streak: UserStreak) => set((state) => {
+            const existing = state.streaks.find(s => s.id === streak.id);
+            if (existing) {
+              Object.assign(existing, streak);
+            } else {
+              state.streaks.push(streak);
+            }
+          }),
+          
+          addReward: (reward: Reward) => set((state) => {
+            state.rewards.push(reward);
+          }),
+          
+          // Settings Actions
+          updateAppSettings: (settings: Partial<AppSettings>) => set((state) => {
+            Object.assign(state.appSettings, settings);
+          }),
+          
+          updateSecuritySettings: (settings: Partial<SecuritySettings>) => set((state) => {
+            Object.assign(state.securitySettings, settings);
+          }),
+          
+          updateNotificationSettings: (settings: Partial<NotificationSettings>) => set((state) => {
+            Object.assign(state.notificationSettings, settings);
+          }),
+          
+          // Performance Actions
+          updatePerformanceMetrics: (metrics: Partial<PerformanceMetrics>) => set((state) => {
+            Object.assign(state.performanceMetrics, metrics);
+            state.performanceMetrics.lastUpdated = new Date().toISOString();
+          }),
+          
+          updateUserAnalytics: (analytics: Partial<UserAnalytics>) => set((state) => {
+            Object.assign(state.userAnalytics, analytics);
+            state.userAnalytics.lastUpdated = new Date().toISOString();
+          }),
+          
+          updateSystemAnalytics: (analytics: Partial<SystemAnalytics>) => set((state) => {
+            Object.assign(state.systemAnalytics, analytics);
+            state.systemAnalytics.lastUpdated = new Date().toISOString();
+          }),
+          
+          // Sync Actions
+          updateSyncStatus: (status: Partial<SyncStatus>) => set((state) => {
+            Object.assign(state.syncStatus, status);
+          }),
+          
+          addConflict: (conflict: StateConflict) => set((state) => {
+            state.conflicts.push(conflict);
+          }),
+          
+          resolveConflict: (id: string) => set((state) => {
+            const conflict = state.conflicts.find(c => c.id === id);
+            if (conflict) {
+              conflict.resolved = true;
+            }
+          }),
+          
+          setLastSyncTimestamp: (timestamp: string) => set((state) => {
+            state.lastSyncTimestamp = timestamp;
+          }),
+          
+          // UI Actions
+          openModal: (id: string, data?: any) => set((state) => {
+            state.modals.isOpen[id] = true;
+            if (data) {
+              state.modals.data[id] = data;
+            }
+            state.modals.zIndex += 1;
+          }),
+          
+          closeModal: (id: string) => set((state) => {
+            state.modals.isOpen[id] = false;
+            delete state.modals.data[id];
+          }),
+          
+          addNotification: (notification: Notification) => set((state) => {
+            state.notifications.push(notification);
+            // Auto-remove after duration if autoClose is true
+            if (notification.autoClose) {
+              setTimeout(() => {
+                set((state) => {
+                  const index = state.notifications.findIndex(n => n.id === notification.id);
+                  if (index !== -1) {
+                    state.notifications.splice(index, 1);
+                  }
+                });
+              }, notification.aiGenerated ? 3000 : 5000);
+            }
+          }),
+          
+          removeNotification: (id: string) => set((state) => {
+            const index = state.notifications.findIndex(n => n.id === id);
+            if (index !== -1) {
+              state.notifications.splice(index, 1);
+            }
+          }),
+          
+          setGlobalLoading: (loading: boolean) => set((state) => {
+            state.loading.global = loading;
+          }),
+          
+          setModuleLoading: (module: string, loading: boolean) => set((state) => {
+            state.loading.modules[module] = loading;
+          }),
+          
+          setOperationLoading: (operation: string, loading: boolean) => set((state) => {
+            state.loading.operations[operation] = loading;
+          }),
+          
+          setGlobalError: (error: string | null) => set((state) => {
+            state.errors.global = error;
+            state.errors.timestamp = error ? new Date().toISOString() : null;
+          }),
+          
+          setModuleError: (module: string, error: string | null) => set((state) => {
+            state.errors.module[module] = error;
+          }),
+          
+          setOperationError: (operation: string, error: string | null) => set((state) => {
+            state.errors.operation[operation] = error;
+          }),
+          
+          // AI Optimization Actions
+          addAIOptimization: (optimization: AIOptimization) => set((state) => {
+            state.aiOptimizations.push(optimization);
+          }),
+          
+          updateAIOptimizationStatus: (id: string, status: AIOptimization['status']) => set((state) => {
+            const optimization = state.aiOptimizations.find(o => o.id === id);
+            if (optimization) {
+              optimization.status = status;
+              if (status === 'implemented') {
+                optimization.implementedAt = new Date().toISOString();
+              } else if (status === 'rollback') {
+                optimization.rollbackAt = new Date().toISOString();
+              }
+            }
+          }),
+          
+          addMLModel: (model: MLModelStatus) => set((state) => {
+            state.mlModels.push(model);
+          }),
+          
+          updateMLModelStatus: (id: string, status: MLModelStatus['status']) => set((state) => {
+            const model = state.mlModels.find(m => m.id === id);
+            if (model) {
+              model.status = status;
+            }
+          }),
+          
+          updatePredictiveAnalyticsStore: (analytics: Partial<PredictiveAnalytics>) => set((state) => {
+            Object.assign(state.predictiveAnalytics, analytics);
+            state.predictiveAnalytics.generatedAt = new Date().toISOString();
+          }),
+          
+          // Security & Compliance Actions
+          updateSecurityAudit: (audit: Partial<SecurityAudit>) => set((state) => {
+            Object.assign(state.securityAudit, audit);
+          }),
+          
+          updateComplianceStatus: (status: Partial<ComplianceStatus>) => set((state) => {
+            Object.assign(state.complianceStatus, status);
+          }),
+          
+          addSecurityFinding: (finding: SecurityFinding) => set((state) => {
+            state.securityAudit.findings.push(finding);
+          }),
+          
+          updateComplianceFinding: (id: string, status: SecurityFinding['status']) => set((state) => {
+            const finding = state.complianceStatus.gdpr.findings.find(f => f.id === id) ||
+                           state.complianceStatus.soc2.findings.find(f => f.id === id) ||
+                           state.complianceStatus.hipaa.findings.find(f => f.id === id);
+            if (finding) {
+              finding.status = status;
+            }
+          }),
+          
+          // Enterprise Features Actions
+          updateEnterpriseFeatures: (features: Partial<EnterpriseFeatures>) => set((state) => {
+            Object.assign(state.enterpriseFeatures, features);
+          }),
+          
+          addIntegration: (integration: IntegrationConfig) => set((state) => {
+            state.integrations.push(integration);
+          }),
+          
+          updateIntegrationStatus: (id: string, status: IntegrationConfig['status']) => set((state) => {
+            const integration = state.integrations.find(i => i.id === id);
+            if (integration) {
+              integration.status = status;
+            }
+          }),
+          
+          addWorkflowDefinition: (workflow: WorkflowDefinition) => set((state) => {
+            state.workflows.push(workflow);
+          }),
+          
+          // Performance Configuration Actions
+          updatePerformanceConfig: (config: Partial<PerformanceConfiguration>) => set((state) => {
+            Object.assign(state.performanceConfig, config);
+          }),
+          
+          updateCachingState: (state: Partial<CachingState>) => set((state) => {
+            Object.assign(get().caching, state);
+            get().caching.lastUpdated = new Date().toISOString();
+          }),
+          
+          updateOptimizationState: (optimization: Partial<OptimizationState>) => set((state) => {
+            Object.assign(state.optimization, optimization);
+            state.optimization.lastRun = new Date().toISOString();
+          }),
+          
+          // =============================================================================
+          // AI-POWERED ACTIONS
+          // =============================================================================
+          
+          // AI-Powered User Experience
+          optimizeUserExperience: async () => {
+            const currentState = get();
+            try {
+              const aiInsight = await openaiService.generateInsight(
+                `Optimize user experience based on current state: ${JSON.stringify({
+                  user: currentState.user,
+                  preferences: currentState.preferences,
+                  progress: currentState.progress,
+                  recentActivity: currentState.realTimeActivity.slice(-10)
+                })}`,
+                'user_experience_optimization'
+              );
+              
+              // Apply AI optimizations
+              set((state) => {
+                // Add optimization suggestion
+                state.aiOptimizations.push({
+                  id: `ux-${Date.now()}`,
+                  type: 'user_experience',
+                  description: aiInsight.content,
+                  impact: 'high',
+                  status: 'pending',
+                  aiConfidence: 0.95,
+                  implementedAt: new Date().toISOString()
+                });
+              });
+              
+              return aiInsight;
+            } catch (error) {
+              console.error('AI optimization failed:', error);
+              return null;
+            }
+          },
+          
+          // AI-Powered Learning Personalization
+          personalizeLearning: async (userId: string) => {
+            const currentState = get();
+            try {
+              const userProgress = currentState.progress;
+              const aiPersonalization = await geminiService.personalizeLearning(userProgress);
+              
+              set((state) => {
+                // Update learning preferences based on AI analysis
+                Object.assign(state.preferences.learning, {
+                  pace: aiPersonalization.optimalPace,
+                  style: aiPersonalization.preferredStyle,
+                  difficulty: 'adaptive',
+                  aiOptimized: true
+                });
+                
+                // Update current course recommendations
+                state.recommendations = aiPersonalization.courseRecommendations;
+              });
+              
+              return aiPersonalization;
+            } catch (error) {
+              console.error('AI personalization failed:', error);
+              return null;
+            }
+          },
+          
+          // AI-Powered Content Optimization
+          optimizeContent: async (contentId: string) => {
+            try {
+              const optimization = await openaiService.generateInsight(
+                `Optimize content: ${contentId}`,
+                'content_optimization'
+              );
+              
+              set((state) => {
+                state.aiOptimizations.push({
+                  id: `content-${Date.now()}`,
+                  type: 'learning',
+                  description: optimization.content,
+                  impact: 'medium',
+                  status: 'pending',
+                  aiConfidence: 0.85
+                });
+              });
+              
+              return optimization;
+            } catch (error) {
+              console.error('Content optimization failed:', error);
+              return null;
+            }
+          },
+          
+          // AI-Powered Performance Prediction
+          predictPerformance: async () => {
+            const currentState = get();
+            try {
+              const predictions = await geminiService.predictPerformance({
+                performanceMetrics: currentState.performanceMetrics,
+                userAnalytics: currentState.userAnalytics,
+                systemAnalytics: currentState.systemAnalytics
+              });
+              
+              set((state) => {
+                state.predictiveAnalytics = {
+                  ...state.predictiveAnalytics,
+                  ...predictions,
+                  generatedAt: new Date().toISOString()
+                };
+              });
+              
+              return predictions;
+            } catch (error) {
+              console.error('Performance prediction failed:', error);
+              return null;
+            }
+          },
+          
+          // AI-Powered Security Monitoring
+          monitorSecurity: async () => {
+            try {
+              const securityAnalysis = await openaiService.generateInsight(
+                'Monitor and analyze security status',
+                'security_monitoring'
+              );
+              
+              set((state) => {
+                // Add security insights
+                state.admin.aiInsights.push({
+                  id: `security-${Date.now()}`,
+                  type: 'security',
+                  title: securityAnalysis.title || 'Security Analysis',
+                  description: securityAnalysis.content,
+                  confidence: 0.90,
+                  actionable: true,
+                  aiGenerated: true,
+                  metadata: { source: 'ai_monitoring' },
+                  createdAt: new Date().toISOString()
+                });
+                
+                // Update threat level if detected
+                if (securityAnalysis.threatLevel) {
+                  state.admin.systemMetrics.aiPerformance = {
+                    ...state.admin.systemMetrics.aiPerformance,
+                    errorRate: securityAnalysis.threatLevel > 0.7 ? 0.05 : 0.01,
+                    aiOptimized: true
+                  };
+                }
+              });
+              
+              return securityAnalysis;
+            } catch (error) {
+              console.error('Security monitoring failed:', error);
+              return null;
+            }
+          },
+          
+          // AI-Powered Real-time Synchronization
+          syncWithAI: async () => {
+            const currentState = get();
+            try {
+              set((state) => {
+                state.syncStatus.status = 'syncing';
+                state.syncStatus.progress = 0;
+              });
+              
+              // AI-powered conflict resolution
+              if (currentState.conflicts.length > 0) {
+                const conflictResolution = await geminiService.resolveConflicts(currentState.conflicts);
+                
+                set((state) => {
+                  state.conflicts.forEach(conflict => {
+                    if (conflictResolution.suggestedResolution[conflict.id]) {
+                      conflict.resolved = true;
+                      conflict.aiSuggested = true;
+                    }
+                  });
+                });
+              }
+              
+              // AI-optimized data prioritization
+              const syncData = await openaiService.optimizeSync({
+                user: currentState.user,
+                progress: currentState.progress,
+                realTimeActivity: currentState.realTimeActivity
+              });
+              
+              set((state) => {
+                state.syncStatus.status = 'synced';
+                state.syncStatus.progress = 100;
+                state.syncStatus.lastSync = new Date().toISOString();
+                state.syncStatus.nextSync = new Date(Date.now() + 300000).toISOString(); // 5 minutes
+                state.syncStatus.conflicts = state.conflicts.filter(c => !c.resolved).length;
+                state.lastSyncTimestamp = new Date().toISOString();
+              });
+              
+              return syncData;
+            } catch (error) {
+              set((state) => {
+                state.syncStatus.status = 'error';
+                state.syncStatus.progress = 0;
+              });
+              console.error('AI sync failed:', error);
+              return null;
+            }
+          },
+          
+          // AI-Powered Analytics Enhancement
+          enhanceAnalytics: async () => {
+            const currentState = get();
+            try {
+              const enhancedAnalytics = await openaiService.generateInsight(
+                `Enhance analytics with AI insights: ${JSON.stringify({
+                  performance: currentState.performanceMetrics,
+                  user: currentState.userAnalytics,
+                  system: currentState.systemAnalytics,
+                  engagement: currentState.userAnalytics.engagement,
+                  satisfaction: currentState.performanceMetrics.userSatisfaction
+                })}`,
+                'analytics_enhancement'
+              );
+              
+              set((state) => {
+                // Add AI-generated insights
+                if (enhancedAnalytics.insights) {
+                  state.userAnalytics.insights.push(...enhancedAnalytics.insights);
+                }
+                
+                // Update predictive analytics
+                state.predictiveAnalytics.userEngagement = enhancedAnalytics.engagementPrediction || 0;
+                state.predictiveAnalytics.churnRisk = enhancedAnalytics.churnRisk || 0;
+                state.predictiveAnalytics.aiConfidence = enhancedAnalytics.confidence || 0;
+              });
+              
+              return enhancedAnalytics;
+            } catch (error) {
+              console.error('Analytics enhancement failed:', error);
+              return null;
+            }
+          }
+        }))
+      ),
+      {
+        name: 'jac-learning-platform',
+        storage: createJSONStorage(() => localStorage),
+        partialize: (state) => ({
+          // Persist only non-sensitive data
+          user: state.user,
+          preferences: state.preferences,
+          theme: state.theme,
+          locale: state.locale,
+          learningPaths: state.learningPaths,
+          progress: state.progress,
+          achievements: state.achievements,
+          streaks: state.streaks,
+          searchHistory: state.searchHistory.slice(0, 20), // Keep only last 20
+          appSettings: state.appSettings,
+          securitySettings: state.securitySettings,
+          notificationSettings: state.notificationSettings,
+          performanceConfig: state.performanceConfig
+        }),
+        version: 2
+      }
+    ),
+    { name: 'jac-learning-store' }
+  )
+);
+
+// =============================================================================
+// SELECTORS
+// =============================================================================
+
+// Core Selectors
+export const useUser = () => useAppStore((state) => state.user);
+export const useSession = () => useAppStore((state) => state.session);
+export const usePreferences = () => useAppStore((state) => state.preferences);
+export const useTheme = () => useAppStore((state) => state.theme);
+export const useLocale = () => useAppStore((state) => state.locale);
+
+// Learning Selectors
+export const useLearningPaths = () => useAppStore((state) => state.learningPaths);
+export const useCurrentCourse = () => useAppStore((state) => state.currentCourse);
+export const useAssessments = () => useAppStore((state) => state.assessments);
+export const useProgress = () => useAppStore((state) => state.progress);
+
+// AI & Agent Selectors
+export const useAgents = () => useAppStore((state) => state.agents);
+export const useActiveAgent = () => useAppStore((state) => state.activeAgent);
+export const useConversations = () => useAppStore((state) => state.conversations);
+export const useAIInsights = () => useAppStore((state) => state.aiInsights);
+
+// Admin Selectors
+export const useAdminState = () => useAppStore((state) => state.admin);
+export const useAdminUsers = () => useAppStore((state) => state.admin.users);
+export const useAdminRoles = () => useAppStore((state) => state.admin.roles);
+export const useAdminPermissions = () => useAppStore((state) => state.admin.permissions);
+export const useAdminOperations = () => useAppStore((state) => state.admin.operations);
+export const useSystemMetrics = () => useAppStore((state) => state.admin.systemMetrics);
+export const useAdminAlerts = () => useAppStore((state) => state.admin.alerts);
+
+// Collaboration Selectors
+export const useCollaborators = () => useAppStore((state) => state.collaborators);
+export const useSharedSessions = () => useAppStore((state) => state.sharedSessions);
+export const useRealTimeActivity = () => useAppStore((state) => state.realTimeActivity);
+
+// Search Selectors
+export const useSearchResults = () => useAppStore((state) => state.searchResults);
+export const useSearchHistory = () => useAppStore((state) => state.searchHistory);
+export const useRecommendations = () => useAppStore((state) => state.recommendations);
+
+// Gamification Selectors
+export const useAchievements = () => useAppStore((state) => state.achievements);
+export const useLeaderboards = () => useAppStore((state) => state.leaderboards);
+export const useStreaks = () => useAppStore((state) => state.streaks);
+export const useRewards = () => useAppStore((state) => state.rewards);
+
+// Performance Selectors
+export const usePerformanceMetrics = () => useAppStore((state) => state.performanceMetrics);
+export const useUserAnalytics = () => useAppStore((state) => state.userAnalytics);
+export const useSystemAnalytics = () => useAppStore((state) => state.systemAnalytics);
+
+// Sync Selectors
+export const useSyncStatus = () => useAppStore((state) => state.syncStatus);
+export const useConflicts = () => useAppStore((state) => state.conflicts);
+
+// UI Selectors
+export const useModals = () => useAppStore((state) => state.modals);
+export const useNotifications = () => useAppStore((state) => state.notifications);
+export const useLoading = () => useAppStore((state) => state.loading);
+export const useErrors = () => useAppStore((state) => state.errors);
+
+// AI Selectors
+export const useAIOptimizations = () => useAppStore((state) => state.aiOptimizations);
+export const useMLModels = () => useAppStore((state) => state.mlModels);
+export const usePredictiveAnalytics = () => useAppStore((state) => state.predictiveAnalytics);
+
+// Security Selectors
+export const useSecurityAudit = () => useAppStore((state) => state.securityAudit);
+export const useComplianceStatus = () => useAppStore((state) => state.complianceStatus);
+export const useAuditTrail = () => useAppStore((state) => state.auditTrail);
+
+// Enterprise Selectors
+export const useEnterpriseFeatures = () => useAppStore((state) => state.enterpriseFeatures);
+export const useIntegrations = () => useAppStore((state) => state.integrations);
+export const useWorkflows = () => useAppStore((state) => state.workflows);
+
+// Performance Configuration Selectors
+export const usePerformanceConfig = () => useAppStore((state) => state.performanceConfig);
+export const useCachingState = () => useAppStore((state) => state.caching);
+export const useOptimizationState = () => useAppStore((state) => state.optimization);
+
+// =============================================================================
+// SUBSCRIPTION HELPERS
+// =============================================================================
+
+// Performance monitoring subscription
+export const subscribeToPerformanceMetrics = (callback: (metrics: PerformanceMetrics) => void) => {
+  return useAppStore.subscribe(
+    (state) => state.performanceMetrics,
+    callback
+  );
+};
+
+// Real-time activity subscription
+export const subscribeToRealTimeActivity = (callback: (activity: RealTimeActivity[]) => void) => {
+  return useAppStore.subscribe(
+    (state) => state.realTimeActivity,
+    callback
+  );
+};
+
+// User analytics subscription
+export const subscribeToUserAnalytics = (callback: (analytics: UserAnalytics) => void) => {
+  return useAppStore.subscribe(
+    (state) => state.userAnalytics,
+    callback
+  );
+};
+
+// Notifications subscription
+export const subscribeToNotifications = (callback: (notifications: Notification[]) => void) => {
+  return useAppStore.subscribe(
+    (state) => state.notifications,
+    callback
+  );
+};
+
+// Sync status subscription
+export const subscribeToSyncStatus = (callback: (status: SyncStatus) => void) => {
+  return useAppStore.subscribe(
+    (state) => state.syncStatus,
+    callback
+  );
+};
+
+// AI insights subscription
+export const subscribeToAIInsights = (callback: (insights: AIInsight[]) => void) => {
+  return useAppStore.subscribe(
+    (state) => state.aiInsights,
+    callback
+  );
+};
+
+// System metrics subscription
+export const subscribeToSystemMetrics = (callback: (metrics: SystemMetrics) => void) => {
+  return useAppStore.subscribe(
+    (state) => state.admin.systemMetrics,
+    callback
+  );
+};
+
+// =============================================================================
+// EXPORT DEFAULT
+// =============================================================================
+
+export default useAppStore;
