@@ -181,7 +181,7 @@ python manage.py runserver 0.0.0.0:8000
 ```bash
 cd backend
 source venv/bin/activate
-celery -A jac_platform worker -l info
+celery -A jeseci_platform worker -l info
 ```
 
 **Terminal 3 - React Frontend:**

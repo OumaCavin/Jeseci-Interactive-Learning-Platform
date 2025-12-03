@@ -222,7 +222,7 @@ cat > start_celery.sh << 'EOF'
 cd backend
 source venv/bin/activate
 echo "Starting Celery worker"
-celery -A jac_platform worker -l info
+celery -A jeseci_platform worker -l info
 EOF
 
 # Make scripts executable
