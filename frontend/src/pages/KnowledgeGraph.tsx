@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useAuthStore, useLearningStore } from '../stores';
+import { useAuthStore } from '../stores/authStore';
+import { useLearningStore } from '../stores/learningStore';
 import { Card } from '../components/ui';
 import { 
   MagnifyingGlassIcon, 

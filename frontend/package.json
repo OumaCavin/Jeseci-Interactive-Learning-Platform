@@ -22,6 +22,7 @@
     "date-fns": "latest",
     "framer-motion": "latest",
     "lucide-react": "latest",
+    "pnpm-store": "link:/tmp/pnpm-store",
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "latest",
@@ -70,6 +71,7 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "latest",
+    "@types/ws": "^8.5.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "autoprefixer": "latest",
@@ -77,9 +79,8 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "postcss": "latest",
-    "tailwindcss": "latest",
-    "ws": "^8.14.0",
     "supertest": "^6.3.3",
-    "@types/ws": "^8.5.0"
+    "tailwindcss": "latest",
+    "ws": "^8.14.0"
   }
 }

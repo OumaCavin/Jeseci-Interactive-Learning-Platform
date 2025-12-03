@@ -411,7 +411,7 @@ export interface MediaSession {
   settings: MediaSettings;
 }
 
-export enum MediaSessionType {
+enum MediaSessionType {
   VIDEO_CALL = 'video_call',
   AUDIO_ONLY = 'audio_only',
   SCREEN_SHARE = 'screen_share',

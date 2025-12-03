@@ -553,7 +553,7 @@ const EnterpriseButton: React.FC<ButtonProps> = (props) => {
     isSelected = false,
     isDisabled = false,
     isPressed = false,
-    isHovered = false,
+    initialHovered = false,
     onClick,
     onHover,
     onFocus,
@@ -588,7 +588,7 @@ const EnterpriseButton: React.FC<ButtonProps> = (props) => {
 
   // State management
   const [isFocused, setIsFocused] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(initialHovered);
   const [clickRipples, setClickRipples] = useState<Array<{ id: number; x: number; y: number }>>([]);
 
   // Custom hooks

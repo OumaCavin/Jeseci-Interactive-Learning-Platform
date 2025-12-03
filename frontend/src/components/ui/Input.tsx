@@ -1279,7 +1279,7 @@ const EnterpriseInput: React.FC<InputProps> = (props) => {
 /**
  * Quiz-specific input with educational features
  */
-export const QuizInput: React.FC<InputProps> = (props) => {
+const QuizInput: React.FC<InputProps> = (props) => {
   return (
     <EnterpriseInput
       {...props}
@@ -1305,23 +1305,41 @@ export const QuizInput: React.FC<InputProps> = (props) => {
 /**
  * Learning input with educational intelligence
  */
-export const LearningInput: React.FC<InputProps> = {
-  /* Implementation would go here */
-} as any;
+const LearningInput: React.FC<InputProps> = (props) => {
+  return (
+    <EnterpriseInput
+      {...props}
+      variant="learning"
+      educationalType="content"
+    />
+  );
+};
 
 /**
  * Code input for programming contexts
  */
-export const CodeInput: React.FC<InputProps> = {
-  /* Implementation would go here */
-} as any;
+const CodeInput: React.FC<InputProps> = (props) => {
+  return (
+    <EnterpriseInput
+      {...props}
+      variant="code"
+      educationalType="code"
+    />
+  );
+};
 
 /**
  * Rich text input for content creation
  */
-export const RichTextInput: React.FC<InputProps> = {
-  /* Implementation would go here */
-} as any;
+const RichTextInput: React.FC<InputProps> = (props) => {
+  return (
+    <EnterpriseInput
+      {...props}
+      variant="richtext"
+      educationalType="content"
+    />
+  );
+};
 
 // =============================================================================
 // EXPORTS

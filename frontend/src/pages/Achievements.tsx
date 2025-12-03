@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useAuthStore, useUserStatsStore, useLearningStore } from '../stores';
+import { useAuthStore } from '../stores/authStore';
+import { useUserStatsStore } from '../stores/userStatsStore';
+import { useLearningStore } from '../stores/learningStore';
 import { Card } from '../components/ui';
-import { Badge } from '../stores/authStore';
-import { Achievement } from '../stores/userStatsStore';
 import { 
   TrophyIcon, 
   StarIcon, 

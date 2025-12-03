@@ -34,7 +34,7 @@ import {
   Bell, BellOff, Moon as MoonIcon, Sun as SunIcon,
   Wifi as WifiIcon, Battery as BatteryIcon, Volume2 as VolumeIcon
 } from 'lucide-react';
-import { LineChart as RechartsLineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart as RechartsBarChart, Bar, PieChart as RechartsPieChart, Pie, Cell } from 'recharts';
+import { LineChart as RechartsLineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart as RechartsAreaChart, Area, BarChart as RechartsBarChart, Bar, PieChart as RechartsPieChart, Pie, Cell } from 'recharts';
 
 // Types and Interfaces
 export type LoadingType = 

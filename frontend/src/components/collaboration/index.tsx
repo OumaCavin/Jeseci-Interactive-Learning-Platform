@@ -412,7 +412,7 @@ export const validateExports = () => {
  * Ready for production deployment with comprehensive type safety and
  * developer experience enhancements.
  */
-export const COLLABORATION_READY_MESSAGE = `
+const COLLABORATION_READY_MESSAGE = `
 🚀 JAC Learning Platform Collaboration Module Ready!
 
 📊 Enhanced Components:

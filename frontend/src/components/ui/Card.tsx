@@ -1038,7 +1038,7 @@ const EnterpriseCard: React.FC<CardProps> = (props) => {
 /**
  * Quiz-specific card with educational features
  */
-export const QuizCard: React.FC<CardProps> = (props) => {
+const QuizCard: React.FC<CardProps> = (props) => {
   return (
     <EnterpriseCard
       {...props}
@@ -1063,37 +1063,67 @@ export const QuizCard: React.FC<CardProps> = (props) => {
 /**
  * Achievement card for gamification
  */
-export const AchievementCard: React.FC<CardProps> = {
-  /* Implementation would go here */
-} as any;
+const AchievementCard: React.FC<CardProps> = (props) => {
+  return (
+    <EnterpriseCard
+      {...props}
+      variant="achievement"
+      educationalType="achievement"
+    />
+  );
+};
 
 /**
  * Progress tracking card
  */
-export const ProgressCard: React.FC<CardProps> = {
-  /* Implementation would go here */
-} as any;
+const ProgressCard: React.FC<CardProps> = (props) => {
+  return (
+    <EnterpriseCard
+      {...props}
+      variant="progress"
+      educationalType="progress"
+    />
+  );
+};
 
 /**
  * Interactive tutorial card
  */
-export const TutorialCard: React.FC<CardProps> = {
-  /* Implementation would go here */
-} as any;
+const TutorialCard: React.FC<CardProps> = (props) => {
+  return (
+    <EnterpriseCard
+      {...props}
+      variant="tutorial"
+      educationalType="tutorial"
+    />
+  );
+};
 
 /**
  * Learning content card
  */
-export const LearningCard: React.FC<CardProps> = {
-  /* Implementation would go here */
-} as any;
+const LearningCard: React.FC<CardProps> = (props) => {
+  return (
+    <EnterpriseCard
+      {...props}
+      variant="learning"
+      educationalType="content"
+    />
+  );
+};
 
 /**
  * Milestone card for educational tracking
  */
-export const MilestoneCard: React.FC<CardProps> = {
-  /* Implementation would go here */
-} as any;
+const MilestoneCard: React.FC<CardProps> = (props) => {
+  return (
+    <EnterpriseCard
+      {...props}
+      variant="milestone"
+      educationalType="milestone"
+    />
+  );
+};
 
 // =============================================================================
 // EXPORTS

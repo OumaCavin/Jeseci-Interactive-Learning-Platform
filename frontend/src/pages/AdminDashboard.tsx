@@ -763,7 +763,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
     </div>
   );
 
-  const renderContent = () => (
+  const renderContentManagement = () => (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
@@ -1290,7 +1290,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = () => {
       case 'users':
         return renderUsers();
       case 'content':
-        return renderContent();
+        return renderContentManagement();
       case 'learning':
         return renderLearningAnalytics();
       case 'agents':

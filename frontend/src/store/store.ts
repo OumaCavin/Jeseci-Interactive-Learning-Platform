@@ -19,7 +19,7 @@ import { immer } from 'zustand/middleware/immer';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { openaiService } from '../services/openaiService';
 import { geminiService } from '../services/geminiService';
-import { websocketService } from '../services/websocketService';
+import websocketService from '../services/websocketService';
 import { useAdminStore } from './slices/adminSlice';
 import { useAgentStore } from './slices/agentSlice';
 import { useAssessmentStore } from './slices/assessmentSlice';
