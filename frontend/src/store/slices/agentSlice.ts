@@ -1,4 +1,4 @@
-// JAC Learning Platform - Enterprise Agent Management System by MiniMax Agent
+// JAC Learning Platform - Enterprise Agent Management System by Cavin Otieno
 // Enhanced with Zustand Architecture for Lightning-Fast Performance
 
 /**

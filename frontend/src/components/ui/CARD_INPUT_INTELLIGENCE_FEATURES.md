@@ -4,7 +4,7 @@
 
 The Enterprise Card & Input Intelligence Platforms are comprehensive, AI-powered component systems designed for modern web applications, with special focus on educational technology and accessibility. These platforms transform simple UI elements into intelligent, adaptive components with advanced analytics, AI optimization, and educational features.
 
-**Enhanced by**: Cavin Otieno - MiniMax Agent  
+**Enhanced by**: Cavin Otieno - Cavin Otieno  
 **Platform**: JAC Learning Platform  
 **Version**: 1.0.0  
 

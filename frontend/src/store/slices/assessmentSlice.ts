@@ -1,4 +1,4 @@
-// JAC Learning Platform - Enterprise Assessment Management System by MiniMax Agent
+// JAC Learning Platform - Enterprise Assessment Management System by Cavin Otieno
 // Enhanced with Zustand Architecture for Lightning-Fast Performance
 
 /**

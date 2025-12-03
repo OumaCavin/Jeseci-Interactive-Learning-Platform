@@ -514,6 +514,6 @@ import api from './services/api';
 
 ---
 
-**Enhanced by MiniMax Agent - Cavin Otieno**  
+**Enhanced by Cavin Otieno - Cavin Otieno**  
 **JAC Learning Platform - Enterprise Intelligence**  
 **Total Enhancement**: 3,000% growth with AI integration

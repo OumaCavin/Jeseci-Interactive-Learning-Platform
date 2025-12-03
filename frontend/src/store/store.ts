@@ -1,6 +1,6 @@
 /**
  * JAC Learning Platform - Enterprise State Management System
- * Author: MiniMax Agent
+ * Author: Cavin Otieno
  * Version: 2.0.0
  * 
  * Comprehensive Enterprise State Management Platform featuring:

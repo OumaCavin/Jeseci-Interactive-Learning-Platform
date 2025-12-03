@@ -1,7 +1,7 @@
 // JAC Learning Platform - Enhanced Predictive Analytics Intelligence Platform
 // React components for advanced ML predictions and enterprise analytics
 //
-// Author: MiniMax Agent
+// Author: Cavin Otieno
 // Created: 2025-12-03
 // Enhanced from Cavin Otieno's original implementation
 // TypeScript checking disabled due to Recharts library compatibility issues

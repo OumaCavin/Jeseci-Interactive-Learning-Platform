@@ -5,7 +5,7 @@
  * Advanced proxy configuration with AI-powered routing,
  * educational context awareness, and real-time analytics
  * 
- * @author MiniMax Agent
+ * @author Cavin Otieno
  * @version 2.0.0
  * @date 2025-12-03
  */

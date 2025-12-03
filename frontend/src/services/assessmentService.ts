@@ -3,7 +3,7 @@
  * Comprehensive assessment system for JAC Learning Platform
  * Transforms basic assessment functionality into enterprise-grade AI-powered intelligence
  * 
- * @author MiniMax Agent
+ * @author Cavin Otieno
  * @version 3.0.0
  * @since 2025-12-03
  */

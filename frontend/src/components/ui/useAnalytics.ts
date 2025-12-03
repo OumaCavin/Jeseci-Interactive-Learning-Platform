@@ -1,5 +1,5 @@
 // JAC Learning Platform - Analytics Integration Hooks
-// Enhanced by Cavin Otieno - MiniMax Agent
+// Enhanced by Cavin Otieno - Cavin Otieno
 // Comprehensive analytics system for Button Intelligence Platform
 
 import { useState, useEffect, useCallback, useRef } from 'react';

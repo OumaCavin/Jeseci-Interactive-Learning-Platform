@@ -10,7 +10,7 @@
  * nature of the collaboration platform with comprehensive type safety and
  * developer experience enhancements.
  * 
- * @author MiniMax Agent
+ * @author Cavin Otieno
  * @version 2.0.0
  * @since 2025-12-03
  */

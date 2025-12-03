@@ -4,7 +4,7 @@
 
 The Enterprise Button Intelligence Platform is a comprehensive, AI-powered button system designed for modern web applications, with special focus on educational technology and accessibility. This platform transforms simple buttons into intelligent, adaptive UI components with advanced analytics, AI optimization, and educational features.
 
-**Enhanced by**: Cavin Otieno - MiniMax Agent  
+**Enhanced by**: Cavin Otieno - Cavin Otieno  
 **Platform**: JAC Learning Platform  
 **Version**: 1.0.0  
 

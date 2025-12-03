@@ -5,7 +5,7 @@
  * Advanced security monitoring, threat detection, and protection
  * system for educational proxy intelligence platform
  * 
- * @author MiniMax Agent
+ * @author Cavin Otieno
  * @version 2.0.0
  */
 

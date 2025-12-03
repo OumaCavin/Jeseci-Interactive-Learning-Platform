@@ -1,5 +1,5 @@
 // JAC Learning Platform - Enterprise Tabs Intelligence Platform
-// Enhanced by Cavin Otieno - MiniMax Agent
+// Enhanced by Cavin Otieno - Cavin Otieno
 // Comprehensive AI-powered tabs system with advanced analytics and educational intelligence
 
 import React, { useState, useEffect, useMemo, useCallback, useRef, createContext, useContext } from 'react';

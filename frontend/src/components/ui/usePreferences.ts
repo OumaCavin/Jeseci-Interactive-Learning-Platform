@@ -1,5 +1,5 @@
 // JAC Learning Platform - User Preferences Hook
-// Enhanced by Cavin Otieno - MiniMax Agent
+// Enhanced by Cavin Otieno - Cavin Otieno
 // Comprehensive user preferences and personalization system for Button Intelligence Platform
 
 import { useState, useEffect, useCallback, useMemo } from 'react';

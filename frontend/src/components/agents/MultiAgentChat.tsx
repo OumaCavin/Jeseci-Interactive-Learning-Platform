@@ -1,6 +1,6 @@
 // JAC Learning Platform - Enhanced Multi-Agent Chat Interface
 // Complete Multi-Agent Orchestration System
-// Author: MiniMax Agent
+// Author: Cavin Otieno
 // Enhanced: 2025-12-03
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';

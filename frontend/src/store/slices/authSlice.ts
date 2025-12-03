@@ -1,5 +1,5 @@
 // JAC Learning Platform - Enterprise Authentication System
-// Author: MiniMax Agent
+// Author: Cavin Otieno
 // Architecture: Zustand with enterprise-grade security features
 
 import { create } from 'zustand';

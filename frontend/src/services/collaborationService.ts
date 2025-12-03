@@ -14,7 +14,7 @@
  * - Gamification & Engagement Systems with achievements and rewards
  * - Multi-Platform Integration with agentService, assessmentService, and authService
  * 
- * @author MiniMax Agent
+ * @author Cavin Otieno
  * @version 2.0.0
  * @since 2025-12-03
  */

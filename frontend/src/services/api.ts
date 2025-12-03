@@ -1,5 +1,5 @@
 // JAC Learning Platform - Enterprise API Client
-// Enhanced by MiniMax Agent - Cavin Otieno
+// Enhanced by Cavin Otieno - Cavin Otieno
 // Comprehensive API client with AI integration and educational intelligence
 
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';

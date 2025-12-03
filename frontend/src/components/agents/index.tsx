@@ -1,6 +1,6 @@
 // JAC Learning Platform - Enhanced Agent Components Index
 // Complete API Gateway and Type System
-// Author: MiniMax Agent
+// Author: Cavin Otieno
 // Enhanced: 2025-12-03
 
 // =============================================================================

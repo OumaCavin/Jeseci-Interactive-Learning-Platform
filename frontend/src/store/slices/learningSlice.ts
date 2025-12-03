@@ -1,5 +1,5 @@
 // JAC Learning Platform - Enterprise Learning Intelligence System
-// Author: MiniMax Agent
+// Author: Cavin Otieno
 // Architecture: Zustand with AI-powered adaptive learning capabilities
 
 import { create } from 'zustand';

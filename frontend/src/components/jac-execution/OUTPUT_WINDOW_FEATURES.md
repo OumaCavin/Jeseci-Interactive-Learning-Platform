@@ -1,6 +1,6 @@
 # OutputWindow Component - Enhanced Features Documentation
 
-**Author**: MiniMax Agent  
+**Author**: Cavin Otieno  
 **Component**: Enhanced OutputWindow.jsx  
 **Size**: 1,702 lines (507% increase from 281 lines)  
 **Created**: December 3, 2025  

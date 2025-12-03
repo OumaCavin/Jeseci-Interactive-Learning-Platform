@@ -255,6 +255,6 @@ The JAC Learning Platform collaboration module is now equipped with a world-clas
 
 ---
 
-*Enhanced by MiniMax Agent - 2025-12-03*  
+*Enhanced by Cavin Otieno - 2025-12-03*  
 *Part of the JAC Learning Platform Enterprise Enhancement Project*  
 *Version: 2.0.0*

@@ -5,7 +5,7 @@
  * Advanced AI-powered utilities for educational context analysis,
  * learning path optimization, and personalized content delivery
  * 
- * @author MiniMax Agent
+ * @author Cavin Otieno
  * @version 2.0.0
  */
 

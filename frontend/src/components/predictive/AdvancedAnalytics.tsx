@@ -13,7 +13,7 @@
  * React components for sophisticated statistical analysis, enhanced ML insights,
  * advanced pattern recognition, and integrated personalized recommendations.
  * 
- * Author: MiniMax Agent
+ * Author: Cavin Otieno
  * Created: 2025-12-03
  * Version: 2.0 (Enterprise Edition)
  * 

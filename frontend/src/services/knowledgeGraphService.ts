@@ -1,4 +1,4 @@
-// JAC Learning Platform - Enterprise Knowledge Intelligence Platform by MiniMax Agent
+// JAC Learning Platform - Enterprise Knowledge Intelligence Platform by Cavin Otieno
 // Transforms basic knowledge graph functionality into world-class AI-powered enterprise system
 
 import { apiClient } from './apiClient';

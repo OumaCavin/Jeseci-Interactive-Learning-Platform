@@ -15,7 +15,7 @@
  * - Behavioral Analytics for user engagement patterns
  * - Gamification Health Metrics and platform effectiveness monitoring
  * 
- * @author MiniMax Agent
+ * @author Cavin Otieno
  * @version 2.0.0
  * @since 2025-12-03
  */

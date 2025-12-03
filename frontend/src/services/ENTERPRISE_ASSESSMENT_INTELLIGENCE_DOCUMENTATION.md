@@ -706,6 +706,6 @@ This enterprise-grade solution positions the JAC Learning Platform as a leader i
 
 ---
 
-*Author: MiniMax Agent*  
+*Author: Cavin Otieno*  
 *Version: 3.0.0*  
 *Date: 2025-12-03*

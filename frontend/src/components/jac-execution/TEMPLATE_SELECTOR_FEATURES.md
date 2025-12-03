@@ -1,6 +1,6 @@
 # TemplateSelector Component - Enhanced Features Documentation
 
-**Author**: MiniMax Agent  
+**Author**: Cavin Otieno  
 **Component**: Enhanced TemplateSelector.jsx  
 **Size**: 1,591 lines (437% increase from 296 lines)  
 **Created**: December 3, 2025  

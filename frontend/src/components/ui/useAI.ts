@@ -1,5 +1,5 @@
 // JAC Learning Platform - AI Integration Hook
-// Enhanced by Cavin Otieno - MiniMax Agent
+// Enhanced by Cavin Otieno - Cavin Otieno
 // AI-powered optimization and recommendations for Button Intelligence Platform
 
 import { useState, useEffect, useCallback, useMemo } from 'react';

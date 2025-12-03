@@ -1,6 +1,6 @@
 // JAC Learning Platform - Enterprise Loading Intelligence Platform
 // Enhanced with AI-powered insights, educational optimization, and comprehensive analytics
-// Author: MiniMax Agent
+// Author: Cavin Otieno
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';

@@ -1,5 +1,5 @@
 // JAC Learning Platform - Enterprise Input Intelligence Platform
-// Enhanced by Cavin Otieno - MiniMax Agent
+// Enhanced by Cavin Otieno - Cavin Otieno
 // Comprehensive AI-powered input system with advanced analytics and educational intelligence
 
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';

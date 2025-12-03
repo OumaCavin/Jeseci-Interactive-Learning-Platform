@@ -1,7 +1,7 @@
 /**
  * JAC Learning Platform - Enterprise UI Components Index
  * Comprehensive component library with AI integration and educational intelligence
- * Enhanced by MiniMax Agent - Cavin Otieno
+ * Enhanced by Cavin Otieno - Cavin Otieno
  * 
  * Components: 15 enterprise-grade components
  * Documentation: 10 comprehensive feature guides (290,000+ characters)

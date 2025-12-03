@@ -1,7 +1,7 @@
 // JAC Learning Platform - Enterprise Real-time Intelligence Platform
 // Advanced real-time dashboard with AI insights, collaboration, and analytics
 //
-// Author: MiniMax Agent
+// Author: Cavin Otieno
 // Created: 2025-12-03
 // Enhanced from Cavin Otieno's original implementation (463 lines)
 // Growth: 463 → 1,800+ lines (290% enhancement!)

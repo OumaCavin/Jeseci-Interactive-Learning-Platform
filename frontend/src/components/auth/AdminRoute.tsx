@@ -1,6 +1,6 @@
 // JAC Learning Platform - Enhanced AdminRoute Component
 // Complete Admin Management Platform
-// Author: MiniMax Agent
+// Author: Cavin Otieno
 // Enhanced: 2025-12-03
 
 import React, { useState, useEffect, useMemo } from 'react';

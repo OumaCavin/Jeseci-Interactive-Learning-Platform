@@ -14,7 +14,7 @@
  * - Real-time Error Monitoring
  * - Learning-Optimized Error UX
  * 
- * Author: MiniMax Agent (Enhanced from Cavin Otieno's Foundation)
+ * Author: Cavin Otieno (Enhanced from Cavin Otieno's Foundation)
  * Created: 2025-12-03
  * Enhanced: 2025-12-03
  */

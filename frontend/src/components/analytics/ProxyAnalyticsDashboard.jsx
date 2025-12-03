@@ -5,7 +5,7 @@
  * Real-time analytics dashboard for monitoring and analyzing
  * educational proxy performance, user engagement, and system health
  * 
- * @author MiniMax Agent
+ * @author Cavin Otieno
  * @version 2.0.0
  */
 

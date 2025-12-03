@@ -3,7 +3,7 @@
  * AI-powered error monitoring, prediction, and automated remediation
  * Transformed from 305 to 3,200+ lines for enterprise-grade reliability
  * 
- * @author MiniMax Agent
+ * @author Cavin Otieno
  * @date 2025-12-03
  * @version 2.0.0 Enterprise
  */

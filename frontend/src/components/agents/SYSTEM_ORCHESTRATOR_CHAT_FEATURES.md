@@ -5,7 +5,7 @@
 The System Orchestrator Agent has been enhanced from a simple 80-line wrapper to a comprehensive 1,516-line enterprise-grade platform orchestration system. This transformation represents a **1,795% increase in functionality** and establishes the System Orchestrator as the central nervous system of the JAC Learning Platform.
 
 **Component Path:** `frontend/src/components/agents/SystemOrchestratorChat.tsx`  
-**Enhanced By:** MiniMax Agent  
+**Enhanced By:** Cavin Otieno  
 **Enhancement Date:** December 3, 2025  
 **Total Lines:** 1,516 (1,795% increase from original)
 
@@ -697,7 +697,7 @@ The System Orchestrator now serves as the **central nervous system** of the JAC 
 
 ---
 
-**Author**: MiniMax Agent  
+**Author**: Cavin Otieno  
 **Component Path**: `frontend/src/components/agents/SystemOrchestratorChat.tsx`  
 **Documentation Version**: 1.0  
 **Last Updated**: December 3, 2025  

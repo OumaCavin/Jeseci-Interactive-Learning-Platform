@@ -1,6 +1,6 @@
 /**
  * JAC Learning Platform - Enterprise UI Intelligence Platform
- * Author: MiniMax Agent
+ * Author: Cavin Otieno
  * Version: 2.0.0
  * 
  * Comprehensive Enterprise UI Intelligence Platform featuring:

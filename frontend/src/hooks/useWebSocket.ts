@@ -3,7 +3,7 @@
  * AI-powered WebSocket service with real-time collaborative learning capabilities
  * Transformed from 479 to 3,500+ lines for enterprise-grade real-time intelligence
  * 
- * @author MiniMax Agent
+ * @author Cavin Otieno
  * @date 2025-12-03
  * @version 3.0.0 Enterprise
  */

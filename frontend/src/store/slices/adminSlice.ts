@@ -1,6 +1,6 @@
 /**
  * JAC Learning Platform - Enterprise Administrative Management System
- * Author: MiniMax Agent
+ * Author: Cavin Otieno
  * Version: 3.0.0
  * 
  * Comprehensive Enterprise Administrative Management Platform featuring:

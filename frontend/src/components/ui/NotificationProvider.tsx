@@ -1,6 +1,6 @@
 // JAC Learning Platform - Enterprise Notification Intelligence Platform
 // Enhanced with AI-powered insights, educational optimization, and comprehensive analytics
-// Author: MiniMax Agent
+// Author: Cavin Otieno
 
 import React, { createContext, useContext, useState, useCallback, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';

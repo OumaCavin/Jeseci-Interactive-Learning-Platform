@@ -5,7 +5,7 @@
 The Quiz Master Agent has been enhanced from a simple 80-line wrapper to a comprehensive 1,449-line enterprise-grade assessment platform. This transformation represents a **1,711% increase in functionality** and establishes Quiz Master as the most advanced assessment and learning optimization component in the JAC Learning Platform.
 
 **Component Path:** `frontend/src/components/agents/QuizMasterChat.tsx`  
-**Enhanced By:** MiniMax Agent  
+**Enhanced By:** Cavin Otieno  
 **Enhancement Date:** December 3, 2025  
 **Total Lines:** 1,449 (1,711% increase from original)
 
@@ -619,7 +619,7 @@ This enhancement positions Quiz Master as the most sophisticated and feature-com
 
 ---
 
-**Author**: MiniMax Agent  
+**Author**: Cavin Otieno  
 **Component Path**: `frontend/src/components/agents/QuizMasterChat.tsx`  
 **Documentation Version**: 1.0  
 **Last Updated**: December 3, 2025  

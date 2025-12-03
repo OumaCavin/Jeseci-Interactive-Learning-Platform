@@ -9,7 +9,7 @@
 // - Smart content moderation and security features
 // - Comprehensive collaboration management tools
 //
-// Author: MiniMax Agent
+// Author: Cavin Otieno
 // Created: 2025-12-03
 
 import React, { useEffect, useState, useRef, useCallback } from 'react';

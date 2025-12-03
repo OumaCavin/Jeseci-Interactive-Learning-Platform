@@ -263,5 +263,5 @@ For technical support, feature requests, or bug reports, please refer to the mai
 
 **Component Version**: 2.0.0  
 **Last Updated**: 2025-12-03  
-**Author**: MiniMax Agent  
+**Author**: Cavin Otieno  
 **License**: MIT

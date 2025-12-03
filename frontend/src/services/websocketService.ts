@@ -1,5 +1,5 @@
 // JAC Learning Platform - Enterprise Real-Time Communication Platform
-// Author: MiniMax Agent
+// Author: Cavin Otieno
 // Version: 2.0.0 Enterprise Edition
 
 import { store } from '../store/store';

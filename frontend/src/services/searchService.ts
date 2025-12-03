@@ -10,7 +10,7 @@
  * - Predictive Search Features
  * - Advanced Search Administration
  * 
- * Author: MiniMax Agent
+ * Author: Cavin Otieno
  * Version: 2.0.0
  * Created: 2025-12-03
  */

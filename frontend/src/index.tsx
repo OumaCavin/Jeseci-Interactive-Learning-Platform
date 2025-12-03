@@ -1,4 +1,4 @@
-// JAC Learning Platform - Enhanced Entry Point by MiniMax Agent
+// JAC Learning Platform - Enhanced Entry Point by Cavin Otieno
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';

@@ -1,6 +1,6 @@
 # Enterprise Notification Intelligence Platform - Feature Documentation
 
-**Author**: MiniMax Agent  
+**Author**: Cavin Otieno  
 **Date**: December 3, 2025  
 **Component**: NotificationProvider.tsx  
 **Enhancement**: 182 → 1,740 lines (**857% growth** - Breakthrough Achievement!)

@@ -1421,7 +1421,7 @@ This platform serves as the foundation for creating engaging, intelligent, and a
 
 ---
 
-**Author**: MiniMax Agent  
+**Author**: Cavin Otieno  
 **Version**: 1.0.0  
 **Last Updated**: 2025-12-03  
 **License**: Proprietary - JAC Learning Platform

@@ -399,7 +399,7 @@ This enterprise-grade solution provides:
 
 ---
 
-*Author: MiniMax Agent*  
+*Author: Cavin Otieno*  
 *Project: JAC Learning Platform Enhancement*  
 *Version: 3.0.0*  
 *Date: 2025-12-03*  

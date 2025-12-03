@@ -1,4 +1,4 @@
-// JAC Learning Platform - Enterprise Badge Intelligence Platform by MiniMax Agent
+// JAC Learning Platform - Enterprise Badge Intelligence Platform by Cavin Otieno
 // Comprehensive badge system with AI optimization, analytics, and educational features
 
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';

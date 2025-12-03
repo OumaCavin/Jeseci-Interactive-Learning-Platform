@@ -1,4 +1,4 @@
-// JAC Learning Platform - Enterprise Avatar Intelligence Platform by MiniMax Agent
+// JAC Learning Platform - Enterprise Avatar Intelligence Platform by Cavin Otieno
 // Comprehensive avatar system with AI optimization, analytics, and educational features
 
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
