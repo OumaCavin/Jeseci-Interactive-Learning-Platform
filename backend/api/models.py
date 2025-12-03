@@ -215,3 +215,192 @@ class LearningSession(models.Model):
     class Meta:
         db_table = 'learning_session'
         ordering = ['-start_time']
+
+class Achievement(models.Model):
+    """Achievement definitions for the platform"""
+    DIFFICULTY_LEVELS = [
+        ('bronze', 'Bronze'),
+        ('silver', 'Silver'),
+        ('gold', 'Gold'),
+        ('platinum', 'Platinum'),
+    ]
+    
+    CATEGORIES = [
+        ('learning', 'Learning'),
+        ('coding', 'Coding'),
+        ('streak', 'Streaks'),
+        ('special', 'Special'),
+        ('milestone', 'Milestones'),
+    ]
+    
+    RARITIES = [
+        ('common', 'Common'),
+        ('rare', 'Rare'),
+        ('epic', 'Epic'),
+        ('legendary', 'Legendary'),
+    ]
+    
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    icon = models.CharField(max_length=50, help_text='Icon name or class')
+    difficulty = models.CharField(max_length=20, choices=DIFFICULTY_LEVELS)
+    category = models.CharField(max_length=20, choices=CATEGORIES)
+    rarity = models.CharField(max_length=20, choices=RARITIES, default='common')
+    points = models.IntegerField(default=0)
+    criteria_type = models.CharField(max_length=50)  # module_completion, points, streak, etc.
+    criteria_value = models.IntegerField(help_text='Target value for achievement')
+    criteria_operator = models.CharField(max_length=10, default='>=', help_text='Comparison operator')
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        db_table = 'achievement'
+        ordering = ['name']
+
+class UserAchievement(models.Model):
+    """Track user achievement progress and unlocks"""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='achievements')
+    achievement = models.ForeignKey(Achievement, on_delete=models.CASCADE, related_name='user_achievements')
+    progress = models.IntegerField(default=0, help_text='Current progress towards achievement')
+    is_unlocked = models.BooleanField(default=False)
+    unlocked_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        db_table = 'user_achievement'
+        unique_together = ['user', 'achievement']
+        ordering = ['-updated_at']
+
+class Badge(models.Model):
+    """Badge definitions"""
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    icon = models.CharField(max_length=50)
+    color = models.CharField(max_length=20, default='blue')
+    requirements = models.JSONField(default=dict, help_text='Requirements to earn badge')
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        db_table = 'badge'
+        ordering = ['name']
+
+class UserBadge(models.Model):
+    """Track user badges"""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='badges')
+    badge = models.ForeignKey(Badge, on_delete=models.CASCADE, related_name='user_badges')
+    earned_at = models.DateTimeField(auto_now_add=True)
+    metadata = models.JSONField(default=dict)
+    
+    class Meta:
+        db_table = 'user_badge'
+        unique_together = ['user', 'badge']
+        ordering = ['-earned_at']
+
+class SystemLog(models.Model):
+    """System activity and error logs"""
+    LOG_TYPES = [
+        ('user_registration', 'User Registration'),
+        ('path_completion', 'Path Completion'),
+        ('module_completion', 'Module Completion'),
+        ('agent_action', 'Agent Action'),
+        ('system_alert', 'System Alert'),
+        ('login', 'User Login'),
+        ('logout', 'User Logout'),
+        ('quiz_completion', 'Quiz Completion'),
+    ]
+    
+    SEVERITY_LEVELS = [
+        ('low', 'Low'),
+        ('medium', 'Medium'),
+        ('high', 'High'),
+        ('critical', 'Critical'),
+    ]
+    
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    log_type = models.CharField(max_length=30, choices=LOG_TYPES)
+    message = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    severity = models.CharField(max_length=20, choices=SEVERITY_LEVELS, default='low')
+    metadata = models.JSONField(default=dict)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        db_table = 'system_log'
+        ordering = ['-timestamp']
+
+class AIAgent(models.Model):
+    """AI Agent definitions and status"""
+    AGENT_TYPES = [
+        ('motivator', 'Motivator'),
+        ('progress_tracker', 'Progress Tracker'),
+        ('content_curator', 'Content Curator'),
+        ('evaluator', 'Evaluator'),
+        ('quiz_master', 'Quiz Master'),
+        ('orchestrator', 'Orchestrator'),
+    ]
+    
+    STATUS_TYPES = [
+        ('idle', 'Idle'),
+        ('busy', 'Busy'),
+        ('active', 'Active'),
+        ('error', 'Error'),
+        ('offline', 'Offline'),
+    ]
+    
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=100)
+    agent_type = models.CharField(max_length=30, choices=AGENT_TYPES)
+    status = models.CharField(max_length=20, choices=STATUS_TYPES, default='offline')
+    description = models.TextField()
+    tasks = models.IntegerField(default=0)
+    uptime = models.IntegerField(default=0, help_text='Uptime in seconds')
+    performance = models.FloatField(default=0.0, help_text='Performance score 0-100')
+    response_time = models.FloatField(default=0.0, help_text='Average response time in ms')
+    last_active = models.DateTimeField(null=True, blank=True)
+    health_score = models.FloatField(default=0.0, help_text='Health score 0-100')
+    queue_size = models.IntegerField(default=0)
+    capabilities = models.JSONField(default=list)
+    config = models.JSONField(default=dict)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        db_table = 'ai_agent'
+        ordering = ['name']
+
+class SystemHealth(models.Model):
+    """System health metrics"""
+    OVERALL_STATUS = [
+        ('healthy', 'Healthy'),
+        ('degraded', 'Degraded'),
+        ('unhealthy', 'Unhealthy'),
+        ('offline', 'Offline'),
+    ]
+    
+    overall_status = models.CharField(max_length=20, choices=OVERALL_STATUS)
+    health_score = models.FloatField(default=0.0)
+    active_sessions = models.IntegerField(default=0)
+    cpu_usage = models.FloatField(default=0.0)
+    memory_usage = models.FloatField(default=0.0)
+    disk_usage = models.FloatField(default=0.0)
+    network_latency = models.FloatField(default=0.0)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        db_table = 'system_health'
+        ordering = ['-timestamp']

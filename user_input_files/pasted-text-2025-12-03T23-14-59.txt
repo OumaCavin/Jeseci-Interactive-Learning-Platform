@@ -1,0 +1,1023 @@
+    3003 |                 behaviorPatterns: currentState.uxIntelligence.behaviorTracking,
+    3004 |                 currentProfile: currentState.uxIntelligence.personalization.userProfile,
+    3005 |                 interactionHistory: currentState.layout.layoutIntelligence.interactionAnalytics
+
+ERROR in src/store/slices/uiSlice.ts:3061:55
+TS2339: Property 'generateInsight' does not exist on type 'OpenAIService'.
+    3059 |             try {
+    3060 |               const currentState = get();
+  > 3061 |               const suggestions = await openaiService.generateInsight(
+         |                                                       ^^^^^^^^^^^^^^^
+    3062 |                 `Generate smart UI suggestions for context: ${context}`,
+    3063 |                 'smart_suggestions'
+    3064 |               );
+
+ERROR in src/store/slices/uiSlice.ts:3096:60
+TS2339: Property 'optimizeUserFlow' does not exist on type 'GeminiService'.
+    3094 |             try {
+    3095 |               const currentState = get();
+  > 3096 |               const flowOptimization = await geminiService.optimizeUserFlow({
+         |                                                            ^^^^^^^^^^^^^^^^
+    3097 |                 flowId,
+    3098 |                 currentFlow: currentState.uxIntelligence.flowOptimization.userFlows.find(f => f.id === flowId),
+    3099 |                 behaviorData: currentState.uxIntelligence.behaviorTracking,
+
+ERROR in src/store/slices/uiSlice.ts:3149:56
+TS2698: Spread types may only be created from object types.
+    3147 |           updatePerformanceMetrics: (metrics: Partial<UIPerformanceMetrics>) => set((state) => {
+    3148 |             if (metrics.renderTime) {
+  > 3149 |               state.performance.metrics.renderTime = { ...state.performance.metrics.renderTime, ...metrics.renderTime };
+         |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    3150 |             }
+    3151 |             if (metrics.frameRate) {
+    3152 |               state.performance.metrics.frameRate = { ...state.performance.metrics.frameRate, ...metrics.frameRate };
+
+ERROR in src/store/slices/uiSlice.ts:3149:97
+TS2698: Spread types may only be created from object types.
+    3147 |           updatePerformanceMetrics: (metrics: Partial<UIPerformanceMetrics>) => set((state) => {
+    3148 |             if (metrics.renderTime) {
+  > 3149 |               state.performance.metrics.renderTime = { ...state.performance.metrics.renderTime, ...metrics.renderTime };
+         |                                                                                                 ^^^^^^^^^^^^^^^^^^^^^
+    3150 |             }
+    3151 |             if (metrics.frameRate) {
+    3152 |               state.performance.metrics.frameRate = { ...state.performance.metrics.frameRate, ...metrics.frameRate };
+
+ERROR in src/store/slices/uiSlice.ts:3155:57
+TS2698: Spread types may only be created from object types.
+    3153 |             }
+    3154 |             if (metrics.memoryUsage) {
+  > 3155 |               state.performance.metrics.memoryUsage = { ...state.performance.metrics.memoryUsage, ...metrics.memoryUsage };
+         |                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    3156 |             }
+    3157 |             if (metrics.cpuUsage) {
+    3158 |               state.performance.metrics.cpuUsage = { ...state.performance.metrics.cpuUsage, ...metrics.cpuUsage };
+
+ERROR in src/store/slices/uiSlice.ts:3155:99
+TS2698: Spread types may only be created from object types.
+    3153 |             }
+    3154 |             if (metrics.memoryUsage) {
+  > 3155 |               state.performance.metrics.memoryUsage = { ...state.performance.metrics.memoryUsage, ...metrics.memoryUsage };
+         |                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^
+    3156 |             }
+    3157 |             if (metrics.cpuUsage) {
+    3158 |               state.performance.metrics.cpuUsage = { ...state.performance.metrics.cpuUsage, ...metrics.cpuUsage };
+
+ERROR in src/store/slices/uiSlice.ts:3173:59
+TS2339: Property 'generateInsight' does not exist on type 'OpenAIService'.
+    3171 |           analyzePerformanceAnomaly: async (metric: string, value: number) => {
+    3172 |             try {
+  > 3173 |               const anomalyAnalysis = await openaiService.generateInsight(
+         |                                                           ^^^^^^^^^^^^^^^
+    3174 |                 `Analyze performance anomaly for ${metric}: ${value}`,
+    3175 |                 'performance_anomaly'
+    3176 |               );
+
+ERROR in src/store/slices/uiSlice.ts:3195:54
+TS2339: Property 'predictPerformance' does not exist on type 'GeminiService'.
+    3193 |             try {
+    3194 |               const currentState = get();
+  > 3195 |               const prediction = await geminiService.predictPerformance({
+         |                                                      ^^^^^^^^^^^^^^^^^^
+    3196 |                 historicalMetrics: currentState.performance.metrics.history,
+    3197 |                 currentMetrics: currentState.performance.metrics,
+    3198 |                 userLoad: currentState.userAnalytics?.engagement || 0
+
+ERROR in src/store/slices/uiSlice.ts:3198:40
+TS2339: Property 'userAnalytics' does not exist on type 'UIState'.
+    3196 |                 historicalMetrics: currentState.performance.metrics.history,
+    3197 |                 currentMetrics: currentState.performance.metrics,
+  > 3198 |                 userLoad: currentState.userAnalytics?.engagement || 0
+         |                                        ^^^^^^^^^^^^^
+    3199 |               });
+    3200 |               
+    3201 |               set((state) => {
+
+ERROR in src/store/slices/uiSlice.ts:3433:56
+TS2339: Property 'optimizeAccessibility' does not exist on type 'GeminiService'.
+    3431 |             try {
+    3432 |               const currentState = get();
+  > 3433 |               const optimization = await geminiService.optimizeAccessibility({
+         |                                                        ^^^^^^^^^^^^^^^^^^^^^
+    3434 |                 currentFeatures: currentState.accessibility.features,
+    3435 |                 complianceLevel: currentState.accessibility.compliance.wcagLevel,
+    3436 |                 userNeeds: currentState.accessibility.userPreferences.preferences
+
+ERROR in src/store/slices/uiSlice.ts:3481:49
+TS2339: Property 'generateInsight' does not exist on type 'OpenAIService'.
+    3479 |             try {
+    3480 |               const currentState = get();
+  > 3481 |               const audit = await openaiService.generateInsight(
+         |                                                 ^^^^^^^^^^^^^^^
+    3482 |                 `Run accessibility audit for current UI state: ${JSON.stringify({
+    3483 |                   features: currentState.accessibility.features,
+    3484 |                   compliance: currentState.accessibility.compliance,
+
+ERROR in src/store/slices/uiSlice.ts:3565:13
+TS2322: Type 'string' is not assignable to type 'string[]'.
+    3563 |           // Access Control Management
+    3564 |           setUserRole: (userId: string, role: string) => set((state) => {
+  > 3565 |             state.enterprise.governance.accessControl.roles[userId] = role;
+         |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    3566 |           }),
+    3567 |           
+    3568 |           setUserPermissions: (userId: string, permissions: string[]) => set((state) => {
+
+ERROR in src/store/slices/uiSlice.ts:3664:54
+TS2339: Property 'generateInsight' does not exist on type 'OpenAIService'.
+    3662 |               if (!report) return null;
+    3663 |               
+  > 3664 |               const reportData = await openaiService.generateInsight(
+         |                                                      ^^^^^^^^^^^^^^^
+    3665 |                 `Generate ${report.type} report with current data`,
+    3666 |                 'report_generation'
+    3667 |               );
+
+ERROR in src/store/slices/uiSlice.ts:4007:68
+TS2339: Property 'getUIStateSummary' does not exist on type 'UIState'.
+    4005 | // Utility Selectors
+    4006 | export const useUIState = () => useUIStore((state) => state);
+  > 4007 | export const useUIStateSummary = () => useUIStore((state) => state.getUIStateSummary());
+         |                                                                    ^^^^^^^^^^^^^^^^^
+    4008 |
+    4009 | // =============================================================================
+    4010 | // SUBSCRIPTION HELPERS
+
+ERROR in src/store/store.ts:22:10
+TS2614: Module '"../services/websocketService"' has no exported member 'websocketService'. Did you mean to use 'import websocketService from "../services/websocketService"' instead?
+    20 | import { openaiService } from '../services/openaiService';
+    21 | import { geminiService } from '../services/geminiService';
+  > 22 | import { websocketService } from '../services/websocketService';
+       |          ^^^^^^^^^^^^^^^^
+    23 | import { useAdminStore } from './slices/adminSlice';
+    24 | import { useAgentStore } from './slices/agentSlice';
+    25 | import { useAssessmentStore } from './slices/assessmentSlice';
+
+ERROR in src/store/store.ts:599:19
+TS2304: Cannot find name 'SecurityConfiguration'.
+    597 |   aiConfig: AIConfiguration;
+    598 |   performanceConfig: PerformanceConfiguration;
+  > 599 |   securityConfig: SecurityConfiguration;
+        |                   ^^^^^^^^^^^^^^^^^^^^^
+    600 |   maintenanceMode: boolean;
+    601 | }
+    602 |
+
+ERROR in src/store/store.ts:1492:19
+TS2339: Property 'admin' does not exist on type 'WritableDraft<AppState>'.
+    1490 |           // Admin Actions
+    1491 |           setUsers: (users: User[]) => set((state) => {
+  > 1492 |             state.admin.users = users;
+         |                   ^^^^^
+    1493 |             state.users = users;
+    1494 |           }),
+    1495 |           
+
+ERROR in src/store/store.ts:1497:19
+TS2339: Property 'admin' does not exist on type 'WritableDraft<AppState>'.
+    1495 |           
+    1496 |           setRoles: (roles: Role[]) => set((state) => {
+  > 1497 |             state.admin.roles = roles;
+         |                   ^^^^^
+    1498 |             state.roles = roles;
+    1499 |           }),
+    1500 |           
+
+ERROR in src/store/store.ts:1504:33
+TS2339: Property 'admin' does not exist on type 'WritableDraft<AppState>'.
+    1502 |           
+    1503 |           updateSystemMetrics: (metrics: Partial<SystemMetrics>) => set((state) => {
+  > 1504 |             Object.assign(state.admin.systemMetrics, metrics);
+         |                                 ^^^^^
+    1505 |           }),
+    1506 |           
+    1507 |           addAlert: (alert: Alert) => set((state) => {
+
+ERROR in src/store/store.ts:1508:19
+TS2339: Property 'admin' does not exist on type 'WritableDraft<AppState>'.
+    1506 |           
+    1507 |           addAlert: (alert: Alert) => set((state) => {
+  > 1508 |             state.admin.alerts.push(alert);
+         |                   ^^^^^
+    1509 |           }),
+    1510 |           
+    1511 |           updateMaintenanceStatus: (status: Partial<MaintenanceStatus>) => set((state) => {
+
+ERROR in src/store/store.ts:1512:33
+TS2339: Property 'admin' does not exist on type 'WritableDraft<AppState>'.
+    1510 |           
+    1511 |           updateMaintenanceStatus: (status: Partial<MaintenanceStatus>) => set((state) => {
+  > 1512 |             Object.assign(state.admin.maintenance, status);
+         |                                 ^^^^^
+    1513 |           }),
+    1514 |           
+    1515 |           addAIInsightAdmin: (insight: AIInsight) => set((state) => {
+
+ERROR in src/store/store.ts:1516:19
+TS2339: Property 'admin' does not exist on type 'WritableDraft<AppState>'.
+    1514 |           
+    1515 |           addAIInsightAdmin: (insight: AIInsight) => set((state) => {
+  > 1516 |             state.admin.aiInsights.push(insight);
+         |                   ^^^^^
+    1517 |           }),
+    1518 |           
+    1519 | // Admin predictive analytics and automation methods moved to separate admin store
+
+ERROR in src/store/store.ts:1680:15
+TS2322: Type '"in_progress" | "accepted" | "open" | "resolved"' is not assignable to type '"partial" | "met" | "not_met"'.
+  Type '"in_progress"' is not assignable to type '"partial" | "met" | "not_met"'.
+    1678 |                            state.complianceStatus.hipaa.findings.find(f => f.id === id);
+    1679 |             if (finding) {
+  > 1680 |               finding.status = status;
+         |               ^^^^^^^^^^^^^^
+    1681 |             }
+    1682 |           }),
+    1683 |           
+
+ERROR in src/store/store.ts:1693:75
+TS2339: Property 'status' does not exist on type 'IntegrationConfig'.
+    1691 |           }),
+    1692 |           
+  > 1693 |           updateIntegrationStatus: (id: string, status: IntegrationConfig['status']) => set((state) => {
+         |                                                                           ^^^^^^^^
+    1694 |             const integration = state.integrations.find(i => i.id === id);
+    1695 |             if (integration) {
+    1696 |               integration.status = status;
+
+ERROR in src/store/store.ts:1694:64
+TS2339: Property 'id' does not exist on type 'WritableDraft<IntegrationConfig>'.
+    1692 |           
+    1693 |           updateIntegrationStatus: (id: string, status: IntegrationConfig['status']) => set((state) => {
+  > 1694 |             const integration = state.integrations.find(i => i.id === id);
+         |                                                                ^^
+    1695 |             if (integration) {
+    1696 |               integration.status = status;
+    1697 |             }
+
+ERROR in src/store/store.ts:1696:27
+TS2339: Property 'status' does not exist on type 'WritableDraft<IntegrationConfig>'.
+    1694 |             const integration = state.integrations.find(i => i.id === id);
+    1695 |             if (integration) {
+  > 1696 |               integration.status = status;
+         |                           ^^^^^^
+    1697 |             }
+    1698 |           }),
+    1699 |           
+
+ERROR in src/store/store.ts:1727:53
+TS2339: Property 'generateInsight' does not exist on type 'OpenAIService'.
+    1725 |             const currentState = get();
+    1726 |             try {
+  > 1727 |               const aiInsight = await openaiService.generateInsight(
+         |                                                     ^^^^^^^^^^^^^^^
+    1728 |                 `Optimize user experience based on current state: ${JSON.stringify({
+    1729 |                   user: currentState.user,
+    1730 |                   preferences: currentState.preferences,
+
+ERROR in src/store/store.ts:1763:61
+TS2339: Property 'personalizeLearning' does not exist on type 'GeminiService'.
+    1761 |             try {
+    1762 |               const userProgress = currentState.progress;
+  > 1763 |               const aiPersonalization = await geminiService.personalizeLearning(userProgress);
+         |                                                             ^^^^^^^^^^^^^^^^^^^
+    1764 |               
+    1765 |               set((state) => {
+    1766 |                 // Update learning preferences based on AI analysis
+
+ERROR in src/store/store.ts:1788:56
+TS2339: Property 'generateInsight' does not exist on type 'OpenAIService'.
+    1786 |           optimizeContent: async (contentId: string) => {
+    1787 |             try {
+  > 1788 |               const optimization = await openaiService.generateInsight(
+         |                                                        ^^^^^^^^^^^^^^^
+    1789 |                 `Optimize content: ${contentId}`,
+    1790 |                 'content_optimization'
+    1791 |               );
+
+ERROR in src/store/store.ts:1815:55
+TS2339: Property 'predictPerformance' does not exist on type 'GeminiService'.
+    1813 |             const currentState = get();
+    1814 |             try {
+  > 1815 |               const predictions = await geminiService.predictPerformance({
+         |                                                       ^^^^^^^^^^^^^^^^^^
+    1816 |                 performanceMetrics: currentState.performanceMetrics,
+    1817 |                 userAnalytics: currentState.userAnalytics,
+    1818 |                 systemAnalytics: currentState.systemAnalytics
+
+ERROR in src/store/store.ts:1839:60
+TS2339: Property 'generateInsight' does not exist on type 'OpenAIService'.
+    1837 |           monitorSecurity: async () => {
+    1838 |             try {
+  > 1839 |               const securityAnalysis = await openaiService.generateInsight(
+         |                                                            ^^^^^^^^^^^^^^^
+    1840 |                 'Monitor and analyze security status',
+    1841 |                 'security_monitoring'
+    1842 |               );
+
+ERROR in src/store/store.ts:1846:23
+TS2339: Property 'admin' does not exist on type 'WritableDraft<AppState>'.
+    1844 |               set((state) => {
+    1845 |                 // Add security insights
+  > 1846 |                 state.admin.aiInsights.push({
+         |                       ^^^^^
+    1847 |                   id: `security-${Date.now()}`,
+    1848 |                   type: 'security',
+    1849 |                   title: securityAnalysis.title || 'Security Analysis',
+
+ERROR in src/store/store.ts:1860:25
+TS2339: Property 'admin' does not exist on type 'WritableDraft<AppState>'.
+    1858 |                 // Update threat level if detected
+    1859 |                 if (securityAnalysis.threatLevel) {
+  > 1860 |                   state.admin.systemMetrics.aiPerformance = {
+         |                         ^^^^^
+    1861 |                     ...state.admin.systemMetrics.aiPerformance,
+    1862 |                     errorRate: securityAnalysis.threatLevel > 0.7 ? 0.05 : 0.01,
+    1863 |                     aiOptimized: true
+
+ERROR in src/store/store.ts:1861:30
+TS2339: Property 'admin' does not exist on type 'WritableDraft<AppState>'.
+    1859 |                 if (securityAnalysis.threatLevel) {
+    1860 |                   state.admin.systemMetrics.aiPerformance = {
+  > 1861 |                     ...state.admin.systemMetrics.aiPerformance,
+         |                              ^^^^^
+    1862 |                     errorRate: securityAnalysis.threatLevel > 0.7 ? 0.05 : 0.01,
+    1863 |                     aiOptimized: true
+    1864 |                   };
+
+ERROR in src/store/store.ts:1886:64
+TS2339: Property 'resolveConflicts' does not exist on type 'GeminiService'.
+    1884 |               // AI-powered conflict resolution
+    1885 |               if (currentState.conflicts.length > 0) {
+  > 1886 |                 const conflictResolution = await geminiService.resolveConflicts(currentState.conflicts);
+         |                                                                ^^^^^^^^^^^^^^^^
+    1887 |                 
+    1888 |                 set((state) => {
+    1889 |                   state.conflicts.forEach(conflict => {
+
+ERROR in src/store/store.ts:1899:52
+TS2339: Property 'optimizeSync' does not exist on type 'OpenAIService'.
+    1897 |               
+    1898 |               // AI-optimized data prioritization
+  > 1899 |               const syncData = await openaiService.optimizeSync({
+         |                                                    ^^^^^^^^^^^^
+    1900 |                 user: currentState.user,
+    1901 |                 progress: currentState.progress,
+    1902 |                 realTimeActivity: currentState.realTimeActivity
+
+ERROR in src/store/store.ts:1929:61
+TS2339: Property 'generateInsight' does not exist on type 'OpenAIService'.
+    1927 |             const currentState = get();
+    1928 |             try {
+  > 1929 |               const enhancedAnalytics = await openaiService.generateInsight(
+         |                                                             ^^^^^^^^^^^^^^^
+    1930 |                 `Enhance analytics with AI insights: ${JSON.stringify({
+    1931 |                   performance: currentState.performanceMetrics,
+    1932 |                   user: currentState.userAnalytics,
+
+ERROR in src/store/store.ts:2155:22
+TS2339: Property 'admin' does not exist on type 'AppState'.
+    2153 | export const subscribeToSystemMetrics = (callback: (metrics: SystemMetrics) => void) => {
+    2154 |   return useAppStore.subscribe(
+  > 2155 |     (state) => state.admin.systemMetrics,
+         |                      ^^^^^
+    2156 |     callback
+    2157 |   );
+    2158 | };
+
+ERROR in src/stores/adminStore.ts:193:45
+TS2339: Property 'generateMockStats' does not exist on type 'AdminState'.
+    191 |               // api.get('/admin/content/'),
+    192 |               // api.get('/admin/analytics/')
+  > 193 |               Promise.resolve({ data: get().generateMockStats() }),
+        |                                             ^^^^^^^^^^^^^^^^^
+    194 |               Promise.resolve({ data: get().generateMockActivity() }),
+    195 |               Promise.resolve({ data: get().generateMockUsers() }),
+    196 |               Promise.resolve({ data: get().generateMockContent() }),
+
+ERROR in src/stores/adminStore.ts:194:45
+TS2339: Property 'generateMockActivity' does not exist on type 'AdminState'.
+    192 |               // api.get('/admin/analytics/')
+    193 |               Promise.resolve({ data: get().generateMockStats() }),
+  > 194 |               Promise.resolve({ data: get().generateMockActivity() }),
+        |                                             ^^^^^^^^^^^^^^^^^^^^
+    195 |               Promise.resolve({ data: get().generateMockUsers() }),
+    196 |               Promise.resolve({ data: get().generateMockContent() }),
+    197 |               Promise.resolve({ data: get().generateMockAnalytics() })
+
+ERROR in src/stores/adminStore.ts:195:45
+TS2339: Property 'generateMockUsers' does not exist on type 'AdminState'.
+    193 |               Promise.resolve({ data: get().generateMockStats() }),
+    194 |               Promise.resolve({ data: get().generateMockActivity() }),
+  > 195 |               Promise.resolve({ data: get().generateMockUsers() }),
+        |                                             ^^^^^^^^^^^^^^^^^
+    196 |               Promise.resolve({ data: get().generateMockContent() }),
+    197 |               Promise.resolve({ data: get().generateMockAnalytics() })
+    198 |             ]);
+
+ERROR in src/stores/adminStore.ts:196:45
+TS2339: Property 'generateMockContent' does not exist on type 'AdminState'.
+    194 |               Promise.resolve({ data: get().generateMockActivity() }),
+    195 |               Promise.resolve({ data: get().generateMockUsers() }),
+  > 196 |               Promise.resolve({ data: get().generateMockContent() }),
+        |                                             ^^^^^^^^^^^^^^^^^^^
+    197 |               Promise.resolve({ data: get().generateMockAnalytics() })
+    198 |             ]);
+    199 |
+
+ERROR in src/stores/adminStore.ts:197:45
+TS2339: Property 'generateMockAnalytics' does not exist on type 'AdminState'.
+    195 |               Promise.resolve({ data: get().generateMockUsers() }),
+    196 |               Promise.resolve({ data: get().generateMockContent() }),
+  > 197 |               Promise.resolve({ data: get().generateMockAnalytics() })
+        |                                             ^^^^^^^^^^^^^^^^^^^^^
+    198 |             ]);
+    199 |
+    200 |           const stats = statsResponse.status === 'fulfilled' ? statsResponse.data : get().generateMockStats();
+
+ERROR in src/stores/adminStore.ts:200:78
+TS2339: Property 'data' does not exist on type 'PromiseFulfilledResult<{ data: any; }>'.
+    198 |             ]);
+    199 |
+  > 200 |           const stats = statsResponse.status === 'fulfilled' ? statsResponse.data : get().generateMockStats();
+        |                                                                              ^^^^
+    201 |           const activity = activityResponse.status === 'fulfilled' ? activityResponse.data : get().generateMockActivity();
+    202 |           const users = usersResponse.status === 'fulfilled' ? usersResponse.data : get().generateMockUsers();
+    203 |           const content = contentResponse.status === 'fulfilled' ? contentResponse.data : get().generateMockContent();
+
+ERROR in src/stores/adminStore.ts:200:91
+TS2339: Property 'generateMockStats' does not exist on type 'AdminState'.
+    198 |             ]);
+    199 |
+  > 200 |           const stats = statsResponse.status === 'fulfilled' ? statsResponse.data : get().generateMockStats();
+        |                                                                                           ^^^^^^^^^^^^^^^^^
+    201 |           const activity = activityResponse.status === 'fulfilled' ? activityResponse.data : get().generateMockActivity();
+    202 |           const users = usersResponse.status === 'fulfilled' ? usersResponse.data : get().generateMockUsers();
+    203 |           const content = contentResponse.status === 'fulfilled' ? contentResponse.data : get().generateMockContent();
+
+ERROR in src/stores/adminStore.ts:201:87
+TS2339: Property 'data' does not exist on type 'PromiseFulfilledResult<{ data: any; }>'.
+    199 |
+    200 |           const stats = statsResponse.status === 'fulfilled' ? statsResponse.data : get().generateMockStats();
+  > 201 |           const activity = activityResponse.status === 'fulfilled' ? activityResponse.data : get().generateMockActivity();
+        |                                                                                       ^^^^
+    202 |           const users = usersResponse.status === 'fulfilled' ? usersResponse.data : get().generateMockUsers();
+    203 |           const content = contentResponse.status === 'fulfilled' ? contentResponse.data : get().generateMockContent();
+    204 |           const analytics = analyticsResponse.status === 'fulfilled' ? analyticsResponse.data : get().generateMockAnalytics();
+
+ERROR in src/stores/adminStore.ts:201:100
+TS2339: Property 'generateMockActivity' does not exist on type 'AdminState'.
+    199 |
+    200 |           const stats = statsResponse.status === 'fulfilled' ? statsResponse.data : get().generateMockStats();
+  > 201 |           const activity = activityResponse.status === 'fulfilled' ? activityResponse.data : get().generateMockActivity();
+        |                                                                                                    ^^^^^^^^^^^^^^^^^^^^
+    202 |           const users = usersResponse.status === 'fulfilled' ? usersResponse.data : get().generateMockUsers();
+    203 |           const content = contentResponse.status === 'fulfilled' ? contentResponse.data : get().generateMockContent();
+    204 |           const analytics = analyticsResponse.status === 'fulfilled' ? analyticsResponse.data : get().generateMockAnalytics();
+
+ERROR in src/stores/adminStore.ts:202:78
+TS2339: Property 'data' does not exist on type 'PromiseFulfilledResult<{ data: any; }>'.
+    200 |           const stats = statsResponse.status === 'fulfilled' ? statsResponse.data : get().generateMockStats();
+    201 |           const activity = activityResponse.status === 'fulfilled' ? activityResponse.data : get().generateMockActivity();
+  > 202 |           const users = usersResponse.status === 'fulfilled' ? usersResponse.data : get().generateMockUsers();
+        |                                                                              ^^^^
+    203 |           const content = contentResponse.status === 'fulfilled' ? contentResponse.data : get().generateMockContent();
+    204 |           const analytics = analyticsResponse.status === 'fulfilled' ? analyticsResponse.data : get().generateMockAnalytics();
+    205 |
+
+ERROR in src/stores/adminStore.ts:202:91
+TS2339: Property 'generateMockUsers' does not exist on type 'AdminState'.
+    200 |           const stats = statsResponse.status === 'fulfilled' ? statsResponse.data : get().generateMockStats();
+    201 |           const activity = activityResponse.status === 'fulfilled' ? activityResponse.data : get().generateMockActivity();
+  > 202 |           const users = usersResponse.status === 'fulfilled' ? usersResponse.data : get().generateMockUsers();
+        |                                                                                           ^^^^^^^^^^^^^^^^^
+    203 |           const content = contentResponse.status === 'fulfilled' ? contentResponse.data : get().generateMockContent();
+    204 |           const analytics = analyticsResponse.status === 'fulfilled' ? analyticsResponse.data : get().generateMockAnalytics();
+    205 |
+
+ERROR in src/stores/adminStore.ts:203:84
+TS2339: Property 'data' does not exist on type 'PromiseFulfilledResult<{ data: any; }>'.
+    201 |           const activity = activityResponse.status === 'fulfilled' ? activityResponse.data : get().generateMockActivity();
+    202 |           const users = usersResponse.status === 'fulfilled' ? usersResponse.data : get().generateMockUsers();
+  > 203 |           const content = contentResponse.status === 'fulfilled' ? contentResponse.data : get().generateMockContent();
+        |                                                                                    ^^^^
+    204 |           const analytics = analyticsResponse.status === 'fulfilled' ? analyticsResponse.data : get().generateMockAnalytics();
+    205 |
+    206 |           set({
+
+ERROR in src/stores/adminStore.ts:203:97
+TS2339: Property 'generateMockContent' does not exist on type 'AdminState'.
+    201 |           const activity = activityResponse.status === 'fulfilled' ? activityResponse.data : get().generateMockActivity();
+    202 |           const users = usersResponse.status === 'fulfilled' ? usersResponse.data : get().generateMockUsers();
+  > 203 |           const content = contentResponse.status === 'fulfilled' ? contentResponse.data : get().generateMockContent();
+        |                                                                                                 ^^^^^^^^^^^^^^^^^^^
+    204 |           const analytics = analyticsResponse.status === 'fulfilled' ? analyticsResponse.data : get().generateMockAnalytics();
+    205 |
+    206 |           set({
+
+ERROR in src/stores/adminStore.ts:204:90
+TS2339: Property 'data' does not exist on type 'PromiseFulfilledResult<{ data: any; }>'.
+    202 |           const users = usersResponse.status === 'fulfilled' ? usersResponse.data : get().generateMockUsers();
+    203 |           const content = contentResponse.status === 'fulfilled' ? contentResponse.data : get().generateMockContent();
+  > 204 |           const analytics = analyticsResponse.status === 'fulfilled' ? analyticsResponse.data : get().generateMockAnalytics();
+        |                                                                                          ^^^^
+    205 |
+    206 |           set({
+    207 |             stats,
+
+ERROR in src/stores/adminStore.ts:204:103
+TS2339: Property 'generateMockAnalytics' does not exist on type 'AdminState'.
+    202 |           const users = usersResponse.status === 'fulfilled' ? usersResponse.data : get().generateMockUsers();
+    203 |           const content = contentResponse.status === 'fulfilled' ? contentResponse.data : get().generateMockContent();
+  > 204 |           const analytics = analyticsResponse.status === 'fulfilled' ? analyticsResponse.data : get().generateMockAnalytics();
+        |                                                                                                       ^^^^^^^^^^^^^^^^^^^^^
+    205 |
+    206 |           set({
+    207 |             stats,
+
+ERROR in src/stores/adminStore.ts:230:43
+TS2339: Property 'generateMockAgents' does not exist on type 'AdminState'.
+    228 |             // api.get('/admin/agents/'),
+    229 |             // api.get('/admin/system-health/')
+  > 230 |             Promise.resolve({ data: get().generateMockAgents() }),
+        |                                           ^^^^^^^^^^^^^^^^^^
+    231 |             Promise.resolve({ data: get().generateMockSystemHealth() })
+    232 |           ]);
+    233 |
+
+ERROR in src/stores/adminStore.ts:231:43
+TS2339: Property 'generateMockSystemHealth' does not exist on type 'AdminState'.
+    229 |             // api.get('/admin/system-health/')
+    230 |             Promise.resolve({ data: get().generateMockAgents() }),
+  > 231 |             Promise.resolve({ data: get().generateMockSystemHealth() })
+        |                                           ^^^^^^^^^^^^^^^^^^^^^^^^
+    232 |           ]);
+    233 |
+    234 |           const agents = agentsResponse.status === 'fulfilled' ? agentsResponse.data : get().generateMockAgents();
+
+ERROR in src/stores/adminStore.ts:234:81
+TS2339: Property 'data' does not exist on type 'PromiseFulfilledResult<{ data: any; }>'.
+    232 |           ]);
+    233 |
+  > 234 |           const agents = agentsResponse.status === 'fulfilled' ? agentsResponse.data : get().generateMockAgents();
+        |                                                                                 ^^^^
+    235 |           const systemHealth = healthResponse.status === 'fulfilled' ? healthResponse.data : get().generateMockSystemHealth();
+    236 |
+    237 |           set({
+
+ERROR in src/stores/adminStore.ts:234:94
+TS2339: Property 'generateMockAgents' does not exist on type 'AdminState'.
+    232 |           ]);
+    233 |
+  > 234 |           const agents = agentsResponse.status === 'fulfilled' ? agentsResponse.data : get().generateMockAgents();
+        |                                                                                              ^^^^^^^^^^^^^^^^^^
+    235 |           const systemHealth = healthResponse.status === 'fulfilled' ? healthResponse.data : get().generateMockSystemHealth();
+    236 |
+    237 |           set({
+
+ERROR in src/stores/adminStore.ts:235:87
+TS2339: Property 'data' does not exist on type 'PromiseFulfilledResult<{ data: any; }>'.
+    233 |
+    234 |           const agents = agentsResponse.status === 'fulfilled' ? agentsResponse.data : get().generateMockAgents();
+  > 235 |           const systemHealth = healthResponse.status === 'fulfilled' ? healthResponse.data : get().generateMockSystemHealth();
+        |                                                                                       ^^^^
+    236 |
+    237 |           set({
+    238 |             agents,
+
+ERROR in src/stores/adminStore.ts:235:100
+TS2339: Property 'generateMockSystemHealth' does not exist on type 'AdminState'.
+    233 |
+    234 |           const agents = agentsResponse.status === 'fulfilled' ? agentsResponse.data : get().generateMockAgents();
+  > 235 |           const systemHealth = healthResponse.status === 'fulfilled' ? healthResponse.data : get().generateMockSystemHealth();
+        |                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+    236 |
+    237 |           set({
+    238 |             agents,
+
+ERROR in src/stores/authStore.ts:83:38
+TS2339: Property 'post' does not exist on type 'EnterpriseAPIClient'.
+    81 |         set({ isLoading: true, error: null });
+    82 |         try {
+  > 83 |           const response = await api.post('/auth/login/', {
+       |                                      ^^^^
+    84 |             email,
+    85 |             password,
+    86 |           });
+
+ERROR in src/stores/authStore.ts:92:15
+TS2339: Property 'defaults' does not exist on type 'EnterpriseAPIClient'.
+    90 |           // Store token in localStorage
+    91 |           localStorage.setItem('token', token);
+  > 92 |           api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+       |               ^^^^^^^^
+    93 |
+    94 |           set({
+    95 |             user,
+
+ERROR in src/stores/authStore.ts:113:38
+TS2339: Property 'post' does not exist on type 'EnterpriseAPIClient'.
+    111 |         set({ isLoading: true, error: null });
+    112 |         try {
+  > 113 |           const response = await api.post('/auth/register/', userData);
+        |                                      ^^^^
+    114 |           
+    115 |           const { user, token } = response.data;
+    116 |           
+
+ERROR in src/stores/authStore.ts:119:15
+TS2339: Property 'defaults' does not exist on type 'EnterpriseAPIClient'.
+    117 |           // Store token in localStorage
+    118 |           localStorage.setItem('token', token);
+  > 119 |           api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        |               ^^^^^^^^
+    120 |
+    121 |           set({
+    122 |             user,
+
+ERROR in src/stores/authStore.ts:139:20
+TS2339: Property 'defaults' does not exist on type 'EnterpriseAPIClient'.
+    137 |       logout: () => {
+    138 |         localStorage.removeItem('token');
+  > 139 |         delete api.defaults.headers.common['Authorization'];
+        |                    ^^^^^^^^
+    140 |         
+    141 |         set({
+    142 |           user: null,
+
+ERROR in src/stores/authStore.ts:166:7
+TS2339: Property 'defaults' does not exist on type 'EnterpriseAPIClient'.
+    164 | const token = localStorage.getItem('token');
+    165 | if (token) {
+  > 166 |   api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        |       ^^^^^^^^
+    167 | }
+
+ERROR in src/stores/codeEditorStore.ts:4:34
+TS2307: Cannot find module '../../services/api' or its corresponding type declarations.
+    2 | import { create } from 'zustand';
+    3 | import { devtools } from 'zustand/middleware';
+  > 4 | import { apiClient as api } from '../../services/api';
+      |                                  ^^^^^^^^^^^^^^^^^^^^
+    5 |
+    6 | export interface CodeExecutionRequest {
+    7 |   code: string;
+
+ERROR in src/stores/learningStore.ts:100:40
+TS2339: Property 'post' does not exist on type 'EnterpriseAPIClient'.
+     98 |           set({ isLoading: true, error: null });
+     99 |           try {
+  > 100 |             const response = await api.post('/api/init_learning/');
+        |                                        ^^^^
+    101 |             set({ isLoading: false });
+    102 |             return response.data;
+    103 |           } catch (error: any) {
+
+ERROR in src/stores/learningStore.ts:115:40
+TS2339: Property 'get' does not exist on type 'EnterpriseAPIClient'.
+    113 |           set({ isLoading: true, error: null });
+    114 |           try {
+  > 115 |             const response = await api.get(`/api/get_lesson/${lessonId}/`);
+        |                                        ^^^
+    116 |             const lesson = response.data.data;
+    117 |             set({
+    118 |               currentLesson: lesson,
+
+ERROR in src/stores/learningStore.ts:134:40
+TS2339: Property 'get' does not exist on type 'EnterpriseAPIClient'.
+    132 |           set({ isLoading: true, error: null });
+    133 |           try {
+  > 134 |             const response = await api.get(`/api/request_quiz/${topic}/`);
+        |                                        ^^^
+    135 |             const quiz = response.data.data;
+    136 |             set({
+    137 |               currentQuiz: quiz,
+
+ERROR in src/stores/learningStore.ts:153:40
+TS2339: Property 'post' does not exist on type 'EnterpriseAPIClient'.
+    151 |           set({ isLoading: true, error: null });
+    152 |           try {
+  > 153 |             const response = await api.post('/api/submit_answer/', {
+        |                                        ^^^^
+    154 |               quiz_id: quizId,
+    155 |               answer,
+    156 |             });
+
+ERROR in src/stores/learningStore.ts:171:40
+TS2339: Property 'get' does not exist on type 'EnterpriseAPIClient'.
+    169 |           set({ isLoading: true, error: null });
+    170 |           try {
+  > 171 |             const response = await api.get('/api/skill_map/');
+        |                                        ^^^
+    172 |             const skillMap = response.data.data;
+    173 |             set({
+    174 |               skillMap,
+
+ERROR in src/stores/settingsStore.ts:116:38
+TS2339: Property 'get' does not exist on type 'EnterpriseAPIClient'.
+    114 |         
+    115 |         try {
+  > 116 |           const response = await api.get('/settings/');
+        |                                      ^^^
+    117 |           const settings = response.data;
+    118 |           
+    119 |           set({
+
+ERROR in src/stores/settingsStore.ts:148:38
+TS2339: Property 'put' does not exist on type 'EnterpriseAPIClient'.
+    146 |           }
+    147 |           
+  > 148 |           const response = await api.put('/settings/', settings);
+        |                                      ^^^
+    149 |           const updatedSettings = response.data;
+    150 |           
+    151 |           set({
+
+ERROR in src/stores/userStatsStore.ts:102:17
+TS2339: Property 'get' does not exist on type 'EnterpriseAPIClient'.
+    100 |           // Fetch user statistics
+    101 |           const [statsResponse, achievementsResponse, badgesResponse] = await Promise.all([
+  > 102 |             api.get('/user/statistics/'),
+        |                 ^^^
+    103 |             api.get('/user/achievements/'),
+    104 |             api.get('/user/badges/'),
+    105 |           ]);
+
+ERROR in src/stores/userStatsStore.ts:103:17
+TS2339: Property 'get' does not exist on type 'EnterpriseAPIClient'.
+    101 |           const [statsResponse, achievementsResponse, badgesResponse] = await Promise.all([
+    102 |             api.get('/user/statistics/'),
+  > 103 |             api.get('/user/achievements/'),
+        |                 ^^^
+    104 |             api.get('/user/badges/'),
+    105 |           ]);
+    106 |
+
+ERROR in src/stores/userStatsStore.ts:104:17
+TS2339: Property 'get' does not exist on type 'EnterpriseAPIClient'.
+    102 |             api.get('/user/statistics/'),
+    103 |             api.get('/user/achievements/'),
+  > 104 |             api.get('/user/badges/'),
+        |                 ^^^
+    105 |           ]);
+    106 |
+    107 |           set({
+
+ERROR in src/stores/userStatsStore.ts:129:21
+TS2339: Property 'patch' does not exist on type 'EnterpriseAPIClient'.
+    127 |           const updatedPreferences = { ...currentPreferences, ...preferences };
+    128 |           
+  > 129 |           await api.patch('/user/learning-preferences/', updatedPreferences);
+        |                     ^^^^^
+    130 |           
+    131 |           set({
+    132 |             learningPreferences: updatedPreferences,
+
+ERROR in src/stores/userStatsStore.ts:148:38
+TS2339: Property 'get' does not exist on type 'EnterpriseAPIClient'.
+    146 |         set({ isLoading: true, error: null });
+    147 |         try {
+  > 148 |           const response = await api.get('/user/achievements/');
+        |                                      ^^^
+    149 |           set({
+    150 |             achievements: response.data,
+    151 |             isLoading: false,
+
+ERROR in src/stores/userStatsStore.ts:166:21
+TS2339: Property 'post' does not exist on type 'EnterpriseAPIClient'.
+    164 |         set({ isLoading: true, error: null });
+    165 |         try {
+  > 166 |           await api.post(`/user/achievements/${achievementId}/claim/`);
+        |                     ^^^^
+    167 |           
+    168 |           // Refresh achievements after claiming
+    169 |           await get().refreshAchievements();
+
+ERROR in src/stores/userStatsStore.ts:184:38
+TS2339: Property 'patch' does not exist on type 'EnterpriseAPIClient'.
+    182 |         set({ isLoading: true, error: null });
+    183 |         try {
+  > 184 |           const response = await api.patch('/user/weekly-progress/', progress);
+        |                                      ^^^^^
+    185 |           
+    186 |           // Update local statistics
+    187 |           const currentStats = get().statistics;
+
+ERROR in src/utils/adminUtils.ts:31:23
+TS2304: Cannot find name 'UserEngagement'.
+    29 |   lastUpdated: Date;
+    30 |   qualityScore?: number;
+  > 31 |   engagementMetrics?: UserEngagement;
+       |                       ^^^^^^^^^^^^^^
+    32 | }
+    33 |
+    34 | // =============================================================================
+
+ERROR in src/utils/adminUtils.ts:1623:44
+TS2339: Property 'generateAdminInsights' does not exist on type 'OpenAIService'.
+    1621 |   // Add AI insights using OpenAI
+    1622 |   try {
+  > 1623 |     const aiInsights = await openaiService.generateAdminInsights({
+         |                                            ^^^^^^^^^^^^^^^^^^^^^
+    1624 |       analytics,
+    1625 |       timeframe,
+    1626 |       focus: 'administrative-efficiency'
+
+ERROR in src/utils/adminUtils.ts:1629:15
+TS2339: Property 'aiInsights' does not exist on type '{ timeframe: "week" | "month" | "quarter" | "year"; generatedAt: Date; completionTrends: { period: string; completionRate: number; learners: number; activeUsers: number; newUsers: number; ... 6 more ...; aiInsights: string; }[]; ... 9 more ...; userSegmentation: UserSegmentation; }'.
+    1627 |     });
+    1628 |     
+  > 1629 |     analytics.aiInsights = aiInsights;
+         |               ^^^^^^^^^^
+    1630 |   } catch (error) {
+    1631 |     console.warn('AI insights generation failed:', error);
+    1632 |   }
+
+ERROR in src/utils/adminUtils.ts:2151:9
+TS2322: Type 'string' is not assignable to type 'number'.
+    2149 |         score: 86.8,
+    2150 |         readability: 78.5,
+  > 2151 |         complexity: 'moderate',
+         |         ^^^^^^^^^^
+    2152 |         language: 'simple'
+    2153 |       },
+    2154 |       multimedia: {
+
+ERROR in src/utils/adminUtils.ts:2178:9
+TS2322: Type 'number' is not assignable to type 'string[]'.
+    2176 |       manual: {
+    2177 |         reviews: 45,
+  > 2178 |         reviewers: 8,
+         |         ^^^^^^^^^
+    2179 |         averageTime: 2.5,
+    2180 |         approval: 96
+    2181 |       }
+
+ERROR in src/utils/development.ts:25:12
+TS2551: Property 'setupPerformanceHelpers' does not exist on type 'DevelopmentTools'. Did you mean 'performanceHelpers'?
+    23 |       console.log('🛠️ Development tools initialized');
+    24 |       this.setupGlobalHelpers();
+  > 25 |       this.setupPerformanceHelpers();
+       |            ^^^^^^^^^^^^^^^^^^^^^^^
+    26 |       this.setupDebugHelpers();
+    27 |       this.setupConsoleEnhancements();
+    28 |     }
+
+ERROR in src/utils/development.ts:26:12
+TS2551: Property 'setupDebugHelpers' does not exist on type 'DevelopmentTools'. Did you mean 'debugHelpers'?
+    24 |       this.setupGlobalHelpers();
+    25 |       this.setupPerformanceHelpers();
+  > 26 |       this.setupDebugHelpers();
+       |            ^^^^^^^^^^^^^^^^^
+    27 |       this.setupConsoleEnhancements();
+    28 |     }
+    29 |   }
+
+ERROR in src/utils/development.ts:34:11
+TS2393: Duplicate function implementation.
+    32 |    * Get development configuration
+    33 |    */
+  > 34 |   private getConfig(): DevToolConfig {
+       |           ^^^^^^^^^
+    35 |     return {
+    36 |       enableConsoleLogging: process.env.REACT_APP_DEV_CONSOLE_LOGGING !== 'false',
+    37 |       enableDebugMode: process.env.REACT_APP_DEBUG_MODE === 'true',
+
+ERROR in src/utils/development.ts:481:10
+TS2393: Duplicate function implementation.
+    479 |    * Get current configuration
+    480 |    */
+  > 481 |   public getConfig(): DevToolConfig {
+        |          ^^^^^^^^^
+    482 |     return { ...this.config };
+    483 |   }
+    484 |
+
+ERROR in src/utils/errorMonitoring.ts:11:39
+TS2440: Import declaration conflicts with local declaration of 'ErrorInfo'.
+     9 |  */
+    10 |
+  > 11 | import React, { Component, ReactNode, ErrorInfo } from 'react';
+       |                                       ^^^^^^^^^
+    12 |
+    13 | // Core interfaces and types
+    14 | interface ErrorInfo {
+
+ERROR in src/utils/errorMonitoring.ts:295:37
+TS2352: Conversion of type '{ name: string; version: string; accuracy: number; lastTrained: string; featureImportance: { errorMessage: number; userAgent: number; url: number; timestamp: number; userId: number; sessionId: number; ... 7 more ...; environment?: undefined; }; } | { ...; } | { ...; }' to type 'MLModel' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type '{ name: string; version: string; accuracy: number; lastTrained: string; featureImportance: { errorStack: number; errorMessage: number; context: number; environment: number; userAgent?: undefined; ... 8 more ...; platform?: undefined; }; }' is not comparable to type 'MLModel'.
+    Types of property 'featureImportance' are incompatible.
+      Type '{ errorStack: number; errorMessage: number; context: number; environment: number; userAgent?: undefined; url?: undefined; timestamp?: undefined; userId?: undefined; sessionId?: undefined; errorSeverity?: undefined; errorCategory?: undefined; userRole?: undefined; timeOfDay?: undefined; platform?: undefined; }' is not comparable to type 'Record<string, number>'.
+        Property 'userAgent' is incompatible with index signature.
+          Type 'undefined' is not comparable to type 'number'.
+    293 |
+    294 |     models.forEach(model => {
+  > 295 |       this.mlModels.set(model.name, model as MLModel);
+        |                                     ^^^^^^^^^^^^^^^^
+    296 |     });
+    297 |   }
+    298 |
+
+ERROR in src/utils/errorMonitoring.ts:339:9
+TS2322: Type 'null' is not assignable to type 'string | undefined'.
+    337 |         conditions: { userRole: 'admin' },
+    338 |         implementation: 'send_admin_alert',
+  > 339 |         rollbackPlan: null,
+        |         ^^^^^^^^^^^^
+    340 |         status: 'active',
+    341 |         successRate: 1.0
+    342 |       },
+
+ERROR in src/utils/errorMonitoring.ts:734:38
+TS2802: Type 'Map<string, RemediationAction>' can only be iterated through when using the '--downlevelIteration' flag or with a '--target' of 'es2015' or higher.
+    732 |    */
+    733 |   private async applyRemediation(errorReport: ErrorReport): Promise<void> {
+  > 734 |     for (const [actionId, action] of this.remediationActions) {
+        |                                      ^^^^^^^^^^^^^^^^^^^^^^^
+    735 |       if (this.shouldTriggerAction(action, errorReport)) {
+    736 |         try {
+    737 |           await this.executeRemediationAction(action, errorReport);
+
+ERROR in src/utils/errorMonitoring.ts:931:7
+TS2322: Type '{ period: string; change: number; trend: string; significance: number; }' is not assignable to type '{ period: string; change: number; trend: "increasing" | "stable" | "decreasing"; significance: number; }'.
+  Types of property 'trend' are incompatible.
+    Type 'string' is not assignable to type '"increasing" | "stable" | "decreasing"'.
+    929 |       averageResolutionTime: this.calculateAverageResolutionTime(),
+    930 |       errorDistribution,
+  > 931 |       trendAnalysis: this.calculateTrendAnalysis(allErrors),
+        |       ^^^^^^^^^^^^^
+    932 |       patternAnalysis: await this.analyzeAllPatterns(),
+    933 |       userImpact: this.calculateUserImpact(allErrors),
+    934 |       businessImpact: this.calculateBusinessImpact(allErrors)
+
+ERROR in src/utils/errorMonitoring.ts:932:24
+TS1308: 'await' expressions are only allowed within async functions and at the top levels of modules.
+    930 |       errorDistribution,
+    931 |       trendAnalysis: this.calculateTrendAnalysis(allErrors),
+  > 932 |       patternAnalysis: await this.analyzeAllPatterns(),
+        |                        ^^^^^
+    933 |       userImpact: this.calculateUserImpact(allErrors),
+    934 |       businessImpact: this.calculateBusinessImpact(allErrors)
+    935 |     };
+
+ERROR in src/utils/errorMonitoring.ts:1400:12
+TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ fatal: number; critical: number; high: number; medium: number; low: number; }'.
+  No index signature with a parameter of type 'string' was found on type '{ fatal: number; critical: number; high: number; medium: number; low: number; }'.
+    1398 |       'low': 2
+    1399 |     };
+  > 1400 |     return scores[severity] || 5;
+         |            ^^^^^^^^^^^^^^^^
+    1401 |   }
+    1402 |
+    1403 |   private calculateAverageResolutionTime(): number {
+
+ERROR in src/utils/errorMonitoring.ts:1659:19
+TS2339: Property 'initExternalService' does not exist on type 'EnterpriseErrorIntelligence'.
+    1657 |
+    1658 | // Initialize external services
+  > 1659 | errorIntelligence.initExternalService?.();
+         |                   ^^^^^^^^^^^^^^^^^^^
+    1660 |
+    1661 | // Make available globally for React components
+    1662 | (window as any).errorIntelligence = errorIntelligence;
+
+ERROR in src/utils/errorMonitoring.ts:1726:7
+TS2740: Type 'Promise<void>' is missing the following properties from type 'ErrorReport': id, message, url, lineNumber, and 5 more.
+    1724 |     
+    1725 |     this.setState({
+  > 1726 |       errorReport
+         |       ^^^^^^^^^^^
+    1727 |     });
+    1728 |
+    1729 |     if (this.props.onError) {
+
+ERROR in src/utils/errorMonitoring.ts:1749:11
+TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type 'ErrorReport | null' is not assignable to type 'ErrorReport'.
+      Type 'null' is not assignable to type 'ErrorReport'.
+    1747 |           error: this.state.error, 
+    1748 |           resetError: this.resetError,
+  > 1749 |           errorReport: this.state.errorReport
+         |           ^^^^^^^^^^^
+    1750 |         });
+    1751 |       }
+    1752 |       
+
+ERROR in src/utils/performance.ts:271:30
+TS2339: Property 'value' does not exist on type 'PerformanceEntry'.
+    269 |               this.recordMetric({
+    270 |                 name: 'layout_shift',
+  > 271 |                 value: entry.value,
+        |                              ^^^^^
+    272 |                 unit: 'count',
+    273 |                 category: 'custom',
+    274 |                 timestamp: new Date().toISOString(),
+
+ERROR in src/utils/performance.ts:437:30
+TS2339: Property 'processingStart' does not exist on type 'PerformanceEntry'.
+    435 |           const firstEntry = list.getEntries()[0];
+    436 |           observer.disconnect();
+  > 437 |           resolve(firstEntry.processingStart - firstEntry.startTime);
+        |                              ^^^^^^^^^^^^^^^
+    438 |         });
+    439 |         observer.observe({ entryTypes: ['first-input'] });
+    440 |       } else {

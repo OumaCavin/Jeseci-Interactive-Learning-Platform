@@ -1,0 +1,644 @@
+ Line 32:16:   'Save' is defined but never used                                                                                @typescript-eslint/no-unused-vars
+  Line 32:35:   'RefreshIcon' is defined but never used                                                                         @typescript-eslint/no-unused-vars
+  Line 32:48:   'Home' is defined but never used                                                                                @typescript-eslint/no-unused-vars
+  Line 33:3:    'User' is defined but never used                                                                                @typescript-eslint/no-unused-vars
+  Line 33:18:   'UsersIcon' is defined but never used                                                                           @typescript-eslint/no-unused-vars
+  Line 33:29:   'UserPlus' is defined but never used                                                                            @typescript-eslint/no-unused-vars
+  Line 33:39:   'UserMinus' is defined but never used                                                                           @typescript-eslint/no-unused-vars
+  Line 33:50:   'Settings2' is defined but never used                                                                           @typescript-eslint/no-unused-vars
+  Line 34:3:    'Bell' is defined but never used                                                                                @typescript-eslint/no-unused-vars
+  Line 34:9:    'BellOff' is defined but never used                                                                             @typescript-eslint/no-unused-vars
+  Line 34:26:   'MoonIcon' is defined but never used                                                                            @typescript-eslint/no-unused-vars
+  Line 34:43:   'SunIcon' is defined but never used                                                                             @typescript-eslint/no-unused-vars
+  Line 35:11:   'WifiIcon' is defined but never used                                                                            @typescript-eslint/no-unused-vars
+  Line 35:32:   'BatteryIcon' is defined but never used                                                                         @typescript-eslint/no-unused-vars
+  Line 35:56:   'VolumeIcon' is defined but never used                                                                          @typescript-eslint/no-unused-vars
+  Line 37:23:   'RechartsLineChart' is defined but never used                                                                   @typescript-eslint/no-unused-vars
+  Line 37:42:   'Line' is defined but never used                                                                                @typescript-eslint/no-unused-vars
+  Line 37:48:   'XAxis' is defined but never used                                                                               @typescript-eslint/no-unused-vars
+  Line 37:55:   'YAxis' is defined but never used                                                                               @typescript-eslint/no-unused-vars
+  Line 37:62:   'CartesianGrid' is defined but never used                                                                       @typescript-eslint/no-unused-vars
+  Line 37:77:   'Tooltip' is defined but never used                                                                             @typescript-eslint/no-unused-vars
+  Line 37:86:   'ResponsiveContainer' is defined but never used                                                                 @typescript-eslint/no-unused-vars
+  Line 37:107:  'AreaChart' is already defined                                                                                  @typescript-eslint/no-redeclare
+  Line 37:118:  'Area' is defined but never used                                                                                @typescript-eslint/no-unused-vars
+  Line 37:136:  'RechartsBarChart' is defined but never used                                                                    @typescript-eslint/no-unused-vars
+  Line 37:154:  'Bar' is defined but never used                                                                                 @typescript-eslint/no-unused-vars
+  Line 37:171:  'RechartsPieChart' is defined but never used                                                                    @typescript-eslint/no-unused-vars
+  Line 37:189:  'Pie' is defined but never used                                                                                 @typescript-eslint/no-unused-vars
+  Line 37:194:  'Cell' is defined but never used                                                                                @typescript-eslint/no-unused-vars
+  Line 1294:6:  React Hook useCallback has a missing dependency: 'aiService'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Line 1298:6:  React Hook useCallback has a missing dependency: 'aiService'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/components/ui/tabs.tsx
+  Line 260:7:   'EDUCATIONAL_LAYOUTS' is assigned a value but never used                                                                                                                    @typescript-eslint/no-unused-vars
+  Line 287:7:   'ANIMATION_VARIANTS' is assigned a value but never used                                                                                                                     @typescript-eslint/no-unused-vars
+  Line 364:7:   'calculateTabCompletion' is assigned a value but never used                                                                                                                 @typescript-eslint/no-unused-vars
+  Line 579:10:  'isVisible' is assigned a value but never used                                                                                                                              @typescript-eslint/no-unused-vars
+  Line 579:21:  'setIsVisible' is assigned a value but never used                                                                                                                           @typescript-eslint/no-unused-vars
+  Line 588:9:   'contentRef' is assigned a value but never used                                                                                                                             @typescript-eslint/no-unused-vars
+  Line 589:9:   'keyboardRef' is assigned a value but never used                                                                                                                            @typescript-eslint/no-unused-vars
+  Line 793:6:   React Hook useEffect has missing dependencies: 'activeTab', 'defaultValue', 'tabs', 'trackTabInteraction', and 'value'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  Line 989:5:   'activeTab' is assigned a value but never used                                                                                                                              @typescript-eslint/no-unused-vars
+  Line 990:5:   'tabs' is assigned a value but never used                                                                                                                                   @typescript-eslint/no-unused-vars
+  Line 994:5:   'trackEvents' is assigned a value but never used                                                                                                                            @typescript-eslint/no-unused-vars
+  Line 1046:5:  'trackEvents' is assigned a value but never used                                                                                                                            @typescript-eslint/no-unused-vars
+
+src/pages/AdminDashboard.tsx
+  Line 32:3:    'FunnelIcon' is defined but never used                                                                                                  @typescript-eslint/no-unused-vars
+  Line 40:25:   'AdminStats' is defined but never used                                                                                                  @typescript-eslint/no-unused-vars
+  Line 40:37:   'Agent' is defined but never used                                                                                                       @typescript-eslint/no-unused-vars
+  Line 40:44:   'RecentActivity' is defined but never used                                                                                              @typescript-eslint/no-unused-vars
+  Line 40:60:   'SystemHealth' is defined but never used                                                                                                @typescript-eslint/no-unused-vars
+  Line 50:10:   'selectedMetric' is assigned a value but never used                                                                                     @typescript-eslint/no-unused-vars
+  Line 50:26:   'setSelectedMetric' is assigned a value but never used                                                                                  @typescript-eslint/no-unused-vars
+  Line 60:5:    'analytics' is assigned a value but never used                                                                                          @typescript-eslint/no-unused-vars
+  Line 68:5:    'createUser' is assigned a value but never used                                                                                         @typescript-eslint/no-unused-vars
+  Line 69:5:    'updateUser' is assigned a value but never used                                                                                         @typescript-eslint/no-unused-vars
+  Line 70:5:    'deleteUser' is assigned a value but never used                                                                                         @typescript-eslint/no-unused-vars
+  Line 71:5:    'createContent' is assigned a value but never used                                                                                      @typescript-eslint/no-unused-vars
+  Line 72:5:    'updateContent' is assigned a value but never used                                                                                      @typescript-eslint/no-unused-vars
+  Line 73:5:    'deleteContent' is assigned a value but never used                                                                                      @typescript-eslint/no-unused-vars
+  Line 74:5:    'exportData' is assigned a value but never used                                                                                         @typescript-eslint/no-unused-vars
+  Line 81:6:    React Hook useEffect has missing dependencies: 'loadAdminData' and 'loadAgentData'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+  Line 136:9:   'formatDuration' is assigned a value but never used                                                                                     @typescript-eslint/no-unused-vars
+  Line 1286:9:  'renderContent' is already defined                                                                                                      @typescript-eslint/no-redeclare
+
+src/services/api.ts
+  Line 5:37:    'AxiosResponse' is defined but never used           @typescript-eslint/no-unused-vars
+  Line 9:3:     'CreateLearningPathData' is defined but never used  @typescript-eslint/no-unused-vars
+  Line 10:3:    'UpdateLearningPathData' is defined but never used  @typescript-eslint/no-unused-vars
+  Line 15:3:    'QuizQuestion' is defined but never used            @typescript-eslint/no-unused-vars
+  Line 16:3:    'AssessmentStats' is defined but never used         @typescript-eslint/no-unused-vars
+  Line 21:3:    'EducationalContent' is defined but never used      @typescript-eslint/no-unused-vars
+  Line 30:3:    'Achievement' is defined but never used             @typescript-eslint/no-unused-vars
+  Line 31:3:    'UserGamificationStats' is defined but never used   @typescript-eslint/no-unused-vars
+  Line 32:3:    'LeaderboardEntry' is defined but never used        @typescript-eslint/no-unused-vars
+  Line 284:21:  Unreachable code                                    no-unreachable
+
+src/services/collaborationService.ts
+  Line 25:10:    'agentService' is defined but never used        @typescript-eslint/no-unused-vars
+  Line 988:13:   'response' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  Line 1145:13:  'response' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  Line 2546:13:  'MediaSessionType' is already defined           @typescript-eslint/no-redeclare
+  Line 2551:13:  'LeaderboardCategory' is already defined        @typescript-eslint/no-redeclare
+  Line 2552:13:  'BadgeRarity' is already defined                @typescript-eslint/no-redeclare
+  Line 2553:13:  'BadgeCategory' is already defined              @typescript-eslint/no-redeclare
+  Line 2571:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2572:13:  'PresenceInfo' is already defined               @typescript-eslint/no-redeclare
+  Line 2573:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2574:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2575:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2576:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2577:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2578:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2579:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2580:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2581:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2582:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2583:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2584:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2585:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2586:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2587:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2588:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2589:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2590:13:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2742:18:  'Notification' is already defined               @typescript-eslint/no-redeclare
+  Line 2753:18:  'PresenceInfo' is already defined               @typescript-eslint/no-redeclare
+  Line 2782:3:   'UserAnalytics' was used before it was defined  @typescript-eslint/no-use-before-define
+
+src/stores/codeEditorStore.ts
+  Line 4:23:    'api' is defined but never used                        @typescript-eslint/no-unused-vars
+  Line 808:17:  'executionRequest' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  Line 816:17:  'startTime' is assigned a value but never used         @typescript-eslint/no-unused-vars
+
+src/utils/errorMonitoring.ts
+  Line 11:17:    'Component' is defined but never used                @typescript-eslint/no-unused-vars
+  Line 11:28:    'ReactNode' is defined but never used                @typescript-eslint/no-unused-vars
+  Line 14:11:    'ErrorInfo' is already defined                       @typescript-eslint/no-redeclare
+  Line 428:11:   'gdprCompliance' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  Line 439:11:   'soc2Compliance' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  Line 1377:11:  'totalErrors' is assigned a value but never used     @typescript-eslint/no-unused-vars
+
+ERROR in ./src/components/agents/MultiAgentChat.tsx
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/components/agents/MultiAgentChat.tsx: Expected corresponding JSX closing tag for <Card>. (693:12)
+
+  691 |               <Line type="monotone" dataKey="efficiency" stroke="#10B981" strokeWidth={2} />
+  692 |               <Line type="monotone" dataKey="satisfaction" stroke="#8B5CF6" strokeWidth={2} />
+> 693 |             </LineChart>
+      |             ^
+  694 |           </ResponsiveContainer>
+  695 |         </Card>
+  696 |         
+    at constructor (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:367:19)
+    at TypeScriptParserMixin.raise (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:6624:19)
+    at TypeScriptParserMixin.jsxParseElementAt (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:4756:16)
+    at TypeScriptParserMixin.jsxParseElementAt (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:4727:32)
+    at TypeScriptParserMixin.jsxParseElementAt (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:4727:32)
+    at TypeScriptParserMixin.jsxParseElement (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:4778:17)
+    at TypeScriptParserMixin.parseExprAtom (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:4788:19)
+    at TypeScriptParserMixin.parseExprSubscripts (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11145:23)
+    at TypeScriptParserMixin.parseUpdate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11130:21)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11110:23)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9890:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10963:61)
+    at TypeScriptParserMixin.parseExprOps (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10968:23)
+    at TypeScriptParserMixin.parseMaybeConditional (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10945:23)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10895:21)
+    at /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9828:39
+    at TypeScriptParserMixin.tryParse (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:6932:20)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9828:18)
+    at /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10864:39
+    at TypeScriptParserMixin.allowInAnd (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12500:12)
+    at TypeScriptParserMixin.parseMaybeAssignAllowIn (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10864:17)
+    at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12567:17)
+    at TypeScriptParserMixin.parseParenAndDistinguishExpression (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11747:28)
+    at TypeScriptParserMixin.parseExprAtom (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11395:23)
+    at TypeScriptParserMixin.parseExprAtom (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:4793:20)
+    at TypeScriptParserMixin.parseExprSubscripts (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11145:23)
+    at TypeScriptParserMixin.parseUpdate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11130:21)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11110:23)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9890:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10963:61)
+    at TypeScriptParserMixin.parseExprOps (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10968:23)
+    at TypeScriptParserMixin.parseMaybeConditional (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10945:23)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10895:21)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9839:20)
+    at TypeScriptParserMixin.parseFunctionBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12167:24)
+    at TypeScriptParserMixin.parseArrowExpression (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12149:10)
+    at TypeScriptParserMixin.parseParenAndDistinguishExpression (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11759:12)
+    at TypeScriptParserMixin.parseExprAtom (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11395:23)
+    at TypeScriptParserMixin.parseExprAtom (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:4793:20)
+    at TypeScriptParserMixin.parseExprSubscripts (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11145:23)
+    at TypeScriptParserMixin.parseUpdate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11130:21)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11110:23)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9890:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10963:61)
+    at TypeScriptParserMixin.parseExprOps (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10968:23)
+    at TypeScriptParserMixin.parseMaybeConditional (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10945:23)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10895:21)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9839:20)
+    at /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10864:39
+    at TypeScriptParserMixin.allowInAnd (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12495:16)
+
+ERROR in ./src/components/collaboration/index.tsx 217:9
+Module parse failed: Duplicate export 'COLLABORATION_READY_MESSAGE' (217:9)
+File was processed with these loaders:
+ * ./node_modules/@pmmmwh/react-refresh-webpack-plugin/loader/index.js
+ * ./node_modules/babel-loader/lib/index.js
+ * ./node_modules/source-map-loader/dist/cjs.js
+You may need an additional loader to handle the result of these loaders.
+| ✅ Enterprise Ready: Production-grade implementation
+| `;
+> export { COLLABORATION_READY_MESSAGE };
+| 
+| const $ReactRefreshModuleId$ = __webpack_require__.$Refresh$.moduleId;
+
+ERROR in ./src/components/ui/Button.tsx
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/components/ui/Button.tsx: Identifier 'isHovered' has already been declared. (591:9)
+
+  589 |   // State management
+  590 |   const [isFocused, setIsFocused] = useState(false);
+> 591 |   const [isHovered, setIsHovered] = useState(false);
+      |          ^
+  592 |   const [clickRipples, setClickRipples] = useState<Array<{ id: number; x: number; y: number }>>([]);
+  593 |
+  594 |   // Custom hooks
+    at constructor (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:367:19)
+    at TypeScriptParserMixin.raise (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:6624:19)
+    at TypeScriptScopeHandler.checkRedeclarationInScope (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:1646:19)
+    at TypeScriptScopeHandler.declareName (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:1612:12)
+    at TypeScriptScopeHandler.declareName (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:4909:11)
+    at TypeScriptParserMixin.declareNameFromIdentifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7594:16)
+    at TypeScriptParserMixin.checkIdentifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7590:12)
+    at TypeScriptParserMixin.checkLVal (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7527:12)
+    at TypeScriptParserMixin.checkLVal (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7567:16)
+    at TypeScriptParserMixin.parseVarId (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13488:10)
+    at TypeScriptParserMixin.parseVarId (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9805:11)
+    at TypeScriptParserMixin.parseVar (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13459:12)
+    at TypeScriptParserMixin.parseVarStatement (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13306:10)
+    at TypeScriptParserMixin.parseVarStatement (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9469:31)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12927:23)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9569:18)
+    at TypeScriptParserMixin.parseStatementLike (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12843:17)
+    at TypeScriptParserMixin.parseStatementListItem (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12823:17)
+    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13392:61)
+    at TypeScriptParserMixin.parseBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13385:10)
+    at TypeScriptParserMixin.parseBlock (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13373:10)
+    at TypeScriptParserMixin.parseFunctionBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12174:24)
+    at TypeScriptParserMixin.parseArrowExpression (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12149:10)
+    at TypeScriptParserMixin.parseParenAndDistinguishExpression (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11759:12)
+    at TypeScriptParserMixin.parseExprAtom (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11395:23)
+    at TypeScriptParserMixin.parseExprAtom (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:4793:20)
+    at TypeScriptParserMixin.parseExprSubscripts (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11145:23)
+    at TypeScriptParserMixin.parseUpdate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11130:21)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11110:23)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9890:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10963:61)
+    at TypeScriptParserMixin.parseExprOps (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10968:23)
+    at TypeScriptParserMixin.parseMaybeConditional (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10945:23)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10895:21)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9839:20)
+    at /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10864:39
+    at TypeScriptParserMixin.allowInAnd (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12495:16)
+    at TypeScriptParserMixin.parseMaybeAssignAllowIn (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10864:17)
+    at TypeScriptParserMixin.parseVar (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13460:91)
+    at TypeScriptParserMixin.parseVarStatement (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13306:10)
+    at TypeScriptParserMixin.parseVarStatement (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9469:31)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12927:23)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9569:18)
+    at TypeScriptParserMixin.parseStatementLike (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12843:17)
+    at TypeScriptParserMixin.parseModuleItem (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12820:17)
+    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13392:36)
+    at TypeScriptParserMixin.parseBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13385:10)
+    at TypeScriptParserMixin.parseProgram (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12698:10)
+    at TypeScriptParserMixin.parseTopLevel (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12688:25)
+    at TypeScriptParserMixin.parse (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14568:25)
+
+ERROR in ./src/components/ui/Card.tsx 1096:9
+Module parse failed: Duplicate export 'QuizCard' (1096:9)
+File was processed with these loaders:
+ * ./node_modules/@pmmmwh/react-refresh-webpack-plugin/loader/index.js
+ * ./node_modules/babel-loader/lib/index.js
+ * ./node_modules/source-map-loader/dist/cjs.js
+You may need an additional loader to handle the result of these loaders.
+| 
+| // Component variant exports
+> export { QuizCard, AchievementCard, ProgressCard, TutorialCard, LearningCard, MilestoneCard };
+| 
+| // Additional utility exports
+
+ERROR in ./src/components/ui/Input.tsx 1277:9
+Module parse failed: Duplicate export 'QuizInput' (1277:9)
+File was processed with these loaders:
+ * ./node_modules/@pmmmwh/react-refresh-webpack-plugin/loader/index.js
+ * ./node_modules/babel-loader/lib/index.js
+ * ./node_modules/source-map-loader/dist/cjs.js
+You may need an additional loader to handle the result of these loaders.
+| 
+| // Component variant exports
+> export { QuizInput, LearningInput, CodeInput, RichTextInput };
+| 
+| // Additional utility exports
+
+ERROR in ./src/components/ui/LoadingSpinner.tsx
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/components/ui/LoadingSpinner.tsx: Identifier 'AreaChart' has already been declared. (37:106)
+
+  35 |   Wifi as WifiIcon, Battery as BatteryIcon, Volume2 as VolumeIcon
+  36 | } from 'lucide-react';
+> 37 | import { LineChart as RechartsLineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart as RechartsBarChart, Bar, PieChart as RechartsPieChart, Pie, Cell } from 'recharts';
+     |                                                                                                           ^
+  38 |
+  39 | // Types and Interfaces
+  40 | export type LoadingType = 
+    at constructor (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:367:19)
+    at TypeScriptParserMixin.raise (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:6624:19)
+    at TypeScriptScopeHandler.declareName (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:4895:21)
+    at TypeScriptParserMixin.declareNameFromIdentifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7594:16)
+    at TypeScriptParserMixin.checkIdentifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7590:12)
+    at TypeScriptParserMixin.checkLVal (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7527:12)
+    at TypeScriptParserMixin.finishImportSpecifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14342:10)
+    at TypeScriptParserMixin.parseImportSpecifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14499:17)
+    at TypeScriptParserMixin.parseImportSpecifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10205:18)
+    at TypeScriptParserMixin.parseNamedImportSpecifiers (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14478:36)
+    at TypeScriptParserMixin.parseImportSpecifiersAndAfter (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14318:37)
+    at TypeScriptParserMixin.parseImport (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14311:17)
+    at TypeScriptParserMixin.parseImport (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9412:26)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12952:27)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9569:18)
+    at TypeScriptParserMixin.parseStatementLike (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12843:17)
+    at TypeScriptParserMixin.parseModuleItem (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12820:17)
+    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13392:36)
+    at TypeScriptParserMixin.parseBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13385:10)
+    at TypeScriptParserMixin.parseProgram (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12698:10)
+    at TypeScriptParserMixin.parseTopLevel (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12688:25)
+    at TypeScriptParserMixin.parse (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14568:25)
+    at TypeScriptParserMixin.parse (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10183:18)
+    at parse (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14602:38)
+    at parser (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+    at normalizeFile.next (<anonymous>)
+    at run (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+    at run.next (<anonymous>)
+    at transform (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+    at transform.next (<anonymous>)
+    at step (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/gensync/index.js:261:32)
+    at /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/gensync/index.js:223:11)
+
+ERROR in ./src/components/ui/alert-dialog.tsx 13:0-53
+Module not found: Error: Can't resolve '../hooks/useAnalytics' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/components/ui'
+
+ERROR in ./src/components/ui/alert-dialog.tsx 14:0-39
+Module not found: Error: Can't resolve '../hooks/useAI' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/components/ui'
+
+ERROR in ./src/components/ui/alert-dialog.tsx 15:0-57
+Module not found: Error: Can't resolve '../hooks/usePreferences' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/components/ui'
+
+ERROR in ./src/components/ui/avatar.tsx 11:0-53
+Module not found: Error: Can't resolve '../hooks/useAnalytics' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/components/ui'
+
+ERROR in ./src/components/ui/avatar.tsx 12:0-39
+Module not found: Error: Can't resolve '../hooks/useAI' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/components/ui'
+
+ERROR in ./src/components/ui/avatar.tsx 13:0-57
+Module not found: Error: Can't resolve '../hooks/usePreferences' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/components/ui'
+
+ERROR in ./src/components/ui/index.ts 31:0-99
+export 'QuizProgress' (reexported as 'QuizProgress') was not found in './Progress' (possible exports: AchievementProgress, CircularProgress, EducationalProgress, MilestoneProgress, Progress, SkillProgress, default)
+
+ERROR in ./src/components/ui/index.ts 31:0-99
+export 'ProgressProgress' (reexported as 'ProgressProgress') was not found in './Progress' (possible exports: AchievementProgress, CircularProgress, EducationalProgress, MilestoneProgress, Progress, SkillProgress, default)
+
+ERROR in ./src/components/ui/index.ts 31:0-99
+export 'TutorialProgress' (reexported as 'TutorialProgress') was not found in './Progress' (possible exports: AchievementProgress, CircularProgress, EducationalProgress, MilestoneProgress, Progress, SkillProgress, default)
+
+ERROR in ./src/components/ui/index.ts 39:0-89
+export 'QuizAvatar' (reexported as 'QuizAvatar') was not found in './avatar' (possible exports: Avatar, AvatarFallback, default)
+
+ERROR in ./src/components/ui/index.ts 39:0-89
+export 'AchievementAvatar' (reexported as 'AchievementAvatar') was not found in './avatar' (possible exports: Avatar, AvatarFallback, default)
+
+ERROR in ./src/components/ui/index.ts 39:0-89
+export 'ProgressAvatar' (reexported as 'ProgressAvatar') was not found in './avatar' (possible exports: Avatar, AvatarFallback, default)
+
+ERROR in ./src/components/ui/index.ts 39:0-89
+export 'TutorialAvatar' (reexported as 'TutorialAvatar') was not found in './avatar' (possible exports: Avatar, AvatarFallback, default)
+
+ERROR in ./src/components/ui/index.ts 47:0-115
+export 'QuizAlertDialog' (reexported as 'QuizAlertDialog') was not found in './alert-dialog' (possible exports: AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, default)
+
+ERROR in ./src/components/ui/index.ts 47:0-115
+export 'AchievementAlertDialog' (reexported as 'AchievementAlertDialog') was not found in './alert-dialog' (possible exports: AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, default)
+
+ERROR in ./src/components/ui/index.ts 47:0-115
+export 'ProgressAlertDialog' (reexported as 'ProgressAlertDialog') was not found in './alert-dialog' (possible exports: AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, default)
+
+ERROR in ./src/components/ui/index.ts 47:0-115
+export 'TutorialAlertDialog' (reexported as 'TutorialAlertDialog') was not found in './alert-dialog' (possible exports: AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, default)
+
+ERROR in ./src/components/ui/index.ts 51:0-124
+export 'QuizErrorBoundary' (reexported as 'QuizErrorBoundary') was not found in './ErrorBoundary' (possible exports: ErrorBoundary, default, withErrorBoundary)
+
+ERROR in ./src/components/ui/index.ts 51:0-124
+export 'AchievementErrorBoundary' (reexported as 'AchievementErrorBoundary') was not found in './ErrorBoundary' (possible exports: ErrorBoundary, default, withErrorBoundary)
+
+ERROR in ./src/components/ui/index.ts 51:0-124
+export 'ProgressErrorBoundary' (reexported as 'ProgressErrorBoundary') was not found in './ErrorBoundary' (possible exports: ErrorBoundary, default, withErrorBoundary)
+
+ERROR in ./src/components/ui/index.ts 51:0-124
+export 'TutorialErrorBoundary' (reexported as 'TutorialErrorBoundary') was not found in './ErrorBoundary' (possible exports: ErrorBoundary, default, withErrorBoundary)
+
+ERROR in ./src/components/ui/index.ts 54:0-83
+export 'default' (reexported as 'EnterpriseNotificationProvider') was not found in './NotificationProvider' (possible exports: NotificationProvider, useAchievementNotification, useEncouragementNotification, useErrorNotification, useInfoNotification, useMilestoneNotification, useNotificationAnalytics, useNotificationTemplates, useNotifications, useReminderNotification, useSmartNotification, useSuccessNotification, useWarningNotification)
+
+ERROR in ./src/components/ui/index.ts 55:0-159
+export 'QuizNotificationProvider' (reexported as 'QuizNotificationProvider') was not found in './NotificationProvider' (possible exports: NotificationProvider, useAchievementNotification, useEncouragementNotification, useErrorNotification, useInfoNotification, useMilestoneNotification, useNotificationAnalytics, useNotificationTemplates, useNotifications, useReminderNotification, useSmartNotification, useSuccessNotification, useWarningNotification)
+
+ERROR in ./src/components/ui/index.ts 55:0-159
+export 'AchievementNotificationProvider' (reexported as 'AchievementNotificationProvider') was not found in './NotificationProvider' (possible exports: NotificationProvider, useAchievementNotification, useEncouragementNotification, useErrorNotification, useInfoNotification, useMilestoneNotification, useNotificationAnalytics, useNotificationTemplates, useNotifications, useReminderNotification, useSmartNotification, useSuccessNotification, useWarningNotification)
+
+ERROR in ./src/components/ui/index.ts 55:0-159
+export 'ProgressNotificationProvider' (reexported as 'ProgressNotificationProvider') was not found in './NotificationProvider' (possible exports: NotificationProvider, useAchievementNotification, useEncouragementNotification, useErrorNotification, useInfoNotification, useMilestoneNotification, useNotificationAnalytics, useNotificationTemplates, useNotifications, useReminderNotification, useSmartNotification, useSuccessNotification, useWarningNotification)
+
+ERROR in ./src/components/ui/index.ts 55:0-159
+export 'TutorialNotificationProvider' (reexported as 'TutorialNotificationProvider') was not found in './NotificationProvider' (possible exports: NotificationProvider, useAchievementNotification, useEncouragementNotification, useErrorNotification, useInfoNotification, useMilestoneNotification, useNotificationAnalytics, useNotificationTemplates, useNotifications, useReminderNotification, useSmartNotification, useSuccessNotification, useWarningNotification)
+
+ERROR in ./src/components/ui/tabs.tsx 1348:9
+Module parse failed: Duplicate export 'Tabs' (1348:9)
+File was processed with these loaders:
+ * ./node_modules/@pmmmwh/react-refresh-webpack-plugin/loader/index.js
+ * ./node_modules/babel-loader/lib/index.js
+ * ./node_modules/source-map-loader/dist/cjs.js
+You may need an additional loader to handle the result of these loaders.
+| // =============================================================================
+| _c9 = StepperTabs;
+> export { Tabs, TabsList, TabsTrigger, TabsContent };
+| export default Tabs;
+| var _c, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9;
+
+ERROR in ./src/pages/Achievements.tsx 7:0-78
+Module not found: Error: Can't resolve '../stores' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/pages'
+
+ERROR in ./src/pages/AdminDashboard.tsx
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/pages/AdminDashboard.tsx: Identifier 'renderContent' has already been declared. (1286:8)
+
+  1284 |   );
+  1285 |
+> 1286 |   const renderContent = () => {
+       |         ^
+  1287 |     switch (activeTab) {
+  1288 |       case 'overview':
+  1289 |         return renderOverview();
+    at constructor (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:367:19)
+    at TypeScriptParserMixin.raise (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:6624:19)
+    at TypeScriptScopeHandler.checkRedeclarationInScope (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:1646:19)
+    at TypeScriptScopeHandler.declareName (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:1612:12)
+    at TypeScriptScopeHandler.declareName (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:4909:11)
+    at TypeScriptParserMixin.declareNameFromIdentifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7594:16)
+    at TypeScriptParserMixin.checkIdentifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7590:12)
+    at TypeScriptParserMixin.checkLVal (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7527:12)
+    at TypeScriptParserMixin.parseVarId (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13488:10)
+    at TypeScriptParserMixin.parseVarId (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9805:11)
+    at TypeScriptParserMixin.parseVar (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13459:12)
+    at TypeScriptParserMixin.parseVarStatement (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13306:10)
+    at TypeScriptParserMixin.parseVarStatement (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9469:31)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12927:23)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9569:18)
+    at TypeScriptParserMixin.parseStatementLike (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12843:17)
+    at TypeScriptParserMixin.parseStatementListItem (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12823:17)
+    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13392:61)
+    at TypeScriptParserMixin.parseBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13385:10)
+    at TypeScriptParserMixin.parseBlock (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13373:10)
+    at TypeScriptParserMixin.parseFunctionBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12174:24)
+    at TypeScriptParserMixin.parseArrowExpression (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12149:10)
+    at TypeScriptParserMixin.parseParenAndDistinguishExpression (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11759:12)
+    at TypeScriptParserMixin.parseExprAtom (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11395:23)
+    at TypeScriptParserMixin.parseExprAtom (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:4793:20)
+    at TypeScriptParserMixin.parseExprSubscripts (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11145:23)
+    at TypeScriptParserMixin.parseUpdate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11130:21)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11110:23)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9890:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10963:61)
+    at TypeScriptParserMixin.parseExprOps (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10968:23)
+    at TypeScriptParserMixin.parseMaybeConditional (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10945:23)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10895:21)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9839:20)
+    at /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10864:39
+    at TypeScriptParserMixin.allowInAnd (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12495:16)
+    at TypeScriptParserMixin.parseMaybeAssignAllowIn (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10864:17)
+    at TypeScriptParserMixin.parseVar (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13460:91)
+    at TypeScriptParserMixin.parseVarStatement (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13306:10)
+    at TypeScriptParserMixin.parseVarStatement (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9469:31)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12927:23)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9569:18)
+    at TypeScriptParserMixin.parseStatementLike (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12843:17)
+    at TypeScriptParserMixin.parseModuleItem (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12820:17)
+    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13392:36)
+    at TypeScriptParserMixin.parseBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13385:10)
+    at TypeScriptParserMixin.parseProgram (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12698:10)
+    at TypeScriptParserMixin.parseTopLevel (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12688:25)
+    at TypeScriptParserMixin.parse (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14568:25)
+    at TypeScriptParserMixin.parse (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10183:18)
+
+ERROR in ./src/pages/Chat.tsx 164:12-43
+export 'default' (imported as 'gamificationService') was not found in '../services/gamificationService' (possible exports: AIRecommendationType, AchievementCategory, BadgeCategory, ChallengeCategory, ChallengeType, GamificationEventType, GamificationService, LeaderboardCategory, TeamType, TournamentType, gamificationService)
+
+ERROR in ./src/pages/Chat.tsx 174:12-43
+export 'default' (imported as 'gamificationService') was not found in '../services/gamificationService' (possible exports: AIRecommendationType, AchievementCategory, BadgeCategory, ChallengeCategory, ChallengeType, GamificationEventType, GamificationService, LeaderboardCategory, TeamType, TournamentType, gamificationService)
+
+ERROR in ./src/pages/Chat.tsx 185:12-43
+export 'default' (imported as 'gamificationService') was not found in '../services/gamificationService' (possible exports: AIRecommendationType, AchievementCategory, BadgeCategory, ChallengeCategory, ChallengeType, GamificationEventType, GamificationService, LeaderboardCategory, TeamType, TournamentType, gamificationService)
+
+ERROR in ./src/pages/Chat.tsx 581:51-56
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/Chat.tsx 642:85-90
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/Dashboard.tsx 221:57-62
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/Dashboard.tsx 291:44-49
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/Dashboard.tsx 402:40-45
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/KnowledgeGraph.tsx 7:0-59
+Module not found: Error: Can't resolve '../stores' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/pages'
+
+ERROR in ./src/pages/Profile.tsx 209:41-46
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/Profile.tsx 344:41-50
+export 'BadgeIcon' (imported as 'BadgeIcon') was not found in '@heroicons/react/24/outline' (possible exports: AcademicCapIcon, AdjustmentsHorizontalIcon, AdjustmentsVerticalIcon, ArchiveBoxArrowDownIcon, ArchiveBoxIcon, ArchiveBoxXMarkIcon, ArrowDownCircleIcon, ArrowDownIcon, ArrowDownLeftIcon, ArrowDownOnSquareIcon, ArrowDownOnSquareStackIcon, ArrowDownRightIcon, ArrowDownTrayIcon, ArrowLeftCircleIcon, ArrowLeftEndOnRectangleIcon, ArrowLeftIcon, ArrowLeftOnRectangleIcon, ArrowLeftStartOnRectangleIcon, ArrowLongDownIcon, ArrowLongLeftIcon, ArrowLongRightIcon, ArrowLongUpIcon, ArrowPathIcon, ArrowPathRoundedSquareIcon, ArrowRightCircleIcon, ArrowRightEndOnRectangleIcon, ArrowRightIcon, ArrowRightOnRectangleIcon, ArrowRightStartOnRectangleIcon, ArrowSmallDownIcon, ArrowSmallLeftIcon, ArrowSmallRightIcon, ArrowSmallUpIcon, ArrowTopRightOnSquareIcon, ArrowTrendingDownIcon, ArrowTrendingUpIcon, ArrowTurnDownLeftIcon, ArrowTurnDownRightIcon, ArrowTurnLeftDownIcon, ArrowTurnLeftUpIcon, ArrowTurnRightDownIcon, ArrowTurnRightUpIcon, ArrowTurnUpLeftIcon, ArrowTurnUpRightIcon, ArrowUpCircleIcon, ArrowUpIcon, ArrowUpLeftIcon, ArrowUpOnSquareIcon, ArrowUpOnSquareStackIcon, ArrowUpRightIcon, ArrowUpTrayIcon, ArrowUturnDownIcon, ArrowUturnLeftIcon, ArrowUturnRightIcon, ArrowUturnUpIcon, ArrowsPointingInIcon, ArrowsPointingOutIcon, ArrowsRightLeftIcon, ArrowsUpDownIcon, AtSymbolIcon, BackspaceIcon, BackwardIcon, BanknotesIcon, Bars2Icon, Bars3BottomLeftIcon, Bars3BottomRightIcon, Bars3CenterLeftIcon, Bars3Icon, Bars4Icon, BarsArrowDownIcon, BarsArrowUpIcon, Battery0Icon, Battery100Icon, Battery50Icon, BeakerIcon, BellAlertIcon, BellIcon, BellSlashIcon, BellSnoozeIcon, BoldIcon, BoltIcon, BoltSlashIcon, BookOpenIcon, BookmarkIcon, BookmarkSlashIcon, BookmarkSquareIcon, BriefcaseIcon, BugAntIcon, BuildingLibraryIcon, BuildingOffice2Icon, BuildingOfficeIcon, BuildingStorefrontIcon, CakeIcon, CalculatorIcon, CalendarDateRangeIcon, CalendarDaysIcon, CalendarIcon, CameraIcon, ChartBarIcon, ChartBarSquareIcon, ChartPieIcon, ChatBubbleBottomCenterIcon, ChatBubbleBottomCenterTextIcon, ChatBubbleLeftEllipsisIcon, ChatBubbleLeftIcon, ChatBubbleLeftRightIcon, ChatBubbleOvalLeftEllipsisIcon, ChatBubbleOvalLeftIcon, CheckBadgeIcon, CheckCircleIcon, CheckIcon, ChevronDoubleDownIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon, ChevronDoubleUpIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpDownIcon, ChevronUpIcon, CircleStackIcon, ClipboardDocumentCheckIcon, ClipboardDocumentIcon, ClipboardDocumentListIcon, ClipboardIcon, ClockIcon, CloudArrowDownIcon, CloudArrowUpIcon, CloudIcon, CodeBracketIcon, CodeBracketSquareIcon, Cog6ToothIcon, Cog8ToothIcon, CogIcon, CommandLineIcon, ComputerDesktopIcon, CpuChipIcon, CreditCardIcon, CubeIcon, CubeTransparentIcon, CurrencyBangladeshiIcon, CurrencyDollarIcon, CurrencyEuroIcon, CurrencyPoundIcon, CurrencyRupeeIcon, CurrencyYenIcon, CursorArrowRaysIcon, CursorArrowRippleIcon, DevicePhoneMobileIcon, DeviceTabletIcon, DivideIcon, DocumentArrowDownIcon, DocumentArrowUpIcon, DocumentChartBarIcon, DocumentCheckIcon, DocumentCurrencyBangladeshiIcon, DocumentCurrencyDollarIcon, DocumentCurrencyEuroIcon, DocumentCurrencyPoundIcon, DocumentCurrencyRupeeIcon, DocumentCurrencyYenIcon, DocumentDuplicateIcon, DocumentIcon, DocumentMagnifyingGlassIcon, DocumentMinusIcon, DocumentPlusIcon, DocumentTextIcon, EllipsisHorizontalCircleIcon, EllipsisHorizontalIcon, EllipsisVerticalIcon, EnvelopeIcon, EnvelopeOpenIcon, EqualsIcon, ExclamationCircleIcon, ExclamationTriangleIcon, EyeDropperIcon, EyeIcon, EyeSlashIcon, FaceFrownIcon, FaceSmileIcon, FilmIcon, FingerPrintIcon, FireIcon, FlagIcon, FolderArrowDownIcon, FolderIcon, FolderMinusIcon, FolderOpenIcon, FolderPlusIcon, ForwardIcon, FunnelIcon, GifIcon, GiftIcon, GiftTopIcon, GlobeAltIcon, GlobeAmericasIcon, GlobeAsiaAustraliaIcon, GlobeEuropeAfricaIcon, H1Icon, H2Icon, H3Icon, HandRaisedIcon, HandThumbDownIcon, HandThumbUpIcon, HashtagIcon, HeartIcon, HomeIcon, HomeModernIcon, IdentificationIcon, InboxArrowDownIcon, InboxIcon, InboxStackIcon, InformationCircleIcon, ItalicIcon, KeyIcon, LanguageIcon, LifebuoyIcon, LightBulbIcon, LinkIcon, LinkSlashIcon, ListBulletIcon, LockClosedIcon, LockOpenIcon, MagnifyingGlassCircleIcon, MagnifyingGlassIcon, MagnifyingGlassMinusIcon, MagnifyingGlassPlusIcon, MapIcon, MapPinIcon, MegaphoneIcon, MicrophoneIcon, MinusCircleIcon, MinusIcon, MinusSmallIcon, MoonIcon, MusicalNoteIcon, NewspaperIcon, NoSymbolIcon, NumberedListIcon, PaintBrushIcon, PaperAirplaneIcon, PaperClipIcon, PauseCircleIcon, PauseIcon, PencilIcon, PencilSquareIcon, PercentBadgeIcon, PhoneArrowDownLeftIcon, PhoneArrowUpRightIcon, PhoneIcon, PhoneXMarkIcon, PhotoIcon, PlayCircleIcon, PlayIcon, PlayPauseIcon, PlusCircleIcon, PlusIcon, PlusSmallIcon, PowerIcon, PresentationChartBarIcon, PresentationChartLineIcon, PrinterIcon, PuzzlePieceIcon, QrCodeIcon, QuestionMarkCircleIcon, QueueListIcon, RadioIcon, ReceiptPercentIcon, ReceiptRefundIcon, RectangleGroupIcon, RectangleStackIcon, RocketLaunchIcon, RssIcon, ScaleIcon, ScissorsIcon, ServerIcon, ServerStackIcon, ShareIcon, ShieldCheckIcon, ShieldExclamationIcon, ShoppingBagIcon, ShoppingCartIcon, SignalIcon, SignalSlashIcon, SlashIcon, SparklesIcon, SpeakerWaveIcon, SpeakerXMarkIcon, Square2StackIcon, Square3Stack3DIcon, Squares2X2Icon, SquaresPlusIcon, StarIcon, StopCircleIcon, StopIcon, StrikethroughIcon, SunIcon, SwatchIcon, TableCellsIcon, TagIcon, TicketIcon, TrashIcon, TrophyIcon, TruckIcon, TvIcon, UnderlineIcon, UserCircleIcon, UserGroupIcon, UserIcon, UserMinusIcon, UserPlusIcon, UsersIcon, VariableIcon, VideoCameraIcon, VideoCameraSlashIcon, ViewColumnsIcon, ViewfinderCircleIcon, WalletIcon, WifiIcon, WindowIcon, WrenchIcon, WrenchScrewdriverIcon, XCircleIcon, XMarkIcon)
+
+ERROR in ./src/pages/Profile.tsx 543:98-103
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/assessments/AssessmentDetail.tsx 40:6-21
+export 'assessmentStore' (imported as 'assessmentStore') was not found in '../../stores/assessmentStore' (possible exports: selectAssessmentError, selectAssessmentLoading, selectAssessmentStats, selectAssessmentSubmitting, selectFilters, selectQuizAttempts, selectQuizzes, selectSelectedQuiz, useAssessmentActions, useAssessmentData, useAssessmentFilters, useAssessmentStore)
+
+ERROR in ./src/services/collaborationService.ts
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/services/collaborationService.ts: Identifier 'MediaSessionType' has already been declared. (2546:12)
+
+  2544 | export type ModerationActionType = 'warning' | 'remove_content' | 'temp_ban' | 'permanent_ban' | 'flag_for_review';
+  2545 | export type ModerationSeverity = 'low' | 'medium' | 'high' | 'critical';
+> 2546 | export type MediaSessionType = 'video_call' | 'audio_only' | 'screen_share' | 'recording';
+       |             ^
+  2547 | export type RecordingStatus = 'not_recording' | 'recording' | 'paused' | 'processed';
+  2548 | export type ScreenSharingStatus = 'not_sharing' | 'sharing' | 'viewing';
+  2549 | export type WhiteboardStatus = 'inactive' | 'active' | 'locked';
+    at constructor (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:367:19)
+    at TypeScriptParserMixin.raise (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:6624:19)
+    at TypeScriptScopeHandler.checkRedeclarationInScope (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:1646:19)
+    at TypeScriptScopeHandler.declareName (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:4912:14)
+    at TypeScriptParserMixin.declareNameFromIdentifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7594:16)
+    at TypeScriptParserMixin.checkIdentifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7590:12)
+    at TypeScriptParserMixin.tsParseTypeAliasDeclaration (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:8811:10)
+    at TypeScriptParserMixin.tsParseDeclaration (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9104:23)
+    at TypeScriptParserMixin.tsTryParseExportDeclaration (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9077:17)
+    at TypeScriptParserMixin.parseExportDeclaration (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9690:46)
+    at TypeScriptParserMixin.maybeParseExportDeclaration (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13969:31)
+    at TypeScriptParserMixin.parseExport (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13888:29)
+    at TypeScriptParserMixin.parseExport (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9446:20)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12954:27)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9569:18)
+    at TypeScriptParserMixin.parseStatementLike (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12843:17)
+    at TypeScriptParserMixin.parseModuleItem (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12820:17)
+    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13392:36)
+    at TypeScriptParserMixin.parseBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13385:10)
+    at TypeScriptParserMixin.parseProgram (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12698:10)
+    at TypeScriptParserMixin.parseTopLevel (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12688:25)
+    at TypeScriptParserMixin.parse (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14568:25)
+    at TypeScriptParserMixin.parse (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10183:18)
+    at parse (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14602:38)
+    at parser (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+    at normalizeFile.next (<anonymous>)
+    at run (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+    at run.next (<anonymous>)
+    at transform (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+    at transform.next (<anonymous>)
+    at step (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/gensync/index.js:261:32)
+    at /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/gensync/index.js:223:11)
+
+ERROR in ./src/utils/errorMonitoring.ts
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/utils/errorMonitoring.ts: Unexpected reserved word 'await'. (932:23)
+
+  930 |       errorDistribution,
+  931 |       trendAnalysis: this.calculateTrendAnalysis(allErrors),
+> 932 |       patternAnalysis: await this.analyzeAllPatterns(),
+      |                        ^
+  933 |       userImpact: this.calculateUserImpact(allErrors),
+  934 |       businessImpact: this.calculateBusinessImpact(allErrors)
+  935 |     };
+    at constructor (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:367:19)
+    at TypeScriptParserMixin.raise (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:6624:19)
+    at TypeScriptParserMixin.checkReservedWord (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12305:12)
+    at TypeScriptParserMixin.checkReservedWord (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9369:13)
+    at TypeScriptParserMixin.parseIdentifierName (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12285:12)
+    at TypeScriptParserMixin.parseIdentifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12255:23)
+    at TypeScriptParserMixin.parseExprAtom (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11482:27)
+    at TypeScriptParserMixin.parseExprSubscripts (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11145:23)
+    at TypeScriptParserMixin.parseUpdate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11130:21)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11110:23)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9890:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10963:61)
+    at TypeScriptParserMixin.parseExprOps (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10968:23)
+    at TypeScriptParserMixin.parseMaybeConditional (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10945:23)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10895:21)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9839:20)
+    at /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10864:39
+    at TypeScriptParserMixin.allowInAnd (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12500:12)
+    at TypeScriptParserMixin.parseMaybeAssignAllowIn (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10864:17)
+    at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12567:17)
+    at TypeScriptParserMixin.parseObjectProperty (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12024:83)
+    at TypeScriptParserMixin.parseObjPropValue (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12052:100)
+    at TypeScriptParserMixin.parseObjPropValue (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9797:18)
+    at TypeScriptParserMixin.parsePropertyDefinition (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11989:17)
+    at TypeScriptParserMixin.parseObjectLike (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11904:21)
+    at TypeScriptParserMixin.parseExprAtom (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11403:23)
+    at TypeScriptParserMixin.parseExprSubscripts (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11145:23)
+    at TypeScriptParserMixin.parseUpdate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11130:21)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11110:23)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9890:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10963:61)
+    at TypeScriptParserMixin.parseExprOps (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10968:23)
+    at TypeScriptParserMixin.parseMaybeConditional (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10945:23)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10895:21)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9839:20)
+    at TypeScriptParserMixin.parseExpressionBase (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10848:23)
+    at /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10844:39
+    at TypeScriptParserMixin.allowInAnd (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12495:16)
+    at TypeScriptParserMixin.parseExpression (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10844:17)
+    at TypeScriptParserMixin.parseReturnStatement (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13218:28)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12874:21)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9569:18)
+    at TypeScriptParserMixin.parseStatementLike (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12843:17)
+    at TypeScriptParserMixin.parseStatementListItem (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12823:17)
+    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13392:61)
+    at TypeScriptParserMixin.parseBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13385:10)
+    at TypeScriptParserMixin.parseBlock (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13373:10)
+    at TypeScriptParserMixin.parseFunctionBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12174:24)
+    at TypeScriptParserMixin.parseFunctionBodyAndFinish (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12160:10)
+    at TypeScriptParserMixin.parseFunctionBodyAndFinish (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9223:18)
+
+ERROR in [eslint] 
+src/components/agents/MultiAgentChat.tsx
+  Line 693:14:  Parsing error: Expected corresponding JSX closing tag for 'Card'
+
+webpack compiled with 51 errors and 1 warning
+Files successfully emitted, waiting for typecheck results...
+Issues checking in progress...

@@ -1,10 +1,12 @@
 """
-Simple API Serializers for Authentication Testing
+Comprehensive API Serializers for Jeseci Interactive Learning Platform
 """
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
-from .models import UserProfile, Lesson, Quiz, Concept, LearningProgress
+from django.utils import timezone
+from datetime import timedelta
+from .models import UserProfile, Lesson, Quiz, Concept, LearningProgress, LearningSession, UserMastery, Achievement, UserAchievement, Badge, UserBadge, SystemLog, AIAgent, SystemHealth
 
 class UserProfileSerializer(serializers.ModelSerializer):
     """Serializer for UserProfile model"""
@@ -133,3 +135,224 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
             raise serializers.ValidationError("Passwords do not match")
         
         return attrs
+
+
+# Admin API Serializers
+class AdminStatsSerializer(serializers.Serializer):
+    """Serializer for admin dashboard statistics"""
+    totalUsers = serializers.IntegerField()
+    totalPaths = serializers.IntegerField()
+    totalModules = serializers.IntegerField()
+    totalLessons = serializers.IntegerField()
+    activeUsers = serializers.IntegerField()
+    completionRate = serializers.FloatField()
+    totalSessions = serializers.IntegerField()
+    avgStudyTime = serializers.FloatField()
+    systemHealth = serializers.FloatField()
+    activeAgents = serializers.IntegerField()
+    totalAgents = serializers.IntegerField()
+    agentTasks = serializers.IntegerField()
+    responseTime = serializers.FloatField()
+
+
+class RecentActivitySerializer(serializers.Serializer):
+    """Serializer for recent activity logs"""
+    id = serializers.CharField()
+    type = serializers.ChoiceField(choices=[
+        'user_registration', 'path_completion', 'module_completion', 
+        'agent_action', 'system_alert', 'login', 'logout', 'quiz_completion'
+    ])
+    message = serializers.CharField()
+    timestamp = serializers.DateTimeField()
+    user = serializers.CharField(allow_null=True, required=False)
+    severity = serializers.ChoiceField(choices=['low', 'medium', 'high', 'critical'], required=False)
+    metadata = serializers.DictField(required=False)
+
+
+class AgentSerializer(serializers.ModelSerializer):
+    """Serializer for AI agents"""
+    class Meta:
+        model = AIAgent
+        fields = [
+            'id', 'name', 'agent_type', 'status', 'description', 'tasks', 
+            'uptime', 'performance', 'response_time', 'last_active', 
+            'health_score', 'queue_size', 'capabilities', 'config'
+        ]
+
+
+class SystemHealthSerializer(serializers.Serializer):
+    """Serializer for system health metrics"""
+    overall_status = serializers.ChoiceField(choices=['healthy', 'degraded', 'unhealthy', 'offline'])
+    health_score = serializers.FloatField()
+    active_sessions = serializers.IntegerField()
+    system_metrics = serializers.SerializerMethodField()
+    agents = serializers.SerializerMethodField()
+    
+    def get_system_metrics(self, obj):
+        return {
+            'cpu_usage': obj.cpu_usage,
+            'memory_usage': obj.memory_usage,
+            'disk_usage': obj.disk_usage,
+            'network_latency': obj.network_latency
+        }
+    
+    def get_agents(self, obj):
+        # Return current agent statuses
+        agents = AIAgent.objects.filter(is_active=True)
+        return {
+            agent.id: {
+                'status': agent.status,
+                'last_active': agent.last_active.isoformat() if agent.last_active else None,
+                'queue_size': agent.queue_size,
+                'uptime_hours': agent.uptime // 3600 if agent.uptime else 0,
+                'health_score': agent.health_score
+            }
+            for agent in agents
+        }
+
+
+class UserManagementSerializer(serializers.Serializer):
+    """Serializer for user management data"""
+    id = serializers.CharField()
+    username = serializers.CharField()
+    email = serializers.EmailField()
+    firstName = serializers.CharField(source='first_name')
+    lastName = serializers.CharField(source='last_name')
+    role = serializers.ChoiceField(choices=['student', 'instructor', 'admin', 'moderator'])
+    status = serializers.ChoiceField(choices=['active', 'inactive', 'suspended'])
+    lastActive = serializers.SerializerMethodField()
+    totalPoints = serializers.IntegerField()
+    level = serializers.IntegerField()
+    completedPaths = serializers.SerializerMethodField()
+    studyTime = serializers.IntegerField()
+    joinDate = serializers.DateTimeField(source='date_joined')
+    
+    def get_lastActive(self, obj):
+        # Get last activity from UserProfile or LearningSession
+        profile = getattr(obj, 'profile', None)
+        if profile and profile.updated_at:
+            return profile.updated_at.isoformat()
+        
+        last_session = LearningSession.objects.filter(user=obj).order_by('-start_time').first()
+        return last_session.start_time.isoformat() if last_session else obj.date_joined.isoformat()
+    
+    def get_completedPaths(self, obj):
+        # Count completed learning paths (simplified)
+        return LearningProgress.objects.filter(
+            user=obj, 
+            status='completed',
+            progress_percentage=100.0
+        ).count()
+
+
+class ContentManagementSerializer(serializers.Serializer):
+    """Serializer for content management"""
+    id = serializers.CharField()
+    title = serializers.CharField()
+    type = serializers.ChoiceField(choices=['learning_path', 'module', 'lesson', 'assessment'])
+    status = serializers.ChoiceField(choices=['draft', 'published', 'archived'])
+    modules = serializers.IntegerField()
+    completionRate = serializers.FloatField()
+    learners = serializers.IntegerField()
+    avgScore = serializers.FloatField()
+    lastUpdated = serializers.DateTimeField(source='updated_at')
+    createdBy = serializers.CharField(source='created_by.username')
+    difficulty = serializers.ChoiceField(choices=['beginner', 'intermediate', 'advanced'])
+    tags = serializers.ListField(child=serializers.CharField())
+
+
+class LearningAnalyticsSerializer(serializers.Serializer):
+    """Serializer for learning analytics"""
+    pathId = serializers.CharField()
+    pathName = serializers.CharField()
+    totalEnrollments = serializers.IntegerField()
+    completions = serializers.IntegerField()
+    avgCompletionTime = serializers.FloatField()
+    avgScore = serializers.FloatField()
+    dropOffPoints = serializers.ListField(child=serializers.DictField())
+    performanceByDifficulty = serializers.DictField()
+    monthlyProgress = serializers.ListField(child=serializers.DictField())
+
+
+# Learning API Serializers
+class AchievementSerializer(serializers.ModelSerializer):
+    """Serializer for achievements"""
+    class Meta:
+        model = Achievement
+        fields = [
+            'id', 'name', 'description', 'icon', 'difficulty', 'category', 
+            'rarity', 'points', 'criteria_type', 'criteria_value', 
+            'criteria_operator', 'is_active'
+        ]
+
+
+class UserAchievementSerializer(serializers.ModelSerializer):
+    """Serializer for user achievements with progress"""
+    achievement = AchievementSerializer(read_only=True)
+    
+    class Meta:
+        model = UserAchievement
+        fields = [
+            'id', 'achievement', 'progress', 'is_unlocked', 
+            'unlocked_at', 'created_at', 'updated_at'
+        ]
+
+
+class BadgeSerializer(serializers.ModelSerializer):
+    """Serializer for badges"""
+    class Meta:
+        model = Badge
+        fields = ['id', 'name', 'description', 'icon', 'color', 'requirements', 'is_active']
+
+
+class UserBadgeSerializer(serializers.ModelSerializer):
+    """Serializer for user badges"""
+    badge = BadgeSerializer(read_only=True)
+    
+    class Meta:
+        model = UserBadge
+        fields = ['id', 'badge', 'earned_at', 'metadata']
+
+
+class ModuleContentSerializer(serializers.Serializer):
+    """Serializer for module content"""
+    id = serializers.CharField()
+    title = serializers.CharField()
+    type = serializers.CharField()
+    content = serializers.DictField()
+
+
+# User creation and management serializers
+class AdminUserCreateSerializer(serializers.ModelSerializer):
+    """Serializer for admin user creation"""
+    password = serializers.CharField(write_only=True, validators=[validate_password])
+    password_confirm = serializers.CharField(write_only=True, required=True)
+    
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password', 'password_confirm', 'first_name', 'last_name']
+    
+    def validate(self, attrs):
+        password = attrs.get('password')
+        password_confirm = attrs.get('password_confirm')
+        
+        if password != password_confirm:
+            raise serializers.ValidationError("Passwords do not match")
+        
+        return attrs
+    
+    def create(self, validated_data):
+        validated_data.pop('password_confirm', None)
+        user = User.objects.create_user(**validated_data)
+        
+        # Create user profile
+        UserProfile.objects.get_or_create(user=user)
+        
+        return user
+
+
+class AdminUserUpdateSerializer(serializers.ModelSerializer):
+    """Serializer for admin user updates"""
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'is_active']
