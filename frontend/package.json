@@ -40,7 +40,15 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .ts,.tsx",
-    "lint:fix": "eslint src --ext .ts,.tsx --fix"
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "test:integration": "node tests/master-integration-test-runner.js development",
+    "test:integration:staging": "node tests/master-integration-test-runner.js staging",
+    "test:integration:prod": "node tests/master-integration-test-runner.js production",
+    "test:websocket": "node tests/websocket-integration-tests.js",
+    "test:security": "node tests/security-integration-tests.js",
+    "test:performance": "node tests/performance-integration-tests.js",
+    "test:enterprise": "node tests/enterprise-integration-tests.js",
+    "test:all": "npm run test:integration && npm run test:websocket && npm run test:security && npm run test:performance && npm run test:enterprise"
   },
   "eslintConfig": {
     "extends": [
@@ -69,7 +77,10 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "postcss": "latest",
-    "tailwindcss": "latest"
+    "tailwindcss": "latest",
+    "ws": "^8.14.0",
+    "supertest": "^6.3.3",
+    "@types/ws": "^8.5.0"
   },
 
 }
