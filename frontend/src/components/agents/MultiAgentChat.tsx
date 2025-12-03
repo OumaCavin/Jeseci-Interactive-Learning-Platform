@@ -680,18 +680,6 @@ const MultiAgentChat: React.FC<MultiAgentChatProps> = ({
             {/* Chart temporarily disabled for compilation */}
             Performance data visualization
           </div>
-              <Tooltip 
-                contentStyle={{ 
-                  backgroundColor: 'rgba(0,0,0,0.8)', 
-                  border: '1px solid rgba(255,255,255,0.2)',
-                  borderRadius: '8px'
-                }}
-              />
-              <Line type="monotone" dataKey="interactions" stroke="#3B82F6" strokeWidth={2} />
-              <Line type="monotone" dataKey="efficiency" stroke="#10B981" strokeWidth={2} />
-              <Line type="monotone" dataKey="satisfaction" stroke="#8B5CF6" strokeWidth={2} />
-            </LineChart>
-          </ResponsiveContainer>
         </Card>
         
         <Card variant="glass" padding="md">
@@ -700,14 +688,6 @@ const MultiAgentChat: React.FC<MultiAgentChatProps> = ({
             {/* Chart temporarily disabled for compilation */}
             Agent usage data visualization
           </div>
-              <Tooltip 
-                contentStyle={{ 
-                  backgroundColor: 'rgba(0,0,0,0.8)', 
-                  border: '1px solid rgba(255,255,255,0.2)',
-                  borderRadius: '8px'
-                }}
-              />
-
         </Card>
       </div>
 
