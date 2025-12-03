@@ -1,0 +1,1017 @@
+    207 |             stats,
+
+ERROR in src/stores/adminStore.ts:230:43
+TS2339: Property 'generateMockAgents' does not exist on type 'AdminState'.
+    228 |             // api.get('/admin/agents/'),
+    229 |             // api.get('/admin/system-health/')
+  > 230 |             Promise.resolve({ data: get().generateMockAgents() }),
+        |                                           ^^^^^^^^^^^^^^^^^^
+    231 |             Promise.resolve({ data: get().generateMockSystemHealth() })
+    232 |           ]);
+    233 |
+
+ERROR in src/stores/adminStore.ts:231:43
+TS2339: Property 'generateMockSystemHealth' does not exist on type 'AdminState'.
+    229 |             // api.get('/admin/system-health/')
+    230 |             Promise.resolve({ data: get().generateMockAgents() }),
+  > 231 |             Promise.resolve({ data: get().generateMockSystemHealth() })
+        |                                           ^^^^^^^^^^^^^^^^^^^^^^^^
+    232 |           ]);
+    233 |
+    234 |           const agents = agentsResponse.status === 'fulfilled' ? agentsResponse.data : get().generateMockAgents();
+
+ERROR in src/stores/adminStore.ts:234:81
+TS2339: Property 'data' does not exist on type 'PromiseFulfilledResult<{ data: any; }>'.
+    232 |           ]);
+    233 |
+  > 234 |           const agents = agentsResponse.status === 'fulfilled' ? agentsResponse.data : get().generateMockAgents();
+        |                                                                                 ^^^^
+    235 |           const systemHealth = healthResponse.status === 'fulfilled' ? healthResponse.data : get().generateMockSystemHealth();
+    236 |
+    237 |           set({
+
+ERROR in src/stores/adminStore.ts:234:94
+TS2339: Property 'generateMockAgents' does not exist on type 'AdminState'.
+    232 |           ]);
+    233 |
+  > 234 |           const agents = agentsResponse.status === 'fulfilled' ? agentsResponse.data : get().generateMockAgents();
+        |                                                                                              ^^^^^^^^^^^^^^^^^^
+    235 |           const systemHealth = healthResponse.status === 'fulfilled' ? healthResponse.data : get().generateMockSystemHealth();
+    236 |
+    237 |           set({
+
+ERROR in src/stores/adminStore.ts:235:87
+TS2339: Property 'data' does not exist on type 'PromiseFulfilledResult<{ data: any; }>'.
+    233 |
+    234 |           const agents = agentsResponse.status === 'fulfilled' ? agentsResponse.data : get().generateMockAgents();
+  > 235 |           const systemHealth = healthResponse.status === 'fulfilled' ? healthResponse.data : get().generateMockSystemHealth();
+        |                                                                                       ^^^^
+    236 |
+    237 |           set({
+    238 |             agents,
+
+ERROR in src/stores/adminStore.ts:235:100
+TS2339: Property 'generateMockSystemHealth' does not exist on type 'AdminState'.
+    233 |
+    234 |           const agents = agentsResponse.status === 'fulfilled' ? agentsResponse.data : get().generateMockAgents();
+  > 235 |           const systemHealth = healthResponse.status === 'fulfilled' ? healthResponse.data : get().generateMockSystemHealth();
+        |                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^
+    236 |
+    237 |           set({
+    238 |             agents,
+
+ERROR in src/stores/authStore.ts:83:38
+TS2339: Property 'post' does not exist on type 'EnterpriseAPIClient'.
+    81 |         set({ isLoading: true, error: null });
+    82 |         try {
+  > 83 |           const response = await api.post('/auth/login/', {
+       |                                      ^^^^
+    84 |             email,
+    85 |             password,
+    86 |           });
+
+ERROR in src/stores/authStore.ts:92:15
+TS2339: Property 'defaults' does not exist on type 'EnterpriseAPIClient'.
+    90 |           // Store token in localStorage
+    91 |           localStorage.setItem('token', token);
+  > 92 |           api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+       |               ^^^^^^^^
+    93 |
+    94 |           set({
+    95 |             user,
+
+ERROR in src/stores/authStore.ts:113:38
+TS2339: Property 'post' does not exist on type 'EnterpriseAPIClient'.
+    111 |         set({ isLoading: true, error: null });
+    112 |         try {
+  > 113 |           const response = await api.post('/auth/register/', userData);
+        |                                      ^^^^
+    114 |           
+    115 |           const { user, token } = response.data;
+    116 |           
+
+ERROR in src/stores/authStore.ts:119:15
+TS2339: Property 'defaults' does not exist on type 'EnterpriseAPIClient'.
+    117 |           // Store token in localStorage
+    118 |           localStorage.setItem('token', token);
+  > 119 |           api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        |               ^^^^^^^^
+    120 |
+    121 |           set({
+    122 |             user,
+
+ERROR in src/stores/authStore.ts:139:20
+TS2339: Property 'defaults' does not exist on type 'EnterpriseAPIClient'.
+    137 |       logout: () => {
+    138 |         localStorage.removeItem('token');
+  > 139 |         delete api.defaults.headers.common['Authorization'];
+        |                    ^^^^^^^^
+    140 |         
+    141 |         set({
+    142 |           user: null,
+
+ERROR in src/stores/authStore.ts:166:7
+TS2339: Property 'defaults' does not exist on type 'EnterpriseAPIClient'.
+    164 | const token = localStorage.getItem('token');
+    165 | if (token) {
+  > 166 |   api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        |       ^^^^^^^^
+    167 | }
+
+ERROR in src/stores/codeEditorStore.ts:4:17
+TS2307: Cannot find module '../../services/api' or its corresponding type declarations.
+    2 | import { create } from 'zustand';
+    3 | import { devtools } from 'zustand/middleware';
+  > 4 | import api from '../../services/api';
+      |                 ^^^^^^^^^^^^^^^^^^^^
+    5 |
+    6 | export interface CodeExecutionRequest {
+    7 |   code: string;
+
+ERROR in src/stores/collaborationStore.ts
+TS1002: Unterminated string literal.
+
+ERROR in src/stores/collaborationStore.ts:609:41
+TS1005: ',' expected.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                         ^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:41
+TS18004: No value exists in scope for the shorthand property 've'. Either declare one or provide an initializer.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                         ^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:41
+TS2322: Type '{ id: string; senderId: string; senderName: string; content: string; ve: any; been: any; working: any; on: any; the: any; custom: any; hooks: any; we: any; discussed: any; "": any; ',': any; new: string; type: "text"; }' is not assignable to type 'Message'.
+  Object literal may only specify known properties, and 've' does not exist in type 'Message'.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                         ^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:44
+TS1005: ',' expected.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                            ^^^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:44
+TS18004: No value exists in scope for the shorthand property 'been'. Either declare one or provide an initializer.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                            ^^^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:49
+TS1005: ',' expected.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                                 ^^^^^^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:49
+TS18004: No value exists in scope for the shorthand property 'working'. Either declare one or provide an initializer.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                                 ^^^^^^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:57
+TS1005: ',' expected.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                                         ^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:57
+TS18004: No value exists in scope for the shorthand property 'on'. Either declare one or provide an initializer.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                                         ^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:60
+TS1005: ',' expected.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                                            ^^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:60
+TS18004: No value exists in scope for the shorthand property 'the'. Either declare one or provide an initializer.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                                            ^^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:64
+TS1005: ',' expected.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                                                ^^^^^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:64
+TS18004: No value exists in scope for the shorthand property 'custom'. Either declare one or provide an initializer.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                                                ^^^^^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:71
+TS1005: ',' expected.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                                                       ^^^^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:71
+TS18004: No value exists in scope for the shorthand property 'hooks'. Either declare one or provide an initializer.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                                                       ^^^^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:77
+TS1005: ',' expected.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                                                             ^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:77
+TS18004: No value exists in scope for the shorthand property 'we'. Either declare one or provide an initializer.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                                                             ^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:80
+TS1005: ',' expected.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                                                                ^^^^^^^^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:80
+TS18004: No value exists in scope for the shorthand property 'discussed'. Either declare one or provide an initializer.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                                                                ^^^^^^^^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:89
+TS1005: ',' expected.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                                                                         ^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:609:90
+TS1003: Identifier expected.
+    607 |               senderId: 'user2',
+    608 |               senderName: 'Bob Smith',
+  > 609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+        |                                                                                          ^^
+    610 |               timestamp: new Date(Date.now() - 1800000),
+    611 |               type: 'text'
+    612 |             }
+
+ERROR in src/stores/collaborationStore.ts:610:15
+TS1005: ':' expected.
+    608 |               senderName: 'Bob Smith',
+    609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+  > 610 |               timestamp: new Date(Date.now() - 1800000),
+        |               ^^^^^^^^^
+    611 |               type: 'text'
+    612 |             }
+    613 |           ];
+
+ERROR in src/stores/collaborationStore.ts:610:15
+TS2304: Cannot find name 'timestamp'.
+    608 |               senderName: 'Bob Smith',
+    609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+  > 610 |               timestamp: new Date(Date.now() - 1800000),
+        |               ^^^^^^^^^
+    611 |               type: 'text'
+    612 |             }
+    613 |           ];
+
+ERROR in src/stores/collaborationStore.ts:610:24
+TS1005: ',' expected.
+    608 |               senderName: 'Bob Smith',
+    609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+  > 610 |               timestamp: new Date(Date.now() - 1800000),
+        |                        ^
+    611 |               type: 'text'
+    612 |             }
+    613 |           ];
+
+ERROR in src/stores/collaborationStore.ts:610:30
+TS1005: ':' expected.
+    608 |               senderName: 'Bob Smith',
+    609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+  > 610 |               timestamp: new Date(Date.now() - 1800000),
+        |                              ^^^^
+    611 |               type: 'text'
+    612 |             }
+    613 |           ];
+
+ERROR in src/stores/collaborationStore.ts:610:35
+TS2554: Expected 0 arguments, but got 1.
+    608 |               senderName: 'Bob Smith',
+    609 |               content: 'Absolutely! I\\'ve been working on the custom hooks we discussed.',
+  > 610 |               timestamp: new Date(Date.now() - 1800000),
+        |                                   ^^^^^^^^^^^^^^^^^^^^
+    611 |               type: 'text'
+    612 |             }
+    613 |           ];
+
+ERROR in src/stores/learningStore.ts:100:40
+TS2339: Property 'post' does not exist on type 'EnterpriseAPIClient'.
+     98 |           set({ isLoading: true, error: null });
+     99 |           try {
+  > 100 |             const response = await api.post('/api/init_learning/');
+        |                                        ^^^^
+    101 |             set({ isLoading: false });
+    102 |             return response.data;
+    103 |           } catch (error: any) {
+
+ERROR in src/stores/learningStore.ts:115:40
+TS2339: Property 'get' does not exist on type 'EnterpriseAPIClient'.
+    113 |           set({ isLoading: true, error: null });
+    114 |           try {
+  > 115 |             const response = await api.get(`/api/get_lesson/${lessonId}/`);
+        |                                        ^^^
+    116 |             const lesson = response.data.data;
+    117 |             set({
+    118 |               currentLesson: lesson,
+
+ERROR in src/stores/learningStore.ts:134:40
+TS2339: Property 'get' does not exist on type 'EnterpriseAPIClient'.
+    132 |           set({ isLoading: true, error: null });
+    133 |           try {
+  > 134 |             const response = await api.get(`/api/request_quiz/${topic}/`);
+        |                                        ^^^
+    135 |             const quiz = response.data.data;
+    136 |             set({
+    137 |               currentQuiz: quiz,
+
+ERROR in src/stores/learningStore.ts:153:40
+TS2339: Property 'post' does not exist on type 'EnterpriseAPIClient'.
+    151 |           set({ isLoading: true, error: null });
+    152 |           try {
+  > 153 |             const response = await api.post('/api/submit_answer/', {
+        |                                        ^^^^
+    154 |               quiz_id: quizId,
+    155 |               answer,
+    156 |             });
+
+ERROR in src/stores/learningStore.ts:171:40
+TS2339: Property 'get' does not exist on type 'EnterpriseAPIClient'.
+    169 |           set({ isLoading: true, error: null });
+    170 |           try {
+  > 171 |             const response = await api.get('/api/skill_map/');
+        |                                        ^^^
+    172 |             const skillMap = response.data.data;
+    173 |             set({
+    174 |               skillMap,
+
+ERROR in src/stores/settingsStore.ts:116:38
+TS2339: Property 'get' does not exist on type 'EnterpriseAPIClient'.
+    114 |         
+    115 |         try {
+  > 116 |           const response = await api.get('/settings/');
+        |                                      ^^^
+    117 |           const settings = response.data;
+    118 |           
+    119 |           set({
+
+ERROR in src/stores/settingsStore.ts:148:38
+TS2339: Property 'put' does not exist on type 'EnterpriseAPIClient'.
+    146 |           }
+    147 |           
+  > 148 |           const response = await api.put('/settings/', settings);
+        |                                      ^^^
+    149 |           const updatedSettings = response.data;
+    150 |           
+    151 |           set({
+
+ERROR in src/stores/userStatsStore.ts:102:17
+TS2339: Property 'get' does not exist on type 'EnterpriseAPIClient'.
+    100 |           // Fetch user statistics
+    101 |           const [statsResponse, achievementsResponse, badgesResponse] = await Promise.all([
+  > 102 |             api.get('/user/statistics/'),
+        |                 ^^^
+    103 |             api.get('/user/achievements/'),
+    104 |             api.get('/user/badges/'),
+    105 |           ]);
+
+ERROR in src/stores/userStatsStore.ts:103:17
+TS2339: Property 'get' does not exist on type 'EnterpriseAPIClient'.
+    101 |           const [statsResponse, achievementsResponse, badgesResponse] = await Promise.all([
+    102 |             api.get('/user/statistics/'),
+  > 103 |             api.get('/user/achievements/'),
+        |                 ^^^
+    104 |             api.get('/user/badges/'),
+    105 |           ]);
+    106 |
+
+ERROR in src/stores/userStatsStore.ts:104:17
+TS2339: Property 'get' does not exist on type 'EnterpriseAPIClient'.
+    102 |             api.get('/user/statistics/'),
+    103 |             api.get('/user/achievements/'),
+  > 104 |             api.get('/user/badges/'),
+        |                 ^^^
+    105 |           ]);
+    106 |
+    107 |           set({
+
+ERROR in src/stores/userStatsStore.ts:129:21
+TS2339: Property 'patch' does not exist on type 'EnterpriseAPIClient'.
+    127 |           const updatedPreferences = { ...currentPreferences, ...preferences };
+    128 |           
+  > 129 |           await api.patch('/user/learning-preferences/', updatedPreferences);
+        |                     ^^^^^
+    130 |           
+    131 |           set({
+    132 |             learningPreferences: updatedPreferences,
+
+ERROR in src/stores/userStatsStore.ts:148:38
+TS2339: Property 'get' does not exist on type 'EnterpriseAPIClient'.
+    146 |         set({ isLoading: true, error: null });
+    147 |         try {
+  > 148 |           const response = await api.get('/user/achievements/');
+        |                                      ^^^
+    149 |           set({
+    150 |             achievements: response.data,
+    151 |             isLoading: false,
+
+ERROR in src/stores/userStatsStore.ts:166:21
+TS2339: Property 'post' does not exist on type 'EnterpriseAPIClient'.
+    164 |         set({ isLoading: true, error: null });
+    165 |         try {
+  > 166 |           await api.post(`/user/achievements/${achievementId}/claim/`);
+        |                     ^^^^
+    167 |           
+    168 |           // Refresh achievements after claiming
+    169 |           await get().refreshAchievements();
+
+ERROR in src/stores/userStatsStore.ts:184:38
+TS2339: Property 'patch' does not exist on type 'EnterpriseAPIClient'.
+    182 |         set({ isLoading: true, error: null });
+    183 |         try {
+  > 184 |           const response = await api.patch('/user/weekly-progress/', progress);
+        |                                      ^^^^^
+    185 |           
+    186 |           // Update local statistics
+    187 |           const currentStats = get().statistics;
+
+ERROR in src/types/recharts.d.ts
+TS1011: An element access expression should take an argument.
+
+ERROR in src/types/recharts.d.ts
+TS1161: Unterminated regular expression literal.
+
+ERROR in src/types/recharts.d.ts:588:21
+TS1005: '{' expected.
+    586 |   // =============================================================================
+    587 |
+  > 588 |   export interface A/BTestingChart extends ChartProps {
+        |                     ^
+    589 |     experiment: {
+    590 |       id: string;
+    591 |       name: string;
+
+ERROR in src/types/recharts.d.ts:1330:1
+TS1128: Declaration or statement expected.
+    1328 |   export const PredictiveAnalyticsLayer: ComponentType<any>;
+    1329 |   export const SmartRecommendationsPanel: ComponentType<any>;
+  > 1330 | }
+         | ^
+
+ERROR in src/utils/adminUtils.ts:5:31
+TS2307: Cannot find module '../services/openaiService' or its corresponding type declarations.
+    3 | // Enhanced with AI-powered insights, advanced analytics, and enterprise-grade administrative capabilities
+    4 |
+  > 5 | import { openaiService } from '../services/openaiService';
+      |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    6 | import { geminiService } from '../services/geminiService';
+    7 |
+    8 | // =============================================================================
+
+ERROR in src/utils/adminUtils.ts:6:31
+TS2307: Cannot find module '../services/geminiService' or its corresponding type declarations.
+    4 |
+    5 | import { openaiService } from '../services/openaiService';
+  > 6 | import { geminiService } from '../services/geminiService';
+      |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    7 |
+    8 | // =============================================================================
+    9 | // CORE BASE TYPES AND INTERFACES
+
+ERROR in src/utils/adminUtils.ts:31:23
+TS2304: Cannot find name 'UserEngagement'.
+    29 |   lastUpdated: Date;
+    30 |   qualityScore?: number;
+  > 31 |   engagementMetrics?: UserEngagement;
+       |                       ^^^^^^^^^^^^^^
+    32 | }
+    33 |
+    34 | // =============================================================================
+
+ERROR in src/utils/adminUtils.ts:1629:15
+TS2339: Property 'aiInsights' does not exist on type '{ timeframe: "week" | "month" | "quarter" | "year"; generatedAt: Date; completionTrends: { period: string; completionRate: number; learners: number; activeUsers: number; newUsers: number; ... 6 more ...; aiInsights: string; }[]; ... 9 more ...; userSegmentation: UserSegmentation; }'.
+    1627 |     });
+    1628 |     
+  > 1629 |     analytics.aiInsights = aiInsights;
+         |               ^^^^^^^^^^
+    1630 |   } catch (error) {
+    1631 |     console.warn('AI insights generation failed:', error);
+    1632 |   }
+
+ERROR in src/utils/adminUtils.ts:2151:9
+TS2322: Type 'string' is not assignable to type 'number'.
+    2149 |         score: 86.8,
+    2150 |         readability: 78.5,
+  > 2151 |         complexity: 'moderate',
+         |         ^^^^^^^^^^
+    2152 |         language: 'simple'
+    2153 |       },
+    2154 |       multimedia: {
+
+ERROR in src/utils/adminUtils.ts:2178:9
+TS2322: Type 'number' is not assignable to type 'string[]'.
+    2176 |       manual: {
+    2177 |         reviews: 45,
+  > 2178 |         reviewers: 8,
+         |         ^^^^^^^^^
+    2179 |         averageTime: 2.5,
+    2180 |         approval: 96
+    2181 |       }
+
+ERROR in src/utils/development.ts:25:12
+TS2551: Property 'setupPerformanceHelpers' does not exist on type 'DevelopmentTools'. Did you mean 'performanceHelpers'?
+    23 |       console.log('🛠️ Development tools initialized');
+    24 |       this.setupGlobalHelpers();
+  > 25 |       this.setupPerformanceHelpers();
+       |            ^^^^^^^^^^^^^^^^^^^^^^^
+    26 |       this.setupDebugHelpers();
+    27 |       this.setupConsoleEnhancements();
+    28 |     }
+
+ERROR in src/utils/development.ts:26:12
+TS2551: Property 'setupDebugHelpers' does not exist on type 'DevelopmentTools'. Did you mean 'debugHelpers'?
+    24 |       this.setupGlobalHelpers();
+    25 |       this.setupPerformanceHelpers();
+  > 26 |       this.setupDebugHelpers();
+       |            ^^^^^^^^^^^^^^^^^
+    27 |       this.setupConsoleEnhancements();
+    28 |     }
+    29 |   }
+
+ERROR in src/utils/development.ts:34:11
+TS2393: Duplicate function implementation.
+    32 |    * Get development configuration
+    33 |    */
+  > 34 |   private getConfig(): DevToolConfig {
+       |           ^^^^^^^^^
+    35 |     return {
+    36 |       enableConsoleLogging: process.env.REACT_APP_DEV_CONSOLE_LOGGING !== 'false',
+    37 |       enableDebugMode: process.env.REACT_APP_DEBUG_MODE === 'true',
+
+ERROR in src/utils/development.ts:481:10
+TS2393: Duplicate function implementation.
+    479 |    * Get current configuration
+    480 |    */
+  > 481 |   public getConfig(): DevToolConfig {
+        |          ^^^^^^^^^
+    482 |     return { ...this.config };
+    483 |   }
+    484 |
+
+ERROR in src/utils/errorMonitoring.ts:293:37
+TS2352: Conversion of type '{ name: string; version: string; accuracy: number; lastTrained: string; featureImportance: { errorMessage: number; userAgent: number; url: number; timestamp: number; userId: number; sessionId: number; ... 7 more ...; environment?: undefined; }; } | { ...; } | { ...; }' to type 'MLModel' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type '{ name: string; version: string; accuracy: number; lastTrained: string; featureImportance: { errorStack: number; errorMessage: number; context: number; environment: number; userAgent?: undefined; ... 8 more ...; platform?: undefined; }; }' is not comparable to type 'MLModel'.
+    Types of property 'featureImportance' are incompatible.
+      Type '{ errorStack: number; errorMessage: number; context: number; environment: number; userAgent?: undefined; url?: undefined; timestamp?: undefined; userId?: undefined; sessionId?: undefined; errorSeverity?: undefined; errorCategory?: undefined; userRole?: undefined; timeOfDay?: undefined; platform?: undefined; }' is not comparable to type 'Record<string, number>'.
+        Property 'userAgent' is incompatible with index signature.
+          Type 'undefined' is not comparable to type 'number'.
+    291 |
+    292 |     models.forEach(model => {
+  > 293 |       this.mlModels.set(model.name, model as MLModel);
+        |                                     ^^^^^^^^^^^^^^^^
+    294 |     });
+    295 |   }
+    296 |
+
+ERROR in src/utils/errorMonitoring.ts:337:9
+TS2322: Type 'null' is not assignable to type 'string | undefined'.
+    335 |         conditions: { userRole: 'admin' },
+    336 |         implementation: 'send_admin_alert',
+  > 337 |         rollbackPlan: null,
+        |         ^^^^^^^^^^^^
+    338 |         status: 'active',
+    339 |         successRate: 1.0
+    340 |       },
+
+ERROR in src/utils/errorMonitoring.ts:732:38
+TS2802: Type 'Map<string, RemediationAction>' can only be iterated through when using the '--downlevelIteration' flag or with a '--target' of 'es2015' or higher.
+    730 |    */
+    731 |   private async applyRemediation(errorReport: ErrorReport): Promise<void> {
+  > 732 |     for (const [actionId, action] of this.remediationActions) {
+        |                                      ^^^^^^^^^^^^^^^^^^^^^^^
+    733 |       if (this.shouldTriggerAction(action, errorReport)) {
+    734 |         try {
+    735 |           await this.executeRemediationAction(action, errorReport);
+
+ERROR in src/utils/errorMonitoring.ts:929:7
+TS2322: Type '{ period: string; change: number; trend: string; significance: number; }' is not assignable to type '{ period: string; change: number; trend: "increasing" | "stable" | "decreasing"; significance: number; }'.
+  Types of property 'trend' are incompatible.
+    Type 'string' is not assignable to type '"increasing" | "stable" | "decreasing"'.
+    927 |       averageResolutionTime: this.calculateAverageResolutionTime(),
+    928 |       errorDistribution,
+  > 929 |       trendAnalysis: this.calculateTrendAnalysis(allErrors),
+        |       ^^^^^^^^^^^^^
+    930 |       patternAnalysis: await this.analyzeAllPatterns(),
+    931 |       userImpact: this.calculateUserImpact(allErrors),
+    932 |       businessImpact: this.calculateBusinessImpact(allErrors)
+
+ERROR in src/utils/errorMonitoring.ts:930:24
+TS1308: 'await' expressions are only allowed within async functions and at the top levels of modules.
+    928 |       errorDistribution,
+    929 |       trendAnalysis: this.calculateTrendAnalysis(allErrors),
+  > 930 |       patternAnalysis: await this.analyzeAllPatterns(),
+        |                        ^^^^^
+    931 |       userImpact: this.calculateUserImpact(allErrors),
+    932 |       businessImpact: this.calculateBusinessImpact(allErrors)
+    933 |     };
+
+ERROR in src/utils/errorMonitoring.ts:1398:12
+TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ fatal: number; critical: number; high: number; medium: number; low: number; }'.
+  No index signature with a parameter of type 'string' was found on type '{ fatal: number; critical: number; high: number; medium: number; low: number; }'.
+    1396 |       'low': 2
+    1397 |     };
+  > 1398 |     return scores[severity] || 5;
+         |            ^^^^^^^^^^^^^^^^
+    1399 |   }
+    1400 |
+    1401 |   private calculateAverageResolutionTime(): number {
+
+ERROR in src/utils/errorMonitoring.ts:1657:19
+TS2339: Property 'initExternalService' does not exist on type 'EnterpriseErrorIntelligence'.
+    1655 |
+    1656 | // Initialize external services
+  > 1657 | errorIntelligence.initExternalService?.();
+         |                   ^^^^^^^^^^^^^^^^^^^
+    1658 |
+    1659 | // Make available globally for React components
+    1660 | (window as any).errorIntelligence = errorIntelligence;
+
+ERROR in src/utils/errorMonitoring.ts:1699:46
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1697 |
+    1698 | // React Error Boundary with Enterprise Intelligence
+  > 1699 | export class EnterpriseErrorBoundary extends React.Component<
+         |                                              ^^^^^
+    1700 |   { 
+    1701 |     children: React.ReactNode; 
+    1702 |     fallback?: React.ComponentType<{ error: Error; resetError: () => void; errorReport: ErrorReport }>;
+
+ERROR in src/utils/errorMonitoring.ts:1724:7
+TS2740: Type 'Promise<void>' is missing the following properties from type 'ErrorReport': id, message, url, lineNumber, and 5 more.
+    1722 |     
+    1723 |     this.setState({
+  > 1724 |       errorReport
+         |       ^^^^^^^^^^^
+    1725 |     });
+    1726 |
+    1727 |     if (this.props.onError) {
+
+ERROR in src/utils/errorMonitoring.ts:1744:16
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1742 |       if (this.props.fallback) {
+    1743 |         const FallbackComponent = this.props.fallback;
+  > 1744 |         return React.createElement(FallbackComponent, { 
+         |                ^^^^^
+    1745 |           error: this.state.error, 
+    1746 |           resetError: this.resetError,
+    1747 |           errorReport: this.state.errorReport
+
+ERROR in src/utils/errorMonitoring.ts:1747:11
+TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type 'ErrorReport | null' is not assignable to type 'ErrorReport'.
+      Type 'null' is not assignable to type 'ErrorReport'.
+    1745 |           error: this.state.error, 
+    1746 |           resetError: this.resetError,
+  > 1747 |           errorReport: this.state.errorReport
+         |           ^^^^^^^^^^^
+    1748 |         });
+    1749 |       }
+    1750 |       
+
+ERROR in src/utils/errorMonitoring.ts:1751:14
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1749 |       }
+    1750 |       
+  > 1751 |       return React.createElement('div', { 
+         |              ^^^^^
+    1752 |         className: 'enterprise-error-boundary p-8 text-center bg-red-50 border border-red-200 rounded-lg'
+    1753 |       },
+    1754 |         React.createElement('div', { className: 'mb-4' },
+
+ERROR in src/utils/errorMonitoring.ts:1754:9
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1752 |         className: 'enterprise-error-boundary p-8 text-center bg-red-50 border border-red-200 rounded-lg'
+    1753 |       },
+  > 1754 |         React.createElement('div', { className: 'mb-4' },
+         |         ^^^^^
+    1755 |           React.createElement('h2', { className: 'text-2xl font-bold text-red-600 mb-2' }, '🚨 Enterprise Error Detected'),
+    1756 |           React.createElement('p', { className: 'text-gray-700 mb-4' }, 'Our AI-powered error intelligence system has detected and is resolving this issue.')
+    1757 |         ),
+
+ERROR in src/utils/errorMonitoring.ts:1755:11
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1753 |       },
+    1754 |         React.createElement('div', { className: 'mb-4' },
+  > 1755 |           React.createElement('h2', { className: 'text-2xl font-bold text-red-600 mb-2' }, '🚨 Enterprise Error Detected'),
+         |           ^^^^^
+    1756 |           React.createElement('p', { className: 'text-gray-700 mb-4' }, 'Our AI-powered error intelligence system has detected and is resolving this issue.')
+    1757 |         ),
+    1758 |         React.createElement('div', { className: 'bg-white p-4 rounded border border-red-100 mb-4' },
+
+ERROR in src/utils/errorMonitoring.ts:1756:11
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1754 |         React.createElement('div', { className: 'mb-4' },
+    1755 |           React.createElement('h2', { className: 'text-2xl font-bold text-red-600 mb-2' }, '🚨 Enterprise Error Detected'),
+  > 1756 |           React.createElement('p', { className: 'text-gray-700 mb-4' }, 'Our AI-powered error intelligence system has detected and is resolving this issue.')
+         |           ^^^^^
+    1757 |         ),
+    1758 |         React.createElement('div', { className: 'bg-white p-4 rounded border border-red-100 mb-4' },
+    1759 |           React.createElement('p', { className: 'text-sm text-red-800 font-mono' }, this.state.error.message),
+
+ERROR in src/utils/errorMonitoring.ts:1758:9
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1756 |           React.createElement('p', { className: 'text-gray-700 mb-4' }, 'Our AI-powered error intelligence system has detected and is resolving this issue.')
+    1757 |         ),
+  > 1758 |         React.createElement('div', { className: 'bg-white p-4 rounded border border-red-100 mb-4' },
+         |         ^^^^^
+    1759 |           React.createElement('p', { className: 'text-sm text-red-800 font-mono' }, this.state.error.message),
+    1760 |           this.state.errorReport && React.createElement('div', { className: 'mt-2 text-xs text-gray-600' },
+    1761 |             React.createElement('p', null, `Error ID: ${this.state.errorReport.id}`),
+
+ERROR in src/utils/errorMonitoring.ts:1759:11
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1757 |         ),
+    1758 |         React.createElement('div', { className: 'bg-white p-4 rounded border border-red-100 mb-4' },
+  > 1759 |           React.createElement('p', { className: 'text-sm text-red-800 font-mono' }, this.state.error.message),
+         |           ^^^^^
+    1760 |           this.state.errorReport && React.createElement('div', { className: 'mt-2 text-xs text-gray-600' },
+    1761 |             React.createElement('p', null, `Error ID: ${this.state.errorReport.id}`),
+    1762 |             React.createElement('p', null, `Category: ${this.state.errorReport.category}`),
+
+ERROR in src/utils/errorMonitoring.ts:1760:37
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1758 |         React.createElement('div', { className: 'bg-white p-4 rounded border border-red-100 mb-4' },
+    1759 |           React.createElement('p', { className: 'text-sm text-red-800 font-mono' }, this.state.error.message),
+  > 1760 |           this.state.errorReport && React.createElement('div', { className: 'mt-2 text-xs text-gray-600' },
+         |                                     ^^^^^
+    1761 |             React.createElement('p', null, `Error ID: ${this.state.errorReport.id}`),
+    1762 |             React.createElement('p', null, `Category: ${this.state.errorReport.category}`),
+    1763 |             React.createElement('p', null, `Severity: ${this.state.errorReport.severity}`)
+
+ERROR in src/utils/errorMonitoring.ts:1761:13
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1759 |           React.createElement('p', { className: 'text-sm text-red-800 font-mono' }, this.state.error.message),
+    1760 |           this.state.errorReport && React.createElement('div', { className: 'mt-2 text-xs text-gray-600' },
+  > 1761 |             React.createElement('p', null, `Error ID: ${this.state.errorReport.id}`),
+         |             ^^^^^
+    1762 |             React.createElement('p', null, `Category: ${this.state.errorReport.category}`),
+    1763 |             React.createElement('p', null, `Severity: ${this.state.errorReport.severity}`)
+    1764 |           )
+
+ERROR in src/utils/errorMonitoring.ts:1762:13
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1760 |           this.state.errorReport && React.createElement('div', { className: 'mt-2 text-xs text-gray-600' },
+    1761 |             React.createElement('p', null, `Error ID: ${this.state.errorReport.id}`),
+  > 1762 |             React.createElement('p', null, `Category: ${this.state.errorReport.category}`),
+         |             ^^^^^
+    1763 |             React.createElement('p', null, `Severity: ${this.state.errorReport.severity}`)
+    1764 |           )
+    1765 |         ),
+
+ERROR in src/utils/errorMonitoring.ts:1763:13
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1761 |             React.createElement('p', null, `Error ID: ${this.state.errorReport.id}`),
+    1762 |             React.createElement('p', null, `Category: ${this.state.errorReport.category}`),
+  > 1763 |             React.createElement('p', null, `Severity: ${this.state.errorReport.severity}`)
+         |             ^^^^^
+    1764 |           )
+    1765 |         ),
+    1766 |         React.createElement('div', { className: 'flex justify-center space-x-4' },
+
+ERROR in src/utils/errorMonitoring.ts:1766:9
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1764 |           )
+    1765 |         ),
+  > 1766 |         React.createElement('div', { className: 'flex justify-center space-x-4' },
+         |         ^^^^^
+    1767 |           React.createElement('button', { 
+    1768 |             onClick: this.resetError,
+    1769 |             className: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition-colors'
+
+ERROR in src/utils/errorMonitoring.ts:1767:11
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1765 |         ),
+    1766 |         React.createElement('div', { className: 'flex justify-center space-x-4' },
+  > 1767 |           React.createElement('button', { 
+         |           ^^^^^
+    1768 |             onClick: this.resetError,
+    1769 |             className: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition-colors'
+    1770 |           }, '🔄 Retry'),
+
+ERROR in src/utils/errorMonitoring.ts:1771:11
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1769 |             className: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition-colors'
+    1770 |           }, '🔄 Retry'),
+  > 1771 |           React.createElement('button', { 
+         |           ^^^^^
+    1772 |             onClick: () => window.location.reload(),
+    1773 |             className: 'bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded transition-colors'
+    1774 |           }, '🔃 Reload Page')
+
+ERROR in src/utils/errorMonitoring.ts:1776:47
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1774 |           }, '🔃 Reload Page')
+    1775 |         ),
+  > 1776 |         this.state.errorReport?.aiInsights && React.createElement('div', { className: 'mt-4 text-xs text-blue-600' },
+         |                                               ^^^^^
+    1777 |           React.createElement('p', null, '🧠 AI insights available for this error')
+    1778 |         )
+    1779 |       );
+
+ERROR in src/utils/errorMonitoring.ts:1777:11
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1775 |         ),
+    1776 |         this.state.errorReport?.aiInsights && React.createElement('div', { className: 'mt-4 text-xs text-blue-600' },
+  > 1777 |           React.createElement('p', null, '🧠 AI insights available for this error')
+         |           ^^^^^
+    1778 |         )
+    1779 |       );
+    1780 |     }
+
+ERROR in src/utils/errorMonitoring.ts:1792:14
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1790 |   const ErrorTrackedComponent = (props: P) => {
+    1791 |     try {
+  > 1792 |       return React.createElement(WrappedComponent, props);
+         |              ^^^^^
+    1793 |     } catch (error) {
+    1794 |       errorIntelligence.captureException(error as Error, {
+    1795 |         component: WrappedComponent.name,
+
+ERROR in src/utils/errorMonitoring.ts:1800:14
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1798 |       
+    1799 |       // Return error boundary or fallback UI
+  > 1800 |       return React.createElement('div', { 
+         |              ^^^^^
+    1801 |         className: 'error-fallback p-4 text-center bg-yellow-50 border border-yellow-200 rounded' 
+    1802 |       },
+    1803 |         React.createElement('h3', { className: 'text-lg font-semibold text-yellow-800 mb-2' }, '⚠️ Component Error'),
+
+ERROR in src/utils/errorMonitoring.ts:1803:9
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1801 |         className: 'error-fallback p-4 text-center bg-yellow-50 border border-yellow-200 rounded' 
+    1802 |       },
+  > 1803 |         React.createElement('h3', { className: 'text-lg font-semibold text-yellow-800 mb-2' }, '⚠️ Component Error'),
+         |         ^^^^^
+    1804 |         React.createElement('p', { className: 'text-yellow-700' }, 'This component encountered an error but has been isolated.')
+    1805 |       );
+    1806 |     }
+
+ERROR in src/utils/errorMonitoring.ts:1804:9
+TS2686: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+    1802 |       },
+    1803 |         React.createElement('h3', { className: 'text-lg font-semibold text-yellow-800 mb-2' }, '⚠️ Component Error'),
+  > 1804 |         React.createElement('p', { className: 'text-yellow-700' }, 'This component encountered an error but has been isolated.')
+         |         ^^^^^
+    1805 |       );
+    1806 |     }
+    1807 |   };
+
+ERROR in src/utils/performance.ts:115:83
+TS2339: Property 'navigationStart' does not exist on type 'PerformanceNavigationTiming'.
+    113 |       { name: 'response_download', value: entry.responseEnd - entry.responseStart, unit: 'ms' },
+    114 |       { name: 'dom_processing', value: entry.domContentLoadedEventEnd - entry.responseEnd, unit: 'ms' },
+  > 115 |       { name: 'dom_content_loaded', value: entry.domContentLoadedEventEnd - entry.navigationStart, unit: 'ms' },
+        |                                                                                   ^^^^^^^^^^^^^^^
+    116 |       { name: 'load_complete', value: entry.loadEventEnd - entry.navigationStart, unit: 'ms' },
+    117 |       { name: 'first_paint', value: entry.loadEventStart - entry.navigationStart, unit: 'ms' },
+    118 |     ];
+
+ERROR in src/utils/performance.ts:116:66
+TS2339: Property 'navigationStart' does not exist on type 'PerformanceNavigationTiming'.
+    114 |       { name: 'dom_processing', value: entry.domContentLoadedEventEnd - entry.responseEnd, unit: 'ms' },
+    115 |       { name: 'dom_content_loaded', value: entry.domContentLoadedEventEnd - entry.navigationStart, unit: 'ms' },
+  > 116 |       { name: 'load_complete', value: entry.loadEventEnd - entry.navigationStart, unit: 'ms' },
+        |                                                                  ^^^^^^^^^^^^^^^
+    117 |       { name: 'first_paint', value: entry.loadEventStart - entry.navigationStart, unit: 'ms' },
+    118 |     ];
+    119 |
+
+ERROR in src/utils/performance.ts:117:66
+TS2339: Property 'navigationStart' does not exist on type 'PerformanceNavigationTiming'.
+    115 |       { name: 'dom_content_loaded', value: entry.domContentLoadedEventEnd - entry.navigationStart, unit: 'ms' },
+    116 |       { name: 'load_complete', value: entry.loadEventEnd - entry.navigationStart, unit: 'ms' },
+  > 117 |       { name: 'first_paint', value: entry.loadEventStart - entry.navigationStart, unit: 'ms' },
+        |                                                                  ^^^^^^^^^^^^^^^
+    118 |     ];
+    119 |
+    120 |     metrics.forEach(metric => {
+
+ERROR in src/utils/performance.ts:271:30
+TS2339: Property 'value' does not exist on type 'PerformanceEntry'.
+    269 |               this.recordMetric({
+    270 |                 name: 'layout_shift',
+  > 271 |                 value: entry.value,
+        |                              ^^^^^
+    272 |                 unit: 'count',
+    273 |                 category: 'custom',
+    274 |                 timestamp: new Date().toISOString(),
+
+ERROR in src/utils/performance.ts:437:30
+TS2339: Property 'processingStart' does not exist on type 'PerformanceEntry'.
+    435 |           const firstEntry = list.getEntries()[0];
+    436 |           observer.disconnect();
+  > 437 |           resolve(firstEntry.processingStart - firstEntry.startTime);
+        |                              ^^^^^^^^^^^^^^^
+    438 |         });
+    439 |         observer.observe({ entryTypes: ['first-input'] });
+    440 |       } else {
