@@ -30,7 +30,7 @@ This comprehensive onboarding guide will help you set up your development enviro
 #### 1. Clone the Repository
 ```bash
 # Clone the repository
-git clone https://github.com/OumaCavin/Jeseci-Learning-Platform.git
+git clone https://github.com/OumaCavin/Jeseci-Interactive-Learning-Platform.git
 cd Jeseci-Learning-Platform
 
 # Configure Git (replace with your details)

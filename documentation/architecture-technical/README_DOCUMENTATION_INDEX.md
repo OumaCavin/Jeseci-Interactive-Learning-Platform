@@ -89,7 +89,7 @@ All documentation follows enterprise standards with:
 ## 📞 Support & Contact
 
 For questions or contributions to documentation:
-- **Project Repository**: https://github.com/OumaCavin/Jeseci-Learning-Platform
+- **Project Repository**: https://github.com/OumaCavin/Jeseci-Interactive-Learning-Platform
 - **Documentation Issues**: Create an issue in the repository
 - **Feature Requests**: Submit via GitHub discussions
 
