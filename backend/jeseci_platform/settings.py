@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     
     # Local apps
     'api',
-    # 'jac_layer',  # Temporarily disabled for authentication testing
+    'jac_layer',
 ]
 
 MIDDLEWARE = [
