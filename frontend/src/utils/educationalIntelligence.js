@@ -77,7 +77,7 @@ class EducationalIntelligenceEngine {
     }
 
     // Engagement Prediction
-    predictEngagementLearningContext, timeContext, contentCharacteristics) {
+    predictEngagement(learningContext, timeContext, contentCharacteristics) {
         return this.engagementPredictor.predict({
             educationalContext,
             timeContext,

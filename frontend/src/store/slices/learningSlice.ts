@@ -30,7 +30,7 @@ export interface LearningPath {
 
 export type LearningPathType = 
   | 'guided' | 'adaptive' | 'self_paced' | 'milestone' | 'project_based' | 
-  | 'competency' | 'micro_learning' | 'collaborative' | 'ai_powered' | 'hybrid';
+  'competency' | 'micro_learning' | 'collaborative' | 'ai_powered' | 'hybrid';
 
 export type LearningDifficulty = 'beginner' | 'intermediate' | 'advanced' | 'expert' | 'adaptive';
 
@@ -106,7 +106,7 @@ export interface Module {
 
 export type ModuleType = 
   | 'introduction' | 'concept' | 'practice' | 'application' | 'assessment' | 
-  | 'project' | 'discussion' | 'simulation' | 'case_study' | 'lab' | 'quiz';
+  'project' | 'discussion' | 'simulation' | 'case_study' | 'lab' | 'quiz';
 
 export interface ModuleContent {
   format: ContentFormat;
@@ -120,7 +120,7 @@ export interface ModuleContent {
 
 export type ContentFormat = 
   | 'text' | 'video' | 'audio' | 'interactive' | 'simulation' | 
-  | 'code_editor' | 'quiz' | 'diagram' | 'infographic' | 'vr_ar';
+  'code_editor' | 'quiz' | 'diagram' | 'infographic' | 'vr_ar';
 
 export interface MediaContent {
   id: string;
@@ -185,7 +185,7 @@ export interface LearningActivity {
 
 export type ActivityType = 
   | 'reading' | 'video_watching' | 'listening' | 'coding' | 'simulation' |
-  | 'discussion' | 'collaboration' | 'problem_solving' | 'reflection' | 'practice';
+  'discussion' | 'collaboration' | 'problem_solving' | 'reflection' | 'practice';
 
 export interface AIPersonalization {
   difficultyAdjustment: number;
@@ -342,8 +342,8 @@ export interface AIRecommendation {
 
 export type RecommendationType = 
   | 'content_variant' | 'pacing_adjustment' | 'difficulty_modification' |
-  | 'review_suggestion' | 'collaboration_opportunity' | 'practice_recommendation' |
-  | 'hint_provision' | 'motivation_message' | 'break_suggestion';
+  'review_suggestion' | 'collaboration_opportunity' | 'practice_recommendation' |
+  'hint_provision' | 'motivation_message' | 'break_suggestion';
 
 export interface RecommendationFeedback {
   helpful: boolean;
@@ -394,7 +394,7 @@ export interface UserLearningPath {
 
 export type UserPathStatus = 
   | 'enrolled' | 'in_progress' | 'completed' | 'paused' | 'dropped' | 
-  | 'recommendation' | 'featured' | 'custom' | 'peer_assisted';
+  'recommendation' | 'featured' | 'custom' | 'peer_assisted';
 
 export interface UserPathProgress {
   overallProgress: number; // 0-100
@@ -429,7 +429,7 @@ export interface EnrollmentInfo {
 
 export type EnrollmentSource = 
   | 'search' | 'recommendation' | 'peer' | 'instructor' | 'marketing' | 
-  | 'curriculum' | 'adaptive' | 'social' | 'professional' | 'emergency';
+  'curriculum' | 'adaptive' | 'social' | 'professional' | 'emergency';
 
 export interface LearningAIProfile {
   learningStyle: LearningStyle;
@@ -538,7 +538,7 @@ export interface CollaborativeActivity {
 
 export type CollaborativeActivityType = 
   | 'discussion' | 'project' | 'peer_review' | 'study_session' | 'problem_solving' |
-  | 'knowledge_sharing' | 'code_review' | 'presentation' | 'debate' | 'workshop';
+  'knowledge_sharing' | 'code_review' | 'presentation' | 'debate' | 'workshop';
 
 export interface SocialLearningFeatures {
   leaderboards: LeaderboardEntry[];
@@ -570,7 +570,7 @@ export interface UserAchievement {
 
 export type AchievementType = 
   | 'completion' | 'streak' | 'score' | 'speed' | 'collaboration' | 
-  | 'innovation' | 'persistence' | 'helpfulness' | 'leadership' | 'consistency';
+  'innovation' | 'persistence' | 'helpfulness' | 'leadership' | 'consistency';
 
 export interface SocialPost {
   id: string;
@@ -666,7 +666,7 @@ export interface LearningInsights {
 
 export type InsightType = 
   | 'performance' | 'engagement' | 'difficulty' | 'collaboration' | 'motivation' |
-  | 'retention' | 'prediction' | 'recommendation' | 'optimization' | 'intervention';
+  'retention' | 'prediction' | 'recommendation' | 'optimization' | 'intervention';
 
 export interface UserModuleProgress {
   id: string;
@@ -683,7 +683,7 @@ export interface UserModuleProgress {
 
 export type UserModuleStatus = 
   | 'not_started' | 'in_progress' | 'completed' | 'mastered' | 
-  | 'needs_review' | 'struggling' | 'accelerated' | 'paused';
+  'needs_review' | 'struggling' | 'accelerated' | 'paused';
 
 export interface ModuleProgress {
   completionPercentage: number;
@@ -779,7 +779,7 @@ export interface InterventionSuggestion {
 
 export type InterventionType = 
   | 'hint' | 'break' | 'simplification' | 'acceleration' | 'collaboration' |
-  | 'review' | 'practice' | 'explanation' | 'motivation' | 'adjustment';
+  'review' | 'practice' | 'explanation' | 'motivation' | 'adjustment';
 
 export interface SuccessPrediction {
   completionProbability: number;
@@ -894,7 +894,7 @@ export interface Skill {
 
 export type SkillCategory = 
   | 'technical' | 'cognitive' | 'creative' | 'analytical' | 'communication' |
-  | 'leadership' | 'problem_solving' | 'collaboration' | 'adaptability' | 'innovation';
+  'leadership' | 'problem_solving' | 'collaboration' | 'adaptability' | 'innovation';
 
 export type SkillLevel = 'beginner' | 'intermediate' | 'advanced' | 'expert' | 'master';
 
@@ -993,7 +993,7 @@ export interface Assessment {
 
 export type AssessmentType = 
   | 'formative' | 'summative' | 'diagnostic' | 'benchmark' | 'adaptive' |
-  | 'performance' | 'portfolio' | 'peer_assessment' | 'self_assessment';
+  'performance' | 'portfolio' | 'peer_assessment' | 'self_assessment';
 
 export interface AssessmentSettings {
   timeLimit?: number;
@@ -1037,7 +1037,7 @@ export interface Question {
 
 export type QuestionType = 
   | 'multiple_choice' | 'true_false' | 'short_answer' | 'essay' | 'code_completion' |
-  | 'drag_drop' | 'hotspot' | 'matching' | 'fill_blank' | 'simulation' | 'portfolio';
+  'drag_drop' | 'hotspot' | 'matching' | 'fill_blank' | 'simulation' | 'portfolio';
 
 export interface QuestionContent {
   prompt: string;

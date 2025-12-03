@@ -334,7 +334,7 @@ class AdvancedThreatDetector {
 
         // Data mining by bots
         const botPattern = /bot|crawler|spider|scraper/i;
-        if (botPattern.test((request.headers || {}).['user-agent'] || '') && 
+        if (botPattern.test((request.headers || {})['user-agent'] || '') && 
             educationalContext.userType === 'student') {
             threats.push('educational-data-scraping');
         }
@@ -454,7 +454,7 @@ class AdvancedThreatDetector {
             pathTraversal: [
                 /\.\.\//,
                 /%2e%2e%2f/i,
-                /\\/windows\\system32/i
+                /\\\\windows\\\\system32/i
             ]
         };
     }

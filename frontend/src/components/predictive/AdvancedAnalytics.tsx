@@ -1431,7 +1431,7 @@ const AdvancedAnalytics: React.FC<AdvancedAnalyticsProps> = ({
                   </h5>
                   <p className="text-sm text-gray-600">
                     The first 3 principal components explain {(analysis.pca_analysis.cumulative_variance_explained[2] * 100).toFixed(1)}% 
-                    of the total variance, indicating {'good' if analysis.pca_analysis.cumulative_variance_explained[2] > 0.8 else 'moderate'} dimensionality reduction potential.
+                    of the total variance, indicating {analysis.pca_analysis.cumulative_variance_explained[2] > 0.8 ? 'good' : 'moderate'} dimensionality reduction potential.
                   </p>
                 </div>
               </div>
