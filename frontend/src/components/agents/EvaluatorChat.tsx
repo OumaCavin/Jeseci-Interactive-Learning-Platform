@@ -16,7 +16,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button, Badge, Input, Select, Progress } from '../ui';
 import BaseAgentChat from './BaseAgentChat';
-import gamificationService from '../../services/gamificationService';
+import { gamificationService } from '../../services/gamificationService';
 
 // Enhanced interfaces for Evaluator specific features
 interface AssessmentResult {
@@ -650,7 +650,7 @@ const EvaluatorChat: React.FC<EvaluatorChatProps> = ({
       <div className="flex items-center justify-between">
         <h3 className="text-white text-xl font-semibold">Assessment History</h3>
         <Button
-          variant="primary"
+          variant="default"
           onClick={() => startAssessment(assessmentConfig)}
         >
           Start New Assessment
@@ -672,7 +672,7 @@ const EvaluatorChat: React.FC<EvaluatorChatProps> = ({
                   <h4 className="text-white text-lg font-semibold">{assessment.title}</h4>
                   <div className="flex items-center space-x-2 mt-1">
                     <Badge variant="info" size="sm">{assessment.assessmentType.replace('_', ' ')}</Badge>
-                    <Badge variant="secondary" size="sm">{assessment.difficulty}</Badge>
+                    <Badge variant="info" size="sm">{assessment.difficulty}</Badge>
                     {assessment.percentile && (
                       <Badge variant="success" size="sm">
                         {assessment.percentile}th percentile
@@ -754,7 +754,7 @@ const EvaluatorChat: React.FC<EvaluatorChatProps> = ({
                 <h5 className="text-blue-400 font-medium mb-2">Recommendations:</h5>
                 <div className="flex flex-wrap gap-2">
                   {assessment.recommendations.map((rec, index) => (
-                    <Badge key={index} variant="primary" size="sm">
+                    <Badge key={index} variant="default" size="sm">
                       {rec}
                     </Badge>
                   ))}
@@ -950,7 +950,7 @@ const EvaluatorChat: React.FC<EvaluatorChatProps> = ({
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h4 className="text-white font-medium">Learning Goals</h4>
-          <Button variant="primary" size="sm">
+          <Button variant="default" size="sm">
             Create New Goal
           </Button>
         </div>
@@ -974,7 +974,7 @@ const EvaluatorChat: React.FC<EvaluatorChatProps> = ({
                     variant={
                       goal.status === 'completed' ? 'success' :
                       goal.status === 'in_progress' ? 'warning' :
-                      goal.status === 'overdue' ? 'error' : 'info'
+                      goal.status === 'overdue' ? 'danger' : 'info'
                     }
                     size="sm"
                   >
@@ -1017,7 +1017,7 @@ const EvaluatorChat: React.FC<EvaluatorChatProps> = ({
 
                 <div className="flex items-center justify-between text-xs text-white/60">
                   <span>Target: {new Date(goal.targetDate).toLocaleDateString()}</span>
-                  <Badge variant="secondary" size="sm">
+                  <Badge variant="info" size="sm">
                     {goal.priority} priority
                   </Badge>
                 </div>
@@ -1047,7 +1047,7 @@ const EvaluatorChat: React.FC<EvaluatorChatProps> = ({
                       <h6 className="text-white font-medium">{action.title}</h6>
                       <p className="text-white/80 text-sm">{action.description}</p>
                     </div>
-                    <Badge variant="primary" size="sm">
+                    <Badge variant="default" size="sm">
                       {action.category}
                     </Badge>
                   </div>
@@ -1065,12 +1065,12 @@ const EvaluatorChat: React.FC<EvaluatorChatProps> = ({
 
                   <div className="flex flex-wrap gap-1">
                     {action.resources.slice(0, 2).map((resource, index) => (
-                      <Badge key={index} variant="ghost" size="sm" className="text-white/60">
+                      <Badge key={index} variant="default" size="sm" className="text-white/60">
                         {resource}
                       </Badge>
                     ))}
                     {action.resources.length > 2 && (
-                      <Badge variant="ghost" size="sm" className="text-white/60">
+                      <Badge variant="default" size="sm" className="text-white/60">
                         +{action.resources.length - 2} more
                       </Badge>
                     )}
@@ -1078,14 +1078,14 @@ const EvaluatorChat: React.FC<EvaluatorChatProps> = ({
 
                   <div className="flex space-x-2">
                     <Button
-                      variant="primary"
+                      variant="default"
                       size="sm"
                       className="flex-1"
                       onClick={() => acceptActionItem(action)}
                     >
                       Accept
                     </Button>
-                    <Button variant="ghost" size="sm">
+                    <Button variant="default" size="sm">
                       Details
                     </Button>
                   </div>
@@ -1116,7 +1116,7 @@ const EvaluatorChat: React.FC<EvaluatorChatProps> = ({
           {/* Action Buttons */}
           <div className="flex items-center space-x-2">
             <Button
-              variant="primary"
+              variant="default"
               size="sm"
               onClick={() => startAssessment(assessmentConfig)}
             >
@@ -1124,7 +1124,7 @@ const EvaluatorChat: React.FC<EvaluatorChatProps> = ({
             </Button>
             
             <Button
-              variant="ghost"
+              variant="default"
               size="sm"
               onClick={() => loadAssessmentHistory()}
               className="text-white/60"
@@ -1154,7 +1154,7 @@ const EvaluatorChat: React.FC<EvaluatorChatProps> = ({
               <span className="mr-2">{tab.icon}</span>
               {tab.label}
               {tab.count !== undefined && (
-                <Badge variant="secondary" size="sm" className="ml-2">
+                <Badge variant="info" size="sm" className="ml-2">
                   {tab.count}
                 </Badge>
               )}

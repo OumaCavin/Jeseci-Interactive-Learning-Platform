@@ -14,10 +14,12 @@
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Button, Badge, Input, Select } from '../ui';
+import { Button, Badge } from '../ui';
+import { EnterpriseInput as Input } from '../ui';
+import { Select } from '../ui';
 import BaseAgentChat from './BaseAgentChat';
-import { webSocketService } from '../../services/websocketService';
-import gamificationService from '../../services/gamificationService';
+import webSocketService from '../../services/websocketService';
+import { gamificationService } from '../../services/gamificationService';
 
 // Enhanced interfaces for Content Curator specific features
 interface ContentItem {
@@ -492,7 +494,7 @@ const ContentCuratorChat: React.FC<ContentCuratorChatProps> = ({
                     <h3 className="text-white font-semibold text-lg">{content.title}</h3>
                     <div className="flex items-center space-x-2 mt-1">
                       <Badge variant="info" size="sm">{content.type}</Badge>
-                      <Badge variant="secondary" size="sm">{content.difficulty}</Badge>
+                      <Badge variant="info" size="sm">{content.difficulty}</Badge>
                     </div>
                   </div>
                   <div className="text-yellow-400 text-sm">
@@ -504,7 +506,7 @@ const ContentCuratorChat: React.FC<ContentCuratorChatProps> = ({
 
                 <div className="flex flex-wrap gap-1">
                   {content.tags.map(tag => (
-                    <Badge key={tag} variant="ghost" size="sm" className="text-white/60">
+                    <Badge key={tag} variant="default" size="sm" className="text-white/60">
                       {tag}
                     </Badge>
                   ))}
@@ -533,7 +535,7 @@ const ContentCuratorChat: React.FC<ContentCuratorChatProps> = ({
                     Add to Path
                   </Button>
                   <Button
-                    variant="ghost"
+                    variant="primary"
                     size="sm"
                     onClick={() => {/* Open content */}}
                   >
@@ -693,7 +695,7 @@ const ContentCuratorChat: React.FC<ContentCuratorChatProps> = ({
             <h4 className="text-white font-medium mb-3">Favorite Topics</h4>
             <div className="flex flex-wrap gap-2">
               {analytics.favoriteTopics.map((topic) => (
-                <Badge key={topic} variant="primary" size="lg">
+                <Badge key={topic} variant="default" size="lg">
                   {topic}
                 </Badge>
               ))}
@@ -743,7 +745,7 @@ const ContentCuratorChat: React.FC<ContentCuratorChatProps> = ({
             )}
             
             <Button
-              variant="ghost"
+              variant="primary"
               size="sm"
               onClick={() => loadContentLibrary()}
               className="text-white/60"
@@ -763,7 +765,7 @@ const ContentCuratorChat: React.FC<ContentCuratorChatProps> = ({
           ].map((tab) => (
             <Button
               key={tab.key}
-              variant={activeView === tab.key ? 'primary' : 'ghost'}
+              variant={activeView === tab.key ? 'primary' : 'secondary'}
               size="sm"
               onClick={() => !tab.disabled && setActiveView(tab.key as any)}
               disabled={tab.disabled}
@@ -772,7 +774,7 @@ const ContentCuratorChat: React.FC<ContentCuratorChatProps> = ({
               <span className="mr-2">{tab.icon}</span>
               {tab.label}
               {tab.count !== undefined && (
-                <Badge variant="secondary" size="sm" className="ml-2">
+                <Badge variant="info" size="sm" className="ml-2">
                   {tab.count}
                 </Badge>
               )}

@@ -13,10 +13,12 @@
 
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Button, Input, Badge } from '../ui';
-import { webSocketService, WebSocketMessage } from '../../services/websocketService';
-import gamificationService from '../../services/gamificationService';
-import { useAppSelector } from '../../store/store';
+import { Button, Badge } from '../ui';
+import { EnterpriseInput as Input } from '../ui';
+import webSocketService, { WebSocketMessage } from '../../services/websocketService';
+import { gamificationService } from '../../services/gamificationService';
+import { useAppStore } from '../../store/store';
+import { useAgentStore } from '../../store/slices/agentSlice';
 import { toast } from 'react-hot-toast';
 
 // Enhanced interfaces for advanced features
@@ -80,7 +82,7 @@ interface VoiceSettings {
 
 interface SearchFilters {
   query: string;
-  message_types: ('text' | 'code' | 'image' | 'file')[];
+  message_types: ('text' | 'code' | 'image' | 'file' | 'markdown' | 'voice')[];
   date_range?: { start: Date; end: Date };
   agent_ids?: string[];
 }
@@ -139,7 +141,7 @@ const BaseAgentChat: React.FC<BaseAgentChatProps> = ({
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchFilters, setSearchFilters] = useState<SearchFilters>({
     query: '',
-    message_types: ['text', 'code', 'image', 'file']
+    message_types: ['text', 'code', 'image', 'file', 'markdown', 'voice']
   });
   const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
   const [isVoiceMode, setIsVoiceMode] = useState(false);
@@ -169,12 +171,12 @@ const BaseAgentChat: React.FC<BaseAgentChatProps> = ({
   );
   
   // Get agent state from store with enhanced data
-  const agent = useAppSelector(state => 
-    state.agents?.agents?.find(a => a.id === agentId)
+  const agent = useAgentStore(state => 
+    state.agents?.find((a: any) => a.id === agentId)
   );
   
-  const isAgentTyping = useAppSelector(state => 
-    state.agents?.isTyping?.[agentId] || false
+  const isAgentTyping = useAgentStore(state => 
+    state.isTyping?.[agentId] || false
   );
 
   // Enhanced keyboard shortcuts
@@ -233,15 +235,15 @@ const BaseAgentChat: React.FC<BaseAgentChatProps> = ({
     if (agentId && agentType) {
       const connectWebSocket = async () => {
         try {
-          await webSocketService.connectAgentChat(agentId, agentType, actualSessionId);
+          await webSocketService.connect(`/agent/${agentId}`, { agentType, sessionId: actualSessionId });
           setIsConnected(true);
           
           // Subscribe to enhanced events
-          webSocketService.subscribeToAgent(agentId, 'message', handleAgentMessage);
-          webSocketService.subscribeToAgent(agentId, 'typing', handleAgentTyping);
-          webSocketService.subscribeToAgent(agentId, 'status', handleAgentStatus);
-          webSocketService.subscribeToAgent(agentId, 'reaction', handleMessageReaction);
-          webSocketService.subscribeToAgent(agentId, 'file_shared', handleFileShared);
+          webSocketService.on('message', handleAgentMessage);
+          webSocketService.on('typing', handleAgentTyping);
+          webSocketService.on('status', handleAgentStatus);
+          webSocketService.on('reaction', handleMessageReaction);
+          webSocketService.on('file_shared', handleFileShared);
           
         } catch (error) {
           console.error('WebSocket connection failed:', error);
@@ -253,12 +255,12 @@ const BaseAgentChat: React.FC<BaseAgentChatProps> = ({
       connectWebSocket();
       
       return () => {
-        webSocketService.leaveAgentChat(agentId, agentType, actualSessionId);
-        webSocketService.unsubscribeFromAgent(agentId, 'message', handleAgentMessage);
-        webSocketService.unsubscribeFromAgent(agentId, 'typing', handleAgentTyping);
-        webSocketService.unsubscribeFromAgent(agentId, 'status', handleAgentStatus);
-        webSocketService.unsubscribeFromAgent(agentId, 'reaction', handleMessageReaction);
-        webSocketService.unsubscribeFromAgent(agentId, 'file_shared', handleFileShared);
+        webSocketService.disconnect(`/agent/${agentId}`);
+        webSocketService.off('message', handleAgentMessage);
+        webSocketService.off('typing', handleAgentTyping);
+        webSocketService.off('status', handleAgentStatus);
+        webSocketService.off('reaction', handleMessageReaction);
+        webSocketService.off('file_shared', handleFileShared);
       };
     }
   }, [agentId, agentType, actualSessionId]);
@@ -307,7 +309,9 @@ const BaseAgentChat: React.FC<BaseAgentChatProps> = ({
       }
       
       // Trigger gamification with enhanced context
-      gamificationService.triggerAIChat(agentId, agentType, {
+      gamificationService.awardPoints(10, 'agent_interaction', {
+        agentId,
+        agentType,
         messageLength: data.content.length,
         responseTime: Date.now() - (data.request_timestamp || Date.now()),
         agentPersonality: agentPersonality?.tone
@@ -518,10 +522,15 @@ const BaseAgentChat: React.FC<BaseAgentChatProps> = ({
 
     try {
       // Send message via WebSocket with enhanced metadata
-      webSocketService.sendAgentMessage(agentId, agentType, messageContent, actualSessionId, {
-        type: messageType,
-        code_language: messageType === 'code' ? codeLanguage : undefined,
-        timestamp: new Date().toISOString()
+      webSocketService.send(`/agent/${agentId}`, {
+        type: 'message',
+        data: {
+          content: messageContent,
+          messageType,
+          code_language: messageType === 'code' ? codeLanguage : undefined,
+          sessionId: actualSessionId,
+          timestamp: new Date().toISOString()
+        }
       });
       
       if (onMessageSent) {
@@ -575,7 +584,7 @@ const BaseAgentChat: React.FC<BaseAgentChatProps> = ({
         is_read: true,
         metadata: {
           learning_context: 'introduction',
-          complexity_level: agentPersonality?.expertise_level || 'intermediate'
+          complexity_level: (agentPersonality?.expertise_level === 'expert' ? 'advanced' : agentPersonality?.expertise_level) || 'intermediate'
         }
       };
       
@@ -642,7 +651,7 @@ const BaseAgentChat: React.FC<BaseAgentChatProps> = ({
       if (data.status === 'active' && !isConnected) {
         toast.success(`Connected to ${agentName}`);
       } else if (data.status !== 'active' && isConnected) {
-        toast.warning(`${agentName} is ${data.status}`);
+        toast(`${agentName} is ${data.status}`, { icon: '⚠️' });
       }
     }
   }, [agentId, agentName, isConnected]);
@@ -693,7 +702,7 @@ const BaseAgentChat: React.FC<BaseAgentChatProps> = ({
     switch (status) {
       case 'active': return 'success';
       case 'busy': return 'warning';
-      case 'inactive': return 'error';
+      case 'inactive': return 'danger';
       case 'away': return 'info';
       default: return 'info';
     }
@@ -763,7 +772,7 @@ const BaseAgentChat: React.FC<BaseAgentChatProps> = ({
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 0.5, repeat: Infinity }}
               >
-                <Badge variant="error" size="sm">
+                <Badge variant="danger" size="sm">
                   🎤 Recording
                 </Badge>
               </motion.div>
