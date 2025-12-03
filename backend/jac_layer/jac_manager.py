@@ -11,7 +11,15 @@ import importlib
 from typing import Dict, Any, Optional
 
 # IMPORTANT: Importing jaclang enables the import hook for .jac files
-import jaclang 
+try:
+    import jaclang 
+    JACLANG_AVAILABLE = True
+except ImportError:
+    JACLANG_AVAILABLE = False
+    # Create a dummy jaclang module for when it's not available
+    class _DummyJacLang:
+        pass
+    jaclang = _DummyJacLang()
 
 logger = logging.getLogger(__name__)
 
@@ -20,7 +28,10 @@ logger = logging.getLogger(__name__)
 construct_root = None
 get_root = None
 
-logger.info("JacManager initialized - using jaclang 0.9.x approach without root functions")
+if JACLANG_AVAILABLE:
+    logger.info("JacManager initialized - using jaclang 0.9.x approach without root functions")
+else:
+    logger.info("JacManager initialized in compatibility mode - jaclang not available")
 
 class JacManager:
     """

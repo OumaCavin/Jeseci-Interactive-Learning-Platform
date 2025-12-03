@@ -4,7 +4,7 @@ import os
 import sys
 
 # IMPORTANT: Import jaclang first to enable .jac import hook for modern 0.9.x
-import jaclang
+# import jaclang  # Commented out - not needed for Django server
 
 
 def main():

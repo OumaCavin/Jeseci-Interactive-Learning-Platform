@@ -1,0 +1,85 @@
+{
+  "total_tests": 10,
+  "passed_tests": 7,
+  "failed_tests": 3,
+  "test_details": [
+    {
+      "test_name": "User Creation",
+      "success": false,
+      "message": "User creation didn't increase database count",
+      "timestamp": "2025-12-04T02:07:32.374675"
+    },
+    {
+      "test_name": "User Authentication",
+      "success": true,
+      "message": "Test user can authenticate with correct password",
+      "timestamp": "2025-12-04T02:07:32.638164"
+    },
+    {
+      "test_name": "Login Serializer - Validation",
+      "success": true,
+      "message": "LoginSerializer validates frontend data correctly",
+      "timestamp": "2025-12-04T02:07:32.960207",
+      "details": {
+        "user_id": 14,
+        "username": "frontend_test_user"
+      }
+    },
+    {
+      "test_name": "Login Serializer - User Match",
+      "success": true,
+      "message": "Serializer found correct user",
+      "timestamp": "2025-12-04T02:07:32.960230"
+    },
+    {
+      "test_name": "Register Serializer - Validation",
+      "success": true,
+      "message": "RegisterSerializer validates and saves frontend data correctly",
+      "timestamp": "2025-12-04T02:07:33.284568",
+      "details": {
+        "user_id": 15,
+        "username": "new_frontend_user",
+        "email": "new.frontend@example.com",
+        "first_name": "New",
+        "last_name": "User"
+      }
+    },
+    {
+      "test_name": "Register Serializer - Cleanup",
+      "success": true,
+      "message": "Successfully cleaned up test user",
+      "timestamp": "2025-12-04T02:07:33.312623"
+    },
+    {
+      "test_name": "LoginView - Structure",
+      "success": false,
+      "message": "Exception testing LoginView: The response content must be rendered before it can be accessed.",
+      "timestamp": "2025-12-04T02:07:33.963170"
+    },
+    {
+      "test_name": "RegisterView - Response Status",
+      "success": false,
+      "message": "RegisterView returned unexpected status: 400",
+      "timestamp": "2025-12-04T02:07:33.968653"
+    },
+    {
+      "test_name": "Frontend Integration - Database",
+      "success": true,
+      "message": "Authentication system can create and manage users",
+      "timestamp": "2025-12-04T02:07:33.972171",
+      "details": {
+        "test_users_created": 1
+      }
+    },
+    {
+      "test_name": "Frontend Integration - Token Generation",
+      "success": true,
+      "message": "JWT token generation works correctly",
+      "timestamp": "2025-12-04T02:07:33.975777",
+      "details": {
+        "access_token_prefix": "eyJhbGciOiJIUzI1NiIs...",
+        "refresh_token_prefix": "eyJhbGciOiJIUzI1NiIs..."
+      }
+    }
+  ]
+}
