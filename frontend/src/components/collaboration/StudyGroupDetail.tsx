@@ -41,6 +41,7 @@ import {
   StopIcon,
   ArrowTrendingUpIcon,
   ArrowTrendingDownIcon,
+  UsersIcon,
 } from '@heroicons/react/24/outline';
 import { useCollaborationStore } from '../../stores/collaborationStore';
 import { useAuthStore } from '../../stores/authStore';

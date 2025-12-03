@@ -36,7 +36,7 @@ const registerServiceWorker = async () => {
           newWorker.addEventListener('statechange', () => {
             if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
               // New content available, prompt user to refresh
-              if (confirm('New version available! Would you like to update?')) {
+              if (window.confirm('New version available! Would you like to update?')) {
                 window.location.reload();
               }
             }

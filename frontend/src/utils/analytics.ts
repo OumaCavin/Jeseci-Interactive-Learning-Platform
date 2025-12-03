@@ -127,16 +127,16 @@ class Analytics {
     this.trackPageView('initial_load');
 
     // Track page changes (for SPAs)
-    const originalPushState = history.pushState;
-    const originalReplaceState = history.replaceState;
+    const originalPushState = window.history.pushState;
+    const originalReplaceState = window.history.replaceState;
 
-    history.pushState = (...args) => {
-      originalPushState.apply(history, args);
+    window.history.pushState = (...args) => {
+      originalPushState.apply(window.history, args);
       setTimeout(() => this.trackPageView('navigation'), 0);
     };
 
-    history.replaceState = (...args) => {
-      originalReplaceState.apply(history, args);
+    window.history.replaceState = (...args) => {
+      originalReplaceState.apply(window.history, args);
       setTimeout(() => this.trackPageView('navigation'), 0);
     };
 
@@ -192,7 +192,7 @@ class Analytics {
       customParameters: {
         referrer: document.referrer,
         userAgent: navigator.userAgent,
-        screenSize: `${screen.width}x${screen.height}`,
+        screenSize: `${window.screen.width}x${window.screen.height}`,
         viewportSize: `${window.innerWidth}x${window.innerHeight}`
       }
     };

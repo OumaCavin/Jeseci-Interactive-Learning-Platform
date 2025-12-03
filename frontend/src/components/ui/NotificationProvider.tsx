@@ -16,7 +16,7 @@ import {
   Plus, Minus, ArrowUp, ArrowDown, Timer, Award, Shield,
   TrendingDown, BarChart4, PieChart4, Activity as ActivityIcon,
   Heart as HeartIcon, Lightbulb, Target as TargetIcon,
-  Bell as BellIcon, Volume2, VolumeX
+  Bell as BellIcon, Volume2, VolumeX, MousePointer
 } from 'lucide-react';
 
 // Types and Interfaces

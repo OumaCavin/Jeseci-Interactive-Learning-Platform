@@ -331,7 +331,7 @@ const Achievements: React.FC = () => {
         console.error('Failed to load user badges:', error);
         // Fallback to generating badges based on achievements
         const earnedAchievements = achievementList.filter(a => a.unlocked);
-      const mockBadges: Badge[] = [
+        const mockBadges: Badge[] = [
         {
           id: '1',
           name: 'First Achievement',
@@ -361,12 +361,10 @@ const Achievements: React.FC = () => {
         }
       ];
 
-      return mockBadges;
-    };
-
+      setUserBadges(mockBadges);
       }
     };
-    
+
     loadUserBadges();
   }, [achievementList, user]);
 

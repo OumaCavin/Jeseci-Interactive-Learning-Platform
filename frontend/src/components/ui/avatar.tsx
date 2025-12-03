@@ -3,9 +3,9 @@
 
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useAnalytics } from '../hooks/useAnalytics';
-import { useAI } from '../hooks/useAI';
-import { usePreferences } from '../hooks/usePreferences';
+import { useAnalytics } from './useAnalytics';
+import { useAI } from './useAI';
+import { usePreferences } from './usePreferences';
 
 // Type definitions
 interface AvatarConfig {

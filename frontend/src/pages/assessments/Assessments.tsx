@@ -115,10 +115,11 @@ const Assessments: React.FC = () => {
   // Computed values
   const filteredQuizzes = useAssessmentStore(state => state.getFilteredQuizzes());
   
-  const getQuizStatus = (quizId: string) => useAssessmentStore(state => state.getQuizStatus(quizId));
-  const getBestScore = (quizId: string) => useAssessmentStore(state => state.getBestScore(quizId));
-  const getAttemptsRemaining = (quizId: string) => useAssessmentStore(state => state.getAttemptsRemaining(quizId));
-  const getQuizProgress = (quizId: string) => useAssessmentStore(state => state.getQuizProgress(quizId));
+  // Create custom hooks for individual quiz data
+  const useQuizStatus = (quizId: string) => useAssessmentStore(state => state.getQuizStatus(quizId));
+  const useBestScore = (quizId: string) => useAssessmentStore(state => state.getBestScore(quizId));
+  const useAttemptsRemaining = (quizId: string) => useAssessmentStore(state => state.getAttemptsRemaining(quizId));
+  const useQuizProgress = (quizId: string) => useAssessmentStore(state => state.getQuizProgress(quizId));
 
   // Tab configuration
   const tabs = [

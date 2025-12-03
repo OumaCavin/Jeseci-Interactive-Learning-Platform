@@ -1832,7 +1832,7 @@ class EnterpriseAuthService {
         browser_version: this.getBrowserInfo().version,
         os: this.getOSInfo().os,
         os_version: this.getOSInfo().version,
-        screen_resolution: `${screen.width}x${screen.height}`,
+        screen_resolution: `${window.screen.width}x${window.screen.height}`,
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         language: navigator.language,
         user_agent: navigator.userAgent,
@@ -1948,7 +1948,7 @@ class EnterpriseAuthService {
     const components = [
       navigator.userAgent,
       navigator.language,
-      screen.width + 'x' + screen.height,
+      window.screen.width + 'x' + window.screen.height,
       new Date().getTimezoneOffset(),
       navigator.platform
     ];

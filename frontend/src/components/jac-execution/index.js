@@ -749,7 +749,7 @@ export const securityCompliance = {
       ]
     },
 
-    PCI DSS: {
+    'PCI DSS': {
       status: 'Compliant',
       measures: [
         'Secure cardholder data environment',
