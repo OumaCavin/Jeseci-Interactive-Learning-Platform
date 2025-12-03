@@ -23,6 +23,7 @@ import { websocketService } from '../services/websocketService';
 import { useAdminStore } from './slices/adminSlice';
 import { useAgentStore } from './slices/agentSlice';
 import { useAssessmentStore } from './slices/assessmentSlice';
+import { useAuthStore } from './slices/authSlice';
 
 // =============================================================================
 // INTERFACES & TYPES
@@ -46,6 +47,9 @@ export interface AppState {
   
   // Note: Agent functionality moved to separate enterprise agent store
   // Import useAgentStore from './slices/agentSlice' for agent management
+  
+  // Note: Authentication & Security functionality moved to separate enterprise auth store
+  // Import useAuthStore from './slices/authSlice' for comprehensive authentication management
   conversations: Conversation[];
   aiInsights: AIInsight[];
   
@@ -1492,6 +1496,8 @@ export const useAppStore = create<AppState>()(
           // =============================================================================
           
           // User & Session Management
+          // Note: Use useAuthStore() from './slices/authSlice' for comprehensive authentication management
+          // This setUser is kept for basic compatibility but enterprise auth provides full functionality
           setUser: (user: User | null) => set((state) => {
             state.user = user;
           }),
@@ -2134,7 +2140,15 @@ export const useProgress = () => useAppStore((state) => state.progress);
 // Import these from './slices/agentSlice':
 // export const useAgents = () => useAgentStore(state => state.agents);
 // export const useActiveAgents = () => useAgentStore(state => state.active_agents);
-// export const useAgentById = (agentId: string) => useAgentStore(state => 
+// export const useAgentById = (agentId: string) => useAgentStore(state =>
+
+// Authentication & Security functionality now available through enterprise auth store
+// Import these from './slices/authSlice':
+// export const useAuth = () => useAuthStore(state => ({ user: state.user, isAuthenticated: state.isAuthenticated, tokens: state.tokens }));
+// export const useUser = () => useAuthStore(state => state.user);
+// export const useIsAuthenticated = () => useAuthStore(state => state.isAuthenticated);
+// export const useSecurityState = () => useAuthStore(state => ({ securityEvents: state.securityEvents, riskAssessment: state.riskAssessment }));
+// export const useMFAState = () => useAuthStore(state => ({ mfaRequired: state.mfaRequired, mfaMethods: state.mfaMethods })); 
 //   state.agents.find(agent => agent.id === agentId)
 // );
 export const useConversations = () => useAppStore((state) => state.conversations);
