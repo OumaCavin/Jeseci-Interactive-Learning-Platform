@@ -21,8 +21,34 @@ import {
   ChevronUpIcon,
 } from '@heroicons/react/24/outline';
 
-// Mock module content with rich learning material
-const MOCK_MODULE_CONTENT = {
+// API service for fetching module content
+const fetchModuleContent = async (moduleId: string) => {
+  try {
+    const response = await fetch(`/api/modules/${moduleId}/content`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch module content');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching module content:', error);
+    // Return a default structure on error
+    return {
+      id: moduleId,
+      title: 'Module Content',
+      type: 'lesson',
+      content: {
+        sections: [{
+          id: 'error',
+          title: 'Error Loading Content',
+          content: 'Unable to load module content. Please try again later.'
+        }]
+      }
+    };
+  }
+};
+
+// Fallback mock module content for development/testing
+const FALLBACK_MODULE_CONTENT = {
   id: 1,
   title: 'Introduction to Variables',
   type: 'lesson',
@@ -135,7 +161,28 @@ const ModuleContent: React.FC = () => {
   const { pathId, moduleId } = useParams<{ pathId: string; moduleId: string }>();
   const navigate = useNavigate();
   
-  const [moduleData, setModuleData] = useState(MOCK_MODULE_CONTENT);
+  const [moduleData, setModuleData] = useState(FALLBACK_MODULE_CONTENT);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch module content on component mount or when moduleId changes
+  useEffect(() => {
+    if (moduleId) {
+      const loadModuleData = async () => {
+        setIsLoading(true);
+        try {
+          const content = await fetchModuleContent(moduleId);
+          setModuleData(content);
+        } catch (error) {
+          console.error('Failed to load module data:', error);
+          setModuleData(FALLBACK_MODULE_CONTENT);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      
+      loadModuleData();
+    }
+  }, [moduleId]);
   const [currentSection, setCurrentSection] = useState(0);
   const [isCompleted, setIsCompleted] = useState(false);
   const [timeSpent, setTimeSpent] = useState(0);

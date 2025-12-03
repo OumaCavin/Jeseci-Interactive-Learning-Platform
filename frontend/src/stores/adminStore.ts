@@ -185,23 +185,18 @@ export const useAdminStore = create<AdminState>()(
           // Simulate API calls - replace with actual endpoints
           const [statsResponse, activityResponse, usersResponse, contentResponse, analyticsResponse] = 
             await Promise.allSettled([
-              // api.get('/admin/stats/'),
-              // api.get('/admin/activity/'),
-              // api.get('/admin/users/'),
-              // api.get('/admin/content/'),
-              // api.get('/admin/analytics/')
-              Promise.resolve({ data: get().generateMockStats() }),
-              Promise.resolve({ data: get().generateMockActivity() }),
-              Promise.resolve({ data: get().generateMockUsers() }),
-              Promise.resolve({ data: get().generateMockContent() }),
-              Promise.resolve({ data: get().generateMockAnalytics() })
+              api.get('/admin/stats'),
+              api.get('/admin/activity'),
+              api.get('/admin/users'),
+              api.get('/admin/content'),
+              api.get('/admin/analytics')
             ]);
 
-          const stats = statsResponse.status === 'fulfilled' ? statsResponse.data : get().generateMockStats();
-          const activity = activityResponse.status === 'fulfilled' ? activityResponse.data : get().generateMockActivity();
-          const users = usersResponse.status === 'fulfilled' ? usersResponse.data : get().generateMockUsers();
-          const content = contentResponse.status === 'fulfilled' ? contentResponse.data : get().generateMockContent();
-          const analytics = analyticsResponse.status === 'fulfilled' ? analyticsResponse.data : get().generateMockAnalytics();
+          const stats = statsResponse.status === 'fulfilled' ? statsResponse.value.data : get().generateMockStats();
+          const activity = activityResponse.status === 'fulfilled' ? activityResponse.value.data : get().generateMockActivity();
+          const users = usersResponse.status === 'fulfilled' ? usersResponse.value.data : get().generateMockUsers();
+          const content = contentResponse.status === 'fulfilled' ? contentResponse.value.data : get().generateMockContent();
+          const analytics = analyticsResponse.status === 'fulfilled' ? analyticsResponse.value.data : get().generateMockAnalytics();
 
           set({
             stats,
@@ -225,14 +220,12 @@ export const useAdminStore = create<AdminState>()(
         set({ isAgentsLoading: true, error: null });
         try {
           const [agentsResponse, healthResponse] = await Promise.allSettled([
-            // api.get('/admin/agents/'),
-            // api.get('/admin/system-health/')
-            Promise.resolve({ data: get().generateMockAgents() }),
-            Promise.resolve({ data: get().generateMockSystemHealth() })
+            api.get('/admin/agents'),
+            api.get('/admin/system-health')
           ]);
 
-          const agents = agentsResponse.status === 'fulfilled' ? agentsResponse.data : get().generateMockAgents();
-          const systemHealth = healthResponse.status === 'fulfilled' ? healthResponse.data : get().generateMockSystemHealth();
+          const agents = agentsResponse.status === 'fulfilled' ? agentsResponse.value.data : get().generateMockAgents();
+          const systemHealth = healthResponse.status === 'fulfilled' ? healthResponse.value.data : get().generateMockSystemHealth();
 
           set({
             agents,
@@ -305,23 +298,8 @@ export const useAdminStore = create<AdminState>()(
 
       createUser: async (userData: Partial<UserManagement>) => {
         try {
-          // await api.post('/admin/users/', userData);
-          const newUser: UserManagement = {
-            id: Date.now().toString(),
-            username: userData.username || '',
-            email: userData.email || '',
-            firstName: userData.firstName || '',
-            lastName: userData.lastName || '',
-            role: userData.role || 'student',
-            status: 'active',
-            lastActive: new Date().toISOString(),
-            totalPoints: 0,
-            level: 1,
-            completedPaths: 0,
-            studyTime: 0,
-            joinDate: new Date().toISOString(),
-            ...userData
-          };
+          const response = await api.post('/admin/users', userData);
+          const newUser = response.data;
           
           set(prev => ({
             users: [newUser, ...prev.users],
@@ -338,11 +316,12 @@ export const useAdminStore = create<AdminState>()(
 
       updateUser: async (userId: string, updates: Partial<UserManagement>) => {
         try {
-          // await api.patch(`/admin/users/${userId}/`, updates);
+          const response = await api.patch(`/admin/users/${userId}`, updates);
+          const updatedUser = response.data;
           
           set(prev => ({
             users: prev.users.map(user => 
-              user.id === userId ? { ...user, ...updates } : user
+              user.id === userId ? updatedUser : user
             )
           }));
         } catch (error: any) {
@@ -353,7 +332,7 @@ export const useAdminStore = create<AdminState>()(
 
       deleteUser: async (userId: string) => {
         try {
-          // await api.delete(`/admin/users/${userId}/`);
+          await api.delete(`/admin/users/${userId}`);
           
           set(prev => ({
             users: prev.users.filter(user => user.id !== userId),

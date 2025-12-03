@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Card, Badge, Button, Progress } from '../ui';
 import { EnterpriseTabs as Tabs } from '../ui';
 import { EnterpriseAvatar as Avatar } from '../ui';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
+
 import {
   ContentCuratorChat,
   QuizMasterChat,

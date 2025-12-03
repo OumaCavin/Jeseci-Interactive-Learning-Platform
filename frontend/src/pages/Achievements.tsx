@@ -90,6 +90,51 @@ const Achievements: React.FC = () => {
 
   // Generate mock achievements based on user data (in production, this would come from API)
   useEffect(() => {
+    const loadAchievements = async (): Promise<AchievementWithUI[]> => {
+      try {
+        const response = await fetch('/api/achievements');
+        const allAchievements: Achievement[] = await response.json();
+        
+        // Calculate progress and unlock status based on user data
+        const achievementsWithUI: AchievementWithUI[] = allAchievements.map(achievement => {
+          let progress = 0;
+          let unlocked = false;
+          
+          switch (achievement.criteria_type) {
+            case 'modules':
+              progress = Math.min(user?.completed_modules || 0, achievement.criteria_value);
+              unlocked = (user?.completed_modules || 0) >= achievement.criteria_value;
+              break;
+            case 'points':
+              progress = Math.min(user?.total_points || 0, achievement.criteria_value);
+              unlocked = (user?.total_points || 0) >= achievement.criteria_value;
+              break;
+            case 'streak':
+              progress = Math.min(user?.current_streak || 0, achievement.criteria_value);
+              unlocked = (user?.current_streak || 0) >= achievement.criteria_value;
+              break;
+            // Add more criteria types as needed
+            default:
+              progress = 0;
+              unlocked = false;
+          }
+          
+          return {
+            ...achievement,
+            progress,
+            unlocked,
+            unlockedAt: unlocked ? new Date().toISOString() : undefined
+          };
+        });
+        
+        return achievementsWithUI;
+      } catch (error) {
+        console.error('Failed to load achievements:', error);
+        // Return empty array on error
+        return [];
+      }
+    };
+
     const generateMockAchievements = (): AchievementWithUI[] => {
       const mockAchievements: Achievement[] = [
         // Learning Achievements
@@ -272,13 +317,20 @@ const Achievements: React.FC = () => {
       return mockAchievements;
     };
 
-    setAchievementList(generateMockAchievements());
+    loadAchievements().then(setAchievementList);
   }, [user]);
 
-  // Generate mock badges based on user achievements
+  // Load user badges from database
   useEffect(() => {
-    const generateMockBadges = (): Badge[] => {
-      const earnedAchievements = achievementList.filter(a => a.unlocked);
+    const loadUserBadges = async () => {
+      try {
+        const response = await fetch(`/api/user/${user?.id}/badges`);
+        const userBadges: Badge[] = await response.json();
+        setUserBadges(userBadges);
+      } catch (error) {
+        console.error('Failed to load user badges:', error);
+        // Fallback to generating badges based on achievements
+        const earnedAchievements = achievementList.filter(a => a.unlocked);
       const mockBadges: Badge[] = [
         {
           id: '1',
@@ -312,7 +364,10 @@ const Achievements: React.FC = () => {
       return mockBadges;
     };
 
-    setUserBadges(generateMockBadges());
+      }
+    };
+    
+    loadUserBadges();
   }, [achievementList, user]);
 
   // Filter achievements based on current filters
