@@ -25,6 +25,7 @@ import { useAgentStore } from './slices/agentSlice';
 import { useAssessmentStore } from './slices/assessmentSlice';
 import { useAuthStore } from './slices/authSlice';
 import { useLearningStore } from './slices/learningSlice';
+import { useSearchStore } from './slices/searchSlice';
 
 // =============================================================================
 // INTERFACES & TYPES
@@ -66,9 +67,8 @@ export interface AppState {
   sharedSessions: SharedSession[];
   realTimeActivity: RealTimeActivity[];
   
-  // Search & Discovery
-  searchResults: SearchResult[];
-  searchHistory: SearchHistoryItem[];
+  // Note: Search & Discovery functionality moved to enterprise search store
+  // Import useSearchStore from './slices/searchSlice' for comprehensive search management
   recommendations: Recommendation[];
   
   // Gamification State
@@ -518,26 +518,6 @@ export interface RealTimeActivity {
   data: Record<string, any>;
   timestamp: string;
   aiProcessed: boolean;
-}
-
-export interface SearchResult {
-  id: string;
-  type: 'course' | 'user' | 'content' | 'discussion' | 'resource';
-  title: string;
-  description: string;
-  score: number;
-  aiRanked: boolean;
-  metadata: Record<string, any>;
-  highlighted: boolean;
-  lastUpdated: string;
-}
-
-export interface SearchHistoryItem {
-  query: string;
-  timestamp: string;
-  results: number;
-  aiOptimized: boolean;
-  clicked?: boolean;
 }
 
 export interface Recommendation {
@@ -1169,9 +1149,8 @@ export const useAppStore = create<AppState>()(
           sharedSessions: [],
           realTimeActivity: [],
           
-          // Search State
-          searchResults: [],
-          searchHistory: [],
+          // Note: Search state moved to enterprise search store
+          // Use useSearchStore() for comprehensive search management
           recommendations: [],
           
           // Gamification State
@@ -1612,17 +1591,8 @@ export const useAppStore = create<AppState>()(
             state.realTimeActivity = state.realTimeActivity.slice(-100);
           }),
           
-          // Search Actions
-          setSearchResults: (results: SearchResult[]) => set((state) => {
-            state.searchResults = results;
-          }),
-          
-          addSearchHistory: (item: SearchHistoryItem) => set((state) => {
-            state.searchHistory.unshift(item);
-            // Keep only last 50 items
-            state.searchHistory = state.searchHistory.slice(0, 50);
-          }),
-          
+          // Note: Search actions moved to enterprise search store
+          // Use useSearchStore() for comprehensive search management
           setRecommendations: (recommendations: Recommendation[]) => set((state) => {
             state.recommendations = recommendations;
           }),
@@ -2108,7 +2078,7 @@ export const useAppStore = create<AppState>()(
           progress: state.progress,
           achievements: state.achievements,
           streaks: state.streaks,
-          searchHistory: state.searchHistory.slice(0, 20), // Keep only last 20
+          // Note: Search history moved to enterprise search store
           appSettings: state.appSettings,
           securitySettings: state.securitySettings,
           notificationSettings: state.notificationSettings,
@@ -2191,9 +2161,15 @@ export const useCollaborators = () => useAppStore((state) => state.collaborators
 export const useSharedSessions = () => useAppStore((state) => state.sharedSessions);
 export const useRealTimeActivity = () => useAppStore((state) => state.realTimeActivity);
 
-// Search Selectors
-export const useSearchResults = () => useAppStore((state) => state.searchResults);
-export const useSearchHistory = () => useAppStore((state) => state.searchHistory);
+// Search functionality now available through enterprise search store
+// Import these from './slices/searchSlice':
+// export const useCurrentQuery = () => useSearchStore(state => state.currentQuery);
+// export const useSearchResults = () => useSearchStore(state => state.searchResults);
+// export const useSearchHistory = () => useSearchStore(state => state.searchHistory);
+// export const useAISuggestions = () => useSearchStore(state => state.aiSuggestions);
+// export const useSearchAnalytics = () => useSearchStore(state => state.searchAnalytics);
+// export const useSearchPersonalization = () => useSearchStore(state => state.searchPersonalization);
+// export const useMultiModalSearch = () => useSearchStore(state => state.multiModalSearch);
 export const useRecommendations = () => useAppStore((state) => state.recommendations);
 
 // Gamification Selectors
