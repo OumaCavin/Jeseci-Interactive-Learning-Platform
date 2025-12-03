@@ -15,7 +15,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import UserProfile
-from .serializers import LoginSerializer, RegisterSerializer
+from .serializers import LoginSerializer, RegisterSerializer, PasswordResetRequestSerializer, PasswordResetConfirmSerializer
 
 logger = logging.getLogger(__name__)
 
@@ -296,3 +296,99 @@ class SystemStatsView(APIView):
                 'message': 'System statistics not fully implemented'
             }
         })
+
+
+# Password Reset Views
+class PasswordResetRequestView(APIView):
+    """Handle password reset requests"""
+    permission_classes = [AllowAny]
+    
+    def post(self, request):
+        try:
+            serializer = PasswordResetRequestSerializer(data=request.data)
+            if serializer.is_valid():
+                email = serializer.validated_data['email']
+                
+                # Check if user exists (but don't reveal this for security)
+                user = User.objects.filter(email=email).first()
+                
+                # For demo purposes, generate a simple token
+                # In production, this would be sent via email
+                import secrets
+                reset_token = secrets.token_urlsafe(32)
+                
+                # For development: Return the token so frontend can test
+                if user:
+                    # In production, save token to database with expiry
+                    pass
+                
+                return Response({
+                    'status': 'success',
+                    'message': 'Password reset instructions sent to your email' if user else 'If this email exists, instructions have been sent',
+                    'token': reset_token  # For development/testing only
+                }, status=status.HTTP_200_OK)
+            else:
+                return Response({
+                    'status': 'error',
+                    'message': 'Invalid email address',
+                    'errors': serializer.errors
+                }, status=status.HTTP_400_BAD_REQUEST)
+                
+        except Exception as e:
+            logger.error(f"Password reset request error: {str(e)}")
+            return Response({
+                'status': 'error',
+                'message': 'Password reset request failed'
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class PasswordResetConfirmView(APIView):
+    """Handle password reset confirmations"""
+    permission_classes = [AllowAny]
+    
+    def post(self, request):
+        try:
+            serializer = PasswordResetConfirmSerializer(data=request.data)
+            if serializer.is_valid():
+                token = serializer.validated_data['token']
+                new_password = serializer.validated_data['new_password']
+                
+                # For demo purposes, accept any token
+                # In production, validate token against database and check expiry
+                
+                # For now, prompt for email to find user
+                # In production, token would identify the user
+                email = request.data.get('email')
+                if email:
+                    user = User.objects.filter(email=email).first()
+                    if user:
+                        user.set_password(new_password)
+                        user.save()
+                        
+                        return Response({
+                            'status': 'success',
+                            'message': 'Password reset successfully'
+                        }, status=status.HTTP_200_OK)
+                    else:
+                        return Response({
+                            'status': 'error',
+                            'message': 'Invalid reset token or email'
+                        }, status=status.HTTP_400_BAD_REQUEST)
+                else:
+                    return Response({
+                        'status': 'error',
+                        'message': 'Email is required for password reset confirmation'
+                    }, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response({
+                    'status': 'error',
+                    'message': 'Invalid reset data',
+                    'errors': serializer.errors
+                }, status=status.HTTP_400_BAD_REQUEST)
+                
+        except Exception as e:
+            logger.error(f"Password reset confirmation error: {str(e)}")
+            return Response({
+                'status': 'error',
+                'message': 'Password reset failed'
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

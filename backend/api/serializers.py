@@ -44,7 +44,7 @@ class LoginSerializer(serializers.Serializer):
 class RegisterSerializer(serializers.ModelSerializer):
     """Session-based registration serializer"""
     password = serializers.CharField(write_only=True, validators=[validate_password])
-    password_confirm = serializers.CharField(write_only=True, required=False)
+    password_confirm = serializers.CharField(write_only=True, required=True)
     
     class Meta:
         model = User
@@ -104,3 +104,32 @@ class LearningProgressSerializer(serializers.ModelSerializer):
     class Meta:
         model = LearningProgress
         fields = '__all__'
+
+
+# Password Reset Serializers
+class PasswordResetRequestSerializer(serializers.Serializer):
+    """Serializer for password reset request"""
+    email = serializers.EmailField(required=True)
+    
+    def validate_email(self, value):
+        # Check if user exists with this email
+        if not User.objects.filter(email=value).exists():
+            # Don't reveal whether email exists or not for security
+            return value
+        return value
+
+
+class PasswordResetConfirmSerializer(serializers.Serializer):
+    """Serializer for password reset confirmation"""
+    token = serializers.CharField(required=True)
+    new_password = serializers.CharField(write_only=True, validators=[validate_password])
+    new_password_confirm = serializers.CharField(write_only=True, required=True)
+    
+    def validate(self, attrs):
+        password = attrs.get('new_password')
+        password_confirm = attrs.get('new_password_confirm')
+        
+        if password != password_confirm:
+            raise serializers.ValidationError("Passwords do not match")
+        
+        return attrs
