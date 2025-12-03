@@ -5,6 +5,7 @@ Routes all API endpoints for the Jeseci Interactive Learning Platform.
 """
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from . import views
 
 # Create a router and register our viewsets with it
@@ -18,6 +19,17 @@ router.register(r'progress', views.ProgressViewSet)
 urlpatterns = [
     # Core Learning Platform Endpoints
     path('', include(router.urls)),
+    
+    # Authentication Endpoints
+    path('auth/login/', views.LoginView.as_view(), name='auth_login'),
+    path('auth/register/', views.RegisterView.as_view(), name='auth_register'),
+    path('auth/logout/', views.LogoutView.as_view(), name='auth_logout'),
+    path('auth/refresh/', views.RefreshTokenView.as_view(), name='auth_refresh'),
+    path('auth/profile/', views.UserProfileView.as_view(), name='auth_profile'),
+    
+    # JWT Token Endpoints (Alternative authentication)
+    path('auth/token/', views.LoginView.as_view(), name='token_obtain_pair'),
+    path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     
     # Multi-Agent System Integration Endpoints
     path('init_learning/', views.InitLearningView.as_view(), name='init_learning'),

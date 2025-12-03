@@ -41,3 +41,6 @@ django-security
 
 # API Documentation
 drf-spectacular==0.29.0
+
+# JWT Authentication
+djangorestframework-simplejwt==5.3.0
