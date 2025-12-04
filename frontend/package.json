@@ -26,7 +26,7 @@
     "react-dom": "latest",
     "react-hook-form": "latest",
     "react-hot-toast": "latest",
-    "react-router-dom": "latest",
+    "react-router-dom": "^6.8.0",
     "react-scripts": "latest",
     "recharts": "latest",
     "typescript": "latest",

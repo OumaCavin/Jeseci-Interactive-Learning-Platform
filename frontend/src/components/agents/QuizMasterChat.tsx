@@ -1165,7 +1165,7 @@ const QuizMasterChat: React.FC = () => {
             {['JavaScript (2 weeks)', 'TypeScript (3 weeks)', 'Node.js (4 weeks)'].map((timeline, index) => (
               <div key={index} className="flex justify-between text-sm">
                 <span className="text-gray-600">{timeline.split(' (')[0]}</span>
-                <span className="font-medium">{timeline.split(' (')[1]}</span>
+                <span className="font-medium">{timeline.split(' (')[1].replace(')', '')}</span>
               </div>
             ))}
           </div>
