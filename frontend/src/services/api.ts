@@ -2,7 +2,7 @@
 // Enhanced by Cavin Otieno - Cavin Otieno
 // Comprehensive API client with AI integration and educational intelligence
 
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosError, AxiosInstance } from 'axios';
 import { 
   LearningPath, 
   Module, 
@@ -31,6 +31,22 @@ import {
   UserGamificationStats, 
   LeaderboardEntry 
 } from './gamificationService';
+
+// Extended API Client Interface that includes standard Axios methods
+export interface ExtendedAxiosInstance extends AxiosInstance {
+  // Standard HTTP methods for compatibility
+  get<T = any>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>>;
+  post<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>>;
+  put<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>>;
+  patch<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>>;
+  delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>>;
+  // Defaults property for compatibility
+  defaults: {
+    headers: {
+      common: Record<string, any>;
+    };
+  };
+}
 
 // =============================================================================
 // ENVIRONMENT & CONFIGURATION
@@ -690,8 +706,8 @@ class EducationalCache {
 // MAIN ENTERPRISE API CLIENT
 // =============================================================================
 
-class EnterpriseAPIClient {
-  private axiosInstance: ReturnType<typeof axios.create>;
+class EnterpriseAPIClient implements ExtendedAxiosInstance {
+  private axiosInstance: ExtendedAxiosInstance;
   private ai: EducationalAI;
   private analytics: EducationalAnalytics;
   private cache: EducationalCache;
@@ -706,7 +722,7 @@ class EnterpriseAPIClient {
         'X-Client-Version': '2.0.0',
         'X-Educational-Platform': 'JAC-Learning-Platform',
       },
-    });
+    }) as ExtendedAxiosInstance;
 
     this.ai = new EducationalAI();
     this.analytics = new EducationalAnalytics();
@@ -1387,6 +1403,87 @@ class EnterpriseAPIClient {
     }
   }
 
+  // =============================================================================
+  // AXIOS INTERFACE IMPLEMENTATION
+  // =============================================================================
+
+  /**
+   * Standard GET method implementation
+   */
+  get<T = any>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+    return this.axiosInstance.get<T>(url, config);
+  }
+
+  /**
+   * Standard POST method implementation
+   */
+  post<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+    return this.axiosInstance.post<T>(url, data, config);
+  }
+
+  /**
+   * Standard PUT method implementation
+   */
+  put<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+    return this.axiosInstance.put<T>(url, data, config);
+  }
+
+  /**
+   * Standard PATCH method implementation
+   */
+  patch<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+    return this.axiosInstance.patch<T>(url, data, config);
+  }
+
+  /**
+   * Standard DELETE method implementation
+   */
+  delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+    return this.axiosInstance.delete<T>(url, config);
+  }
+
+  /**
+   * Defaults property implementation
+   */
+  get defaults() {
+    return this.axiosInstance.defaults;
+  }
+
+  /**
+   * Interceptors property implementation
+   */
+  get interceptors() {
+    return this.axiosInstance.interceptors;
+  }
+
+  /**
+   * Request method implementation
+   */
+  request<T = any>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+    return this.axiosInstance.request<T>(config);
+  }
+
+  /**
+   * Head method implementation
+   */
+  head<T = any>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+    return this.axiosInstance.head<T>(url, config);
+  }
+
+  /**
+   * Options method implementation
+   */
+  options<T = any>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+    return this.axiosInstance.options<T>(url, config);
+  }
+
+  /**
+   * URI method implementation
+   */
+  uri(config: AxiosRequestConfig): string {
+    return this.axiosInstance.uri(config);
+  }
+
   /**
    * Make HTTP request with retry logic
    */
@@ -1466,30 +1563,8 @@ class EnterpriseAPIClient {
 
 export const apiClient = new EnterpriseAPIClient();
 
-// Legacy compatibility exports
+// Export for backward compatibility
 export default apiClient;
-
-// Add HTTP methods for backward compatibility
-(apiClient as any).get = (url: string, config?: any) => 
-  apiClient.request({ method: 'GET', url, ...config });
-
-(apiClient as any).post = (url: string, data?: any, config?: any) => 
-  apiClient.request({ method: 'POST', url, data, ...config });
-
-(apiClient as any).put = (url: string, data?: any, config?: any) => 
-  apiClient.request({ method: 'PUT', url, data, ...config });
-
-(apiClient as any).patch = (url: string, data?: any, config?: any) => 
-  apiClient.request({ method: 'PATCH', url, data, ...config });
-
-(apiClient as any).delete = (url: string, config?: any) => 
-  apiClient.request({ method: 'DELETE', url, ...config });
-
-(apiClient as any).defaults = {
-  headers: {
-    common: {}
-  }
-};
 
 // Export individual services for backward compatibility
 export { 
@@ -1500,3 +1575,6 @@ export {
   RetryStrategy,
   EducationalErrorHandler 
 };
+
+// Export type for external usage
+export type { ExtendedAxiosInstance };
