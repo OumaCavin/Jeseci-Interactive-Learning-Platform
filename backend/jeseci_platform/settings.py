@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     
     # Third party apps - only basic ones we have installed
     'rest_framework',
+    'drf_spectacular',
     
     # Local apps
     'api',
@@ -121,6 +122,14 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.MultiPartParser',
         'rest_framework.parsers.FileUploadParser',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+# Spectacular OpenAPI Schema Configuration
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Jeseci Interactive Learning Platform API',
+    'DESCRIPTION': 'API documentation for the Jeseci Interactive Learning Platform',
+    'VERSION': '1.0.0',
 }
 
 # JWT Settings - Disabled for testing
