@@ -92,7 +92,7 @@ This fixes the compilation failures reported when running 'jac build' commands."
     # Add remote with token and push
     remote_commands = [
         ("git remote remove origin 2>/dev/null || true", "Remove existing origin"),
-        ("git remote add origin https://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@github.com/oumacavin/Jeseci-Interactive-Learning-Platform.git", "Add origin with token"),
+        ("git remote add origin https://[TOKEN]@github.com/oumacavin/Jeseci-Interactive-Learning-Platform.git", "Add origin with token"),
         ("git push -u origin main --force", "Push to main branch"),
     ]
     
