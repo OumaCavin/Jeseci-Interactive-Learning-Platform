@@ -15,13 +15,13 @@ walker evaluator {
     has code;
     has concept_id;
     
-    can evaluate_code_response with `root entry {
+    can evaluate_code_response `root entry` {
         expected_concepts = ["variables", "functions", "control_structures"];
         eval_result = evaluate_code_response(self.user_id, self.code, self.concept_id, expected_concepts);
         report {"status": "success", "data": eval_result, "action": "evaluate_code_response"};
     }
     
-    can evaluate_text_response with `root entry {
+    can evaluate_text_response `root entry` {
         response = "Variables are containers that store data values in programming.";
         question_type = "definition";
         expected_concepts = ["variables", "data_types"];
@@ -29,7 +29,7 @@ walker evaluator {
         report {"status": "success", "data": text_eval_result, "action": "evaluate_text_response"};
     }
     
-    can analyze_learning_gaps with `root entry {
+    can analyze_learning_gaps `root entry` {
         recent_performance = [
             {"concept": "variables", "score": 0.8},
             {"concept": "functions", "score": 0.6},
@@ -39,14 +39,14 @@ walker evaluator {
         report {"status": "success", "data": gap_result, "action": "analyze_learning_gaps"};
     }
     
-    can provide_intelligent_feedback with `root entry {
+    can provide_intelligent_feedback `root entry` {
         evaluation_results = {"recent_scores": [0.7, 0.8, 0.6]};
         learning_context = {"current_level": "beginner", "goals": ["master_variables"]};
         feedback_result = provide_intelligent_feedback(self.user_id, evaluation_results, learning_context);
         report {"status": "success", "data": feedback_result, "action": "provide_intelligent_feedback"};
     }
     
-    can track_mastery_progression with `root entry {
+    can track_mastery_progression `root entry` {
         evaluation_history = [
             {"score": 0.6, "timestamp": "2025-12-01"},
             {"score": 0.7, "timestamp": "2025-12-02"},

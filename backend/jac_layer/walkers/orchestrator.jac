@@ -12,22 +12,22 @@ walker orchestrator {
     has user_id;
     has workflow_type: "daily_learning";
     
-    can init_user_graph with `root entry {
+    can init_user_graph `root entry` {
         init_result = init_user_graph(self.user_id);
         report {"status": "success", "data": init_result, "action": "init_user_graph"};
     }
     
-    can start_lesson_sequence with `root entry {
+    can start_lesson_sequence `root entry` {
         lesson_result = start_lesson_sequence(self.user_id, "lesson_introduction");
         report {"status": "success", "data": lesson_result, "action": "start_lesson_sequence"};
     }
     
-    can process_answer_evaluation with `root entry {
+    can process_answer_evaluation `root entry` {
         eval_result = process_answer_evaluation(self.user_id, "quiz_001", "user_answer");
         report {"status": "success", "data": eval_result, "action": "process_answer_evaluation"};
     }
     
-    can coordinate_learning_workflow with `root entry {
+    can coordinate_learning_workflow `root entry` {
         coord_result = coordinate_learning_workflow(self.user_id, self.workflow_type);
         report {"status": "success", "data": coord_result, "action": "coordinate_learning_workflow"};
     }

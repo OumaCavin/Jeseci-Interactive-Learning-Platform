@@ -13,17 +13,17 @@ walker quiz_master {
     has concept_id;
     has difficulty_level: "beginner";
     
-    can generate_adaptive_quiz with `root entry {
+    can generate_adaptive_quiz `root entry` {
         quiz_result = generate_adaptive_quiz(self.user_id, self.concept_id, self.difficulty_level);
         report {"status": "success", "data": quiz_result, "action": "generate_adaptive_quiz"};
     }
     
-    can create_mixed_assessment with `root entry {
+    can create_mixed_assessment `root entry` {
         assessment_result = create_mixed_assessment(self.user_id, ["variables", "control_structures"]);
         report {"status": "success", "data": assessment_result, "action": "create_mixed_assessment"};
     }
     
-    can personalize_question_difficulty with `root entry {
+    can personalize_question_difficulty `root entry` {
         base_questions = [
             {"question": "What is a variable?", "type": "multiple_choice", "difficulty": "beginner"}
         ];
@@ -31,12 +31,12 @@ walker quiz_master {
         report {"status": "success", "data": personalized_result, "action": "personalize_question_difficulty"};
     }
     
-    can generate_progressive_questions with `root entry {
+    can generate_progressive_questions `root entry` {
         progressive_result = generate_progressive_questions(self.user_id, self.concept_id, 5);
         report {"status": "success", "data": progressive_result, "action": "generate_progressive_questions"};
     }
     
-    can analyze_quiz_performance with `root entry {
+    can analyze_quiz_performance `root entry` {
         responses = [
             {"question_id": "q1", "answer": "Option A", "correct": True},
             {"question_id": "q2", "answer": "Option B", "correct": False}

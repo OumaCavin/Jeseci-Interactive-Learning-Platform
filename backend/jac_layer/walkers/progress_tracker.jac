@@ -12,7 +12,7 @@ walker progress_tracker {
     has user_id;
     has lesson_id;
     
-    can track_lesson_progress with `root entry {
+    can track_lesson_progress `root entry` {
         progress_data = {
             "completion_percentage": 75,
             "time_spent": 30,
@@ -22,24 +22,24 @@ walker progress_tracker {
         report {"status": "success", "data": progress_result, "action": "track_lesson_progress"};
     }
     
-    can generate_learning_analytics with `root entry {
+    can generate_learning_analytics `root entry` {
         time_period = "week";
         analytics_result = generate_learning_analytics(self.user_id, time_period);
         report {"status": "success", "data": analytics_result, "action": "generate_learning_analytics"};
     }
     
-    can monitor_concept_mastery with `root entry {
+    can monitor_concept_mastery `root entry` {
         concept_ids = ["variables", "functions", "control_structures"];
         mastery_result = monitor_concept_mastery(self.user_id, concept_ids);
         report {"status": "success", "data": mastery_result, "action": "monitor_concept_mastery"};
     }
     
-    can analyze_learning_streak with `root entry {
+    can analyze_learning_streak `root entry` {
         streak_result = analyze_learning_streak(self.user_id);
         report {"status": "success", "data": streak_result, "action": "analyze_learning_streak"};
     }
     
-    can update_learning_dashboard with `root entry {
+    can update_learning_dashboard `root entry` {
         dashboard_metrics = {
             "completion_rate": 0.75,
             "time_spent": 450,

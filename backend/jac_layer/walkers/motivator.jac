@@ -12,12 +12,12 @@ walker motivator {
     has user_id;
     has context;
     
-    can generate_motivational_message with `root entry {
+    can generate_motivational_message `root entry` {
         motivational_result = generate_motivational_message(self.user_id, self.context);
         report {"status": "success", "data": motivational_result, "action": "generate_motivational_message"};
     }
     
-    can check_achievement_milestones with `root entry {
+    can check_achievement_milestones `root entry` {
         recent_activities = [
             {"status": "completed", "score": 0.8},
             {"status": "completed", "score": 0.75},
@@ -27,20 +27,20 @@ walker motivator {
         report {"status": "success", "data": milestone_result, "action": "check_achievement_milestones"};
     }
     
-    can create_personalized_challenge with `root entry {
+    can create_personalized_challenge `root entry` {
         skill_areas = ["variables", "functions", "control_structures"];
         difficulty_level = "intermediate";
         challenge_result = create_personalized_challenge(self.user_id, skill_areas, difficulty_level);
         report {"status": "success", "data": challenge_result, "action": "create_personalized_challenge"};
     }
     
-    can track_streak_achievements with `root entry {
+    can track_streak_achievements `root entry` {
         streak_data = {"current_streak": 7, "longest_streak": 14};
         streak_result = track_streak_achievements(self.user_id, streak_data);
         report {"status": "success", "data": streak_result, "action": "track_streak_achievements"};
     }
     
-    can manage_gamification_elements with `root entry {
+    can manage_gamification_elements `root entry` {
         activity_data = {"score": 0.85, "activity_type": "quiz_completion"};
         gamification_result = manage_gamification_elements(self.user_id, activity_data);
         report {"status": "success", "data": gamification_result, "action": "manage_gamification_elements"};
