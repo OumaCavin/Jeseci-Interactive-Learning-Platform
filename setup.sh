@@ -222,7 +222,7 @@ HEALTH_CHECK_STORAGE=True
 GOOGLE_API_KEY=AIzaSyB3OhghL8KcNaixdZkM4Wfd07_dAoQvrI0
 
 # GitHub Personal Access Token (Fine-Grained) - Active
-GITHUB_PAT=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
+GITHUB_PAT=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
 
 # =============================================================================
 # AGENT SYSTEM CONFIGURATION
