@@ -18,9 +18,6 @@
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
     "@types/jest": "latest",
-    "@types/node": "latest",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
     "axios": "latest",
     "clsx": "latest",
     "date-fns": "latest",
@@ -31,9 +28,8 @@
     "react-hook-form": "latest",
     "react-hot-toast": "latest",
     "react-router-dom": "^6.8.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "recharts": "latest",
-    "typescript": "latest",
     "web-vitals": "latest",
     "zod": "latest",
     "zustand": "latest"
@@ -73,6 +69,9 @@
     ]
   },
   "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "@types/react-router-dom": "latest",
     "@types/ws": "^8.5.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
@@ -84,6 +83,7 @@
     "postcss": "latest",
     "supertest": "^6.3.3",
     "tailwindcss": "latest",
+    "typescript": "^4.9.5",
     "ws": "^8.14.0"
   }
 }

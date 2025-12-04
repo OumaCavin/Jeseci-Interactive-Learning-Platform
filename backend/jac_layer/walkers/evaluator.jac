@@ -56,8 +56,6 @@ walker evaluator {
         report {"status": "success", "data": mastery_result, "action": "track_mastery_progression"};
     }
 }
-
-def evaluate_code_response(user_id: int, code: str, concept_id: str, expected_concepts: List[str]) -> Dict[str, Any]:
     """
     Evaluate user's code response using Cavin Otieno's methodology
     

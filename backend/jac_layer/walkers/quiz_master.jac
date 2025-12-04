@@ -45,8 +45,6 @@ walker quiz_master {
         report {"status": "success", "data": analysis_result, "action": "analyze_quiz_performance"};
     }
 }
-
-def generate_adaptive_quiz(user_id: int, concept_id: str, difficulty_level: str) -> Dict[str, Any]:
     """
     Generate adaptive quiz based on user's mastery level
     

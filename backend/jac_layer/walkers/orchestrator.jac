@@ -32,8 +32,6 @@ walker orchestrator {
         report {"status": "success", "data": coord_result, "action": "coordinate_learning_workflow"};
     }
 }
-
-def init_user_graph(user_id: int) -> Dict[str, Any]:
     """
     Initialize Object-Spatial Graph (OSP) for a new user
     

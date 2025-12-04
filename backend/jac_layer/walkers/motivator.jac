@@ -46,8 +46,6 @@ walker motivator {
         report {"status": "success", "data": gamification_result, "action": "manage_gamification_elements"};
     }
 }
-
-def generate_motivational_message(user_id: int, context: Dict[str, Any]) -> Dict[str, Any]:
     """
     Generate personalized motivational message for user
     
