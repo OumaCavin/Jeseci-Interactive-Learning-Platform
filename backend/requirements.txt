@@ -39,6 +39,9 @@ sphinx-rtd-theme==3.0.2
 # Security
 django-security
 
+# System Monitoring
+psutil==6.1.1
+
 # API Documentation
 drf-spectacular==0.29.0
 
