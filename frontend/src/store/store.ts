@@ -1487,36 +1487,9 @@ export const useAppStore = create<AppState>()(
             state.aiInsights.push(insight);
           }),
           
-          // Admin Actions
-          setUsers: (users: User[]) => set((state) => {
-            state.admin.users = users;
-            state.users = users;
-          }),
-          
-          setRoles: (roles: Role[]) => set((state) => {
-            state.admin.roles = roles;
-            state.roles = roles;
-          }),
-          
-// Admin methods moved to separate admin store
-          
-          updateSystemMetrics: (metrics: Partial<SystemMetrics>) => set((state) => {
-            Object.assign(state.admin.systemMetrics, metrics);
-          }),
-          
-          addAlert: (alert: Alert) => set((state) => {
-            state.admin.alerts.push(alert);
-          }),
-          
-          updateMaintenanceStatus: (status: Partial<MaintenanceStatus>) => set((state) => {
-            Object.assign(state.admin.maintenance, status);
-          }),
-          
-          addAIInsightAdmin: (insight: AIInsight) => set((state) => {
-            state.admin.aiInsights.push(insight);
-          }),
-          
-// Admin predictive analytics and automation methods moved to separate admin store
+          // Admin Actions moved to separate admin store
+          // Use useAdminStore from './slices/adminSlice' for comprehensive admin management
+          // Admin actions removed from main store for separation of concerns
           
           // Collaboration Actions
           addCollaborator: (collaborator: Collaborator) => set((state) => {
@@ -1842,8 +1815,8 @@ export const useAppStore = create<AppState>()(
               );
               
               set((state) => {
-                // Add security insights
-                state.admin.aiInsights.push({
+                // Add security insights to main store (admin-specific monitoring uses adminStore)
+                state.aiInsights.push({
                   id: `security-${Date.now()}`,
                   type: 'security',
                   title: securityAnalysis.title || 'Security Analysis',
@@ -1851,18 +1824,9 @@ export const useAppStore = create<AppState>()(
                   confidence: 0.90,
                   actionable: true,
                   aiGenerated: true,
-                  metadata: { source: 'ai_monitoring' },
+                  metadata: { source: 'ai_monitoring', scope: 'general' },
                   createdAt: new Date().toISOString()
                 });
-                
-                // Update threat level if detected
-                if (securityAnalysis.threatLevel) {
-                  state.admin.systemMetrics.aiPerformance = {
-                    ...state.admin.systemMetrics.aiPerformance,
-                    errorRate: securityAnalysis.threatLevel > 0.7 ? 0.05 : 0.01,
-                    aiOptimized: true
-                  };
-                }
               });
               
               return securityAnalysis;
@@ -2149,13 +2113,9 @@ export const subscribeToAIInsights = (callback: (insights: AIInsight[]) => void)
   );
 };
 
-// System metrics subscription
-export const subscribeToSystemMetrics = (callback: (metrics: SystemMetrics) => void) => {
-  return useAppStore.subscribe(
-    (state) => state.admin.systemMetrics,
-    callback
-  );
-};
+// System metrics subscription moved to admin store
+// Use subscribeToSystemMetrics from './slices/adminSlice' for admin-specific metrics
+// General system performance is available through usePerformanceMetrics()
 
 // =============================================================================
 // ENTERPRISE AGENT INTEGRATION
