@@ -57,14 +57,6 @@ walker evaluator {
     }
 }
 
-# Supporting Python functions for evaluator
-import logging
-import re
-import ast
-from typing import Dict, Any, List
-
-logger = logging.getLogger(__name__)
-
 def evaluate_code_response(user_id: int, code: str, concept_id: str, expected_concepts: List[str]) -> Dict[str, Any]:
     """
     Evaluate user's code response using Cavin Otieno's methodology

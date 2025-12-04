@@ -47,13 +47,6 @@ walker motivator {
     }
 }
 
-# Supporting Python functions for motivator
-import logging
-from typing import Dict, Any, List
-from datetime import datetime, timedelta
-
-logger = logging.getLogger(__name__)
-
 def generate_motivational_message(user_id: int, context: Dict[str, Any]) -> Dict[str, Any]:
     """
     Generate personalized motivational message for user

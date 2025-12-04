@@ -46,14 +46,6 @@ walker quiz_master {
     }
 }
 
-# Supporting Python functions for quiz master
-import logging
-from typing import Dict, Any, List
-import random
-import json
-
-logger = logging.getLogger(__name__)
-
 def generate_adaptive_quiz(user_id: int, concept_id: str, difficulty_level: str) -> Dict[str, Any]:
     """
     Generate adaptive quiz based on user's mastery level

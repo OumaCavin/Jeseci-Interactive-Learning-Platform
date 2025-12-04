@@ -33,12 +33,6 @@ walker orchestrator {
     }
 }
 
-# Supporting Python functions for the orchestrator
-import logging
-from typing import Dict, Any, List
-
-logger = logging.getLogger(__name__)
-
 def init_user_graph(user_id: int) -> Dict[str, Any]:
     """
     Initialize Object-Spatial Graph (OSP) for a new user
