@@ -64,6 +64,29 @@ class OpenAIService {
     const prompt = `Based on these learning statistics: ${JSON.stringify(userStats)}, provide personalized learning recommendations.`;
     return this.generateLearningContent(prompt);
   }
+
+  // AI Insight Generation
+  async generateInsight(promptOrData: string | any): Promise<string> {
+    const prompt = typeof promptOrData === 'string' 
+      ? promptOrData 
+      : `Generate insights based on this data: ${JSON.stringify(promptOrData)}`;
+    
+    return this.generateLearningContent(prompt);
+  }
+
+  // User Flow Optimization
+  async optimizeUserFlow(flowData: any): Promise<any> {
+    const prompt = `Analyze and optimize this user flow data: ${JSON.stringify(flowData)}. Provide specific recommendations for improvement.`;
+    const result = await this.generateLearningContent(prompt);
+    return { optimization: result, timestamp: new Date().toISOString() };
+  }
+
+  // Performance Prediction
+  async predictPerformance(data: any): Promise<any> {
+    const prompt = `Analyze performance data and provide predictions: ${JSON.stringify(data)}. Include trends, recommendations, and risk factors.`;
+    const result = await this.generateLearningContent(prompt);
+    return { predictions: result, timestamp: new Date().toISOString() };
+  }
 }
 
 export const openaiService = new OpenAIService();

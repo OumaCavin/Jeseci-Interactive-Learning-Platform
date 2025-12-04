@@ -63,6 +63,29 @@ class GeminiService {
     const prompt = `Provide a detailed explanation of: ${concept}`;
     return this.generateContent(prompt);
   }
+
+  // AI Insight Generation
+  async generateInsight(promptOrData: string | any): Promise<string> {
+    const prompt = typeof promptOrData === 'string' 
+      ? promptOrData 
+      : `Generate insights based on this data: ${JSON.stringify(promptOrData)}`;
+    
+    return this.generateContent(prompt);
+  }
+
+  // User Flow Optimization
+  async optimizeUserFlow(flowData: any): Promise<any> {
+    const prompt = `Analyze and optimize this user flow data: ${JSON.stringify(flowData)}. Provide specific recommendations for improvement.`;
+    const result = await this.generateContent(prompt);
+    return { optimization: result, timestamp: new Date().toISOString() };
+  }
+
+  // Performance Prediction
+  async predictPerformance(data: any): Promise<any> {
+    const prompt = `Analyze performance data and provide predictions: ${JSON.stringify(data)}. Include trends, recommendations, and risk factors.`;
+    const result = await this.generateContent(prompt);
+    return { predictions: result, timestamp: new Date().toISOString() };
+  }
 }
 
 export const geminiService = new GeminiService();
