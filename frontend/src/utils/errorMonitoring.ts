@@ -11,7 +11,7 @@
 import React, { Component, ReactNode, ErrorInfo } from 'react';
 
 // Core interfaces and types
-interface ErrorInfo {
+interface CustomErrorInfo {
   componentStack: string;
   errorBoundary: string;
   reactVersion?: string;
@@ -959,7 +959,7 @@ class EnterpriseErrorIntelligence {
   /**
    * Capture React component errors with enhanced context
    */
-  public async captureComponentError(error: Error, errorInfo: ErrorInfo): Promise<void> {
+  public async captureComponentError(error: Error, errorInfo: CustomErrorInfo): Promise<void> {
     await this.captureException(error, {
       type: 'react_component_error',
       componentStack: errorInfo.componentStack,
@@ -1677,7 +1677,7 @@ export const captureError = (error: Error, context?: Record<string, any>) => {
   return errorIntelligence.captureException(error, context);
 };
 
-export const captureComponentError = (error: Error, errorInfo: ErrorInfo) => {
+export const captureComponentError = (error: Error, errorInfo: CustomErrorInfo) => {
   return errorIntelligence.captureComponentError(error, errorInfo);
 };
 
@@ -1702,7 +1702,7 @@ export class EnterpriseErrorBoundary extends React.Component<
   { 
     children: React.ReactNode; 
     fallback?: React.ComponentType<{ error: Error; resetError: () => void; errorReport: ErrorReport }>;
-    onError?: (error: Error, errorInfo: ErrorInfo) => void;
+    onError?: (error: Error, errorInfo: CustomErrorInfo) => void;
   },
   { hasError: boolean; error: Error | null; errorReport: ErrorReport | null }
 > {
@@ -1719,7 +1719,7 @@ export class EnterpriseErrorBoundary extends React.Component<
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  componentDidCatch(error: Error, errorInfo: CustomErrorInfo) {
     const errorReport = errorIntelligence.captureComponentError(error, errorInfo);
     
     this.setState({

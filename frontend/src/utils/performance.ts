@@ -11,6 +11,7 @@ interface PerformanceMetric {
   timestamp: string;
   url: string;
   connection?: string;
+  customParameters?: Record<string, any>;
 }
 
 interface ResourceTiming {
@@ -181,7 +182,7 @@ class PerformanceMonitor {
         timestamp: new Date().toISOString(),
         url: window.location.href,
         customParameters: resourceTiming
-      } as any);
+      } as PerformanceMetric);
     }
   }
 
@@ -236,7 +237,7 @@ class PerformanceMonitor {
               timestamp: new Date().toISOString(),
               url: window.location.href,
               customParameters: longTask
-            } as any);
+            } as PerformanceMetric);
 
             // Log long tasks in development
             if (process.env.NODE_ENV === 'development' && entry.duration > 100) {
@@ -265,16 +266,18 @@ class PerformanceMonitor {
         const clsObserver = new PerformanceObserver((list) => {
           const entries = list.getEntries();
           entries.forEach((entry) => {
-            if (!(entry as any).hadRecentInput) {
+            // Cast to LayoutShift interface which has value and hadRecentInput properties
+            const layoutShift = entry as any;
+            if (!layoutShift.hadRecentInput && layoutShift.value !== undefined) {
               this.recordMetric({
                 name: 'layout_shift',
-                value: entry.value,
+                value: layoutShift.value,
                 unit: 'count',
                 category: 'custom',
                 timestamp: new Date().toISOString(),
                 url: window.location.href,
                 customParameters: {
-                  sources: (entry as any).sources || []
+                  sources: layoutShift.sources || []
                 }
               } as PerformanceMetric);
             }
@@ -306,7 +309,7 @@ class PerformanceMonitor {
             total: Math.round(memory.totalJSHeapSize / 1048576),
             limit: Math.round(memory.jsHeapSizeLimit / 1048576)
           }
-        } as any);
+        } as PerformanceMetric);
       }
     };
 
@@ -336,7 +339,7 @@ class PerformanceMonitor {
           rtt: connection.rtt,
           saveData: connection.saveData
         }
-      } as any);
+      } as PerformanceMetric);
     }
   }
 

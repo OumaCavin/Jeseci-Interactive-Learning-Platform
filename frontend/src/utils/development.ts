@@ -17,7 +17,7 @@ class DevelopmentTools {
 
   constructor() {
     this.isDevelopment = process.env.NODE_ENV === 'development';
-    this.config = this.getConfig();
+    this.config = this.loadConfig();
     
     if (this.isDevelopment) {
       console.log('🛠️ Development tools initialized');
@@ -29,9 +29,9 @@ class DevelopmentTools {
   }
 
   /**
-   * Get development configuration
+   * Load development configuration
    */
-  private getConfig(): DevToolConfig {
+  private loadConfig(): DevToolConfig {
     return {
       enableConsoleLogging: process.env.REACT_APP_DEV_CONSOLE_LOGGING !== 'false',
       enableDebugMode: process.env.REACT_APP_DEBUG_MODE === 'true',
