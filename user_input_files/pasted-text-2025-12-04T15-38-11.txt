@@ -1,0 +1,1008 @@
+  > 881 |   renderTime: UIMetric;
+        |   ^^^^^^^^^^
+    882 |   frameRate: UIMetric;
+    883 |   memoryUsage: UIMetric;
+    884 |   cpuUsage: UIMetric;
+
+ERROR in src/store/slices/uiSlice.ts:883:3
+TS2717: Subsequent property declarations must have the same type.  Property 'memoryUsage' must be of type 'number', but here has type 'UIMetric'.
+    881 |   renderTime: UIMetric;
+    882 |   frameRate: UIMetric;
+  > 883 |   memoryUsage: UIMetric;
+        |   ^^^^^^^^^^^
+    884 |   cpuUsage: UIMetric;
+    885 |   
+    886 |   // User Experience Metrics
+
+ERROR in src/store/slices/uiSlice.ts:1733:9
+TS2740: Type '{ loadTime: number; renderTime: number; interactionTime: number; memoryUsage: number; lastMeasured: string; }' is missing the following properties from type 'UIPerformanceMetrics': frameRate, cpuUsage, interactionLatency, scrollPerformance, and 5 more.
+    1731 |           lastCalculated: new Date().toISOString()
+    1732 |         },
+  > 1733 |         performanceMetrics: {
+         |         ^^^^^^^^^^^^^^^^^^
+    1734 |           loadTime: 0,
+    1735 |           renderTime: 0,
+    1736 |           interactionTime: 0,
+
+ERROR in src/store/slices/uiSlice.ts:1850:7
+TS2322: Type '{ current: number; average: number; min: number; max: number; trend: string; status: string; }' is not assignable to type 'number'.
+    1848 |     metrics: {
+    1849 |       // Core Metrics
+  > 1850 |       renderTime: {
+         |       ^^^^^^^^^^
+    1851 |         current: 16,
+    1852 |         average: 16,
+    1853 |         min: 8,
+
+ERROR in src/store/slices/uiSlice.ts:1866:7
+TS2322: Type '{ current: number; average: number; min: number; max: number; trend: string; status: string; }' is not assignable to type 'number'.
+    1864 |         status: 'good'
+    1865 |       },
+  > 1866 |       memoryUsage: {
+         |       ^^^^^^^^^^^
+    1867 |         current: 0,
+    1868 |         average: 0,
+    1869 |         min: 0,
+
+ERROR in src/store/slices/uiSlice.ts:2239:17
+TS2554: Expected 1 arguments, but got 2.
+    2237 |                   userPreferences: currentState.uxIntelligence.personalization.userProfile
+    2238 |                 })}`,
+  > 2239 |                 'theme_optimization'
+         |                 ^^^^^^^^^^^^^^^^^^^^
+    2240 |               );
+    2241 |               
+    2242 |               set((state) => {
+
+ERROR in src/store/slices/uiSlice.ts:2245:36
+TS2339: Property 'primaryColor' does not exist on type 'string'.
+    2243 |                 state.theme.palette = {
+    2244 |                   ...state.theme.palette,
+  > 2245 |                   primary: aiTheme.primaryColor || '#3b82f6',
+         |                                    ^^^^^^^^^^^^
+    2246 |                   secondary: aiTheme.secondaryColor || '#6b7280',
+    2247 |                   accent: aiTheme.accentColor || '#10b981',
+    2248 |                   background: aiTheme.backgroundColor || '#ffffff',
+
+ERROR in src/store/slices/uiSlice.ts:2246:38
+TS2339: Property 'secondaryColor' does not exist on type 'string'.
+    2244 |                   ...state.theme.palette,
+    2245 |                   primary: aiTheme.primaryColor || '#3b82f6',
+  > 2246 |                   secondary: aiTheme.secondaryColor || '#6b7280',
+         |                                      ^^^^^^^^^^^^^^
+    2247 |                   accent: aiTheme.accentColor || '#10b981',
+    2248 |                   background: aiTheme.backgroundColor || '#ffffff',
+    2249 |                   surface: aiTheme.surfaceColor || '#f8fafc',
+
+ERROR in src/store/slices/uiSlice.ts:2247:35
+TS2339: Property 'accentColor' does not exist on type 'string'.
+    2245 |                   primary: aiTheme.primaryColor || '#3b82f6',
+    2246 |                   secondary: aiTheme.secondaryColor || '#6b7280',
+  > 2247 |                   accent: aiTheme.accentColor || '#10b981',
+         |                                   ^^^^^^^^^^^
+    2248 |                   background: aiTheme.backgroundColor || '#ffffff',
+    2249 |                   surface: aiTheme.surfaceColor || '#f8fafc',
+    2250 |                   text: {
+
+ERROR in src/store/slices/uiSlice.ts:2248:39
+TS2339: Property 'backgroundColor' does not exist on type 'string'.
+    2246 |                   secondary: aiTheme.secondaryColor || '#6b7280',
+    2247 |                   accent: aiTheme.accentColor || '#10b981',
+  > 2248 |                   background: aiTheme.backgroundColor || '#ffffff',
+         |                                       ^^^^^^^^^^^^^^^
+    2249 |                   surface: aiTheme.surfaceColor || '#f8fafc',
+    2250 |                   text: {
+    2251 |                     primary: aiTheme.textPrimary || '#1f2937',
+
+ERROR in src/store/slices/uiSlice.ts:2249:36
+TS2339: Property 'surfaceColor' does not exist on type 'string'.
+    2247 |                   accent: aiTheme.accentColor || '#10b981',
+    2248 |                   background: aiTheme.backgroundColor || '#ffffff',
+  > 2249 |                   surface: aiTheme.surfaceColor || '#f8fafc',
+         |                                    ^^^^^^^^^^^^
+    2250 |                   text: {
+    2251 |                     primary: aiTheme.textPrimary || '#1f2937',
+    2252 |                     secondary: aiTheme.textSecondary || '#6b7280',
+
+ERROR in src/store/slices/uiSlice.ts:2251:38
+TS2339: Property 'textPrimary' does not exist on type 'string'.
+    2249 |                   surface: aiTheme.surfaceColor || '#f8fafc',
+    2250 |                   text: {
+  > 2251 |                     primary: aiTheme.textPrimary || '#1f2937',
+         |                                      ^^^^^^^^^^^
+    2252 |                     secondary: aiTheme.textSecondary || '#6b7280',
+    2253 |                     disabled: aiTheme.textDisabled || '#9ca3af',
+    2254 |                     inverse: aiTheme.textInverse || '#ffffff'
+
+ERROR in src/store/slices/uiSlice.ts:2252:40
+TS2339: Property 'textSecondary' does not exist on type 'string'.
+    2250 |                   text: {
+    2251 |                     primary: aiTheme.textPrimary || '#1f2937',
+  > 2252 |                     secondary: aiTheme.textSecondary || '#6b7280',
+         |                                        ^^^^^^^^^^^^^
+    2253 |                     disabled: aiTheme.textDisabled || '#9ca3af',
+    2254 |                     inverse: aiTheme.textInverse || '#ffffff'
+    2255 |                   },
+
+ERROR in src/store/slices/uiSlice.ts:2253:39
+TS2339: Property 'textDisabled' does not exist on type 'string'.
+    2251 |                     primary: aiTheme.textPrimary || '#1f2937',
+    2252 |                     secondary: aiTheme.textSecondary || '#6b7280',
+  > 2253 |                     disabled: aiTheme.textDisabled || '#9ca3af',
+         |                                       ^^^^^^^^^^^^
+    2254 |                     inverse: aiTheme.textInverse || '#ffffff'
+    2255 |                   },
+    2256 |                   aiOptimizedColors: aiTheme.optimizedColors || {},
+
+ERROR in src/store/slices/uiSlice.ts:2254:38
+TS2339: Property 'textInverse' does not exist on type 'string'.
+    2252 |                     secondary: aiTheme.textSecondary || '#6b7280',
+    2253 |                     disabled: aiTheme.textDisabled || '#9ca3af',
+  > 2254 |                     inverse: aiTheme.textInverse || '#ffffff'
+         |                                      ^^^^^^^^^^^
+    2255 |                   },
+    2256 |                   aiOptimizedColors: aiTheme.optimizedColors || {},
+    2257 |                   computedAt: new Date().toISOString()
+
+ERROR in src/store/slices/uiSlice.ts:2256:46
+TS2339: Property 'optimizedColors' does not exist on type 'string'.
+    2254 |                     inverse: aiTheme.textInverse || '#ffffff'
+    2255 |                   },
+  > 2256 |                   aiOptimizedColors: aiTheme.optimizedColors || {},
+         |                                              ^^^^^^^^^^^^^^^
+    2257 |                   computedAt: new Date().toISOString()
+    2258 |                 };
+    2259 |                 state.theme.aiGeneratedTheme = true;
+
+ERROR in src/store/slices/uiSlice.ts:2261:57
+TS2339: Property 'confidence' does not exist on type 'string'.
+    2259 |                 state.theme.aiGeneratedTheme = true;
+    2260 |                 state.theme.aiThemeVariant = themeVariant;
+  > 2261 |                 state.theme.aiThemeConfidence = aiTheme.confidence || 0.85;
+         |                                                         ^^^^^^^^^^
+    2262 |               });
+    2263 |               
+    2264 |               return aiTheme;
+
+ERROR in src/store/slices/uiSlice.ts:2279:25
+TS2339: Property 'compliance' does not exist on type 'WritableDraft<UIThemeState>'.
+    2277 |             
+    2278 |             state.theme.accessibilityMode = 'high_contrast';
+  > 2279 |             state.theme.compliance = {
+         |                         ^^^^^^^^^^
+    2280 |               ...state.theme.compliance,
+    2281 |               accessibility: {
+    2282 |                 contrastRatio: 4.5,
+
+ERROR in src/store/slices/uiSlice.ts:2280:30
+TS2339: Property 'compliance' does not exist on type 'WritableDraft<UIThemeState>'.
+    2278 |             state.theme.accessibilityMode = 'high_contrast';
+    2279 |             state.theme.compliance = {
+  > 2280 |               ...state.theme.compliance,
+         |                              ^^^^^^^^^^
+    2281 |               accessibility: {
+    2282 |                 contrastRatio: 4.5,
+    2283 |                 colorBlindnessCompatibility: 100,
+
+ERROR in src/store/slices/uiSlice.ts:2376:64
+TS2339: Property 'optimizeSidebar' does not exist on type 'GeminiService'.
+    2374 |             try {
+    2375 |               const currentState = get();
+  > 2376 |               const behaviorOptimization = await geminiService.optimizeSidebar({
+         |                                                                ^^^^^^^^^^^^^^^
+    2377 |                 screenWidth: window.innerWidth,
+    2378 |                 interactionPatterns: currentState.layout.layoutIntelligence.interactionAnalytics,
+    2379 |                 userPreferences: currentState.uxIntelligence.personalization.userProfile,
+
+ERROR in src/store/slices/uiSlice.ts:2436:17
+TS2554: Expected 1 arguments, but got 2.
+    2434 |               const navigationInsights = await openaiService.generateInsight(
+    2435 |                 `Generate navigation insights for current page: ${currentState.layout.header.currentPage}`,
+  > 2436 |                 'navigation_optimization'
+         |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+    2437 |               );
+    2438 |               
+    2439 |               set((state) => {
+
+ERROR in src/store/slices/uiSlice.ts:2441:44
+TS2339: Property 'type' does not exist on type 'string'.
+    2439 |               set((state) => {
+    2440 |                 const insight: UINavigationInsight = {
+  > 2441 |                   type: navigationInsights.type || 'efficiency',
+         |                                            ^^^^
+    2442 |                   title: navigationInsights.title || 'Navigation Optimization',
+    2443 |                   description: navigationInsights.description || '',
+    2444 |                   recommendation: navigationInsights.recommendation || '',
+
+ERROR in src/store/slices/uiSlice.ts:2442:45
+TS2339: Property 'title' does not exist on type 'string'.
+    2440 |                 const insight: UINavigationInsight = {
+    2441 |                   type: navigationInsights.type || 'efficiency',
+  > 2442 |                   title: navigationInsights.title || 'Navigation Optimization',
+         |                                             ^^^^^
+    2443 |                   description: navigationInsights.description || '',
+    2444 |                   recommendation: navigationInsights.recommendation || '',
+    2445 |                   confidence: navigationInsights.confidence || 0.8,
+
+ERROR in src/store/slices/uiSlice.ts:2443:51
+TS2339: Property 'description' does not exist on type 'string'.
+    2441 |                   type: navigationInsights.type || 'efficiency',
+    2442 |                   title: navigationInsights.title || 'Navigation Optimization',
+  > 2443 |                   description: navigationInsights.description || '',
+         |                                                   ^^^^^^^^^^^
+    2444 |                   recommendation: navigationInsights.recommendation || '',
+    2445 |                   confidence: navigationInsights.confidence || 0.8,
+    2446 |                   implemented: false,
+
+ERROR in src/store/slices/uiSlice.ts:2444:54
+TS2339: Property 'recommendation' does not exist on type 'string'.
+    2442 |                   title: navigationInsights.title || 'Navigation Optimization',
+    2443 |                   description: navigationInsights.description || '',
+  > 2444 |                   recommendation: navigationInsights.recommendation || '',
+         |                                                      ^^^^^^^^^^^^^^
+    2445 |                   confidence: navigationInsights.confidence || 0.8,
+    2446 |                   implemented: false,
+    2447 |                   timestamp: new Date().toISOString()
+
+ERROR in src/store/slices/uiSlice.ts:2445:50
+TS2339: Property 'confidence' does not exist on type 'string'.
+    2443 |                   description: navigationInsights.description || '',
+    2444 |                   recommendation: navigationInsights.recommendation || '',
+  > 2445 |                   confidence: navigationInsights.confidence || 0.8,
+         |                                                  ^^^^^^^^^^
+    2446 |                   implemented: false,
+    2447 |                   timestamp: new Date().toISOString()
+    2448 |                 };
+
+ERROR in src/store/slices/uiSlice.ts:2534:59
+TS2339: Property 'suggestModal' does not exist on type 'GeminiService'.
+    2532 |           suggestContextualModal: async (context: string, data?: any) => {
+    2533 |             try {
+  > 2534 |               const modalSuggestion = await geminiService.suggestModal({
+         |                                                           ^^^^^^^^^^^^
+    2535 |                 context,
+    2536 |                 userProfile: get().uxIntelligence.personalization.userProfile,
+    2537 |                 currentModals: Object.keys(get().layout.modals.openModals)
+
+ERROR in src/store/slices/uiSlice.ts:2598:60
+TS2339: Property 'analyzeBehavior' does not exist on type 'GeminiService'.
+    2596 |             try {
+    2597 |               const currentState = get();
+  > 2598 |               const behaviorAnalysis = await geminiService.analyzeBehavior({
+         |                                                            ^^^^^^^^^^^^^^^
+    2599 |                 clickPatterns: currentState.uxIntelligence.behaviorTracking.clickPatterns,
+    2600 |                 scrollPatterns: currentState.uxIntelligence.behaviorTracking.scrollPatterns,
+    2601 |                 keyboardPatterns: currentState.uxIntelligence.behaviorTracking.keyboardPatterns,
+
+ERROR in src/store/slices/uiSlice.ts:2640:17
+TS2554: Expected 1 arguments, but got 2.
+    2638 |                   performance: currentState.performance.metrics
+    2639 |                 })}`,
+  > 2640 |                 'layout_optimization'
+         |                 ^^^^^^^^^^^^^^^^^^^^^
+    2641 |               );
+    2642 |               
+    2643 |               set((state) => {
+
+ERROR in src/store/slices/uiSlice.ts:2648:34
+TS2339: Property 'layoutRecommendations' does not exist on type 'string'.
+    2646 |                 
+    2647 |                 // Apply AI recommendations
+  > 2648 |                 if (optimization.layoutRecommendations) {
+         |                                  ^^^^^^^^^^^^^^^^^^^^^
+    2649 |                   Object.assign(state.layout.content, optimization.layoutRecommendations);
+    2650 |                 }
+    2651 |               });
+
+ERROR in src/store/slices/uiSlice.ts:2649:68
+TS2339: Property 'layoutRecommendations' does not exist on type 'string'.
+    2647 |                 // Apply AI recommendations
+    2648 |                 if (optimization.layoutRecommendations) {
+  > 2649 |                   Object.assign(state.layout.content, optimization.layoutRecommendations);
+         |                                                                    ^^^^^^^^^^^^^^^^^^^^^
+    2650 |                 }
+    2651 |               });
+    2652 |               
+
+ERROR in src/store/slices/uiSlice.ts:2719:17
+TS2554: Expected 1 arguments, but got 2.
+    2717 |               const codeSuggestion = await openaiService.generateInsight(
+    2718 |                 `Generate code suggestion for context: ${context}`,
+  > 2719 |                 'code_completion'
+         |                 ^^^^^^^^^^^^^^^^^
+    2720 |               );
+    2721 |               
+    2722 |               return codeSuggestion;
+
+ERROR in src/store/slices/uiSlice.ts:2764:49
+TS2339: Property 'generateKnowledgeNodes' does not exist on type 'GeminiService'.
+    2762 |           generateKnowledgeGraphNodes: async (content: any) => {
+    2763 |             try {
+  > 2764 |               const nodes = await geminiService.generateKnowledgeNodes(content);
+         |                                                 ^^^^^^^^^^^^^^^^^^^^^^
+    2765 |               
+    2766 |               set((state) => {
+    2767 |                 state.development.knowledgeGraph.nodes = nodes;
+
+ERROR in src/store/slices/uiSlice.ts:2783:17
+TS2554: Expected 1 arguments, but got 2.
+    2781 |               const relationships = await openaiService.generateInsight(
+    2782 |                 `Discover relationships between knowledge nodes: ${JSON.stringify(currentState.development.knowledgeGraph.nodes)}`,
+  > 2783 |                 'knowledge_relationships'
+         |                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+    2784 |               );
+    2785 |               
+    2786 |               set((state) => {
+
+ERROR in src/store/slices/uiSlice.ts:2787:35
+TS2339: Property 'relationships' does not exist on type 'string'.
+    2785 |               
+    2786 |               set((state) => {
+  > 2787 |                 if (relationships.relationships) {
+         |                                   ^^^^^^^^^^^^^
+    2788 |                   state.development.knowledgeGraph.edges = relationships.relationships;
+    2789 |                   state.development.knowledgeGraph.aiRelationshipDiscovery = true;
+    2790 |                 }
+
+ERROR in src/store/slices/uiSlice.ts:2788:74
+TS2339: Property 'relationships' does not exist on type 'string'.
+    2786 |               set((state) => {
+    2787 |                 if (relationships.relationships) {
+  > 2788 |                   state.development.knowledgeGraph.edges = relationships.relationships;
+         |                                                                          ^^^^^^^^^^^^^
+    2789 |                   state.development.knowledgeGraph.aiRelationshipDiscovery = true;
+    2790 |                 }
+    2791 |               });
+
+ERROR in src/store/slices/uiSlice.ts:3002:52
+TS2339: Property 'learnUserPreferences' does not exist on type 'GeminiService'.
+    3000 |             try {
+    3001 |               const currentState = get();
+  > 3002 |               const learning = await geminiService.learnUserPreferences({
+         |                                                    ^^^^^^^^^^^^^^^^^^^^
+    3003 |                 behaviorPatterns: currentState.uxIntelligence.behaviorTracking,
+    3004 |                 currentProfile: currentState.uxIntelligence.personalization.userProfile,
+    3005 |                 interactionHistory: currentState.layout.layoutIntelligence.interactionAnalytics
+
+ERROR in src/store/slices/uiSlice.ts:3063:17
+TS2554: Expected 1 arguments, but got 2.
+    3061 |               const suggestions = await openaiService.generateInsight(
+    3062 |                 `Generate smart UI suggestions for context: ${context}`,
+  > 3063 |                 'smart_suggestions'
+         |                 ^^^^^^^^^^^^^^^^^^^
+    3064 |               );
+    3065 |               
+    3066 |               if (suggestions.suggestions) {
+
+ERROR in src/store/slices/uiSlice.ts:3066:31
+TS2339: Property 'suggestions' does not exist on type 'string'.
+    3064 |               );
+    3065 |               
+  > 3066 |               if (suggestions.suggestions) {
+         |                               ^^^^^^^^^^^
+    3067 |                 set((state) => {
+    3068 |                   suggestions.suggestions.forEach((suggestion: any) => {
+    3069 |                     const aiSuggestion: UIAIGeneratedSuggestion = {
+
+ERROR in src/store/slices/uiSlice.ts:3068:31
+TS2339: Property 'suggestions' does not exist on type 'string'.
+    3066 |               if (suggestions.suggestions) {
+    3067 |                 set((state) => {
+  > 3068 |                   suggestions.suggestions.forEach((suggestion: any) => {
+         |                               ^^^^^^^^^^^
+    3069 |                     const aiSuggestion: UIAIGeneratedSuggestion = {
+    3070 |                       id: `ai_suggestion_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+    3071 |                       type: suggestion.type || 'optimization',
+
+ERROR in src/store/slices/uiSlice.ts:3149:56
+TS2698: Spread types may only be created from object types.
+    3147 |           updatePerformanceMetrics: (metrics: Partial<UIPerformanceMetrics>) => set((state) => {
+    3148 |             if (metrics.renderTime) {
+  > 3149 |               state.performance.metrics.renderTime = { ...state.performance.metrics.renderTime, ...metrics.renderTime };
+         |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    3150 |             }
+    3151 |             if (metrics.frameRate) {
+    3152 |               state.performance.metrics.frameRate = { ...state.performance.metrics.frameRate, ...metrics.frameRate };
+
+ERROR in src/store/slices/uiSlice.ts:3149:97
+TS2698: Spread types may only be created from object types.
+    3147 |           updatePerformanceMetrics: (metrics: Partial<UIPerformanceMetrics>) => set((state) => {
+    3148 |             if (metrics.renderTime) {
+  > 3149 |               state.performance.metrics.renderTime = { ...state.performance.metrics.renderTime, ...metrics.renderTime };
+         |                                                                                                 ^^^^^^^^^^^^^^^^^^^^^
+    3150 |             }
+    3151 |             if (metrics.frameRate) {
+    3152 |               state.performance.metrics.frameRate = { ...state.performance.metrics.frameRate, ...metrics.frameRate };
+
+ERROR in src/store/slices/uiSlice.ts:3155:57
+TS2698: Spread types may only be created from object types.
+    3153 |             }
+    3154 |             if (metrics.memoryUsage) {
+  > 3155 |               state.performance.metrics.memoryUsage = { ...state.performance.metrics.memoryUsage, ...metrics.memoryUsage };
+         |                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    3156 |             }
+    3157 |             if (metrics.cpuUsage) {
+    3158 |               state.performance.metrics.cpuUsage = { ...state.performance.metrics.cpuUsage, ...metrics.cpuUsage };
+
+ERROR in src/store/slices/uiSlice.ts:3155:99
+TS2698: Spread types may only be created from object types.
+    3153 |             }
+    3154 |             if (metrics.memoryUsage) {
+  > 3155 |               state.performance.metrics.memoryUsage = { ...state.performance.metrics.memoryUsage, ...metrics.memoryUsage };
+         |                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^
+    3156 |             }
+    3157 |             if (metrics.cpuUsage) {
+    3158 |               state.performance.metrics.cpuUsage = { ...state.performance.metrics.cpuUsage, ...metrics.cpuUsage };
+
+ERROR in src/store/slices/uiSlice.ts:3175:17
+TS2554: Expected 1 arguments, but got 2.
+    3173 |               const anomalyAnalysis = await openaiService.generateInsight(
+    3174 |                 `Analyze performance anomaly for ${metric}: ${value}`,
+  > 3175 |                 'performance_anomaly'
+         |                 ^^^^^^^^^^^^^^^^^^^^^
+    3176 |               );
+    3177 |               
+    3178 |               if (anomalyAnalysis.isAnomaly) {
+
+ERROR in src/store/slices/uiSlice.ts:3178:35
+TS2339: Property 'isAnomaly' does not exist on type 'string'.
+    3176 |               );
+    3177 |               
+  > 3178 |               if (anomalyAnalysis.isAnomaly) {
+         |                                   ^^^^^^^^^
+    3179 |                 set((state) => {
+    3180 |                   // Add alert or notification logic here
+    3181 |                   console.warn(`Performance anomaly detected for ${metric}: ${value}`);
+
+ERROR in src/store/slices/uiSlice.ts:3198:40
+TS2339: Property 'userAnalytics' does not exist on type 'UIState'.
+    3196 |                 historicalMetrics: currentState.performance.metrics.history,
+    3197 |                 currentMetrics: currentState.performance.metrics,
+  > 3198 |                 userLoad: currentState.userAnalytics?.engagement || 0
+         |                                        ^^^^^^^^^^^^^
+    3199 |               });
+    3200 |               
+    3201 |               set((state) => {
+
+ERROR in src/store/slices/uiSlice.ts:3433:56
+TS2339: Property 'optimizeAccessibility' does not exist on type 'GeminiService'.
+    3431 |             try {
+    3432 |               const currentState = get();
+  > 3433 |               const optimization = await geminiService.optimizeAccessibility({
+         |                                                        ^^^^^^^^^^^^^^^^^^^^^
+    3434 |                 currentFeatures: currentState.accessibility.features,
+    3435 |                 complianceLevel: currentState.accessibility.compliance.wcagLevel,
+    3436 |                 userNeeds: currentState.accessibility.userPreferences.preferences
+
+ERROR in src/store/slices/uiSlice.ts:3487:17
+TS2554: Expected 1 arguments, but got 2.
+    3485 |                   theme: currentState.theme.palette
+    3486 |                 })}`,
+  > 3487 |                 'accessibility_audit'
+         |                 ^^^^^^^^^^^^^^^^^^^^^
+    3488 |               );
+    3489 |               
+    3490 |               set((state) => {
+
+ERROR in src/store/slices/uiSlice.ts:3493:27
+TS2339: Property 'categoryScores' does not exist on type 'string'.
+    3491 |                 state.accessibility.compliance.lastAudit = new Date().toISOString();
+    3492 |                 
+  > 3493 |                 if (audit.categoryScores) {
+         |                           ^^^^^^^^^^^^^^
+    3494 |                   Object.assign(state.accessibility.compliance.categoryScores, audit.categoryScores);
+    3495 |                 }
+    3496 |                 
+
+ERROR in src/store/slices/uiSlice.ts:3494:86
+TS2339: Property 'categoryScores' does not exist on type 'string'.
+    3492 |                 
+    3493 |                 if (audit.categoryScores) {
+  > 3494 |                   Object.assign(state.accessibility.compliance.categoryScores, audit.categoryScores);
+         |                                                                                      ^^^^^^^^^^^^^^
+    3495 |                 }
+    3496 |                 
+    3497 |                 if (audit.overallScore) {
+
+ERROR in src/store/slices/uiSlice.ts:3497:27
+TS2339: Property 'overallScore' does not exist on type 'string'.
+    3495 |                 }
+    3496 |                 
+  > 3497 |                 if (audit.overallScore) {
+         |                           ^^^^^^^^^^^^
+    3498 |                   state.accessibility.compliance.overallScore = audit.overallScore;
+    3499 |                 }
+    3500 |                 
+
+ERROR in src/store/slices/uiSlice.ts:3498:71
+TS2339: Property 'overallScore' does not exist on type 'string'.
+    3496 |                 
+    3497 |                 if (audit.overallScore) {
+  > 3498 |                   state.accessibility.compliance.overallScore = audit.overallScore;
+         |                                                                       ^^^^^^^^^^^^
+    3499 |                 }
+    3500 |                 
+    3501 |                 state.accessibility.compliance.aiComplianceCheck = true;
+
+ERROR in src/store/slices/uiSlice.ts:3565:13
+TS2322: Type 'string' is not assignable to type 'string[]'.
+    3563 |           // Access Control Management
+    3564 |           setUserRole: (userId: string, role: string) => set((state) => {
+  > 3565 |             state.enterprise.governance.accessControl.roles[userId] = role;
+         |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    3566 |           }),
+    3567 |           
+    3568 |           setUserPermissions: (userId: string, permissions: string[]) => set((state) => {
+
+ERROR in src/store/slices/uiSlice.ts:3666:17
+TS2554: Expected 1 arguments, but got 2.
+    3664 |               const reportData = await openaiService.generateInsight(
+    3665 |                 `Generate ${report.type} report with current data`,
+  > 3666 |                 'report_generation'
+         |                 ^^^^^^^^^^^^^^^^^^^
+    3667 |               );
+    3668 |               
+    3669 |               set((state) => {
+
+ERROR in src/store/slices/uiSlice.ts:4007:68
+TS2339: Property 'getUIStateSummary' does not exist on type 'UIState'.
+    4005 | // Utility Selectors
+    4006 | export const useUIState = () => useUIStore((state) => state);
+  > 4007 | export const useUIStateSummary = () => useUIStore((state) => state.getUIStateSummary());
+         |                                                                    ^^^^^^^^^^^^^^^^^
+    4008 |
+    4009 | // =============================================================================
+    4010 | // SUBSCRIPTION HELPERS
+
+ERROR in src/store/store.ts:599:19
+TS2304: Cannot find name 'SecurityConfiguration'.
+    597 |   aiConfig: AIConfiguration;
+    598 |   performanceConfig: PerformanceConfiguration;
+  > 599 |   securityConfig: SecurityConfiguration;
+        |                   ^^^^^^^^^^^^^^^^^^^^^
+    600 |   maintenanceMode: boolean;
+    601 | }
+    602 |
+
+ERROR in src/store/store.ts:1653:15
+TS2322: Type '"in_progress" | "open" | "resolved" | "accepted"' is not assignable to type '"partial" | "met" | "not_met"'.
+  Type '"in_progress"' is not assignable to type '"partial" | "met" | "not_met"'.
+    1651 |                            state.complianceStatus.hipaa.findings.find(f => f.id === id);
+    1652 |             if (finding) {
+  > 1653 |               finding.status = status;
+         |               ^^^^^^^^^^^^^^
+    1654 |             }
+    1655 |           }),
+    1656 |           
+
+ERROR in src/store/store.ts:1666:75
+TS2339: Property 'status' does not exist on type 'IntegrationConfig'.
+    1664 |           }),
+    1665 |           
+  > 1666 |           updateIntegrationStatus: (id: string, status: IntegrationConfig['status']) => set((state) => {
+         |                                                                           ^^^^^^^^
+    1667 |             const integration = state.integrations.find(i => i.id === id);
+    1668 |             if (integration) {
+    1669 |               integration.status = status;
+
+ERROR in src/store/store.ts:1667:64
+TS2339: Property 'id' does not exist on type 'WritableDraft<IntegrationConfig>'.
+    1665 |           
+    1666 |           updateIntegrationStatus: (id: string, status: IntegrationConfig['status']) => set((state) => {
+  > 1667 |             const integration = state.integrations.find(i => i.id === id);
+         |                                                                ^^
+    1668 |             if (integration) {
+    1669 |               integration.status = status;
+    1670 |             }
+
+ERROR in src/store/store.ts:1669:27
+TS2339: Property 'status' does not exist on type 'WritableDraft<IntegrationConfig>'.
+    1667 |             const integration = state.integrations.find(i => i.id === id);
+    1668 |             if (integration) {
+  > 1669 |               integration.status = status;
+         |                           ^^^^^^
+    1670 |             }
+    1671 |           }),
+    1672 |           
+
+ERROR in src/store/store.ts:1707:17
+TS2554: Expected 1 arguments, but got 2.
+    1705 |                   recentActivity: currentState.realTimeActivity.slice(-10)
+    1706 |                 })}`,
+  > 1707 |                 'user_experience_optimization'
+         |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    1708 |               );
+    1709 |               
+    1710 |               // Apply AI optimizations
+
+ERROR in src/store/store.ts:1716:42
+TS2339: Property 'content' does not exist on type 'string'.
+    1714 |                   id: `ux-${Date.now()}`,
+    1715 |                   type: 'user_experience',
+  > 1716 |                   description: aiInsight.content,
+         |                                          ^^^^^^^
+    1717 |                   impact: 'high',
+    1718 |                   status: 'pending',
+    1719 |                   aiConfidence: 0.95,
+
+ERROR in src/store/store.ts:1736:61
+TS2339: Property 'personalizeLearning' does not exist on type 'GeminiService'.
+    1734 |             try {
+    1735 |               const userProgress = currentState.progress;
+  > 1736 |               const aiPersonalization = await geminiService.personalizeLearning(userProgress);
+         |                                                             ^^^^^^^^^^^^^^^^^^^
+    1737 |               
+    1738 |               set((state) => {
+    1739 |                 // Update learning preferences based on AI analysis
+
+ERROR in src/store/store.ts:1763:17
+TS2554: Expected 1 arguments, but got 2.
+    1761 |               const optimization = await openaiService.generateInsight(
+    1762 |                 `Optimize content: ${contentId}`,
+  > 1763 |                 'content_optimization'
+         |                 ^^^^^^^^^^^^^^^^^^^^^^
+    1764 |               );
+    1765 |               
+    1766 |               set((state) => {
+
+ERROR in src/store/store.ts:1770:45
+TS2339: Property 'content' does not exist on type 'string'.
+    1768 |                   id: `content-${Date.now()}`,
+    1769 |                   type: 'learning',
+  > 1770 |                   description: optimization.content,
+         |                                             ^^^^^^^
+    1771 |                   impact: 'medium',
+    1772 |                   status: 'pending',
+    1773 |                   aiConfidence: 0.85
+
+ERROR in src/store/store.ts:1814:17
+TS2554: Expected 1 arguments, but got 2.
+    1812 |               const securityAnalysis = await openaiService.generateInsight(
+    1813 |                 'Monitor and analyze security status',
+  > 1814 |                 'security_monitoring'
+         |                 ^^^^^^^^^^^^^^^^^^^^^
+    1815 |               );
+    1816 |               
+    1817 |               set((state) => {
+
+ERROR in src/store/store.ts:1821:19
+TS2322: Type '"security"' is not assignable to type '"learning" | "behavior" | "performance" | "recommendation"'.
+    1819 |                 state.aiInsights.push({
+    1820 |                   id: `security-${Date.now()}`,
+  > 1821 |                   type: 'security',
+         |                   ^^^^
+    1822 |                   title: securityAnalysis.title || 'Security Analysis',
+    1823 |                   description: securityAnalysis.content,
+    1824 |                   confidence: 0.90,
+
+ERROR in src/store/store.ts:1822:43
+TS2339: Property 'title' does not exist on type 'string'.
+    1820 |                   id: `security-${Date.now()}`,
+    1821 |                   type: 'security',
+  > 1822 |                   title: securityAnalysis.title || 'Security Analysis',
+         |                                           ^^^^^
+    1823 |                   description: securityAnalysis.content,
+    1824 |                   confidence: 0.90,
+    1825 |                   actionable: true,
+
+ERROR in src/store/store.ts:1823:49
+TS2339: Property 'content' does not exist on type 'string'.
+    1821 |                   type: 'security',
+    1822 |                   title: securityAnalysis.title || 'Security Analysis',
+  > 1823 |                   description: securityAnalysis.content,
+         |                                                 ^^^^^^^
+    1824 |                   confidence: 0.90,
+    1825 |                   actionable: true,
+    1826 |                   aiGenerated: true,
+
+ERROR in src/store/store.ts:1850:64
+TS2339: Property 'resolveConflicts' does not exist on type 'GeminiService'.
+    1848 |               // AI-powered conflict resolution
+    1849 |               if (currentState.conflicts.length > 0) {
+  > 1850 |                 const conflictResolution = await geminiService.resolveConflicts(currentState.conflicts);
+         |                                                                ^^^^^^^^^^^^^^^^
+    1851 |                 
+    1852 |                 set((state) => {
+    1853 |                   state.conflicts.forEach(conflict => {
+
+ERROR in src/store/store.ts:1863:52
+TS2339: Property 'optimizeSync' does not exist on type 'OpenAIService'.
+    1861 |               
+    1862 |               // AI-optimized data prioritization
+  > 1863 |               const syncData = await openaiService.optimizeSync({
+         |                                                    ^^^^^^^^^^^^
+    1864 |                 user: currentState.user,
+    1865 |                 progress: currentState.progress,
+    1866 |                 realTimeActivity: currentState.realTimeActivity
+
+ERROR in src/store/store.ts:1901:17
+TS2554: Expected 1 arguments, but got 2.
+    1899 |                   satisfaction: currentState.performanceMetrics.userSatisfaction
+    1900 |                 })}`,
+  > 1901 |                 'analytics_enhancement'
+         |                 ^^^^^^^^^^^^^^^^^^^^^^^
+    1902 |               );
+    1903 |               
+    1904 |               set((state) => {
+
+ERROR in src/store/store.ts:1906:39
+TS2339: Property 'insights' does not exist on type 'string'.
+    1904 |               set((state) => {
+    1905 |                 // Add AI-generated insights
+  > 1906 |                 if (enhancedAnalytics.insights) {
+         |                                       ^^^^^^^^
+    1907 |                   state.userAnalytics.insights.push(...enhancedAnalytics.insights);
+    1908 |                 }
+    1909 |                 
+
+ERROR in src/store/store.ts:1907:74
+TS2339: Property 'insights' does not exist on type 'string'.
+    1905 |                 // Add AI-generated insights
+    1906 |                 if (enhancedAnalytics.insights) {
+  > 1907 |                   state.userAnalytics.insights.push(...enhancedAnalytics.insights);
+         |                                                                          ^^^^^^^^
+    1908 |                 }
+    1909 |                 
+    1910 |                 // Update predictive analytics
+
+ERROR in src/store/store.ts:1911:78
+TS2339: Property 'engagementPrediction' does not exist on type 'string'.
+    1909 |                 
+    1910 |                 // Update predictive analytics
+  > 1911 |                 state.predictiveAnalytics.userEngagement = enhancedAnalytics.engagementPrediction || 0;
+         |                                                                              ^^^^^^^^^^^^^^^^^^^^
+    1912 |                 state.predictiveAnalytics.churnRisk = enhancedAnalytics.churnRisk || 0;
+    1913 |                 state.predictiveAnalytics.aiConfidence = enhancedAnalytics.confidence || 0;
+    1914 |               });
+
+ERROR in src/store/store.ts:1912:73
+TS2339: Property 'churnRisk' does not exist on type 'string'.
+    1910 |                 // Update predictive analytics
+    1911 |                 state.predictiveAnalytics.userEngagement = enhancedAnalytics.engagementPrediction || 0;
+  > 1912 |                 state.predictiveAnalytics.churnRisk = enhancedAnalytics.churnRisk || 0;
+         |                                                                         ^^^^^^^^^
+    1913 |                 state.predictiveAnalytics.aiConfidence = enhancedAnalytics.confidence || 0;
+    1914 |               });
+    1915 |               
+
+ERROR in src/store/store.ts:1913:76
+TS2339: Property 'confidence' does not exist on type 'string'.
+    1911 |                 state.predictiveAnalytics.userEngagement = enhancedAnalytics.engagementPrediction || 0;
+    1912 |                 state.predictiveAnalytics.churnRisk = enhancedAnalytics.churnRisk || 0;
+  > 1913 |                 state.predictiveAnalytics.aiConfidence = enhancedAnalytics.confidence || 0;
+         |                                                                            ^^^^^^^^^^
+    1914 |               });
+    1915 |               
+    1916 |               return enhancedAnalytics;
+
+ERROR in src/stores/adminStore.ts:195:97
+TS2339: Property 'generateMockStats' does not exist on type 'AdminState'.
+    193 |             ]);
+    194 |
+  > 195 |           const stats = statsResponse.status === 'fulfilled' ? statsResponse.value.data : get().generateMockStats();
+        |                                                                                                 ^^^^^^^^^^^^^^^^^
+    196 |           const activity = activityResponse.status === 'fulfilled' ? activityResponse.value.data : get().generateMockActivity();
+    197 |           const users = usersResponse.status === 'fulfilled' ? usersResponse.value.data : get().generateMockUsers();
+    198 |           const content = contentResponse.status === 'fulfilled' ? contentResponse.value.data : get().generateMockContent();
+
+ERROR in src/stores/adminStore.ts:196:106
+TS2339: Property 'generateMockActivity' does not exist on type 'AdminState'.
+    194 |
+    195 |           const stats = statsResponse.status === 'fulfilled' ? statsResponse.value.data : get().generateMockStats();
+  > 196 |           const activity = activityResponse.status === 'fulfilled' ? activityResponse.value.data : get().generateMockActivity();
+        |                                                                                                          ^^^^^^^^^^^^^^^^^^^^
+    197 |           const users = usersResponse.status === 'fulfilled' ? usersResponse.value.data : get().generateMockUsers();
+    198 |           const content = contentResponse.status === 'fulfilled' ? contentResponse.value.data : get().generateMockContent();
+    199 |           const analytics = analyticsResponse.status === 'fulfilled' ? analyticsResponse.value.data : get().generateMockAnalytics();
+
+ERROR in src/stores/adminStore.ts:197:97
+TS2339: Property 'generateMockUsers' does not exist on type 'AdminState'.
+    195 |           const stats = statsResponse.status === 'fulfilled' ? statsResponse.value.data : get().generateMockStats();
+    196 |           const activity = activityResponse.status === 'fulfilled' ? activityResponse.value.data : get().generateMockActivity();
+  > 197 |           const users = usersResponse.status === 'fulfilled' ? usersResponse.value.data : get().generateMockUsers();
+        |                                                                                                 ^^^^^^^^^^^^^^^^^
+    198 |           const content = contentResponse.status === 'fulfilled' ? contentResponse.value.data : get().generateMockContent();
+    199 |           const analytics = analyticsResponse.status === 'fulfilled' ? analyticsResponse.value.data : get().generateMockAnalytics();
+    200 |
+
+ERROR in src/stores/adminStore.ts:198:103
+TS2339: Property 'generateMockContent' does not exist on type 'AdminState'.
+    196 |           const activity = activityResponse.status === 'fulfilled' ? activityResponse.value.data : get().generateMockActivity();
+    197 |           const users = usersResponse.status === 'fulfilled' ? usersResponse.value.data : get().generateMockUsers();
+  > 198 |           const content = contentResponse.status === 'fulfilled' ? contentResponse.value.data : get().generateMockContent();
+        |                                                                                                       ^^^^^^^^^^^^^^^^^^^
+    199 |           const analytics = analyticsResponse.status === 'fulfilled' ? analyticsResponse.value.data : get().generateMockAnalytics();
+    200 |
+    201 |           set({
+
+ERROR in src/stores/adminStore.ts:199:109
+TS2339: Property 'generateMockAnalytics' does not exist on type 'AdminState'.
+    197 |           const users = usersResponse.status === 'fulfilled' ? usersResponse.value.data : get().generateMockUsers();
+    198 |           const content = contentResponse.status === 'fulfilled' ? contentResponse.value.data : get().generateMockContent();
+  > 199 |           const analytics = analyticsResponse.status === 'fulfilled' ? analyticsResponse.value.data : get().generateMockAnalytics();
+        |                                                                                                             ^^^^^^^^^^^^^^^^^^^^^
+    200 |
+    201 |           set({
+    202 |             stats,
+
+ERROR in src/stores/adminStore.ts:227:100
+TS2339: Property 'generateMockAgents' does not exist on type 'AdminState'.
+    225 |           ]);
+    226 |
+  > 227 |           const agents = agentsResponse.status === 'fulfilled' ? agentsResponse.value.data : get().generateMockAgents();
+        |                                                                                                    ^^^^^^^^^^^^^^^^^^
+    228 |           const systemHealth = healthResponse.status === 'fulfilled' ? healthResponse.value.data : get().generateMockSystemHealth();
+    229 |
+    230 |           set({
+
+ERROR in src/stores/adminStore.ts:228:106
+TS2339: Property 'generateMockSystemHealth' does not exist on type 'AdminState'.
+    226 |
+    227 |           const agents = agentsResponse.status === 'fulfilled' ? agentsResponse.value.data : get().generateMockAgents();
+  > 228 |           const systemHealth = healthResponse.status === 'fulfilled' ? healthResponse.value.data : get().generateMockSystemHealth();
+        |                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^
+    229 |
+    230 |           set({
+    231 |             agents,
+
+ERROR in src/stores/codeEditorStore.ts:4:34
+TS2307: Cannot find module '../../services/api' or its corresponding type declarations.
+    2 | import { create } from 'zustand';
+    3 | import { devtools } from 'zustand/middleware';
+  > 4 | import { apiClient as api } from '../../services/api';
+      |                                  ^^^^^^^^^^^^^^^^^^^^
+    5 |
+    6 | export interface CodeExecutionRequest {
+    7 |   code: string;
+
+ERROR in src/utils/adminUtils.ts:31:23
+TS2304: Cannot find name 'UserEngagement'.
+    29 |   lastUpdated: Date;
+    30 |   qualityScore?: number;
+  > 31 |   engagementMetrics?: UserEngagement;
+       |                       ^^^^^^^^^^^^^^
+    32 | }
+    33 |
+    34 | // =============================================================================
+
+ERROR in src/utils/adminUtils.ts:1623:44
+TS2551: Property 'generateAdminInsights' does not exist on type 'OpenAIService'. Did you mean 'generateInsight'?
+    1621 |   // Add AI insights using OpenAI
+    1622 |   try {
+  > 1623 |     const aiInsights = await openaiService.generateAdminInsights({
+         |                                            ^^^^^^^^^^^^^^^^^^^^^
+    1624 |       analytics,
+    1625 |       timeframe,
+    1626 |       focus: 'administrative-efficiency'
+
+ERROR in src/utils/adminUtils.ts:1629:15
+TS2339: Property 'aiInsights' does not exist on type '{ timeframe: "week" | "month" | "quarter" | "year"; generatedAt: Date; completionTrends: { period: string; completionRate: number; learners: number; activeUsers: number; newUsers: number; ... 6 more ...; aiInsights: string; }[]; ... 9 more ...; userSegmentation: UserSegmentation; }'.
+    1627 |     });
+    1628 |     
+  > 1629 |     analytics.aiInsights = aiInsights;
+         |               ^^^^^^^^^^
+    1630 |   } catch (error) {
+    1631 |     console.warn('AI insights generation failed:', error);
+    1632 |   }
+
+ERROR in src/utils/adminUtils.ts:2151:9
+TS2322: Type 'string' is not assignable to type 'number'.
+    2149 |         score: 86.8,
+    2150 |         readability: 78.5,
+  > 2151 |         complexity: 'moderate',
+         |         ^^^^^^^^^^
+    2152 |         language: 'simple'
+    2153 |       },
+    2154 |       multimedia: {
+
+ERROR in src/utils/adminUtils.ts:2178:9
+TS2322: Type 'number' is not assignable to type 'string[]'.
+    2176 |       manual: {
+    2177 |         reviews: 45,
+  > 2178 |         reviewers: 8,
+         |         ^^^^^^^^^
+    2179 |         averageTime: 2.5,
+    2180 |         approval: 96
+    2181 |       }
+
+ERROR in src/utils/errorMonitoring.ts:295:37
+TS2352: Conversion of type '{ name: string; version: string; accuracy: number; lastTrained: string; featureImportance: { errorMessage: number; userAgent: number; url: number; timestamp: number; userId: number; sessionId: number; ... 7 more ...; environment?: undefined; }; } | { ...; } | { ...; }' to type 'MLModel' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type '{ name: string; version: string; accuracy: number; lastTrained: string; featureImportance: { errorStack: number; errorMessage: number; context: number; environment: number; userAgent?: undefined; ... 8 more ...; platform?: undefined; }; }' is not comparable to type 'MLModel'.
+    Types of property 'featureImportance' are incompatible.
+      Type '{ errorStack: number; errorMessage: number; context: number; environment: number; userAgent?: undefined; url?: undefined; timestamp?: undefined; userId?: undefined; sessionId?: undefined; errorSeverity?: undefined; errorCategory?: undefined; userRole?: undefined; timeOfDay?: undefined; platform?: undefined; }' is not comparable to type 'Record<string, number>'.
+        Property 'userAgent' is incompatible with index signature.
+          Type 'undefined' is not comparable to type 'number'.
+    293 |
+    294 |     models.forEach(model => {
+  > 295 |       this.mlModels.set(model.name, model as MLModel);
+        |                                     ^^^^^^^^^^^^^^^^
+    296 |     });
+    297 |   }
+    298 |
+
+ERROR in src/utils/errorMonitoring.ts:339:9
+TS2322: Type 'null' is not assignable to type 'string | undefined'.
+    337 |         conditions: { userRole: 'admin' },
+    338 |         implementation: 'send_admin_alert',
+  > 339 |         rollbackPlan: null,
+        |         ^^^^^^^^^^^^
+    340 |         status: 'active',
+    341 |         successRate: 1.0
+    342 |       },
+
+ERROR in src/utils/errorMonitoring.ts:734:38
+TS2802: Type 'Map<string, RemediationAction>' can only be iterated through when using the '--downlevelIteration' flag or with a '--target' of 'es2015' or higher.
+    732 |    */
+    733 |   private async applyRemediation(errorReport: ErrorReport): Promise<void> {
+  > 734 |     for (const [actionId, action] of this.remediationActions) {
+        |                                      ^^^^^^^^^^^^^^^^^^^^^^^
+    735 |       if (this.shouldTriggerAction(action, errorReport)) {
+    736 |         try {
+    737 |           await this.executeRemediationAction(action, errorReport);
+
+ERROR in src/utils/errorMonitoring.ts:931:7
+TS2322: Type '{ period: string; change: number; trend: string; significance: number; }' is not assignable to type '{ period: string; change: number; trend: "increasing" | "stable" | "decreasing"; significance: number; }'.
+  Types of property 'trend' are incompatible.
+    Type 'string' is not assignable to type '"increasing" | "stable" | "decreasing"'.
+    929 |       averageResolutionTime: this.calculateAverageResolutionTime(),
+    930 |       errorDistribution,
+  > 931 |       trendAnalysis: this.calculateTrendAnalysis(allErrors),
+        |       ^^^^^^^^^^^^^
+    932 |       patternAnalysis: await this.analyzeAllPatterns(),
+    933 |       userImpact: this.calculateUserImpact(allErrors),
+    934 |       businessImpact: this.calculateBusinessImpact(allErrors)
+
+ERROR in src/utils/errorMonitoring.ts:932:24
+TS1308: 'await' expressions are only allowed within async functions and at the top levels of modules.
+    930 |       errorDistribution,
+    931 |       trendAnalysis: this.calculateTrendAnalysis(allErrors),
+  > 932 |       patternAnalysis: await this.analyzeAllPatterns(),
+        |                        ^^^^^
+    933 |       userImpact: this.calculateUserImpact(allErrors),
+    934 |       businessImpact: this.calculateBusinessImpact(allErrors)
+    935 |     };
+
+ERROR in src/utils/errorMonitoring.ts:1400:12
+TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ fatal: number; critical: number; high: number; medium: number; low: number; }'.
+  No index signature with a parameter of type 'string' was found on type '{ fatal: number; critical: number; high: number; medium: number; low: number; }'.
+    1398 |       'low': 2
+    1399 |     };
+  > 1400 |     return scores[severity] || 5;
+         |            ^^^^^^^^^^^^^^^^
+    1401 |   }
+    1402 |
+    1403 |   private calculateAverageResolutionTime(): number {
+
+ERROR in src/utils/errorMonitoring.ts:1659:19
+TS2339: Property 'initExternalService' does not exist on type 'EnterpriseErrorIntelligence'.
+    1657 |
+    1658 | // Initialize external services
+  > 1659 | errorIntelligence.initExternalService?.();
+         |                   ^^^^^^^^^^^^^^^^^^^
+    1660 |
+    1661 | // Make available globally for React components
+    1662 | (window as any).errorIntelligence = errorIntelligence;
+
+ERROR in src/utils/errorMonitoring.ts:1726:7
+TS2740: Type 'Promise<void>' is missing the following properties from type 'ErrorReport': id, message, url, lineNumber, and 5 more.
+    1724 |     
+    1725 |     this.setState({
+  > 1726 |       errorReport
+         |       ^^^^^^^^^^^
+    1727 |     });
+    1728 |
+    1729 |     if (this.props.onError) {
+
+ERROR in src/utils/errorMonitoring.ts:1749:11
+TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Type 'ErrorReport | null' is not assignable to type 'ErrorReport'.
+      Type 'null' is not assignable to type 'ErrorReport'.
+    1747 |           error: this.state.error, 
+    1748 |           resetError: this.resetError,
+  > 1749 |           errorReport: this.state.errorReport
+         |           ^^^^^^^^^^^
+    1750 |         });
+    1751 |       }
+    1752 |       
+
