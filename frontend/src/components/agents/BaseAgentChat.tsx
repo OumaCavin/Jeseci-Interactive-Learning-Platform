@@ -528,9 +528,9 @@ const BaseAgentChat: React.FC<BaseAgentChatProps> = ({
           content: messageContent,
           messageType,
           code_language: messageType === 'code' ? codeLanguage : undefined,
-          sessionId: actualSessionId,
-          timestamp: new Date().toISOString()
-        }
+          sessionId: actualSessionId
+        },
+        timestamp: new Date().toISOString()
       });
       
       if (onMessageSent) {
@@ -702,7 +702,7 @@ const BaseAgentChat: React.FC<BaseAgentChatProps> = ({
     switch (status) {
       case 'active': return 'success';
       case 'busy': return 'warning';
-      case 'inactive': return 'danger';
+      case 'inactive': return 'error';
       case 'away': return 'info';
       default: return 'info';
     }
@@ -772,7 +772,7 @@ const BaseAgentChat: React.FC<BaseAgentChatProps> = ({
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 0.5, repeat: Infinity }}
               >
-                <Badge variant="danger" size="sm">
+                <Badge variant="error" size="sm">
                   🎤 Recording
                 </Badge>
               </motion.div>

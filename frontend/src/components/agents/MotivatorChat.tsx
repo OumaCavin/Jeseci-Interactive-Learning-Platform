@@ -12,7 +12,7 @@ import {
   Calendar,
   Clock,
   Star,
-  Fire,
+  Flame,
   Zap,
   Brain,
   CheckCircle,
@@ -54,12 +54,12 @@ import {
   X,
   Search
 } from 'lucide-react';
-import { Card } from '../ui/Card';
-import { Button } from '../ui/Button';
-import { Badge } from '../ui/Badge';
-import { Input } from '../ui/Input';
+import Card from '../ui/Card';
+import Button from '../ui/Button';
+import Badge from '../ui/Badge';
+import Input from '../ui/Input';
 import BaseAgentChat from './BaseAgentChat';
-import gamificationService from '../../services/gamificationService';
+import { gamificationService } from '../../services/gamificationService';
 
 // Enhanced interfaces for motivational system
 interface Achievement {
@@ -499,7 +499,7 @@ const MotivatorChat: React.FC<MotivatorChatProps> = ({
                 <p className="text-sm opacity-90">Current Streak</p>
                 <p className="text-2xl font-bold">{stats.currentStreak} days</p>
               </div>
-              <Fire className="w-8 h-8 opacity-80" />
+              <Flame className="w-8 h-8 opacity-80" />
             </div>
           </Card>
 
@@ -601,7 +601,7 @@ const MotivatorChat: React.FC<MotivatorChatProps> = ({
                   <Badge className={`${getPriorityColor(goal.priority)} text-white`}>
                     {goal.priority}
                   </Badge>
-                  <Badge variant="outline" className="capitalize">
+                  <Badge variant="default" className="capitalize">
                     {goal.status.replace('_', ' ')}
                   </Badge>
                 </div>
@@ -609,7 +609,7 @@ const MotivatorChat: React.FC<MotivatorChatProps> = ({
                 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {goal.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="text-xs">
+                    <Badge key={tag} variant="default" className="text-xs">
                       {tag}
                     </Badge>
                   ))}
@@ -663,7 +663,7 @@ const MotivatorChat: React.FC<MotivatorChatProps> = ({
               
               <div className="flex items-center space-x-2 ml-4">
                 <Button
-                  variant="outline"
+                  variant="default"
                   size="sm"
                   onClick={() => toggleGoalStatus(goal.id)}
                 >
@@ -691,7 +691,7 @@ const MotivatorChat: React.FC<MotivatorChatProps> = ({
                   <Badge className={`${getDifficultyColor(challenge.difficulty)} text-white`}>
                     {challenge.difficulty}
                   </Badge>
-                  <Badge variant="outline" className="capitalize">
+                  <Badge variant="default" className="capitalize">
                     {challenge.category}
                   </Badge>
                 </div>
@@ -748,7 +748,7 @@ const MotivatorChat: React.FC<MotivatorChatProps> = ({
               
               <div className="flex items-center space-x-2 ml-4">
                 <Button
-                  variant="outline"
+                  variant="default"
                   size="sm"
                   onClick={() => setShowChallengeJoin(challenge.id)}
                 >
@@ -803,7 +803,7 @@ const MotivatorChat: React.FC<MotivatorChatProps> = ({
                 <Badge className={`${getRarityColor(achievement.rarity)} text-xs`}>
                   {achievement.rarity}
                 </Badge>
-                <Badge variant="outline" className="text-xs">
+                <Badge variant="default" className="text-xs">
                   {achievement.category}
                 </Badge>
               </div>
@@ -968,7 +968,7 @@ const MotivatorChat: React.FC<MotivatorChatProps> = ({
                 </span>
               </div>
               <div className="flex items-center space-x-2 bg-red-100 px-3 py-1 rounded-full">
-                <Fire className="w-4 h-4 text-red-600" />
+                <Flame className="w-4 h-4 text-red-600" />
                 <span className="text-sm font-medium text-red-800">
                   {stats.currentStreak} day streak
                 </span>
@@ -1051,7 +1051,7 @@ const MotivatorChat: React.FC<MotivatorChatProps> = ({
               
               <div className="flex space-x-3">
                 <Button
-                  variant="outline"
+                  variant="default"
                   onClick={() => setShowChallengeJoin(null)}
                   className="flex-1"
                 >

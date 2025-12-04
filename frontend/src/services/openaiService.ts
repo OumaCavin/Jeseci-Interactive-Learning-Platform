@@ -10,6 +10,25 @@ interface OpenAIResponse {
   }>;
 }
 
+interface AIInsightObject {
+  type?: string;
+  title?: string;
+  description?: string;
+  recommendation?: string;
+  content?: string;
+  confidence?: number;
+  insights?: string[];
+  isAnomaly?: boolean;
+  layoutRecommendations?: any;
+  suggestions?: any[];
+  relationships?: any[];
+  categoryScores?: any;
+  overallScore?: number;
+  optimization?: string;
+  engagementPrediction?: number;
+  churnRisk?: number;
+}
+
 class OpenAIService {
   private apiKey: string;
   private baseURL = 'https://api.openai.com/v1';
@@ -65,13 +84,39 @@ class OpenAIService {
     return this.generateLearningContent(prompt);
   }
 
-  // AI Insight Generation
-  async generateInsight(promptOrData: string | any): Promise<string> {
+  // Enhanced AI Insight Generation with object support
+  async generateInsight(promptOrData: string | any, optimizationType?: string): Promise<AIInsightObject> {
     const prompt = typeof promptOrData === 'string' 
       ? promptOrData 
       : `Generate insights based on this data: ${JSON.stringify(promptOrData)}`;
     
-    return this.generateLearningContent(prompt);
+    const response = await this.generateLearningContent(prompt);
+    
+    // Parse response as object if it looks like JSON
+    try {
+      const parsed = JSON.parse(response);
+      if (typeof parsed === 'object') {
+        return parsed;
+      }
+    } catch (e) {
+      // If not JSON, create a basic insight object
+      return {
+        content: response,
+        type: optimizationType || 'general',
+        title: `${optimizationType?.replace('_', ' ').toUpperCase() || 'Insight'}`,
+        description: response,
+        confidence: 0.8
+      };
+    }
+    
+    // Fallback response
+    return {
+      content: response,
+      type: optimizationType || 'general',
+      title: `${optimizationType?.replace('_', ' ').toUpperCase() || 'Insight'}`,
+      description: response,
+      confidence: 0.8
+    };
   }
 
   // User Flow Optimization
@@ -86,6 +131,13 @@ class OpenAIService {
     const prompt = `Analyze performance data and provide predictions: ${JSON.stringify(data)}. Include trends, recommendations, and risk factors.`;
     const result = await this.generateLearningContent(prompt);
     return { predictions: result, timestamp: new Date().toISOString() };
+  }
+
+  // Data Sync Optimization
+  async optimizeSync(data: any): Promise<any> {
+    const prompt = `Optimize data synchronization with this data: ${JSON.stringify(data)}. Provide sync recommendations.`;
+    const result = await this.generateLearningContent(prompt);
+    return { syncData: result, timestamp: new Date().toISOString() };
   }
 }
 

@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Cpu, Network, Settings, BarChart3, Zap, Users, Target, TrendingUp,
+  Network, Settings, BarChart3, Zap, Users, Target, TrendingUp,
   Activity, AlertTriangle, CheckCircle, Clock, Lightbulb, Brain,
   BookOpen, Award, Heart, Flame, Star, Crown, Gem, Shield,
   RefreshCw, Play, Pause, SkipForward, RotateCcw, Search,
@@ -12,11 +12,11 @@ import {
   UserCheck, Users2, UserX, UserPlus, UserMinus, User,
   Globe, Map, Compass, Navigation, Route, MapPin,
   Database, Cloud, Server, HardDrive, Cpu, MemoryStick,
-  Gauge, Speedometer, Battery, Wifi, Signal, Antenna,
+  Gauge,  Battery, Wifi, Signal, Antenna,
   Code, Terminal, Database as DatabaseIcon, Layers,
-  Workflow, GitBranch, GitMerge, GitCommit, GitPull,
+  Workflow, GitBranch, GitMerge, GitCommit, GitPush,
   Package, Boxes, Container, Archive, FileText,
-  Calendar, Clock3, Timer, Stopwatch, Hourglass,
+  Calendar, Clock3, Timer,  Hourglass,
   ChevronRight, ChevronLeft, ChevronUp, ChevronDown,
   Maximize2, Minimize2, X, Plus, Minus, Edit, Trash2,
   Eye, Copy, Link, ExternalLink, Share, Book, Pen,

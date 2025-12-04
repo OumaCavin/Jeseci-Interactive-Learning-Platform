@@ -14,7 +14,7 @@ import {
   Sparkles, Calendar, Flag, Timer, Shield, Rocket,
   Heart, Smile, Meh, Frown, Flame, Crown, Gem
 } from 'lucide-react';
-import gamificationService from '../../services/gamificationService';
+import { gamificationService } from '../../services/gamificationService';
 
 // Types and Interfaces
 interface Question {
@@ -438,7 +438,7 @@ const QuizMasterChat: React.FC = () => {
     }
     
     // Streak achievement
-    if (result.passed && userStreak >= 5) {
+    if (result.percentage >= 70 && userStreak >= 5) {
       newAchievements.push('On Fire');
     }
     

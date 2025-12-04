@@ -43,7 +43,6 @@ import {
   PieChart,
   LineChart,
   AreaChart,
-  ScatterPlot,
   BarChart,
   MapPin,
   Smartphone,
@@ -63,12 +62,12 @@ import {
   Save,
   Trash2
 } from 'lucide-react';
-import { Card } from '../ui/Card';
-import { Button } from '../ui/Button';
-import { Badge } from '../ui/Badge';
-import { Input } from '../ui/Input';
+import Card from '../ui/Card';
+import Button from '../ui/Button';
+import Badge from '../ui/Badge';
+import Input from '../ui/Input';
 import BaseAgentChat from './BaseAgentChat';
-import gamificationService from '../../services/gamificationService';
+import { gamificationService } from '../../services/gamificationService';
 
 // Enhanced interfaces for analytics system
 interface ProgressData {
@@ -684,7 +683,7 @@ const ProgressTrackerChat: React.FC<ProgressTrackerChatProps> = ({
               <div key={index} className="p-4 bg-gray-50 rounded-lg">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-medium">{benchmark.metric}</h4>
-                  <Badge variant="outline">
+                  <Badge variant="default">
                     {benchmark.percentile}th percentile
                   </Badge>
                 </div>
@@ -739,7 +738,7 @@ const ProgressTrackerChat: React.FC<ProgressTrackerChatProps> = ({
             <option value="1y">Last Year</option>
           </select>
           <Button
-            variant="outline"
+            variant="default"
             size="sm"
             onClick={() => setAutoRefresh(!autoRefresh)}
             className={autoRefresh ? 'bg-green-50 border-green-300' : ''}
@@ -759,7 +758,7 @@ const ProgressTrackerChat: React.FC<ProgressTrackerChatProps> = ({
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center space-x-3">
                   <h4 className="font-medium">{data.subject}</h4>
-                  <Badge variant="outline">{data.skill}</Badge>
+                  <Badge variant="default">{data.skill}</Badge>
                 </div>
                 <span className="text-sm text-gray-500">
                   {data.date.toLocaleDateString()}
@@ -832,7 +831,7 @@ const ProgressTrackerChat: React.FC<ProgressTrackerChatProps> = ({
                 {getPatternIcon(pattern.type)}
                 <div>
                   <h3 className="font-semibold">{pattern.name}</h3>
-                  <Badge variant="outline" className="capitalize">
+                  <Badge variant="default" className="capitalize">
                     {pattern.type}
                   </Badge>
                 </div>
@@ -1015,7 +1014,7 @@ const ProgressTrackerChat: React.FC<ProgressTrackerChatProps> = ({
                     <h4 className="font-medium">{skill.skill}</h4>
                     <div className="flex items-center space-x-2">
                       <Badge 
-                        variant="outline"
+                        variant="default"
                         className={
                           skill.difficulty === 'easy' ? 'border-green-300 text-green-700' :
                           skill.difficulty === 'medium' ? 'border-yellow-300 text-yellow-700' :
@@ -1095,7 +1094,7 @@ const ProgressTrackerChat: React.FC<ProgressTrackerChatProps> = ({
                     <div className="flex items-center space-x-2">
                       <AlertTriangle className="w-4 h-4 text-orange-500" />
                       <Badge 
-                        variant="outline"
+                        variant="default"
                         className={
                           risk.severity === 'high' ? 'border-red-300 text-red-700' :
                           risk.severity === 'medium' ? 'border-yellow-300 text-yellow-700' :
@@ -1148,7 +1147,7 @@ const ProgressTrackerChat: React.FC<ProgressTrackerChatProps> = ({
                       >
                         {rec.priority}
                       </Badge>
-                      <Badge variant="outline">{rec.category}</Badge>
+                      <Badge variant="default">{rec.category}</Badge>
                     </div>
                   </div>
                   <p className="text-sm text-gray-600 mb-2">{rec.expectedImpact}</p>

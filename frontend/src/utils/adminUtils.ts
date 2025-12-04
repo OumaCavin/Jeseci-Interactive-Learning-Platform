@@ -1620,7 +1620,7 @@ export const generateAdvancedAnalytics = async (timeframe: 'week' | 'month' | 'q
   
   // Add AI insights using OpenAI
   try {
-    const aiInsights = await openaiService.generateAdminInsights({
+    const aiInsights = await openaiService.generateInsight({
       analytics,
       timeframe,
       focus: 'administrative-efficiency'
@@ -2148,7 +2148,7 @@ const generateContentQualityMetrics = async (): Promise<ContentQualityMetrics> =
       clarity: {
         score: 86.8,
         readability: 78.5,
-        complexity: 'moderate',
+        complexity: 3,
         language: 'simple'
       },
       multimedia: {
@@ -2175,7 +2175,7 @@ const generateContentQualityMetrics = async (): Promise<ContentQualityMetrics> =
       ],
       manual: {
         reviews: 45,
-        reviewers: 8,
+        reviewers: ["reviewer1", "reviewer2", "reviewer3", "reviewer4", "reviewer5", "reviewer6", "reviewer7", "reviewer8"],
         averageTime: 2.5,
         approval: 96
       }

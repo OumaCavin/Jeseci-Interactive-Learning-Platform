@@ -974,7 +974,7 @@ const EvaluatorChat: React.FC<EvaluatorChatProps> = ({
                     variant={
                       goal.status === 'completed' ? 'success' :
                       goal.status === 'in_progress' ? 'warning' :
-                      goal.status === 'overdue' ? 'danger' : 'info'
+                      goal.status === 'overdue' ? 'error' : 'info'
                     }
                     size="sm"
                   >

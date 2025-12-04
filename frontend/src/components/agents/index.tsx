@@ -479,7 +479,7 @@ export const validateAgentProps = (props: any): { isValid: boolean; errors: stri
  */
 export const getAgentCapabilities = (agentId: AgentId): AgentCapability[] => {
   const registry = getAgentRegistry(agentId);
-  return registry?.capabilities || [];
+  return [...(registry?.capabilities || [])];
 };
 
 /**

@@ -321,7 +321,7 @@ const MultiAgentChat: React.FC<MultiAgentChatProps> = ({
     switch (status) {
       case 'online': return 'success';
       case 'busy': return 'warning';
-      case 'offline': return 'danger';
+      case 'offline': return 'error';
       default: return 'default';
     }
   };
@@ -459,7 +459,7 @@ const MultiAgentChat: React.FC<MultiAgentChatProps> = ({
               
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
-                  <Avatar.Group>
+                  <div className="flex -space-x-2">
                     {session.agents.map((agentId) => {
                       const agent = agents.find(a => a.id === agentId);
                       return agent ? (
@@ -468,10 +468,11 @@ const MultiAgentChat: React.FC<MultiAgentChatProps> = ({
                           src={`data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="16" fill="${agent.color.split(' ')[1].split('-')[1]}"/><text x="16" y="20" font-size="14" text-anchor="middle" fill="white">${agent.icon}</text></svg>`)}`}
                           alt={agent.name}
                           size="sm"
+                          className="border-2 border-gray-800"
                         />
                       ) : null;
                     })}
-                  </Avatar.Group>
+                  </div>
                 </div>
                 
                 <div className="space-y-2">
