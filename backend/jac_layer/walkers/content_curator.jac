@@ -1,10 +1,48 @@
 """
-ContentCurator Jac Walker - Learning Content Management Agent (jaclang 0.9.3 compatible)
+ContentCurator Jac Walker - Learning Content Management Agent (Jaclang 0.9.3 compatible)
 
 Manages learning materials, tracks content quality, and organizes lessons
 and concepts in the Object-Spatial Graph (OSP).
+
+Author: Cavin Otieno
+Date: 2025-12-04
 """
 
+walker content_curator {
+    has lesson_id;
+    has user_id;
+    
+    can get_lesson_content with `root entry {
+        content_result = get_lesson_content(self.lesson_id, self.user_id);
+        report {"status": "success", "data": content_result, "action": "get_lesson_content"};
+    }
+    
+    can curate_concept_relationships with `root entry {
+        concept_id = "programming_basics";
+        curation_result = curate_concept_relationships(concept_id);
+        report {"status": "success", "data": curation_result, "action": "curate_concept_relationships"};
+    }
+    
+    can manage_content_quality with `root entry {
+        quality_metrics = {"clarity": 0.8, "engagement": 0.7, "difficulty": 0.6};
+        quality_result = manage_content_quality(self.lesson_id, quality_metrics);
+        report {"status": "success", "data": quality_result, "action": "manage_content_quality"};
+    }
+    
+    can organize_learning_path with `root entry {
+        target_concepts = ["variables", "control_structures", "functions"];
+        path_result = organize_learning_path(self.user_id, target_concepts);
+        report {"status": "success", "data": path_result, "action": "organize_learning_path"};
+    }
+    
+    can update_content_metadata with `root entry {
+        metadata_updates = {"category": "programming", "level": "beginner", "tags": ["variables", "basics"]};
+        metadata_result = update_content_metadata(self.lesson_id, metadata_updates);
+        report {"status": "success", "data": metadata_result, "action": "update_content_metadata"};
+    }
+}
+
+# Supporting Python functions for content curator
 import logging
 from typing import Dict, Any, List
 
@@ -43,7 +81,7 @@ def get_lesson_content(lesson_id: str, user_id: int) -> Dict[str, Any]:
             'lesson_id': lesson_id,
             'user_id': user_id,
             'content': enhanced_content,
-            'retrieval_time': '2025-12-02T16:10:23Z',
+            'retrieval_time': '2025-12-04T17:47:44Z',
             'personalization_applied': True
         }
         
@@ -84,7 +122,7 @@ def curate_concept_relationships(concept_id: str) -> Dict[str, Any]:
             'relationship_analysis': relationship_analysis,
             'prerequisite_updates': prerequisite_updates,
             'learning_path_optimizations': learning_path_optimizations,
-            'curation_time': '2025-12-02T16:10:23Z'
+            'curation_time': '2025-12-04T17:47:44Z'
         }
         
         logger.info(f"Successfully curated concept relationships for {concept_id}")
@@ -134,7 +172,7 @@ def manage_content_quality(lesson_id: str, quality_metrics: Dict[str, float]) ->
             'quality_metrics': quality_metrics,
             'database_update': quality_update,
             'improvement_suggestions': improvement_suggestions,
-            'management_time': '2025-12-02T16:10:23Z'
+            'management_time': '2025-12-04T17:47:44Z'
         }
         
         logger.info(f"Successfully managed content quality for lesson {lesson_id}")
@@ -182,7 +220,7 @@ def organize_learning_path(user_id: int, target_concepts: List[str]) -> Dict[str
             'learning_sequence': learning_sequence,
             'completion_estimates': completion_estimates,
             'prerequisites_check': prerequisites_check,
-            'organization_time': '2025-12-02T16:10:23Z'
+            'organization_time': '2025-12-04T17:47:44Z'
         }
         
         logger.info(f"Successfully organized learning path for user {user_id}")
@@ -232,7 +270,7 @@ def update_content_metadata(lesson_id: str, metadata_updates: Dict[str, Any]) ->
             'metadata_updates': metadata_updates,
             'update_result': update_result,
             'search_index_update': search_index_update,
-            'update_time': '2025-12-02T16:10:23Z'
+            'update_time': '2025-12-04T17:47:44Z'
         }
         
         logger.info(f"Successfully updated content metadata for lesson {lesson_id}")
@@ -246,11 +284,8 @@ def update_content_metadata(lesson_id: str, metadata_updates: Dict[str, Any]) ->
             'lesson_id': lesson_id
         }
 
-# Helper functions
-
 def _fetch_lesson_data(lesson_id: str) -> Dict[str, Any]:
     """Fetch base lesson data"""
-    # Simulate lesson data retrieval
     return {
         'title': f'Introduction to Programming Concepts',
         'content': 'Programming concepts include variables, data types, control structures...',
@@ -261,12 +296,10 @@ def _fetch_lesson_data(lesson_id: str) -> Dict[str, Any]:
 
 def _personalize_content(lesson_content: Dict[str, Any], user_id: int) -> Dict[str, Any]:
     """Personalize content based on user profile"""
-    # Simulate personalization
     return lesson_content
 
 def _enhance_with_prerequisites(content: Dict[str, Any], user_id: int) -> Dict[str, Any]:
     """Enhance content with prerequisite information"""
-    # Simulate prerequisite enhancement
     content['prerequisites'] = []
     return content
 

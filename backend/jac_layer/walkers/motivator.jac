@@ -1,10 +1,53 @@
 """
-Motivator Jac Walker - Learning Motivation and Gamification Agent (jaclang 0.9.3 compatible)
+Motivator Jac Walker - Learning Motivation and Gamification Agent (Jaclang 0.9.3 compatible)
 
 Provides encouragement, gamification, and achievement tracking.
 Generates motivational messages and manages achievement badges.
+
+Author: Cavin Otieno
+Date: 2025-12-04
 """
 
+walker motivator {
+    has user_id;
+    has context;
+    
+    can generate_motivational_message with `root entry {
+        motivational_result = generate_motivational_message(self.user_id, self.context);
+        report {"status": "success", "data": motivational_result, "action": "generate_motivational_message"};
+    }
+    
+    can check_achievement_milestones with `root entry {
+        recent_activities = [
+            {"status": "completed", "score": 0.8},
+            {"status": "completed", "score": 0.75},
+            {"status": "completed", "score": 0.9}
+        ];
+        milestone_result = check_achievement_milestones(self.user_id, recent_activities);
+        report {"status": "success", "data": milestone_result, "action": "check_achievement_milestones"};
+    }
+    
+    can create_personalized_challenge with `root entry {
+        skill_areas = ["variables", "functions", "control_structures"];
+        difficulty_level = "intermediate";
+        challenge_result = create_personalized_challenge(self.user_id, skill_areas, difficulty_level);
+        report {"status": "success", "data": challenge_result, "action": "create_personalized_challenge"};
+    }
+    
+    can track_streak_achievements with `root entry {
+        streak_data = {"current_streak": 7, "longest_streak": 14};
+        streak_result = track_streak_achievements(self.user_id, streak_data);
+        report {"status": "success", "data": streak_result, "action": "track_streak_achievements"};
+    }
+    
+    can manage_gamification_elements with `root entry {
+        activity_data = {"score": 0.85, "activity_type": "quiz_completion"};
+        gamification_result = manage_gamification_elements(self.user_id, activity_data);
+        report {"status": "success", "data": gamification_result, "action": "manage_gamification_elements"};
+    }
+}
+
+# Supporting Python functions for motivator
 import logging
 from typing import Dict, Any, List
 from datetime import datetime, timedelta
@@ -49,7 +92,7 @@ def generate_motivational_message(user_id: int, context: Dict[str, Any]) -> Dict
                 'message_timing': _determine_optimal_timing(context),
                 'follow_up_suggestions': _suggest_follow_up_actions(motivational_analysis)
             },
-            'generation_time': '2025-12-02T16:10:23Z'
+            'generation_time': '2025-12-04T17:47:44Z'
         }
         
         logger.info(f"Successfully generated motivational message for user {user_id}")
@@ -103,7 +146,7 @@ def check_achievement_milestones(user_id: int, recent_activities: List[Dict[str,
                 'celebration_message': celebration_message,
                 'next_milestones': _suggest_next_milestones(achievement_analysis)
             },
-            'check_time': '2025-12-02T16:10:23Z'
+            'check_time': '2025-12-04T17:47:44Z'
         }
         
         logger.info(f"Successfully checked achievement milestones for user {user_id}")
@@ -159,7 +202,7 @@ def create_personalized_challenge(user_id: int, skill_areas: List[str], difficul
                 'motivation_hooks': _create_motivation_hooks(challenge_content, skill_profile),
                 'success_criteria': _define_success_criteria(challenge_content)
             },
-            'creation_time': '2025-12-02T16:10:23Z'
+            'creation_time': '2025-12-04T17:47:44Z'
         }
         
         logger.info(f"Successfully created personalized challenge for user {user_id}")
@@ -214,7 +257,7 @@ def track_streak_achievements(user_id: int, streak_data: Dict[str, Any]) -> Dict
                 'next_streak_goal': _set_next_streak_goal(streak_analysis),
                 'streak_confidence': _calculate_streak_confidence(streak_analysis)
             },
-            'tracking_time': '2025-12-02T16:10:23Z'
+            'tracking_time': '2025-12-04T17:47:44Z'
         }
         
         logger.info(f"Successfully tracked streak achievements for user {user_id}")
@@ -268,7 +311,7 @@ def manage_gamification_elements(user_id: int, activity_data: Dict[str, Any]) ->
                 'reward_suggestions': reward_suggestions,
                 'gamification_summary': _create_gamification_summary(points_update, achievement_checks)
             },
-            'management_time': '2025-12-02T16:10:23Z'
+            'management_time': '2025-12-04T17:47:44Z'
         }
         
         logger.info(f"Successfully managed gamification elements for user {user_id}")
@@ -281,8 +324,6 @@ def manage_gamification_elements(user_id: int, activity_data: Dict[str, Any]) ->
             'message': f'Failed to manage gamification elements: {str(e)}',
             'user_id': user_id
         }
-
-# Helper functions
 
 def _analyze_motivational_state(user_id: int, context: Dict[str, Any]) -> Dict[str, Any]:
     """Analyze user's current motivational state"""
@@ -325,7 +366,7 @@ def _add_motivational_elements(analysis: Dict[str, Any], context: Dict[str, Any]
     return {
         'encouraging_phrases': ['You can do this!', 'Every expert was once a beginner'],
         'reminders': ['Progress over perfection', 'Consistency beats intensity'],
-        ' affirmations': ['You\'re improving', 'Your effort matters']
+        'affirmations': ['You\'re improving', 'Your effort matters']
     }
 
 def _determine_message_tone(analysis: Dict[str, Any]) -> str:
@@ -339,7 +380,7 @@ def _determine_message_tone(analysis: Dict[str, Any]) -> str:
 
 def _determine_optimal_timing(context: Dict[str, Any]) -> str:
     """Determine optimal timing for message delivery"""
-    return 'immediate'  # Could be adjusted based on user preferences and context
+    return 'immediate'
 
 def _suggest_follow_up_actions(analysis: Dict[str, Any]) -> List[str]:
     """Suggest follow-up actions based on motivational analysis"""
@@ -381,7 +422,7 @@ def _award_new_badges(user_id: int, milestones: Dict[str, Any]) -> List[Dict[str
                 'badge_id': f"{milestone_name}_master",
                 'name': f"{milestone_name.replace('_', ' ').title()} Master",
                 'description': f"Achieved excellence in {milestone_name}",
-                'awarded_at': '2025-12-02T16:10:23Z'
+                'awarded_at': '2025-12-04T17:47:44Z'
             }
             awarded_badges.append(badge)
     
@@ -414,7 +455,6 @@ def _suggest_next_milestones(analysis: Dict[str, Any]) -> List[Dict[str, str]]:
 
 def _analyze_skill_profile(user_id: int, skill_areas: List[str]) -> Dict[str, Any]:
     """Analyze user's skill profile"""
-    # Simulate skill analysis
     return {
         'skill_levels': {area: 0.6 for area in skill_areas},
         'strongest_area': skill_areas[0] if skill_areas else 'variables',
@@ -438,7 +478,7 @@ def _generate_challenge_content(skill_profile: Dict[str, Any], difficulty: str) 
 def _set_challenge_parameters(skill_profile: Dict[str, Any], difficulty: str) -> Dict[str, Any]:
     """Set challenge parameters"""
     return {
-        'time_limit': 60,  # minutes
+        'time_limit': 60,
         'attempts_allowed': 3,
         'hints_available': True,
         'collaboration_allowed': False
@@ -537,7 +577,7 @@ def _set_next_streak_goal(analysis: Dict[str, Any]) -> int:
     elif current < 30:
         return 30
     else:
-        return current + 7  # Add weekly increments
+        return current + 7
 
 def _calculate_streak_confidence(analysis: Dict[str, Any]) -> float:
     """Calculate confidence in maintaining streak"""

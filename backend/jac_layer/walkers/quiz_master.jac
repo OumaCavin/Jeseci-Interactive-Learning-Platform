@@ -1,10 +1,52 @@
 """
-QuizMaster Jac Walker - Adaptive Quiz Generation Agent (jaclang 0.9.3 compatible)
+QuizMaster Jac Walker - Adaptive Quiz Generation Agent (Jaclang 0.9.3 compatible)
 
 Generates adaptive quizzes and assessments based on learning progress.
 Uses dynamic question generation based on user's current mastery level from the OSP graph.
+
+Author: Cavin Otieno
+Date: 2025-12-04
 """
 
+walker quiz_master {
+    has user_id;
+    has concept_id;
+    has difficulty_level: "beginner";
+    
+    can generate_adaptive_quiz with `root entry {
+        quiz_result = generate_adaptive_quiz(self.user_id, self.concept_id, self.difficulty_level);
+        report {"status": "success", "data": quiz_result, "action": "generate_adaptive_quiz"};
+    }
+    
+    can create_mixed_assessment with `root entry {
+        assessment_result = create_mixed_assessment(self.user_id, ["variables", "control_structures"]);
+        report {"status": "success", "data": assessment_result, "action": "create_mixed_assessment"};
+    }
+    
+    can personalize_question_difficulty with `root entry {
+        base_questions = [
+            {"question": "What is a variable?", "type": "multiple_choice", "difficulty": "beginner"}
+        ];
+        personalized_result = personalize_question_difficulty(self.user_id, base_questions);
+        report {"status": "success", "data": personalized_result, "action": "personalize_question_difficulty"};
+    }
+    
+    can generate_progressive_questions with `root entry {
+        progressive_result = generate_progressive_questions(self.user_id, self.concept_id, 5);
+        report {"status": "success", "data": progressive_result, "action": "generate_progressive_questions"};
+    }
+    
+    can analyze_quiz_performance with `root entry {
+        responses = [
+            {"question_id": "q1", "answer": "Option A", "correct": True},
+            {"question_id": "q2", "answer": "Option B", "correct": False}
+        ];
+        analysis_result = analyze_quiz_performance(self.user_id, "quiz_001", responses);
+        report {"status": "success", "data": analysis_result, "action": "analyze_quiz_performance"};
+    }
+}
+
+# Supporting Python functions for quiz master
 import logging
 from typing import Dict, Any, List
 import random
@@ -54,7 +96,7 @@ def generate_adaptive_quiz(user_id: int, concept_id: str, difficulty_level: str)
                     'personalization_applied': True
                 }
             },
-            'generation_time': '2025-12-02T16:10:23Z'
+            'generation_time': '2025-12-04T17:47:44Z'
         }
         
         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
@@ -108,7 +150,7 @@ def create_mixed_assessment(user_id: int, topic_areas: List[str]) -> Dict[str, A
                 'estimated_duration': _calculate_assessment_duration(balanced_questions),
                 'area_performance_analysis': area_performance
             },
-            'creation_time': '2025-12-02T16:10:23Z'
+            'creation_time': '2025-12-04T17:47:44Z'
         }
         
         logger.info(f"Successfully created mixed assessment for user {user_id}")
@@ -153,7 +195,7 @@ def personalize_question_difficulty(user_id: int, base_questions: List[Dict[str,
         
     except Exception as e:
         logger.error(f"Error personalizing question difficulty: {str(e)}")
-        return base_questions  # Return original questions on error
+        return base_questions
 
 def generate_progressive_questions(user_id: int, concept_id: str, question_count: int) -> Dict[str, Any]:
     """
@@ -193,7 +235,7 @@ def generate_progressive_questions(user_id: int, concept_id: str, question_count
                 'starting_level': starting_level,
                 'adaptive_feedback': _generate_progressive_feedback(progressive_questions)
             },
-            'generation_time': '2025-12-02T16:10:23Z'
+            'generation_time': '2025-12-04T17:47:44Z'
         }
         
         logger.info(f"Successfully generated progressive question sequence for user {user_id}")
@@ -246,7 +288,7 @@ def analyze_quiz_performance(user_id: int, quiz_id: str, responses: List[Dict[st
                 'mastery_updates': mastery_updates,
                 'next_steps': _suggest_next_steps(performance_breakdown)
             },
-            'analysis_time': '2025-12-02T16:10:23Z'
+            'analysis_time': '2025-12-04T17:47:44Z'
         }
         
         logger.info(f"Successfully analyzed quiz performance for user {user_id}")
@@ -261,11 +303,9 @@ def analyze_quiz_performance(user_id: int, quiz_id: str, responses: List[Dict[st
             'quiz_id': quiz_id
         }
 
-# Helper functions
-
 def _analyze_user_mastery(user_id: int, concept_id: str) -> float:
     """Analyze user's current mastery level"""
-    return 0.65  # Simulated mastery level
+    return 0.65
 
 def _generate_questions(concept_id: str, difficulty: str, mastery: float) -> List[Dict[str, Any]]:
     """Generate questions based on concept and difficulty"""
@@ -283,7 +323,6 @@ def _generate_questions(concept_id: str, difficulty: str, mastery: float) -> Lis
 
 def _apply_adaptive_logic(questions: List[Dict[str, Any]], mastery: float) -> List[Dict[str, Any]]:
     """Apply adaptive logic to questions"""
-    # Adapt questions based on mastery level
     for question in questions:
         if mastery > 0.7:
             question['hints'] = ['Advanced hint available']
