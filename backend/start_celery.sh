@@ -25,9 +25,15 @@ fi
 echo "Initializing JaC walkers..."
 python manage.py init_jac_walkers
 
-# Test Redis connection
+# Test Redis connection with password
 echo "Testing Redis connection..."
-python manage.py setup_redis_auth --test-connection
+if [ -n "$REDIS_PASSWORD" ]; then
+    echo "✅ Redis password configured: $REDIS_PASSWORD"
+    # Quick Redis connectivity test
+    redis-cli -a "$REDIS_PASSWORD" ping 2>/dev/null && echo "✅ Redis connection successful" || echo "⚠️  Redis connection failed"
+else
+    echo "⚠️  No Redis password configured"
+fi
 
 # Start Celery worker with correct module name
 echo "Starting Celery worker..."
