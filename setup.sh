@@ -59,36 +59,19 @@ fi
 print_status "Upgrading pip..."
 pip install --upgrade pip
 
-# Install all required dependencies
-print_status "Installing core Django dependencies..."
-pip install Django==5.2.8 djangorestframework django-cors-headers
-
-print_status "Installing database and caching dependencies..."
-pip install psycopg2-binary==2.9.11 redis==7.1.0 django-redis==6.0.0
-
-print_status "Installing Celery..."
-pip install celery[redis]
-
-print_status "Installing configuration and environment dependencies..."
-pip install python-decouple==3.8 dj-database-url
-
-print_status "Installing media and file handling dependencies..."
-pip install Pillow==12.0.0 django-storages
-
-print_status "Installing development and testing dependencies..."
-pip install django-debug-toolbar django-extensions pytest==9.0.1 pytest-django==4.11.1
-
-print_status "Installing API documentation and JWT..."
-pip install drf-spectacular==0.29.0 djangorestframework-simplejwt==5.3.0
-
-print_status "Installing JaC language..."
-pip install jaclang[all]==0.9.3
-
-print_success "✅ All Python dependencies installed"
+# Install all dependencies from requirements.txt
+print_status "Installing Python dependencies from requirements.txt..."
+if [ -f "requirements.txt" ]; then
+    pip install -r requirements.txt
+    print_success "✅ All Python dependencies installed from requirements.txt"
+else
+    print_warning "⚠️  requirements.txt not found, installing essential packages..."
+    pip install Django==5.2.8 djangorestframework django-cors-headers celery[redis] redis==7.1.0 jaclang[all]==0.9.3
+fi
 
 # Verify key packages
 print_status "Verifying installation..."
-pip list | grep -E "(Django|djangorestframework|celery|redis|jaclang)"
+pip list | grep -E "(Django|djangorestframework|celery|redis|jaclang)" 2>/dev/null || print_warning "Some packages may need manual installation"
 
 # =============================================================================
 # FIX 2: Environment Variables (FIXING Otieno COMMAND ERRORS)
@@ -97,188 +80,50 @@ print_status "🔧 Step 2: Creating properly formatted .env file (FIXING PARSING
 
 cd backend
 
-# Create .env file with proper escaping using correct configuration
-cat > .env << 'EOF'
-# Environment Variables for JESECI Interactive Learning Platform 
+# Create .env file from .env.example template
+if [ -f ".env.example" ]; then
+    print_status "Creating .env file from .env.example template..."
+    cp .env.example .env
+    print_success "✅ Created .env file from .env.example template"
+    print_status "📝 Please edit backend/.env file manually to add your API keys and configuration"
+else
+    print_warning "⚠️  .env.example not found, creating minimal .env file..."
+    cat > .env << 'EOF'
+# Environment Variables for JESECI Interactive Learning Platform
 # Author: Cavin Otieno - cavin.otieno012@gmail.com
 
-# =============================================================================
-# SENTRY ERROR MONITORING & Analytics - PRODUCTION READY
-# =============================================================================
-
-SENTRY_DSN_BACKEND=https://759a58b1fc0aee913b2cb184db7fd880@o4510403562307584.ingest.de.sentry.io/4510403573842000
-REACT_APP_SENTRY_DSN=https://ef79ebd29c8a961b5d5dd6c313ccf7ba@o4510403562307584.ingest.de.sentry.io/4510403631054928
-# Monitoring 
-SENTRY_DSN=https://759a58b1fc0aee913b2cb184db7fd880@o4510403562307584.ingest.de.sentry.io/4510403573842000
-GOOGLE_ANALYTICS_ID=G-YQGN10EW6J
-# =============================================================================
-# APPLICATION CONFIGURATION
-# =============================================================================
-
-ENVIRONMENT=development
-NODE_ENV=development
-RELEASE_VERSION=1.0.0
-REACT_APP_VERSION=2.1.0
-
-# Backend Environment Configuration
+# Django Configuration
 SECRET_KEY=django-insecure-jac-learning-platform-secret-key-for-development-only-2024
-# =============================================================================
-# DJANGO SETTINGS - DEVELOPMENT
-# =============================================================================
-
 DEBUG=True
 ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0
 
-# =============================================================================
-# DATABASE CONFIGURATION
-# =============================================================================
-DATABASE_URL=postgresql://jeseci_user:jeseci_password@localhost:5432/jeseci_db
+# Database Configuration
+DATABASE_URL=sqlite:///db.sqlite3
 
-DB_NAME=jeseci_db
-DB_USER=jeseci_user
-DB_PASSWORD=jeseci_password
-DB_HOST=postgres
-DB_PORT=5432
-
-# Alternative: sqlite for development
-# DATABASE_URL=sqlite:///db.sqlite3
-
-# =============================================================================
-# REDIS CONFIGURATION
-# =============================================================================
-
-REDIS_URL=redis://:redis_password@localhost:6379/0
+# Redis Configuration
 REDIS_PASSWORD=redis_password
 REDIS_HOST=localhost
 REDIS_PORT=6379
-#REDIS_URL=redis://localhost:6379/0
 
-# Jac Server Configuration
-JAC_SERVER_URL=http://localhost:8001
-JAC_GRAPH_PATH=backend/jac_layer/main.jac
-JAC_CONFIG_COMPILE_TIMEOUT=30
-JAC_CONFIG_EXECUTION_TIMEOUT=60
-JAC_CONFIG_MAX_MEMORY_MB=512
-JAC_CONFIG_LOG_LEVEL=DEBUG
-
-# LLM API Keys (Required for byLLM features)
-# OPENAI_API_KEY=AIzaSyB3OhghL8KcNaixdZkM4Wfd07_dAoQvrI0  # Google API Key
-OPENAI_API_KEY=sk-proj-LXc5F7IW85GHT3HZNyHSGZRYNTr1QYt8vYYBdb7Zs9rrktkh4-7MO6NtEJooM-zthkBK@e@dUh7T3B1bkFIECKZ19FrILZ1pAl111£q9x__v9gx1jDxcHDMmZbmtJ4280zWIMd93psyket@zTRUT2FeNHSgUA
-GEMINI_API_KEY=ATzaSyBLv9eN8zNSUkSEm7xnAmG1abUotDX3420
-LLM_PROVIDER=openai  # Options: openai, gemini
-
-# Celery Configuration
-CELERY_BROKER_URL=redis://:redis_password@localhost:6379/1
-CELERY_RESULT_BACKEND=redis://:redis_password@localhost:6379/2
-
-# CORS Configuration
-CORS_ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
-CORS_ALLOW_CREDENTIALS=True
-
-# File Upload Configuration
-MAX_UPLOAD_SIZE=10485760  # 10MB
-
-# Logging Configuration
-LOG_LEVEL=INFO
-
-# Security Configuration
-SECURE_SSL_REDIRECT=False  # Set to True in production
-SESSION_COOKIE_SECURE=False  # Set to True in production
-CSRF_COOKIE_SECURE=False  # Set to True in production
-
-# =============================================================================
-# CONTACT INFORMATION - CONSISTENT ACROSS PROJECT
-# =============================================================================
-
-AUTHOR_NAME=Cavin Otieno
-AUTHOR_EMAIL=cavin.otieno012@gmail.com
-AUTHOR_PHONE=+254708101604
-AUTHOR_WHATSAPP=https://wa.me/254708101604
-AUTHOR_LINKEDIN=https://www.linkedin.com/in/cavin-otieno-9a841260/
-AUTHOR_GITHUB=OumaCavin
-
-# WhatsApp Integration
-WHATSAPP_API_URL=https://wa.me/254708101604
-WHATSAPP_ENABLED=true
-
-# Email Configuration (Consistent Author Email)
-EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USE_TLS=True
+# Email Configuration
 EMAIL_HOST_USER=cavin.otieno012@gmail.com
 EMAIL_HOST_PASSWORD=oakjazoekos
-EMAIL_FROM_NAME=Cavin Otien
-EMAIL_FROM_EMAIL=cavin.otieno012@gmail.com
 
-# Codebase Genius Configuration
-GITHUB_TOKEN=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
-DOCS_OUTPUT_PATH=docs/generated
+# API Keys (Add your keys here)
+OPENAI_API_KEY=your-openai-api-key-here
+GEMINI_API_KEY=your-gemini-api-key-here
+GOOGLE_API_KEY=your-google-api-key-here
 
-# Jac Language Settings
-JAC_LANGUAGE_PATH=/workspace/backend/jac_layer/walkers
+# Monitoring
+SENTRY_DSN=your-sentry-dsn-here
+GOOGLE_ANALYTICS_ID=your-ga-id-here
 
-# =============================================================================
-# SECURITY SETTINGS
-# =============================================================================
-
-JWT_ACCESS_TOKEN_LIFETIME=60
-JWT_REFRESH_TOKEN_LIFETIME=10080
-JWT_ALGORITHM=HS256
-RATELIMIT_USE_CACHE=default
-DEFAULT_THROTTLE_RATES_ANON=100/hour
-DEFAULT_THROTTLE_RATES_USER=1000/hour
-
-# =============================================================================
-# MONITORING AND PERFORMANCE
-# =============================================================================
-
-SENTRY_TRACES_SAMPLE_RATE=0.1
-SENTRY_PROFILES_SAMPLE_RATE=0.0
-SENTRY_LOG_LEVEL=INFO
-HEALTH_CHECK_ENABLED=True
-HEALTH_CHECK_DATABASE=True
-HEALTH_CHECK_REDIS=True
-HEALTH_CHECK_STORAGE=True
-
-# =============================================================================
-# EXTERNAL APIs - CONSISTENT TOKENS
-# =============================================================================
-
-# Google AI API (Maker Suite) - Active
-GOOGLE_API_KEY=AIzaSyB3OhghL8KcNaixdZkM4Wfd07_dAoQvrI0
-
-# =============================================================================
-# AGENT SYSTEM CONFIGURATION
-# =============================================================================
-
-AGENT_COORDINATION_TIMEOUT=10
-AGENT_TASK_TIMEOUT=300
-AGENT_MAX_CONCURRENT_TASKS=5
-
-CONTENT_CURATOR_CACHE_TIMEOUT=1800
-QUIZ_MASTER_CACHE_TIMEOUT=900
-EVALUATOR_CACHE_TIMEOUT=600
-PROGRESS_TRACKER_CACHE_TIMEOUT=300
-MOTIVATOR_CACHE_TIMEOUT=1800
-
-# =============================================================================
-# KNOWLEDGE GRAPH CONFIGURATION
-# =============================================================================
-
-KNOWLEDGE_GRAPH_MAX_NODES=1000
-KNOWLEDGE_GRAPH_MAX_EDGES=5000
-KNOWLEDGE_GRAPH_CACHE_TIMEOUT=3600
-
-# =============================================================================
-# DEVELOPMENT OVERRIDES
-# =============================================================================
-
+# Development
 ALLOW_SELF_REGISTRATION=True
 DEVELOPMENT_MODE=True
 EOF
-
-print_success "✅ Created comprehensive .env file with proper formatting"
+    print_success "✅ Created minimal .env file template"
+fi
 
 # FIXED: Load environment variables using proper method
 print_status "Loading environment variables (FIXED METHOD)..."
