@@ -1,0 +1,640 @@
+fier 'Cpu' has already been declared. (14:38)
+
+  12 |   UserCheck, Users2, UserX, UserPlus, UserMinus, User,
+  13 |   Globe, Map, Compass, Navigation, Route, MapPin,
+> 14 |   Database, Cloud, Server, HardDrive, Cpu, MemoryStick,
+     |                                       ^
+  15 |   Gauge, Speedometer, Battery, Wifi, Signal, Antenna,
+  16 |   Code, Terminal, Database as DatabaseIcon, Layers,
+  17 |   Workflow, GitBranch, GitMerge, GitCommit, GitPull,
+    at constructor (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:367:19)
+    at TypeScriptParserMixin.raise (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:6624:19)
+    at TypeScriptScopeHandler.declareName (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:4895:21)
+    at TypeScriptParserMixin.declareNameFromIdentifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7594:16)
+    at TypeScriptParserMixin.checkIdentifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7590:12)
+    at TypeScriptParserMixin.checkLVal (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7527:12)
+    at TypeScriptParserMixin.finishImportSpecifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14342:10)
+    at TypeScriptParserMixin.parseImportSpecifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14499:17)
+    at TypeScriptParserMixin.parseImportSpecifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10205:18)
+    at TypeScriptParserMixin.parseNamedImportSpecifiers (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14478:36)
+    at TypeScriptParserMixin.parseImportSpecifiersAndAfter (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14318:37)
+    at TypeScriptParserMixin.parseImport (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14311:17)
+    at TypeScriptParserMixin.parseImport (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9412:26)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12952:27)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9569:18)
+    at TypeScriptParserMixin.parseStatementLike (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12843:17)
+    at TypeScriptParserMixin.parseModuleItem (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12820:17)
+    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13392:36)
+    at TypeScriptParserMixin.parseBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13385:10)
+    at TypeScriptParserMixin.parseProgram (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12698:10)
+    at TypeScriptParserMixin.parseTopLevel (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12688:25)
+    at TypeScriptParserMixin.parse (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14568:25)
+    at TypeScriptParserMixin.parse (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10183:18)
+    at parse (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14602:38)
+    at parser (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+    at normalizeFile.next (<anonymous>)
+    at run (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+    at run.next (<anonymous>)
+    at transform (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+    at transform.next (<anonymous>)
+    at step (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/gensync/index.js:261:32)
+    at /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/gensync/index.js:223:11)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 262:37-41
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 548:42-46
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 595:41-45
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 642:41-45
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 689:41-45
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 788:44-48
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 842:68-72
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 939:44-48
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 1050:43-47
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 1133:44-48
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 1252:43-47
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 1347:44-48
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 1421:43-47
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 1482:43-47
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 1556:43-47
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 1624:44-48
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 1774:43-47
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 1908:41-45
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 2095:69-73
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 2227:71-75
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 2435:49-53
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 2690:49-53
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 2978:53-57
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 3220:43-47
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 3310:44-48
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/StudyGroupDetail.tsx 3366:43-47
+export 'Card' (imported as 'Card') was not found in '../ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/components/collaboration/index.tsx 35:0-128
+Module not found: Error: Can't resolve './CollaborationDashboard' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/components/collaboration'
+
+ERROR in ./src/components/collaboration/index.tsx 48:0-88
+export 'default' (reexported as 'StudyGroupDetail') was not found in './StudyGroupDetail' (possible exports: StudyGroupDetail)
+
+ERROR in ./src/components/collaboration/index.tsx 48:0-88
+export 'StudyGroupDetailProps' (reexported as 'StudyGroupDetailProps') was not found in './StudyGroupDetail' (possible exports: StudyGroupDetail)
+
+ERROR in ./src/components/ui/Button.tsx 826:9
+Module parse failed: Duplicate export 'QuizButton' (826:9)
+File was processed with these loaders:
+ * ./node_modules/@pmmmwh/react-refresh-webpack-plugin/loader/index.js
+ * ./node_modules/babel-loader/lib/index.js
+ * ./node_modules/source-map-loader/dist/cjs.js
+You may need an additional loader to handle the result of these loaders.
+| 
+| // Component variant exports
+> export { QuizButton, AchievementButton, ProgressButton, TutorialButton };
+| 
+| // Additional utility exports
+
+ERROR in ./src/components/ui/index.ts 27:0-84
+export 'AchievementInput' (reexported as 'AchievementInput') was not found in './Input' (possible exports: CodeInput, LearningInput, QuizInput, RichTextInput, default, generateInputAnimationVariants, generateInputClasses, useAIInputOptimization, useEducationalInputContext, useInputAnalytics, validateInput)
+
+ERROR in ./src/components/ui/index.ts 27:0-84
+export 'ProgressInput' (reexported as 'ProgressInput') was not found in './Input' (possible exports: CodeInput, LearningInput, QuizInput, RichTextInput, default, generateInputAnimationVariants, generateInputClasses, useAIInputOptimization, useEducationalInputContext, useInputAnalytics, validateInput)
+
+ERROR in ./src/components/ui/index.ts 27:0-84
+export 'TutorialInput' (reexported as 'TutorialInput') was not found in './Input' (possible exports: CodeInput, LearningInput, QuizInput, RichTextInput, default, generateInputAnimationVariants, generateInputClasses, useAIInputOptimization, useEducationalInputContext, useInputAnalytics, validateInput)
+
+ERROR in ./src/components/ui/index.ts 31:0-99
+export 'QuizProgress' (reexported as 'QuizProgress') was not found in './Progress' (possible exports: AchievementProgress, CircularProgress, EducationalProgress, MilestoneProgress, Progress, SkillProgress, default)
+
+ERROR in ./src/components/ui/index.ts 31:0-99
+export 'ProgressProgress' (reexported as 'ProgressProgress') was not found in './Progress' (possible exports: AchievementProgress, CircularProgress, EducationalProgress, MilestoneProgress, Progress, SkillProgress, default)
+
+ERROR in ./src/components/ui/index.ts 31:0-99
+export 'TutorialProgress' (reexported as 'TutorialProgress') was not found in './Progress' (possible exports: AchievementProgress, CircularProgress, EducationalProgress, MilestoneProgress, Progress, SkillProgress, default)
+
+ERROR in ./src/components/ui/index.ts 39:0-89
+export 'QuizAvatar' (reexported as 'QuizAvatar') was not found in './avatar' (possible exports: Avatar, AvatarFallback, default)
+
+ERROR in ./src/components/ui/index.ts 39:0-89
+export 'AchievementAvatar' (reexported as 'AchievementAvatar') was not found in './avatar' (possible exports: Avatar, AvatarFallback, default)
+
+ERROR in ./src/components/ui/index.ts 39:0-89
+export 'ProgressAvatar' (reexported as 'ProgressAvatar') was not found in './avatar' (possible exports: Avatar, AvatarFallback, default)
+
+ERROR in ./src/components/ui/index.ts 39:0-89
+export 'TutorialAvatar' (reexported as 'TutorialAvatar') was not found in './avatar' (possible exports: Avatar, AvatarFallback, default)
+
+ERROR in ./src/components/ui/index.ts 43:0-101
+export 'QuizLoading' (reexported as 'QuizLoading') was not found in './LoadingSpinner' (possible exports: LoadingProvider, LoadingSpinner, default, useAchievementLoading, useEducationalLoading, useLoading, useProgressLoading)
+
+ERROR in ./src/components/ui/index.ts 43:0-101
+export 'AchievementLoading' (reexported as 'AchievementLoading') was not found in './LoadingSpinner' (possible exports: LoadingProvider, LoadingSpinner, default, useAchievementLoading, useEducationalLoading, useLoading, useProgressLoading)
+
+ERROR in ./src/components/ui/index.ts 43:0-101
+export 'ProgressLoading' (reexported as 'ProgressLoading') was not found in './LoadingSpinner' (possible exports: LoadingProvider, LoadingSpinner, default, useAchievementLoading, useEducationalLoading, useLoading, useProgressLoading)
+
+ERROR in ./src/components/ui/index.ts 43:0-101
+export 'TutorialLoading' (reexported as 'TutorialLoading') was not found in './LoadingSpinner' (possible exports: LoadingProvider, LoadingSpinner, default, useAchievementLoading, useEducationalLoading, useLoading, useProgressLoading)
+
+ERROR in ./src/components/ui/index.ts 47:0-115
+export 'QuizAlertDialog' (reexported as 'QuizAlertDialog') was not found in './alert-dialog' (possible exports: AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, default)
+
+ERROR in ./src/components/ui/index.ts 47:0-115
+export 'AchievementAlertDialog' (reexported as 'AchievementAlertDialog') was not found in './alert-dialog' (possible exports: AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, default)
+
+ERROR in ./src/components/ui/index.ts 47:0-115
+export 'ProgressAlertDialog' (reexported as 'ProgressAlertDialog') was not found in './alert-dialog' (possible exports: AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, default)
+
+ERROR in ./src/components/ui/index.ts 47:0-115
+export 'TutorialAlertDialog' (reexported as 'TutorialAlertDialog') was not found in './alert-dialog' (possible exports: AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, default)
+
+ERROR in ./src/components/ui/index.ts 51:0-124
+export 'QuizErrorBoundary' (reexported as 'QuizErrorBoundary') was not found in './ErrorBoundary' (possible exports: ErrorBoundary, default, withErrorBoundary)
+
+ERROR in ./src/components/ui/index.ts 51:0-124
+export 'AchievementErrorBoundary' (reexported as 'AchievementErrorBoundary') was not found in './ErrorBoundary' (possible exports: ErrorBoundary, default, withErrorBoundary)
+
+ERROR in ./src/components/ui/index.ts 51:0-124
+export 'ProgressErrorBoundary' (reexported as 'ProgressErrorBoundary') was not found in './ErrorBoundary' (possible exports: ErrorBoundary, default, withErrorBoundary)
+
+ERROR in ./src/components/ui/index.ts 51:0-124
+export 'TutorialErrorBoundary' (reexported as 'TutorialErrorBoundary') was not found in './ErrorBoundary' (possible exports: ErrorBoundary, default, withErrorBoundary)
+
+ERROR in ./src/components/ui/index.ts 54:0-83
+export 'default' (reexported as 'EnterpriseNotificationProvider') was not found in './NotificationProvider' (possible exports: NotificationProvider, useAchievementNotification, useEncouragementNotification, useErrorNotification, useInfoNotification, useMilestoneNotification, useNotificationAnalytics, useNotificationTemplates, useNotifications, useReminderNotification, useSmartNotification, useSuccessNotification, useWarningNotification)
+
+ERROR in ./src/components/ui/index.ts 55:0-159
+export 'QuizNotificationProvider' (reexported as 'QuizNotificationProvider') was not found in './NotificationProvider' (possible exports: NotificationProvider, useAchievementNotification, useEncouragementNotification, useErrorNotification, useInfoNotification, useMilestoneNotification, useNotificationAnalytics, useNotificationTemplates, useNotifications, useReminderNotification, useSmartNotification, useSuccessNotification, useWarningNotification)
+
+ERROR in ./src/components/ui/index.ts 55:0-159
+export 'AchievementNotificationProvider' (reexported as 'AchievementNotificationProvider') was not found in './NotificationProvider' (possible exports: NotificationProvider, useAchievementNotification, useEncouragementNotification, useErrorNotification, useInfoNotification, useMilestoneNotification, useNotificationAnalytics, useNotificationTemplates, useNotifications, useReminderNotification, useSmartNotification, useSuccessNotification, useWarningNotification)
+
+ERROR in ./src/components/ui/index.ts 55:0-159
+export 'ProgressNotificationProvider' (reexported as 'ProgressNotificationProvider') was not found in './NotificationProvider' (possible exports: NotificationProvider, useAchievementNotification, useEncouragementNotification, useErrorNotification, useInfoNotification, useMilestoneNotification, useNotificationAnalytics, useNotificationTemplates, useNotifications, useReminderNotification, useSmartNotification, useSuccessNotification, useWarningNotification)
+
+ERROR in ./src/components/ui/index.ts 55:0-159
+export 'TutorialNotificationProvider' (reexported as 'TutorialNotificationProvider') was not found in './NotificationProvider' (possible exports: NotificationProvider, useAchievementNotification, useEncouragementNotification, useErrorNotification, useInfoNotification, useMilestoneNotification, useNotificationAnalytics, useNotificationTemplates, useNotifications, useReminderNotification, useSmartNotification, useSuccessNotification, useWarningNotification)
+
+ERROR in ./src/components/ui/tabs.tsx 1348:9
+Module parse failed: Duplicate export 'Tabs' (1348:9)
+File was processed with these loaders:
+ * ./node_modules/@pmmmwh/react-refresh-webpack-plugin/loader/index.js
+ * ./node_modules/babel-loader/lib/index.js
+ * ./node_modules/source-map-loader/dist/cjs.js
+You may need an additional loader to handle the result of these loaders.
+| // =============================================================================
+| _c9 = StepperTabs;
+> export { Tabs, TabsList, TabsTrigger, TabsContent };
+| export default Tabs;
+| var _c, _c2, _c3, _c4, _c5, _c6, _c7, _c8, _c9;
+
+ERROR in ./src/pages/AdminDashboard.tsx 194:39-43
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 301:39-43
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 463:39-43
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 608:39-43
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 737:40-44
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 813:39-43
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 1045:39-43
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 1113:39-43
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 1243:50-55
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/AdminDashboard.tsx 1345:40-44
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 1428:39-43
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 1611:35-39
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 1833:47-52
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/AdminDashboard.tsx 1848:47-52
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/AdminDashboard.tsx 2075:38-42
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 2172:48-53
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/AdminDashboard.tsx 2242:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 2467:39-43
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 2533:38-42
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 2653:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 2904:39-43
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 2983:38-42
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 3109:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 3409:39-43
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 3483:35-39
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/AdminDashboard.tsx 3623:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Chat.tsx 164:12-43
+export 'default' (imported as 'gamificationService') was not found in '../services/gamificationService' (possible exports: AIRecommendationType, AchievementCategory, BadgeCategory, ChallengeCategory, ChallengeType, GamificationEventType, GamificationService, LeaderboardCategory, TeamType, TournamentType, gamificationService)
+
+ERROR in ./src/pages/Chat.tsx 174:12-43
+export 'default' (imported as 'gamificationService') was not found in '../services/gamificationService' (possible exports: AIRecommendationType, AchievementCategory, BadgeCategory, ChallengeCategory, ChallengeType, GamificationEventType, GamificationService, LeaderboardCategory, TeamType, TournamentType, gamificationService)
+
+ERROR in ./src/pages/Chat.tsx 185:12-43
+export 'default' (imported as 'gamificationService') was not found in '../services/gamificationService' (possible exports: AIRecommendationType, AchievementCategory, BadgeCategory, ChallengeCategory, ChallengeType, GamificationEventType, GamificationService, LeaderboardCategory, TeamType, TournamentType, gamificationService)
+
+ERROR in ./src/pages/Chat.tsx 361:38-42
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Chat.tsx 403:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Chat.tsx 445:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Chat.tsx 487:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Chat.tsx 544:71-75
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Chat.tsx 581:51-56
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/Chat.tsx 642:85-90
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/Chat.tsx 698:38-42
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Chat.tsx 738:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Chat.tsx 778:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Chat.tsx 818:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Chat.tsx 865:38-42
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Chat.tsx 1022:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Chat.tsx 1099:38-42
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Chat.tsx 1209:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/CodeEditor.tsx 350:41-45
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/CodeEditor.tsx 666:42-46
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/CodeEditor.tsx 894:45-49
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/CodeEditor.tsx 991:45-49
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/CodeEditor.tsx 1133:41-45
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Collaboration.tsx 144:41-45
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Collaboration.tsx 269:43-47
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Collaboration.tsx 512:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Collaboration.tsx 634:52-74
+export 'CollaborationDashboard' (imported as 'CollaborationDashboard') was not found in '../components/collaboration' (possible exports: COLLABORATION_CONSTANTS, COLLABORATION_EVENTS, COLLABORATION_READY_MESSAGE, CollaborationError, ERROR_CODES, EXPORT_INFO, StudyGroupDetail, StudyGroupDetailProps, validateExports)
+
+ERROR in ./src/pages/Dashboard.tsx 221:57-62
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/Dashboard.tsx 291:44-49
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/Dashboard.tsx 402:40-45
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/Dashboard.tsx 437:27-31
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Dashboard.tsx 1212:38-42
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Dashboard.tsx 1282:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Profile.tsx 118:36-40
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Profile.tsx 209:41-46
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/Profile.tsx 234:38-42
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Profile.tsx 269:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Profile.tsx 304:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Profile.tsx 339:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Profile.tsx 344:41-50
+export 'BadgeIcon' (imported as 'BadgeIcon') was not found in '@heroicons/react/24/outline' (possible exports: AcademicCapIcon, AdjustmentsHorizontalIcon, AdjustmentsVerticalIcon, ArchiveBoxArrowDownIcon, ArchiveBoxIcon, ArchiveBoxXMarkIcon, ArrowDownCircleIcon, ArrowDownIcon, ArrowDownLeftIcon, ArrowDownOnSquareIcon, ArrowDownOnSquareStackIcon, ArrowDownRightIcon, ArrowDownTrayIcon, ArrowLeftCircleIcon, ArrowLeftEndOnRectangleIcon, ArrowLeftIcon, ArrowLeftOnRectangleIcon, ArrowLeftStartOnRectangleIcon, ArrowLongDownIcon, ArrowLongLeftIcon, ArrowLongRightIcon, ArrowLongUpIcon, ArrowPathIcon, ArrowPathRoundedSquareIcon, ArrowRightCircleIcon, ArrowRightEndOnRectangleIcon, ArrowRightIcon, ArrowRightOnRectangleIcon, ArrowRightStartOnRectangleIcon, ArrowSmallDownIcon, ArrowSmallLeftIcon, ArrowSmallRightIcon, ArrowSmallUpIcon, ArrowTopRightOnSquareIcon, ArrowTrendingDownIcon, ArrowTrendingUpIcon, ArrowTurnDownLeftIcon, ArrowTurnDownRightIcon, ArrowTurnLeftDownIcon, ArrowTurnLeftUpIcon, ArrowTurnRightDownIcon, ArrowTurnRightUpIcon, ArrowTurnUpLeftIcon, ArrowTurnUpRightIcon, ArrowUpCircleIcon, ArrowUpIcon, ArrowUpLeftIcon, ArrowUpOnSquareIcon, ArrowUpOnSquareStackIcon, ArrowUpRightIcon, ArrowUpTrayIcon, ArrowUturnDownIcon, ArrowUturnLeftIcon, ArrowUturnRightIcon, ArrowUturnUpIcon, ArrowsPointingInIcon, ArrowsPointingOutIcon, ArrowsRightLeftIcon, ArrowsUpDownIcon, AtSymbolIcon, BackspaceIcon, BackwardIcon, BanknotesIcon, Bars2Icon, Bars3BottomLeftIcon, Bars3BottomRightIcon, Bars3CenterLeftIcon, Bars3Icon, Bars4Icon, BarsArrowDownIcon, BarsArrowUpIcon, Battery0Icon, Battery100Icon, Battery50Icon, BeakerIcon, BellAlertIcon, BellIcon, BellSlashIcon, BellSnoozeIcon, BoldIcon, BoltIcon, BoltSlashIcon, BookOpenIcon, BookmarkIcon, BookmarkSlashIcon, BookmarkSquareIcon, BriefcaseIcon, BugAntIcon, BuildingLibraryIcon, BuildingOffice2Icon, BuildingOfficeIcon, BuildingStorefrontIcon, CakeIcon, CalculatorIcon, CalendarDateRangeIcon, CalendarDaysIcon, CalendarIcon, CameraIcon, ChartBarIcon, ChartBarSquareIcon, ChartPieIcon, ChatBubbleBottomCenterIcon, ChatBubbleBottomCenterTextIcon, ChatBubbleLeftEllipsisIcon, ChatBubbleLeftIcon, ChatBubbleLeftRightIcon, ChatBubbleOvalLeftEllipsisIcon, ChatBubbleOvalLeftIcon, CheckBadgeIcon, CheckCircleIcon, CheckIcon, ChevronDoubleDownIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon, ChevronDoubleUpIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpDownIcon, ChevronUpIcon, CircleStackIcon, ClipboardDocumentCheckIcon, ClipboardDocumentIcon, ClipboardDocumentListIcon, ClipboardIcon, ClockIcon, CloudArrowDownIcon, CloudArrowUpIcon, CloudIcon, CodeBracketIcon, CodeBracketSquareIcon, Cog6ToothIcon, Cog8ToothIcon, CogIcon, CommandLineIcon, ComputerDesktopIcon, CpuChipIcon, CreditCardIcon, CubeIcon, CubeTransparentIcon, CurrencyBangladeshiIcon, CurrencyDollarIcon, CurrencyEuroIcon, CurrencyPoundIcon, CurrencyRupeeIcon, CurrencyYenIcon, CursorArrowRaysIcon, CursorArrowRippleIcon, DevicePhoneMobileIcon, DeviceTabletIcon, DivideIcon, DocumentArrowDownIcon, DocumentArrowUpIcon, DocumentChartBarIcon, DocumentCheckIcon, DocumentCurrencyBangladeshiIcon, DocumentCurrencyDollarIcon, DocumentCurrencyEuroIcon, DocumentCurrencyPoundIcon, DocumentCurrencyRupeeIcon, DocumentCurrencyYenIcon, DocumentDuplicateIcon, DocumentIcon, DocumentMagnifyingGlassIcon, DocumentMinusIcon, DocumentPlusIcon, DocumentTextIcon, EllipsisHorizontalCircleIcon, EllipsisHorizontalIcon, EllipsisVerticalIcon, EnvelopeIcon, EnvelopeOpenIcon, EqualsIcon, ExclamationCircleIcon, ExclamationTriangleIcon, EyeDropperIcon, EyeIcon, EyeSlashIcon, FaceFrownIcon, FaceSmileIcon, FilmIcon, FingerPrintIcon, FireIcon, FlagIcon, FolderArrowDownIcon, FolderIcon, FolderMinusIcon, FolderOpenIcon, FolderPlusIcon, ForwardIcon, FunnelIcon, GifIcon, GiftIcon, GiftTopIcon, GlobeAltIcon, GlobeAmericasIcon, GlobeAsiaAustraliaIcon, GlobeEuropeAfricaIcon, H1Icon, H2Icon, H3Icon, HandRaisedIcon, HandThumbDownIcon, HandThumbUpIcon, HashtagIcon, HeartIcon, HomeIcon, HomeModernIcon, IdentificationIcon, InboxArrowDownIcon, InboxIcon, InboxStackIcon, InformationCircleIcon, ItalicIcon, KeyIcon, LanguageIcon, LifebuoyIcon, LightBulbIcon, LinkIcon, LinkSlashIcon, ListBulletIcon, LockClosedIcon, LockOpenIcon, MagnifyingGlassCircleIcon, MagnifyingGlassIcon, MagnifyingGlassMinusIcon, MagnifyingGlassPlusIcon, MapIcon, MapPinIcon, MegaphoneIcon, MicrophoneIcon, MinusCircleIcon, MinusIcon, MinusSmallIcon, MoonIcon, MusicalNoteIcon, NewspaperIcon, NoSymbolIcon, NumberedListIcon, PaintBrushIcon, PaperAirplaneIcon, PaperClipIcon, PauseCircleIcon, PauseIcon, PencilIcon, PencilSquareIcon, PercentBadgeIcon, PhoneArrowDownLeftIcon, PhoneArrowUpRightIcon, PhoneIcon, PhoneXMarkIcon, PhotoIcon, PlayCircleIcon, PlayIcon, PlayPauseIcon, PlusCircleIcon, PlusIcon, PlusSmallIcon, PowerIcon, PresentationChartBarIcon, PresentationChartLineIcon, PrinterIcon, PuzzlePieceIcon, QrCodeIcon, QuestionMarkCircleIcon, QueueListIcon, RadioIcon, ReceiptPercentIcon, ReceiptRefundIcon, RectangleGroupIcon, RectangleStackIcon, RocketLaunchIcon, RssIcon, ScaleIcon, ScissorsIcon, ServerIcon, ServerStackIcon, ShareIcon, ShieldCheckIcon, ShieldExclamationIcon, ShoppingBagIcon, ShoppingCartIcon, SignalIcon, SignalSlashIcon, SlashIcon, SparklesIcon, SpeakerWaveIcon, SpeakerXMarkIcon, Square2StackIcon, Square3Stack3DIcon, Squares2X2Icon, SquaresPlusIcon, StarIcon, StopCircleIcon, StopIcon, StrikethroughIcon, SunIcon, SwatchIcon, TableCellsIcon, TagIcon, TicketIcon, TrashIcon, TrophyIcon, TruckIcon, TvIcon, UnderlineIcon, UserCircleIcon, UserGroupIcon, UserIcon, UserMinusIcon, UserPlusIcon, UsersIcon, VariableIcon, VideoCameraIcon, VideoCameraSlashIcon, ViewColumnsIcon, ViewfinderCircleIcon, WalletIcon, WifiIcon, WindowIcon, WrenchIcon, WrenchScrewdriverIcon, XCircleIcon, XMarkIcon)
+
+ERROR in ./src/pages/Profile.tsx 379:35-39
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Profile.tsx 453:36-40
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Profile.tsx 478:71-75
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Profile.tsx 543:98-103
+export 'Badge' (imported as 'Badge') was not found in '../components/ui/Badge' (possible exports: default)
+
+ERROR in ./src/pages/Profile.tsx 577:35-39
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Profile.tsx 688:36-40
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Profile.tsx 794:35-39
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Profile.tsx 897:35-39
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Profile.tsx 1116:35-39
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Profile.tsx 1231:43-48
+export 'Input' (imported as 'Input') was not found in '../components/ui/Input' (possible exports: CodeInput, LearningInput, QuizInput, RichTextInput, default, generateInputAnimationVariants, generateInputClasses, useAIInputOptimization, useEducationalInputContext, useInputAnalytics, validateInput)
+
+ERROR in ./src/pages/Progress.tsx 174:38-42
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Progress.tsx 239:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Progress.tsx 288:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Progress.tsx 337:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Progress.tsx 391:35-39
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Progress.tsx 453:38-42
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Progress.tsx 512:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Progress.tsx 693:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Progress.tsx 1049:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Progress.tsx 1326:38-42
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Progress.tsx 1383:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Progress.tsx 1468:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Progress.tsx 1539:35-39
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Progress.tsx 1629:38-42
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/Progress.tsx 1714:37-41
+export 'Card' (imported as 'Card') was not found in '../components/ui/Card' (possible exports: AchievementCard, LearningCard, MilestoneCard, ProgressCard, QuizCard, TutorialCard, default, generateCardAnimationVariants, generateCardClasses, useAICardOptimization, useCardAnalytics, useEducationalCardContext)
+
+ERROR in ./src/pages/assessments/AssessmentDetail.tsx 40:6-21
+export 'assessmentStore' (imported as 'assessmentStore') was not found in '../../stores/assessmentStore' (possible exports: selectAssessmentError, selectAssessmentLoading, selectAssessmentStats, selectAssessmentSubmitting, selectFilters, selectQuizAttempts, selectQuizzes, selectSelectedQuiz, useAssessmentActions, useAssessmentData, useAssessmentFilters, useAssessmentStore)
+
+ERROR in ./src/services/collaborationService.ts
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/services/collaborationService.ts: Identifier 'MediaSessionType' has already been declared. (2546:12)
+
+  2544 | export type ModerationActionType = 'warning' | 'remove_content' | 'temp_ban' | 'permanent_ban' | 'flag_for_review';
+  2545 | export type ModerationSeverity = 'low' | 'medium' | 'high' | 'critical';
+> 2546 | export type MediaSessionType = 'video_call' | 'audio_only' | 'screen_share' | 'recording';
+       |             ^
+  2547 | export type RecordingStatus = 'not_recording' | 'recording' | 'paused' | 'processed';
+  2548 | export type ScreenSharingStatus = 'not_sharing' | 'sharing' | 'viewing';
+  2549 | export type WhiteboardStatus = 'inactive' | 'active' | 'locked';
+    at constructor (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:367:19)
+    at TypeScriptParserMixin.raise (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:6624:19)
+    at TypeScriptScopeHandler.checkRedeclarationInScope (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:1646:19)
+    at TypeScriptScopeHandler.declareName (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:4912:14)
+    at TypeScriptParserMixin.declareNameFromIdentifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7594:16)
+    at TypeScriptParserMixin.checkIdentifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:7590:12)
+    at TypeScriptParserMixin.tsParseTypeAliasDeclaration (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:8811:10)
+    at TypeScriptParserMixin.tsParseDeclaration (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9104:23)
+    at TypeScriptParserMixin.tsTryParseExportDeclaration (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9077:17)
+    at TypeScriptParserMixin.parseExportDeclaration (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9690:46)
+    at TypeScriptParserMixin.maybeParseExportDeclaration (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13969:31)
+    at TypeScriptParserMixin.parseExport (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13888:29)
+    at TypeScriptParserMixin.parseExport (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9446:20)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12954:27)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9569:18)
+    at TypeScriptParserMixin.parseStatementLike (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12843:17)
+    at TypeScriptParserMixin.parseModuleItem (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12820:17)
+    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13392:36)
+    at TypeScriptParserMixin.parseBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13385:10)
+    at TypeScriptParserMixin.parseProgram (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12698:10)
+    at TypeScriptParserMixin.parseTopLevel (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12688:25)
+    at TypeScriptParserMixin.parse (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14568:25)
+    at TypeScriptParserMixin.parse (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10183:18)
+    at parse (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:14602:38)
+    at parser (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+    at normalizeFile.next (<anonymous>)
+    at run (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+    at run.next (<anonymous>)
+    at transform (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/core/lib/transform.js:22:33)
+    at transform.next (<anonymous>)
+    at step (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/gensync/index.js:261:32)
+    at /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/gensync/index.js:223:11)
+
+ERROR in ./src/store/slices/agentSlice.ts 127:77-82
+export 'immer' (imported as 'immer') was not found in 'zustand/middleware' (possible exports: combine, createJSONStorage, devtools, persist, redux, subscribeWithSelector, unstable_ssrSafe)
+
+ERROR in ./src/utils/errorMonitoring.ts
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/src/utils/errorMonitoring.ts: Unexpected reserved word 'await'. (932:23)
+
+  930 |       errorDistribution,
+  931 |       trendAnalysis: this.calculateTrendAnalysis(allErrors),
+> 932 |       patternAnalysis: await this.analyzeAllPatterns(),
+      |                        ^
+  933 |       userImpact: this.calculateUserImpact(allErrors),
+  934 |       businessImpact: this.calculateBusinessImpact(allErrors)
+  935 |     };
+    at constructor (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:367:19)
+    at TypeScriptParserMixin.raise (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:6624:19)
+    at TypeScriptParserMixin.checkReservedWord (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12305:12)
+    at TypeScriptParserMixin.checkReservedWord (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9369:13)
+    at TypeScriptParserMixin.parseIdentifierName (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12285:12)
+    at TypeScriptParserMixin.parseIdentifier (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12255:23)
+    at TypeScriptParserMixin.parseExprAtom (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11482:27)
+    at TypeScriptParserMixin.parseExprSubscripts (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11145:23)
+    at TypeScriptParserMixin.parseUpdate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11130:21)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11110:23)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9890:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10963:61)
+    at TypeScriptParserMixin.parseExprOps (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10968:23)
+    at TypeScriptParserMixin.parseMaybeConditional (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10945:23)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10895:21)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9839:20)
+    at /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10864:39
+    at TypeScriptParserMixin.allowInAnd (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12500:12)
+    at TypeScriptParserMixin.parseMaybeAssignAllowIn (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10864:17)
+    at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12567:17)
+    at TypeScriptParserMixin.parseObjectProperty (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12024:83)
+    at TypeScriptParserMixin.parseObjPropValue (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12052:100)
+    at TypeScriptParserMixin.parseObjPropValue (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9797:18)
+    at TypeScriptParserMixin.parsePropertyDefinition (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11989:17)
+    at TypeScriptParserMixin.parseObjectLike (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11904:21)
+    at TypeScriptParserMixin.parseExprAtom (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11403:23)
+    at TypeScriptParserMixin.parseExprSubscripts (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11145:23)
+    at TypeScriptParserMixin.parseUpdate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11130:21)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:11110:23)
+    at TypeScriptParserMixin.parseMaybeUnary (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9890:18)
+    at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10963:61)
+    at TypeScriptParserMixin.parseExprOps (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10968:23)
+    at TypeScriptParserMixin.parseMaybeConditional (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10945:23)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10895:21)
+    at TypeScriptParserMixin.parseMaybeAssign (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9839:20)
+    at TypeScriptParserMixin.parseExpressionBase (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10848:23)
+    at /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10844:39
+    at TypeScriptParserMixin.allowInAnd (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12495:16)
+    at TypeScriptParserMixin.parseExpression (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:10844:17)
+    at TypeScriptParserMixin.parseReturnStatement (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13218:28)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12874:21)
+    at TypeScriptParserMixin.parseStatementContent (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9569:18)
+    at TypeScriptParserMixin.parseStatementLike (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12843:17)
+    at TypeScriptParserMixin.parseStatementListItem (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12823:17)
+    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13392:61)
+    at TypeScriptParserMixin.parseBlockBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13385:10)
+    at TypeScriptParserMixin.parseBlock (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:13373:10)
+    at TypeScriptParserMixin.parseFunctionBody (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12174:24)
+    at TypeScriptParserMixin.parseFunctionBodyAndFinish (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:12160:10)
+    at TypeScriptParserMixin.parseFunctionBodyAndFinish (/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/@babel/parser/lib/index.js:9223:18)
+
+ERROR in ./node_modules/recharts/es6/util/ReactUtils.js 3:0-38
+Module not found: Error: Can't resolve 'react-is' in '/home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/node_modules/recharts/es6/util'
+
+ERROR in [eslint] 
+src/utils/development.ts
+  Line 25:7:  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  Line 26:7:  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+Search for the keywords to learn more about each error.
+
+webpack compiled with 209 errors and 1 warning
+Files successfully emitted, waiting for typecheck results...
+Issues checking in progress...
