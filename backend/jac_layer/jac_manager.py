@@ -54,19 +54,64 @@ class JacManager:
     
     def _initialize_walkers(self):
         """
-        Dynamically imports the Jac modules. 
-        In Jac 0.9, 'import x' triggers the transpiler automatically.
+        Dynamically imports the Jac modules with multiple fallback strategies.
+        Handles jaclang 0.9.3 bytecode compilation issues.
         """
         for name, module_path in self.walker_map.items():
             try:
-                # This is the magic line that compiles .jac to .py on the fly
+                # Strategy 1: Try direct import (should work if jaclang is properly configured)
                 module = importlib.import_module(module_path)
                 self.modules[name] = module
                 logger.info(f"Successfully loaded Jac module: {name}")
+                
             except ImportError as e:
-                logger.warning(f"Could not load walker module {name} ({module_path}): {e}")
+                logger.warning(f"Strategy 1 failed for {name}: {e}")
+                
+                try:
+                    # Strategy 2: Try importing as Python module by adding to sys.path
+                    walker_dir = os.path.join(settings.BASE_DIR, 'jac_layer', 'walkers')
+                    if walker_dir not in sys.path:
+                        sys.path.insert(0, walker_dir)
+                    
+                    # Try importing the .jac file directly as a Python module
+                    module = importlib.import_module(name)
+                    self.modules[name] = module
+                    logger.info(f"Successfully loaded {name} using Strategy 2 (direct Python import)")
+                    
+                except ImportError as e2:
+                    logger.warning(f"Strategy 2 failed for {name}: {e2}")
+                    
+                    try:
+                        # Strategy 3: Read the .jac file and execute it as Python code
+                        walker_file = os.path.join(settings.BASE_DIR, 'jac_layer', 'walkers', f'{name}.jac')
+                        if os.path.exists(walker_file):
+                            with open(walker_file, 'r') as f:
+                                jac_code = f.read()
+                            
+                            # Execute the code in a new namespace
+                            namespace = {}
+                            exec(jac_code, namespace)
+                            
+                            # Create a module-like object
+                            class WalkerModule:
+                                pass
+                            
+                            module = WalkerModule()
+                            for key, value in namespace.items():
+                                if not key.startswith('_') and callable(value):
+                                    setattr(module, key, value)
+                            
+                            self.modules[name] = module
+                            logger.info(f"Successfully loaded {name} using Strategy 3 (code execution)")
+                        else:
+                            raise ImportError(f"Walker file not found: {walker_file}")
+                            
+                    except Exception as e3:
+                        logger.error(f"Strategy 3 failed for {name}: {e3}")
+                        logger.warning(f"Could not load walker module {name} after all strategies")
+                        
             except Exception as e:
-                logger.error(f"Error initializing {name}: {e}")
+                logger.error(f"Unexpected error initializing {name}: {e}")
 
     def get_walker_module(self, module_name: str):
         """
@@ -171,7 +216,21 @@ class JacManager:
             return False
 
     def health_check(self) -> bool:
-        return len(self.modules) > 0
+        """Check if walkers are loaded and provide diagnostics"""
+        loaded_count = len(self.modules)
+        total_count = len(self.walker_map)
+        
+        if loaded_count > 0:
+            logger.info(f"Health check: {loaded_count}/{total_count} walkers loaded")
+            for name in self.walker_map.keys():
+                if name in self.modules:
+                    logger.info(f"✅ {name} - Loaded")
+                else:
+                    logger.warning(f"❌ {name} - Not loaded")
+        else:
+            logger.warning("Health check: No walkers loaded")
+            
+        return loaded_count > 0
 
 # Global instance
 jac_manager = JacManager()
