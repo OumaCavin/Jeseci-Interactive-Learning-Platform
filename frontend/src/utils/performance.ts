@@ -437,10 +437,11 @@ class PerformanceMonitor {
         const observer = new PerformanceObserver((list) => {
           const entries = list.getEntries();
           if (entries.length > 0) {
-            const firstEntry = entries[0] as PerformanceEventTiming;
+            const firstEntry = entries[0];
             observer.disconnect();
-            if (firstEntry.processingStart && firstEntry.startTime) {
-              resolve(firstEntry.processingStart - firstEntry.startTime);
+            if ('processingStart' in firstEntry && 'startTime' in firstEntry) {
+              const timing = firstEntry as PerformanceEventTiming;
+              resolve(timing.processingStart - timing.startTime);
             } else {
               resolve(0);
             }
