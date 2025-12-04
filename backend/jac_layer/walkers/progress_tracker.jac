@@ -9,8 +9,8 @@ Date: 2025-12-04
 """
 
 walker progress_tracker {
-    has user_id;
-    has lesson_id;
+    has user_id: int;
+    has lesson_id: str;
     
     can track_lesson_progress with root entry {
         progress_data = {
