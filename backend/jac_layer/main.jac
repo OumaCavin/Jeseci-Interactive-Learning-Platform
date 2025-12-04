@@ -13,12 +13,12 @@ import jac_layer.walkers.motivator;
 import jac_layer.walkers.progress_tracker;
 import jac_layer.walkers.quiz_master;
 
-walker main_orchestrator `root entry` {
-    can orchestrate_learning `root entry` {
+walker main_orchestrator {
+    can orchestrate_learning with root entry {
         report {"status": "success", "action": "orchestrate_learning", "message": "Main orchestrator initiated"};
     }
     
-    can coordinate_agents `root entry` {
+    can coordinate_agents with root entry {
         report {"status": "success", "action": "coordinate_agents", "message": "Agent coordination initiated"};
     }
 }
