@@ -40,6 +40,10 @@ print_status "🔧 Starting comprehensive setup with all fixes..."
 # =============================================================================
 print_status "📦 Step 1: Installing Python dependencies (FIXING MISSING DEPENDENCIES)..."
 
+# Change to backend directory first
+print_status "Navigating to backend directory..."
+cd backend
+
 # Check if virtual environment is active
 if [[ "$VIRTUAL_ENV" == "" ]]; then
     print_warning "⚠️  Virtual environment not active. Please activate it first:"
@@ -78,9 +82,7 @@ pip list | grep -E "(Django|djangorestframework|celery|redis|jaclang)" 2>/dev/nu
 # =============================================================================
 print_status "🔧 Step 2: Creating properly formatted .env file (FIXING PARSING ERRORS)..."
 
-cd backend
-
-# Create .env file from .env.example template
+# Create .env file from .env.example template (already in backend directory)
 if [ -f ".env.example" ]; then
     print_status "Creating .env file from .env.example template..."
     cp .env.example .env
@@ -142,6 +144,7 @@ echo "   EMAIL_HOST_USER: $EMAIL_HOST_USER"
 # =============================================================================
 print_status "🎯 Step 3: Fixing JaC walker syntax (FIXING root entry ERRORS)..."
 
+# Check if we're already in backend directory with jac_layer
 if [ -d "jac_layer/walkers" ]; then
     print_status "Found JaC walker directory, fixing syntax..."
     
@@ -219,6 +222,7 @@ else
     print_warning "⚠️  JaC walker directory not found for testing"
 fi
 
+# Navigate back to root directory for frontend setup
 cd ..
 
 # =============================================================================
