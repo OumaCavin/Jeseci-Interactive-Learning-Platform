@@ -1,0 +1,421 @@
+openapi: 3.0.3
+info:
+  title: Jeseci Interactive Learning Platform API
+  version: 1.0.0
+  description: API documentation for the Jeseci Interactive Learning Platform
+paths:
+  /api/admin/activity/:
+    get:
+      operationId: admin_activity_retrieve
+      description: Get recent system activity
+      tags:
+      - admin
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/admin/agents/:
+    get:
+      operationId: admin_agents_retrieve
+      description: Get AI agent status
+      tags:
+      - admin
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/admin/analytics/:
+    get:
+      operationId: admin_analytics_retrieve
+      description: Get learning analytics
+      tags:
+      - admin
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/admin/content/:
+    get:
+      operationId: admin_content_retrieve
+      description: Get content management data
+      tags:
+      - admin
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/admin/stats/:
+    get:
+      operationId: admin_stats_retrieve
+      description: Get admin dashboard statistics
+      tags:
+      - admin
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/admin/system-health/:
+    get:
+      operationId: admin_system_health_retrieve
+      description: Get system health metrics
+      tags:
+      - admin
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/admin/users/:
+    get:
+      operationId: admin_users_retrieve
+      description: List users with management data
+      tags:
+      - admin
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: admin_users_create
+      description: Create new user
+      tags:
+      - admin
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/admin/users/{user_id}/:
+    patch:
+      operationId: admin_users_partial_update
+      description: Update user
+      parameters:
+      - in: path
+        name: user_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: admin_users_destroy
+      description: Delete user
+      parameters:
+      - in: path
+        name: user_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - admin
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/api/achievements/:
+    get:
+      operationId: api_achievements_retrieve
+      description: Get all achievements
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/api/modules/{module_id}/content/:
+    get:
+      operationId: api_modules_content_retrieve
+      description: Get module content
+      parameters:
+      - in: path
+        name: module_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/api/user/{user_id}/badges/:
+    get:
+      operationId: api_user_badges_retrieve
+      description: Get user badges
+      parameters:
+      - in: path
+        name: user_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/auth/login/:
+    post:
+      operationId: auth_login_create
+      description: Session-based login view
+      tags:
+      - auth
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/auth/logout/:
+    post:
+      operationId: auth_logout_create
+      description: Session-based logout view
+      tags:
+      - auth
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/auth/password-reset/:
+    post:
+      operationId: auth_password_reset_create
+      description: Handle password reset requests
+      tags:
+      - auth
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/auth/password-reset-confirm/:
+    post:
+      operationId: auth_password_reset_confirm_create
+      description: Handle password reset confirmations
+      tags:
+      - auth
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/auth/register/:
+    post:
+      operationId: auth_register_create
+      description: Session-based registration view
+      tags:
+      - auth
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/health/:
+    get:
+      operationId: health_retrieve
+      description: Simple health check endpoint
+      tags:
+      - health
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/schema/:
+    get:
+      operationId: schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - ht
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - ug
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - schema
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
