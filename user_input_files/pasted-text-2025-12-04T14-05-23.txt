@@ -1,0 +1,1038 @@
+ 176 |         
+  177 |         result = {
+jac_layer/walkers/quiz_master.jac:175:21 Unexpected token '='
+  173 |         
+  174 |         # Set time limits based on difficulty
+  175 |         time_limits = _calculate_time_limits(difficulty_level, len(questions))
+      |                     ^
+  176 |         
+  177 |         result = {
+jac_layer/walkers/quiz_master.jac:175:23 Unexpected token '_calculate_time_limits'
+  173 |         
+  174 |         # Set time limits based on difficulty
+  175 |         time_limits = _calculate_time_limits(difficulty_level, len(questions))
+      |                       ^^^^^^^^^^^^^^^^^^^^^^
+  176 |         
+  177 |         result = {
+jac_layer/walkers/quiz_master.jac:175:45 Unexpected token '('
+  173 |         
+  174 |         # Set time limits based on difficulty
+  175 |         time_limits = _calculate_time_limits(difficulty_level, len(questions))
+      |                                             ^
+  176 |         
+  177 |         result = {
+jac_layer/walkers/quiz_master.jac:175:46 Unexpected token 'difficulty_level'
+  173 |         
+  174 |         # Set time limits based on difficulty
+  175 |         time_limits = _calculate_time_limits(difficulty_level, len(questions))
+      |                                              ^^^^^^^^^^^^^^^^
+  176 |         
+  177 |         result = {
+jac_layer/walkers/quiz_master.jac:175:62 Unexpected token ','
+  173 |         
+  174 |         # Set time limits based on difficulty
+  175 |         time_limits = _calculate_time_limits(difficulty_level, len(questions))
+      |                                                              ^
+  176 |         
+  177 |         result = {
+jac_layer/walkers/quiz_master.jac:175:64 Unexpected token 'len'
+  173 |         
+  174 |         # Set time limits based on difficulty
+  175 |         time_limits = _calculate_time_limits(difficulty_level, len(questions))
+      |                                                                ^^^
+  176 |         
+  177 |         result = {
+jac_layer/walkers/quiz_master.jac:175:67 Unexpected token '('
+  173 |         
+  174 |         # Set time limits based on difficulty
+  175 |         time_limits = _calculate_time_limits(difficulty_level, len(questions))
+      |                                                                   ^
+  176 |         
+  177 |         result = {
+jac_layer/walkers/quiz_master.jac:175:68 Unexpected token 'questions'
+  173 |         
+  174 |         # Set time limits based on difficulty
+  175 |         time_limits = _calculate_time_limits(difficulty_level, len(questions))
+      |                                                                    ^^^^^^^^^
+  176 |         
+  177 |         result = {
+jac_layer/walkers/quiz_master.jac:175:77 Unexpected token ')'
+  173 |         
+  174 |         # Set time limits based on difficulty
+  175 |         time_limits = _calculate_time_limits(difficulty_level, len(questions))
+      |                                                                             ^
+  176 |         
+  177 |         result = {
+jac_layer/walkers/quiz_master.jac:175:78 Unexpected token ')'
+  173 |         
+  174 |         # Set time limits based on difficulty
+  175 |         time_limits = _calculate_time_limits(difficulty_level, len(questions))
+      |                                                                              ^
+  176 |         
+  177 |         result = {
+jac_layer/walkers/quiz_master.jac:177:9 Unexpected token 'result'
+  175 |         time_limits = _calculate_time_limits(difficulty_level, len(questions))
+  176 |         
+  177 |         result = {
+      |         ^^^^^^
+  178 |             'status': 'success',
+  179 |             'user_id': user_id,
+jac_layer/walkers/quiz_master.jac:177:16 Unexpected token '='
+  175 |         time_limits = _calculate_time_limits(difficulty_level, len(questions))
+  176 |         
+  177 |         result = {
+      |                ^
+  178 |             'status': 'success',
+  179 |             'user_id': user_id,
+jac_layer/walkers/quiz_master.jac:177:18 Unexpected token '{'
+  175 |         time_limits = _calculate_time_limits(difficulty_level, len(questions))
+  176 |         
+  177 |         result = {
+      |                  ^
+  178 |             'status': 'success',
+  179 |             'user_id': user_id,
+jac_layer/walkers/quiz_master.jac:178:13 Unexpected token ''status''
+  176 |         
+  177 |         result = {
+  178 |             'status': 'success',
+      |             ^^^^^^^^
+  179 |             'user_id': user_id,
+  180 |             'concept_id': concept_id,
+jac_layer/walkers/quiz_master.jac:178:21 Unexpected token ':'
+  176 |         
+  177 |         result = {
+  178 |             'status': 'success',
+      |                     ^
+  179 |             'user_id': user_id,
+  180 |             'concept_id': concept_id,
+jac_layer/walkers/quiz_master.jac:178:23 Unexpected token ''success''
+  176 |         
+  177 |         result = {
+  178 |             'status': 'success',
+      |                       ^^^^^^^^^
+  179 |             'user_id': user_id,
+  180 |             'concept_id': concept_id,
+jac_layer/walkers/quiz_master.jac:178:32 Unexpected token ','
+  176 |         
+  177 |         result = {
+  178 |             'status': 'success',
+      |                                ^
+  179 |             'user_id': user_id,
+  180 |             'concept_id': concept_id,
+jac_layer/walkers/quiz_master.jac:179:13 Unexpected token ''user_id''
+  177 |         result = {
+  178 |             'status': 'success',
+  179 |             'user_id': user_id,
+      |             ^^^^^^^^^
+  180 |             'concept_id': concept_id,
+  181 |             'difficulty_level': difficulty_level,
+jac_layer/walkers/quiz_master.jac:179:22 Unexpected token ':'
+  177 |         result = {
+  178 |             'status': 'success',
+  179 |             'user_id': user_id,
+      |                      ^
+  180 |             'concept_id': concept_id,
+  181 |             'difficulty_level': difficulty_level,
+jac_layer/walkers/quiz_master.jac:179:24 Unexpected token 'user_id'
+  177 |         result = {
+  178 |             'status': 'success',
+  179 |             'user_id': user_id,
+      |                        ^^^^^^^
+  180 |             'concept_id': concept_id,
+  181 |             'difficulty_level': difficulty_level,
+jac_layer/walkers/quiz_master.jac:179:31 Unexpected token ','
+  177 |         result = {
+  178 |             'status': 'success',
+  179 |             'user_id': user_id,
+      |                               ^
+  180 |             'concept_id': concept_id,
+  181 |             'difficulty_level': difficulty_level,
+jac_layer/walkers/quiz_master.jac:180:13 Unexpected token ''concept_id''
+  178 |             'status': 'success',
+  179 |             'user_id': user_id,
+  180 |             'concept_id': concept_id,
+      |             ^^^^^^^^^^^^
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+jac_layer/walkers/quiz_master.jac:180:25 Unexpected token ':'
+  178 |             'status': 'success',
+  179 |             'user_id': user_id,
+  180 |             'concept_id': concept_id,
+      |                         ^
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+jac_layer/walkers/quiz_master.jac:180:27 Unexpected token 'concept_id'
+  178 |             'status': 'success',
+  179 |             'user_id': user_id,
+  180 |             'concept_id': concept_id,
+      |                           ^^^^^^^^^^
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+jac_layer/walkers/quiz_master.jac:180:37 Unexpected token ','
+  178 |             'status': 'success',
+  179 |             'user_id': user_id,
+  180 |             'concept_id': concept_id,
+      |                                     ^
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+jac_layer/walkers/quiz_master.jac:181:13 Unexpected token ''difficulty_level''
+  179 |             'user_id': user_id,
+  180 |             'concept_id': concept_id,
+  181 |             'difficulty_level': difficulty_level,
+      |             ^^^^^^^^^^^^^^^^^^
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+jac_layer/walkers/quiz_master.jac:181:31 Unexpected token ':'
+  179 |             'user_id': user_id,
+  180 |             'concept_id': concept_id,
+  181 |             'difficulty_level': difficulty_level,
+      |                               ^
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+jac_layer/walkers/quiz_master.jac:181:33 Unexpected token 'difficulty_level'
+  179 |             'user_id': user_id,
+  180 |             'concept_id': concept_id,
+  181 |             'difficulty_level': difficulty_level,
+      |                                 ^^^^^^^^^^^^^^^^
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+jac_layer/walkers/quiz_master.jac:181:49 Unexpected token ','
+  179 |             'user_id': user_id,
+  180 |             'concept_id': concept_id,
+  181 |             'difficulty_level': difficulty_level,
+      |                                                 ^
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+jac_layer/walkers/quiz_master.jac:182:13 Unexpected token ''quiz''
+  180 |             'concept_id': concept_id,
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+      |             ^^^^^^
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+  184 |                 'questions': adaptive_quiz,
+jac_layer/walkers/quiz_master.jac:182:19 Unexpected token ':'
+  180 |             'concept_id': concept_id,
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+      |                   ^
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+  184 |                 'questions': adaptive_quiz,
+jac_layer/walkers/quiz_master.jac:182:21 Unexpected token '{'
+  180 |             'concept_id': concept_id,
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+      |                     ^
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+  184 |                 'questions': adaptive_quiz,
+jac_layer/walkers/quiz_master.jac:183:17 Unexpected token ''quiz_id''
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+      |                 ^^^^^^^^^
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+jac_layer/walkers/quiz_master.jac:183:26 Unexpected token ':'
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+      |                          ^
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+jac_layer/walkers/quiz_master.jac:183:28 Unexpected token 'f"'
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+      |                            ^^
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+jac_layer/walkers/quiz_master.jac:183:30 Unexpected token 'quiz_'
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+      |                              ^^^^^
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+jac_layer/walkers/quiz_master.jac:183:35 Unexpected token '{'
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+      |                                   ^
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+jac_layer/walkers/quiz_master.jac:183:36 Unexpected token 'concept_id'
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+      |                                    ^^^^^^^^^^
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+jac_layer/walkers/quiz_master.jac:183:46 Unexpected token '}'
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+      |                                              ^
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+jac_layer/walkers/quiz_master.jac:183:47 Unexpected token '_'
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+      |                                               ^
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+jac_layer/walkers/quiz_master.jac:183:48 Unexpected token '{'
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+      |                                                ^
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+jac_layer/walkers/quiz_master.jac:183:49 Unexpected token 'user_id'
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+      |                                                 ^^^^^^^
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+jac_layer/walkers/quiz_master.jac:183:56 Unexpected token '}'
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+      |                                                        ^
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+jac_layer/walkers/quiz_master.jac:183:57 Unexpected token '"'
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+      |                                                         ^
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+jac_layer/walkers/quiz_master.jac:183:58 Unexpected token ','
+  181 |             'difficulty_level': difficulty_level,
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+      |                                                          ^
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+jac_layer/walkers/quiz_master.jac:184:17 Unexpected token ''questions''
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+  184 |                 'questions': adaptive_quiz,
+      |                 ^^^^^^^^^^^
+  185 |                 'time_limit': time_limits,
+  186 |                 'adaptive_parameters': {
+jac_layer/walkers/quiz_master.jac:184:28 Unexpected token ':'
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+  184 |                 'questions': adaptive_quiz,
+      |                            ^
+  185 |                 'time_limit': time_limits,
+  186 |                 'adaptive_parameters': {
+jac_layer/walkers/quiz_master.jac:184:30 Unexpected token 'adaptive_quiz'
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+  184 |                 'questions': adaptive_quiz,
+      |                              ^^^^^^^^^^^^^
+  185 |                 'time_limit': time_limits,
+  186 |                 'adaptive_parameters': {
+jac_layer/walkers/quiz_master.jac:184:43 Unexpected token ','
+  182 |             'quiz': {
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+  184 |                 'questions': adaptive_quiz,
+      |                                           ^
+  185 |                 'time_limit': time_limits,
+  186 |                 'adaptive_parameters': {
+jac_layer/walkers/quiz_master.jac:185:17 Unexpected token ''time_limit''
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+      |                 ^^^^^^^^^^^^
+  186 |                 'adaptive_parameters': {
+  187 |                     'user_mastery_level': mastery_level,
+jac_layer/walkers/quiz_master.jac:185:29 Unexpected token ':'
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+      |                             ^
+  186 |                 'adaptive_parameters': {
+  187 |                     'user_mastery_level': mastery_level,
+jac_layer/walkers/quiz_master.jac:185:31 Unexpected token 'time_limits'
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+      |                               ^^^^^^^^^^^
+  186 |                 'adaptive_parameters': {
+  187 |                     'user_mastery_level': mastery_level,
+jac_layer/walkers/quiz_master.jac:185:42 Unexpected token ','
+  183 |                 'quiz_id': f"quiz_{concept_id}_{user_id}",
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+      |                                          ^
+  186 |                 'adaptive_parameters': {
+  187 |                     'user_mastery_level': mastery_level,
+jac_layer/walkers/quiz_master.jac:186:17 Unexpected token ''adaptive_parameters''
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+  186 |                 'adaptive_parameters': {
+      |                 ^^^^^^^^^^^^^^^^^^^^^
+  187 |                     'user_mastery_level': mastery_level,
+  188 |                     'difficulty_adjustment': True,
+jac_layer/walkers/quiz_master.jac:186:38 Unexpected token ':'
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+  186 |                 'adaptive_parameters': {
+      |                                      ^
+  187 |                     'user_mastery_level': mastery_level,
+  188 |                     'difficulty_adjustment': True,
+jac_layer/walkers/quiz_master.jac:186:40 Unexpected token '{'
+  184 |                 'questions': adaptive_quiz,
+  185 |                 'time_limit': time_limits,
+  186 |                 'adaptive_parameters': {
+      |                                        ^
+  187 |                     'user_mastery_level': mastery_level,
+  188 |                     'difficulty_adjustment': True,
+jac_layer/walkers/quiz_master.jac:187:21 Unexpected token ''user_mastery_level''
+  185 |                 'time_limit': time_limits,
+  186 |                 'adaptive_parameters': {
+  187 |                     'user_mastery_level': mastery_level,
+      |                     ^^^^^^^^^^^^^^^^^^^^
+  188 |                     'difficulty_adjustment': True,
+  189 |                     'personalization_applied': True
+jac_layer/walkers/quiz_master.jac:187:41 Unexpected token ':'
+  185 |                 'time_limit': time_limits,
+  186 |                 'adaptive_parameters': {
+  187 |                     'user_mastery_level': mastery_level,
+      |                                         ^
+  188 |                     'difficulty_adjustment': True,
+  189 |                     'personalization_applied': True
+jac_layer/walkers/quiz_master.jac:187:43 Unexpected token 'mastery_level'
+  185 |                 'time_limit': time_limits,
+  186 |                 'adaptive_parameters': {
+  187 |                     'user_mastery_level': mastery_level,
+      |                                           ^^^^^^^^^^^^^
+  188 |                     'difficulty_adjustment': True,
+  189 |                     'personalization_applied': True
+jac_layer/walkers/quiz_master.jac:187:56 Unexpected token ','
+  185 |                 'time_limit': time_limits,
+  186 |                 'adaptive_parameters': {
+  187 |                     'user_mastery_level': mastery_level,
+      |                                                        ^
+  188 |                     'difficulty_adjustment': True,
+  189 |                     'personalization_applied': True
+jac_layer/walkers/quiz_master.jac:188:21 Unexpected token ''difficulty_adjustment''
+  186 |                 'adaptive_parameters': {
+  187 |                     'user_mastery_level': mastery_level,
+  188 |                     'difficulty_adjustment': True,
+      |                     ^^^^^^^^^^^^^^^^^^^^^^^
+  189 |                     'personalization_applied': True
+  190 |                 }
+jac_layer/walkers/quiz_master.jac:188:44 Unexpected token ':'
+  186 |                 'adaptive_parameters': {
+  187 |                     'user_mastery_level': mastery_level,
+  188 |                     'difficulty_adjustment': True,
+      |                                            ^
+  189 |                     'personalization_applied': True
+  190 |                 }
+jac_layer/walkers/quiz_master.jac:188:46 Unexpected token 'True'
+  186 |                 'adaptive_parameters': {
+  187 |                     'user_mastery_level': mastery_level,
+  188 |                     'difficulty_adjustment': True,
+      |                                              ^^^^
+  189 |                     'personalization_applied': True
+  190 |                 }
+jac_layer/walkers/quiz_master.jac:188:50 Unexpected token ','
+  186 |                 'adaptive_parameters': {
+  187 |                     'user_mastery_level': mastery_level,
+  188 |                     'difficulty_adjustment': True,
+      |                                                  ^
+  189 |                     'personalization_applied': True
+  190 |                 }
+jac_layer/walkers/quiz_master.jac:189:21 Unexpected token ''personalization_applied''
+  187 |                     'user_mastery_level': mastery_level,
+  188 |                     'difficulty_adjustment': True,
+  189 |                     'personalization_applied': True
+      |                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+  190 |                 }
+  191 |             },
+jac_layer/walkers/quiz_master.jac:189:46 Unexpected token ':'
+  187 |                     'user_mastery_level': mastery_level,
+  188 |                     'difficulty_adjustment': True,
+  189 |                     'personalization_applied': True
+      |                                              ^
+  190 |                 }
+  191 |             },
+jac_layer/walkers/quiz_master.jac:189:48 Unexpected token 'True'
+  187 |                     'user_mastery_level': mastery_level,
+  188 |                     'difficulty_adjustment': True,
+  189 |                     'personalization_applied': True
+      |                                                ^^^^
+  190 |                 }
+  191 |             },
+jac_layer/walkers/quiz_master.jac:190:17 Unexpected token '}'
+  188 |                     'difficulty_adjustment': True,
+  189 |                     'personalization_applied': True
+  190 |                 }
+      |                 ^
+  191 |             },
+  192 |             'generation_time': '2025-12-04T17:47:44Z'
+jac_layer/walkers/quiz_master.jac:191:13 Unexpected token '}'
+  189 |                     'personalization_applied': True
+  190 |                 }
+  191 |             },
+      |             ^
+  192 |             'generation_time': '2025-12-04T17:47:44Z'
+  193 |         }
+jac_layer/walkers/quiz_master.jac:191:14 Unexpected token ','
+  189 |                     'personalization_applied': True
+  190 |                 }
+  191 |             },
+      |              ^
+  192 |             'generation_time': '2025-12-04T17:47:44Z'
+  193 |         }
+jac_layer/walkers/quiz_master.jac:192:13 Unexpected token ''generation_time''
+  190 |                 }
+  191 |             },
+  192 |             'generation_time': '2025-12-04T17:47:44Z'
+      |             ^^^^^^^^^^^^^^^^^
+  193 |         }
+  194 |         
+jac_layer/walkers/quiz_master.jac:192:30 Unexpected token ':'
+  190 |                 }
+  191 |             },
+  192 |             'generation_time': '2025-12-04T17:47:44Z'
+      |                              ^
+  193 |         }
+  194 |         
+jac_layer/walkers/quiz_master.jac:192:32 Unexpected token ''2025-12-04T17:47:44Z''
+  190 |                 }
+  191 |             },
+  192 |             'generation_time': '2025-12-04T17:47:44Z'
+      |                                ^^^^^^^^^^^^^^^^^^^^^^
+  193 |         }
+  194 |         
+jac_layer/walkers/quiz_master.jac:193:9 Unexpected token '}'
+  191 |             },
+  192 |             'generation_time': '2025-12-04T17:47:44Z'
+  193 |         }
+      |         ^
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+jac_layer/walkers/quiz_master.jac:195:9 Unexpected token 'logger'
+  193 |         }
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+      |         ^^^^^^
+  196 |         return result
+  197 |         
+jac_layer/walkers/quiz_master.jac:195:15 Unexpected token '.'
+  193 |         }
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+      |               ^
+  196 |         return result
+  197 |         
+jac_layer/walkers/quiz_master.jac:195:16 Unexpected token 'info'
+  193 |         }
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+      |                ^^^^
+  196 |         return result
+  197 |         
+jac_layer/walkers/quiz_master.jac:195:20 Unexpected token '('
+  193 |         }
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+      |                    ^
+  196 |         return result
+  197 |         
+jac_layer/walkers/quiz_master.jac:195:21 Unexpected token 'f"'
+  193 |         }
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+      |                     ^^
+  196 |         return result
+  197 |         
+jac_layer/walkers/quiz_master.jac:195:23 Unexpected token 'Successfully'
+  193 |         }
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+      |                       ^^^^^^^^^^^^
+  196 |         return result
+  197 |         
+jac_layer/walkers/quiz_master.jac:195:36 Unexpected token 'generated'
+  193 |         }
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+      |                                    ^^^^^^^^^
+  196 |         return result
+  197 |         
+jac_layer/walkers/quiz_master.jac:195:46 Unexpected token 'adaptive'
+  193 |         }
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+      |                                              ^^^^^^^^
+  196 |         return result
+  197 |         
+jac_layer/walkers/quiz_master.jac:195:55 Unexpected token 'quiz'
+  193 |         }
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+      |                                                       ^^^^
+  196 |         return result
+  197 |         
+jac_layer/walkers/quiz_master.jac:195:60 Unexpected token 'for'
+  193 |         }
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+      |                                                            ^^^
+  196 |         return result
+  197 |         
+jac_layer/walkers/quiz_master.jac:195:64 Unexpected token 'user'
+  193 |         }
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+      |                                                                ^^^^
+  196 |         return result
+  197 |         
+jac_layer/walkers/quiz_master.jac:195:69 Unexpected token '{'
+  193 |         }
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+      |                                                                     ^
+  196 |         return result
+  197 |         
+jac_layer/walkers/quiz_master.jac:195:70 Unexpected token 'user_id'
+  193 |         }
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+      |                                                                      ^^^^^^^
+  196 |         return result
+  197 |         
+jac_layer/walkers/quiz_master.jac:195:77 Unexpected token '}'
+  193 |         }
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+      |                                                                             ^
+  196 |         return result
+  197 |         
+jac_layer/walkers/quiz_master.jac:195:78 Unexpected token '"'
+  193 |         }
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+      |                                                                              ^
+  196 |         return result
+  197 |         
+jac_layer/walkers/quiz_master.jac:195:79 Unexpected token ')'
+  193 |         }
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+      |                                                                               ^
+  196 |         return result
+  197 |         
+jac_layer/walkers/quiz_master.jac:196:9 Unexpected token 'return'
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+  196 |         return result
+      |         ^^^^^^
+  197 |         
+  198 |     except Exception as e:
+jac_layer/walkers/quiz_master.jac:196:16 Unexpected token 'result'
+  194 |         
+  195 |         logger.info(f"Successfully generated adaptive quiz for user {user_id}")
+  196 |         return result
+      |                ^^^^^^
+  197 |         
+  198 |     except Exception as e:
+jac_layer/walkers/quiz_master.jac:198:5 Unexpected token 'except'
+  196 |         return result
+  197 |         
+  198 |     except Exception as e:
+      |     ^^^^^^
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+  200 |         return {
+jac_layer/walkers/quiz_master.jac:198:12 Unexpected token 'Exception'
+  196 |         return result
+  197 |         
+  198 |     except Exception as e:
+      |            ^^^^^^^^^
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+  200 |         return {
+jac_layer/walkers/quiz_master.jac:198:22 Unexpected token 'as'
+  196 |         return result
+  197 |         
+  198 |     except Exception as e:
+      |                      ^^
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+  200 |         return {
+jac_layer/walkers/quiz_master.jac:198:25 Unexpected token 'e'
+  196 |         return result
+  197 |         
+  198 |     except Exception as e:
+      |                         ^
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+  200 |         return {
+jac_layer/walkers/quiz_master.jac:198:26 Unexpected token ':'
+  196 |         return result
+  197 |         
+  198 |     except Exception as e:
+      |                          ^
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+  200 |         return {
+jac_layer/walkers/quiz_master.jac:199:9 Unexpected token 'logger'
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |         ^^^^^^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:15 Unexpected token '.'
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |               ^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:16 Unexpected token 'error'
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |                ^^^^^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:21 Unexpected token '('
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |                     ^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:22 Unexpected token 'f"'
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |                      ^^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:24 Unexpected token 'Error'
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |                        ^^^^^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:30 Unexpected token 'generating'
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |                              ^^^^^^^^^^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:41 Unexpected token 'adaptive'
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |                                         ^^^^^^^^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:50 Unexpected token 'quiz'
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |                                                  ^^^^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:54 Unexpected token ':'
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |                                                      ^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:56 Unexpected token '{'
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |                                                        ^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:57 Unexpected token 'str'
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |                                                         ^^^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:60 Unexpected token '('
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |                                                            ^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:61 Unexpected token 'e'
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |                                                             ^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:62 Unexpected token ')'
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |                                                              ^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:63 Unexpected token '}'
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |                                                               ^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:64 Unexpected token '"'
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |                                                                ^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:199:65 Unexpected token ')'
+  197 |         
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+      |                                                                 ^
+  200 |         return {
+  201 |             'status': 'error',
+jac_layer/walkers/quiz_master.jac:200:9 Unexpected token 'return'
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+  200 |         return {
+      |         ^^^^^^
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+jac_layer/walkers/quiz_master.jac:200:16 Unexpected token '{'
+  198 |     except Exception as e:
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+  200 |         return {
+      |                ^
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+jac_layer/walkers/quiz_master.jac:201:13 Unexpected token ''status''
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+  200 |         return {
+  201 |             'status': 'error',
+      |             ^^^^^^^^
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+  203 |             'user_id': user_id,
+jac_layer/walkers/quiz_master.jac:201:21 Unexpected token ':'
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+  200 |         return {
+  201 |             'status': 'error',
+      |                     ^
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+  203 |             'user_id': user_id,
+jac_layer/walkers/quiz_master.jac:201:23 Unexpected token ''error''
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+  200 |         return {
+  201 |             'status': 'error',
+      |                       ^^^^^^^
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+  203 |             'user_id': user_id,
+jac_layer/walkers/quiz_master.jac:201:30 Unexpected token ','
+  199 |         logger.error(f"Error generating adaptive quiz: {str(e)}")
+  200 |         return {
+  201 |             'status': 'error',
+      |                              ^
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+  203 |             'user_id': user_id,
+jac_layer/walkers/quiz_master.jac:202:13 Unexpected token ''message''
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |             ^^^^^^^^^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:202:22 Unexpected token ':'
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |                      ^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:202:24 Unexpected token 'f''
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |                        ^^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:202:26 Unexpected token 'Failed'
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |                          ^^^^^^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:202:33 Unexpected token 'to'
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |                                 ^^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:202:36 Unexpected token 'generate'
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |                                    ^^^^^^^^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:202:45 Unexpected token 'adaptive'
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |                                             ^^^^^^^^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:202:54 Unexpected token 'quiz'
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |                                                      ^^^^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:202:58 Unexpected token ':'
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |                                                          ^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:202:60 Unexpected token '{'
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |                                                            ^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:202:61 Unexpected token 'str'
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |                                                             ^^^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:202:64 Unexpected token '('
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |                                                                ^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:202:65 Unexpected token 'e'
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |                                                                 ^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:202:66 Unexpected token ')'
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |                                                                  ^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:202:67 Unexpected token '}'
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |                                                                   ^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:202:68 Unexpected token '''
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |                                                                    ^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:202:69 Unexpected token ','
+  200 |         return {
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+      |                                                                     ^
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+jac_layer/walkers/quiz_master.jac:203:13 Unexpected token ''user_id''
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+  203 |             'user_id': user_id,
+      |             ^^^^^^^^^
+  204 |             'concept_id': concept_id
+  205 |         }
+jac_layer/walkers/quiz_master.jac:203:22 Unexpected token ':'
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+  203 |             'user_id': user_id,
+      |                      ^
+  204 |             'concept_id': concept_id
+  205 |         }
+jac_layer/walkers/quiz_master.jac:203:24 Unexpected token 'user_id'
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+  203 |             'user_id': user_id,
+      |                        ^^^^^^^
+  204 |             'concept_id': concept_id
+  205 |         }
+jac_layer/walkers/quiz_master.jac:203:31 Unexpected token ','
+  201 |             'status': 'error',
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+  203 |             'user_id': user_id,
+      |                               ^
+  204 |             'concept_id': concept_id
+  205 |         }
+jac_layer/walkers/quiz_master.jac:204:13 Unexpected token ''concept_id''
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+      |             ^^^^^^^^^^^^
+  205 |         }
+  206 | 
+jac_layer/walkers/quiz_master.jac:204:25 Unexpected token ':'
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+      |                         ^
+  205 |         }
+  206 | 
+jac_layer/walkers/quiz_master.jac:204:27 Unexpected token 'concept_id'
+  202 |             'message': f'Failed to generate adaptive quiz: {str(e)}',
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+      |                           ^^^^^^^^^^
+  205 |         }
+  206 | 
+jac_layer/walkers/quiz_master.jac:205:9 Unexpected token '}'
+  203 |             'user_id': user_id,
+  204 |             'concept_id': concept_id
+  205 |         }
+      |         ^
+  206 | 
+  207 | def create_mixed_assessment(user_id: int, topic_areas: List[str]) -> Dict[str, Any]:
+jac_layer/walkers/quiz_master.jac:207:84 Missing SEMI
+  205 |         }
+  206 | 
+  207 | def create_mixed_assessment(user_id: int, topic_areas: List[str]) -> Dict[str, Any]:
+      |                                                                                    ^
+  208 |     """
+  209 |     Create mixed assessment covering multiple topic areas
+jac_layer/walkers/quiz_master.jac:207:84 Unexpected token ':'
+  205 |         }
+  206 | 
+  207 | def create_mixed_assessment(user_id: int, topic_areas: List[str]) -> Dict[str, Any]:
+      |                                                                                    ^
+  208 |     """
+  209 |     Create mixed assessment covering multiple topic areas
