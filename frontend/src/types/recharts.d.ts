@@ -1333,7 +1333,10 @@ declare module 'recharts' {
   // =============================================================================
 
   // Missing chart types - add any not already defined above
+  export const PieChart: ComponentType<ChartProps>;
+  export const RadarChart: ComponentType<ChartProps>;
   export const ScatterChart: ComponentType<ChartProps>;
+  export const ZAxis: ComponentType<any>;
   
   // Missing utility components
   export const ReferenceLine: ComponentType<any>;
