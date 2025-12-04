@@ -1,0 +1,67 @@
+=== backend/.env File Content ===
+# Backend Environment Configuration
+SECRET_KEY=your-secret-key-here-change-in-production
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0
+
+# Database Configuration
+DATABASE_URL=postgresql://jeseci_user:jeseci_password@localhost:5432/jeseci_db
+# Alternative: sqlite for development
+# DATABASE_URL=sqlite:///db.sqlite3
+
+# Redis Configuration
+REDIS_PASSWORD=redis_password
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_URL=redis://localhost:6379/0
+
+# Jac Server Configuration
+JAC_SERVER_URL=http://localhost:8001
+JAC_GRAPH_PATH=backend/jac_layer/main.jac
+JAC_CONFIG_COMPILE_TIMEOUT=30
+JAC_CONFIG_EXECUTION_TIMEOUT=60
+JAC_CONFIG_MAX_MEMORY_MB=512
+JAC_CONFIG_LOG_LEVEL=DEBUG
+
+# LLM API Keys (Required for byLLM features)
+OPENAI_API_KEY=your-openai-api-key-here
+GEMINI_API_KEY=your-gemini-api-key-here
+LLM_PROVIDER=openai  # Options: openai, gemini
+
+# Celery Configuration
+CELERY_BROKER_URL=redis://:redis_password@localhost:6379/1
+CELERY_RESULT_BACKEND=redis://:redis_password@localhost:6379/2
+
+# CORS Configuration
+CORS_ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+CORS_ALLOW_CREDENTIALS=True
+
+# File Upload Configuration
+MAX_UPLOAD_SIZE=10485760  # 10MB
+
+# Logging Configuration
+LOG_LEVEL=INFO
+
+# Security Configuration
+SECURE_SSL_REDIRECT=False  # Set to True in production
+SESSION_COOKIE_SECURE=False  # Set to True in production
+CSRF_COOKIE_SECURE=False  # Set to True in production
+
+# Email Configuration (Optional)
+EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER=your-email@example.com
+EMAIL_HOST_PASSWORD=your-email-password
+
+# Codebase Genius Configuration
+GITHUB_TOKEN=your-github-token-for-repo-cloning
+DOCS_OUTPUT_PATH=docs/generated
+
+# Monitoring & Analytics
+SENTRY_DSN=your-sentry-dsn-here
+GOOGLE_ANALYTICS_ID=your-ga-id-here
+
+# Jac Language Settings
+JAC_LANGUAGE_PATH=/workspace/backend/jac_layer/walkers
