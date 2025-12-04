@@ -53,6 +53,7 @@ dependencies = [
  "mypy>=1.16.1",
  # PDF处理
  "weasyprint>=65.1",
+ "jaclang>=0.9.3",
 ]
 
 [build-system]
