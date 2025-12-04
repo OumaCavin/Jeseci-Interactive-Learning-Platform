@@ -2,7 +2,7 @@
 # Latest versions as of December 2, 2025
 
 # JacLang runtime
-jaclang[all]==0.9.3
+jaclang==0.9.3
 
 # Django ecosystem 
 Django==5.2.8
