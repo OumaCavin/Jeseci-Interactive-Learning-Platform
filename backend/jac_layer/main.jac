@@ -6,12 +6,12 @@ Date: 2025-12-04
 This file serves as the main entry point for all JaC walkers in the system.
 """
 
-import: include from jac_layer.walkers.orchestrator;
-import: include from jac_layer.walkers.content_curator;
-import: include from jac_layer.walkers.evaluator;
-import: include from jac_layer.walkers.motivator;
-import: include from jac_layer.walkers.progress_tracker;
-import: include from jac_layer.walkers.quiz_master;
+import jac_layer.walkers.orchestrator;
+import jac_layer.walkers.content_curator;
+import jac_layer.walkers.evaluator;
+import jac_layer.walkers.motivator;
+import jac_layer.walkers.progress_tracker;
+import jac_layer.walkers.quiz_master;
 
 walker main_orchestrator `root entry` {
     can orchestrate_learning `root entry` {
