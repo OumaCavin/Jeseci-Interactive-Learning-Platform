@@ -22,8 +22,8 @@ class DevelopmentTools {
     if (this.isDevelopment) {
       console.log('🛠️ Development tools initialized');
       this.setupGlobalHelpers();
-      this.setupPerformanceHelpers();
-      this.setupDebugHelpers();
+      this.performanceHelpers;
+      this.debugHelpers;
       this.setupConsoleEnhancements();
     }
   }

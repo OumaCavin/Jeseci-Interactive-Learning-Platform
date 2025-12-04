@@ -435,9 +435,18 @@ class PerformanceMonitor {
     return new Promise((resolve) => {
       if ('PerformanceObserver' in window) {
         const observer = new PerformanceObserver((list) => {
-          const firstEntry = list.getEntries()[0];
-          observer.disconnect();
-          resolve(firstEntry.processingStart - firstEntry.startTime);
+          const entries = list.getEntries();
+          if (entries.length > 0) {
+            const firstEntry = entries[0] as PerformanceEventTiming;
+            observer.disconnect();
+            if (firstEntry.processingStart && firstEntry.startTime) {
+              resolve(firstEntry.processingStart - firstEntry.startTime);
+            } else {
+              resolve(0);
+            }
+          } else {
+            resolve(0);
+          }
         });
         observer.observe({ entryTypes: ['first-input'] });
       } else {

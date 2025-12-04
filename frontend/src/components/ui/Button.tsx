@@ -16,7 +16,7 @@ import { usePreferences } from './usePreferences';
  * Comprehensive button variant types for different use cases
  */
 export type ButtonVariant = 
-  | 'primary' | 'secondary' | 'tertiary' | 'quaternary'
+  | 'default' | 'primary' | 'secondary' | 'tertiary' | 'quaternary'
   | 'success' | 'warning' | 'error' | 'info' | 'neutral'
   | 'ghost' | 'outline' | 'link' | 'minimal'
   | 'gradient' | 'neon' | 'glass' | 'metallic' | 'holographic'
@@ -234,6 +234,7 @@ const generateButtonClasses = (props: ButtonProps): string => {
 
   // Variant classes
   const variantClasses: Record<ButtonVariant, string[]> = {
+    default: ['bg-blue-600', 'text-white', 'hover:bg-blue-700', 'focus:ring-blue-500'],
     primary: ['bg-blue-600', 'text-white', 'hover:bg-blue-700', 'focus:ring-blue-500'],
     secondary: ['bg-gray-600', 'text-white', 'hover:bg-gray-700', 'focus:ring-gray-500'],
     tertiary: ['bg-indigo-600', 'text-white', 'hover:bg-indigo-700', 'focus:ring-indigo-500'],

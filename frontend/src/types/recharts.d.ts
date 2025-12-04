@@ -1327,4 +1327,22 @@ declare module 'recharts' {
   export const AIInsightsOverlay: ComponentType<any>;
   export const PredictiveAnalyticsLayer: ComponentType<any>;
   export const SmartRecommendationsPanel: ComponentType<any>;
+
+  // =============================================================================
+  // STANDARD RECHARTS COMPONENTS (for compatibility)
+  // =============================================================================
+
+  // Missing chart types - add any not already defined above
+  export const ScatterChart: ComponentType<ChartProps>;
+  
+  // Missing utility components
+  export const ReferenceLine: ComponentType<any>;
+  export const Brush: ComponentType<any>;
+  export const FunnelChart: ComponentType<any>;
+  export const Funnel: ComponentType<any>;
+  export const LabelList: ComponentType<any>;
+  export const WaterfallChart: ComponentType<any>;
+  export const RadialBarChart: ComponentType<any>;
+  export const RadialBar: ComponentType<any>;
+  export const Treemap: ComponentType<any>;
 }
