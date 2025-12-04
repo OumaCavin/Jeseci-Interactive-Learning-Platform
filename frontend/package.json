@@ -22,7 +22,6 @@
     "date-fns": "latest",
     "framer-motion": "latest",
     "lucide-react": "latest",
-    "pnpm-store": "link:/tmp/pnpm-store",
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "latest",
