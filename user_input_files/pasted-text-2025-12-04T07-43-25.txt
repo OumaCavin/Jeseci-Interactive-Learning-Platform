@@ -1,0 +1,155 @@
+[INFO] Installing Node.js dependencies...
+npm error config prefix cannot be changed from project config: /home/cavin/projects/Jeseci-Interactive-Learning-Platform/frontend/.npmrc.
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: jac-learning-frontend@1.0.0
+npm warn Found: @types/react@19.2.7
+npm warn node_modules/@types/react
+npm warn   @types/react@"^18.0.0" from the root project
+npm warn   6 more (@testing-library/react, @types/react-dom, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer @types/react@"^19.2.0" from @types/react-dom@19.2.3
+npm warn node_modules/@types/react-dom
+npm warn   @types/react-dom@"^18.0.0" from the root project
+npm warn   1 more (@testing-library/react)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: jac-learning-frontend@1.0.0
+npm warn Found: react@19.2.0
+npm warn node_modules/react
+npm warn   react@"^18.2.0" from the root project
+npm warn   27 more (@floating-ui/react, @floating-ui/react-dom, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^19.2.0" from react-dom@19.2.0
+npm warn node_modules/react-dom
+npm warn   react-dom@"^18.2.0" from the root project
+npm warn   14 more (@floating-ui/react, @floating-ui/react-dom, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: jac-learning-frontend@1.0.0
+npm warn Found: react@19.2.0
+npm warn node_modules/react
+npm warn   react@"^18.2.0" from the root project
+npm warn   27 more (@floating-ui/react, @floating-ui/react-dom, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^19.2.0" from react-dom@19.2.0
+npm warn node_modules/react-dom
+npm warn   react-dom@"^18.2.0" from the root project
+npm warn   14 more (@floating-ui/react, @floating-ui/react-dom, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: jac-learning-frontend@1.0.0
+npm warn Found: react@19.2.0
+npm warn node_modules/react
+npm warn   react@"^18.2.0" from the root project
+npm warn   27 more (@floating-ui/react, @floating-ui/react-dom, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^19.2.0" from react-dom@19.2.0
+npm warn node_modules/react-dom
+npm warn   react-dom@"^18.2.0" from the root project
+npm warn   14 more (@floating-ui/react, @floating-ui/react-dom, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: jac-learning-frontend@1.0.0
+npm warn Found: react@19.2.0
+npm warn node_modules/react
+npm warn   react@"^18.2.0" from the root project
+npm warn   27 more (@floating-ui/react, @floating-ui/react-dom, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^19.2.0" from react-dom@19.2.0
+npm warn node_modules/react-dom
+npm warn   react-dom@"^18.2.0" from the root project
+npm warn   14 more (@floating-ui/react, @floating-ui/react-dom, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: jac-learning-frontend@1.0.0
+npm warn Found: react@19.2.0
+npm warn node_modules/react
+npm warn   react@"^18.2.0" from the root project
+npm warn   27 more (@floating-ui/react, @floating-ui/react-dom, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^19.2.0" from react-dom@19.2.0
+npm warn node_modules/react-dom
+npm warn   react-dom@"^18.2.0" from the root project
+npm warn   14 more (@floating-ui/react, @floating-ui/react-dom, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: jac-learning-frontend@1.0.0
+npm warn Found: react@19.2.0
+npm warn node_modules/react
+npm warn   react@"^18.2.0" from the root project
+npm warn   27 more (@floating-ui/react, @floating-ui/react-dom, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^19.2.0" from react-dom@19.2.0
+npm warn node_modules/react-dom
+npm warn   react-dom@"^18.2.0" from the root project
+npm warn   14 more (@floating-ui/react, @floating-ui/react-dom, ...)
+
+added 2 packages, removed 2 packages, changed 7 packages, and audited 1612 packages in 22s
+
+278 packages are looking for funding
+  run `npm fund` for details
+
+9 vulnerabilities (3 moderate, 6 high)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[INFO] Creating environment configuration...
+[SUCCESS] Frontend setup completed!
+[INFO] Checking Redis service...
+[SUCCESS] Redis is already running
+[INFO] Final setup...
+[INFO] Creating startup scripts...
+[SUCCESS] Startup scripts created!
+[SUCCESS] Development guide created!
+[SUCCESS] Git ignore created!
+
+✅ Setup completed successfully!
+
+🎉 Your Jeseci Interactive Learning Platform is ready!
+
+📋 Next steps:
+   1. Activate backend environment: cd backend && source venv/bin/activate
+   2. Start backend: ./start_backend.sh
+   3. Start Celery worker: ./start_celery.sh
+   4. Start frontend: ./start_frontend.sh
+
+🌐 Access the application:
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:8000/api/
+   - Admin Panel: http://localhost:8000/admin/ (admin/admin123)
+
+📚 Development guide: DEVELOPMENT.md
+
+[SUCCESS] Happy coding with Cavin Otieno's Multi-Agent Learning System! 🚀
+(venv) cavin@DESKTOP-KR7GL8A:~/projects/Jeseci-Interactive-Learning-Platform$ ./start_backend.sh
+Starting Django backend on http://localhost:8000
+INFO JacManager initialized - using jaclang 0.9.x approach without root functions
+WARNING Could not load walker module orchestrator (jac_layer.walkers.orchestrator): No bytecode found for /home/cavin/projects/Jeseci-Interactive-Learning-Platform/backend/jac_layer/walkers/orchestrator.jac
+WARNING Could not load walker module content_curator (jac_layer.walkers.content_curator): No bytecode found for /home/cavin/projects/Jeseci-Interactive-Learning-Platform/backend/jac_layer/walkers/content_curator.jac
+WARNING Could not load walker module quiz_master (jac_layer.walkers.quiz_master): No bytecode found for /home/cavin/projects/Jeseci-Interactive-Learning-Platform/backend/jac_layer/walkers/quiz_master.jac
+WARNING Could not load walker module evaluator (jac_layer.walkers.evaluator): No bytecode found for /home/cavin/projects/Jeseci-Interactive-Learning-Platform/backend/jac_layer/walkers/evaluator.jac
+WARNING Could not load walker module progress_tracker (jac_layer.walkers.progress_tracker): No bytecode found for /home/cavin/projects/Jeseci-Interactive-Learning-Platform/backend/jac_layer/walkers/progress_tracker.jac
+WARNING Could not load walker module motivator (jac_layer.walkers.motivator): No bytecode found for /home/cavin/projects/Jeseci-Interactive-Learning-Platform/backend/jac_layer/walkers/motivator.jac
+INFO JacManager initialized - using jaclang 0.9.x approach without root functions
+WARNING Could not load walker module orchestrator (jac_layer.walkers.orchestrator): No bytecode found for /home/cavin/projects/Jeseci-Interactive-Learning-Platform/backend/jac_layer/walkers/orchestrator.jac
+WARNING Could not load walker module content_curator (jac_layer.walkers.content_curator): No bytecode found for /home/cavin/projects/Jeseci-Interactive-Learning-Platform/backend/jac_layer/walkers/content_curator.jac
+WARNING Could not load walker module quiz_master (jac_layer.walkers.quiz_master): No bytecode found for /home/cavin/projects/Jeseci-Interactive-Learning-Platform/backend/jac_layer/walkers/quiz_master.jac
+WARNING Could not load walker module evaluator (jac_layer.walkers.evaluator): No bytecode found for /home/cavin/projects/Jeseci-Interactive-Learning-Platform/backend/jac_layer/walkers/evaluator.jac
+WARNING Could not load walker module progress_tracker (jac_layer.walkers.progress_tracker): No bytecode found for /home/cavin/projects/Jeseci-Interactive-Learning-Platform/backend/jac_layer/walkers/progress_tracker.jac
+WARNING Could not load walker module motivator (jac_layer.walkers.motivator): No bytecode found for /home/cavin/projects/Jeseci-Interactive-Learning-Platform/backend/jac_layer/walkers/motivator.jac
+INFO Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+December 04, 2025 - 07:40:15
+Django version 5.2.8, using settings 'jeseci_platform.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+WARNING Not Found: /
+WARNING "GET / HTTP/1.1" 404 2840
